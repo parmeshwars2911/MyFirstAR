@@ -251,6 +251,131 @@ def reflection_law(key):
     return _render(key, _svg("".join(body), 600, 430), 760, 545)
 
 
+def _lens_shape(cx, cy, h, convex=True, col=GLASS):
+    if convex:
+        return (f'<path d="M {cx} {cy-h} Q {cx+34} {cy} {cx} {cy+h} '
+                f'Q {cx-34} {cy} {cx} {cy-h} Z" fill="{col}" '
+                f'stroke="{INK}" stroke-width="2.5"/>')
+    # concave (biconcave)
+    return (f'<path d="M {cx-22} {cy-h} Q {cx} {cy-h+18} {cx+22} {cy-h} '
+            f'L {cx+22} {cy+h} Q {cx} {cy+h-18} {cx-22} {cy+h} Z" '
+            f'fill="{col}" stroke="{INK}" stroke-width="2.5"/>')
+
+
+def convex_lens_image(key):
+    """Object beyond 2F -> real, inverted, diminished image."""
+    cx, cy = 300, 240
+    body = [
+        _line(40, cy, 560, cy, MUT, 2),  # principal axis
+        _lens_shape(cx, cy, 110, True),
+        # foci and 2F
+        _txt(cx - 90, cy + 22, "2F", MUT, 16),
+        _txt(cx - 45, cy + 22, "F", MUT, 16),
+        _txt(cx + 48, cy + 22, "F", MUT, 16),
+        _txt(cx + 95, cy + 22, "2F", MUT, 16),
+        f'<circle cx="210" cy="{cy}" r="3" fill="{MUT}"/>',
+        f'<circle cx="255" cy="{cy}" r="3" fill="{MUT}"/>',
+        f'<circle cx="345" cy="{cy}" r="3" fill="{MUT}"/>',
+        f'<circle cx="390" cy="{cy}" r="3" fill="{MUT}"/>',
+        # object (upright arrow) at 175
+        _line(175, cy, 175, cy - 80, ORANGE, 4, marker="arrowO"),
+        _txt(175, cy - 92, "object", ORANGE, 15),
+        # ray 1: parallel to axis, then refracts through far focus F (345)
+        _line(175, cy - 80, cx, cy - 80, RED, 2.5),
+        _line(cx, cy - 80, 410, cy + 115, RED, 2.5),
+        # ray 2: straight through optical centre, undeviated
+        _line(175, cy - 80, 430, cy + 83, TEAL, 2.5),
+        # image (inverted, diminished) where the rays cross, between F and 2F
+        _line(370, cy, 370, cy + 45, PURPLE, 4, marker="arrowP"),
+        _txt(388, cy + 30, "image", PURPLE, 15, anchor="start"),
+        _txt(300, 40, "Object beyond 2F → real, inverted, diminished",
+             INK, 17),
+    ]
+    return _render(key, _svg("".join(body), 600, 460), 820, 629)
+
+
+def convex_magnifier(key):
+    """Object within F -> virtual, erect, magnified (magnifying glass)."""
+    cx, cy = 330, 240
+    body = [
+        _line(40, cy, 560, cy, MUT, 2),
+        _lens_shape(cx, cy, 110, True),
+        _txt(cx - 55, cy + 22, "F", MUT, 16),
+        _txt(cx + 50, cy + 22, "F", MUT, 16),
+        f'<circle cx="275" cy="{cy}" r="3" fill="{MUT}"/>',
+        f'<circle cx="385" cy="{cy}" r="3" fill="{MUT}"/>',
+        # object within F
+        _line(295, cy, 295, cy - 55, ORANGE, 4, marker="arrowO"),
+        _txt(295, cy - 67, "object", ORANGE, 14),
+        # ray parallel -> through F (on same side diverging)
+        _line(295, cy - 55, cx, cy - 70, RED, 2.5),
+        _line(cx, cy - 70, 520, cy - 30, RED, 2.5, marker="arrowR"),
+        # ray through centre
+        _line(295, cy - 55, 520, cy + 18, TEAL, 2.5, marker="arrowT"),
+        # back-projected virtual rays (dashed) to virtual image
+        _line(cx, cy - 70, 120, cy - 130, MUT, 2, dash="5 5"),
+        _line(520, cy + 18, 120, cy - 130, MUT, 0),
+        # virtual image (large, erect) at 120
+        _line(120, cy, 120, cy - 130, PURPLE, 4, marker="arrowP"),
+        _txt(120, cy - 142, "virtual image", PURPLE, 14),
+        _txt(300, 40, "Object within F → virtual, erect, magnified", INK, 17),
+    ]
+    return _render(key, _svg("".join(body), 600, 460), 820, 629)
+
+
+def concave_lens_image(key):
+    """Concave lens -> always virtual, erect, diminished."""
+    cx, cy = 320, 240
+    body = [
+        _line(40, cy, 560, cy, MUT, 2),
+        _lens_shape(cx, cy, 110, False),
+        _txt(cx - 70, cy + 22, "F", MUT, 16),
+        _txt(cx + 70, cy + 22, "F", MUT, 16),
+        f'<circle cx="250" cy="{cy}" r="3" fill="{MUT}"/>',
+        f'<circle cx="390" cy="{cy}" r="3" fill="{MUT}"/>',
+        # object
+        _line(180, cy, 180, cy - 90, ORANGE, 4, marker="arrowO"),
+        _txt(180, cy - 102, "object", ORANGE, 15),
+        # ray parallel -> diverges as if from F (near side)
+        _line(180, cy - 90, cx, cy - 90, RED, 2.5),
+        _line(cx, cy - 90, 520, cy - 40, RED, 2.5, marker="arrowR"),
+        _line(cx, cy - 90, 250, cy, MUT, 2, dash="5 5"),
+        # ray through centre
+        _line(180, cy - 90, 520, cy + 30, TEAL, 2.5, marker="arrowT"),
+        # virtual image (diminished, erect)
+        _line(245, cy, 245, cy - 48, PURPLE, 4, marker="arrowP"),
+        _txt(245, cy - 60, "image", PURPLE, 14),
+        _txt(300, 40, "Concave lens → virtual, erect, diminished", INK, 17),
+    ]
+    return _render(key, _svg("".join(body), 600, 460), 820, 629)
+
+
+def lens_as_prisms(key):
+    """A convex lens behaves like a stack of prisms + central slab."""
+    cx, cy = 300, 230
+    body = [
+        _line(40, cy, 560, cy, MUT, 2),
+        # upper prism (base down)
+        f'<polygon points="{cx-30},{cy-110} {cx+30},{cy-110} {cx},{cy-50}" '
+        f'fill="{GLASS}" stroke="{INK}" stroke-width="2"/>',
+        # middle slab
+        f'<rect x="{cx-30}" y="{cy-25}" width="60" height="50" '
+        f'fill="{GLASS}" stroke="{INK}" stroke-width="2"/>',
+        # lower prism (base up)
+        f'<polygon points="{cx-30},{cy+110} {cx+30},{cy+110} {cx},{cy+50}" '
+        f'fill="{GLASS}" stroke="{INK}" stroke-width="2"/>',
+        _line(80, cy - 80, cx - 20, cy - 80, RED, 2.5),
+        _line(cx + 10, cy - 70, 470, cy - 8, RED, 2.5, marker="arrowR"),
+        _line(80, cy + 80, cx - 20, cy + 80, RED, 2.5),
+        _line(cx + 10, cy + 70, 470, cy + 8, RED, 2.5, marker="arrowR"),
+        _line(80, cy, 470, cy, TEAL, 2.5, marker="arrowT"),
+        _txt(300, 40, "A lens acts like a set of prisms with a central slab",
+             INK, 16),
+        _txt(480, cy + 4, "F", MUT, 16, anchor="start"),
+    ]
+    return _render(key, _svg("".join(body), 600, 470), 800, 627)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
