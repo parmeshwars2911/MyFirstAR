@@ -287,7 +287,7 @@ def convex_lens_image(key):
         _line(175, cy - 80, 430, cy + 83, TEAL, 2.5),
         # image (inverted, diminished) where the rays cross, between F and 2F
         _line(370, cy, 370, cy + 45, PURPLE, 4, marker="arrowP"),
-        _txt(388, cy + 30, "image", PURPLE, 15, anchor="start"),
+        _txt(370, cy + 78, "image", PURPLE, 15),
         _txt(300, 40, "Object beyond 2F → real, inverted, diminished",
              INK, 17),
     ]

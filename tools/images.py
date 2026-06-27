@@ -86,6 +86,55 @@ def download(key, url, ext="jpg"):
     return out
 
 
+def _strip_html(s):
+    import re
+    return re.sub("<[^>]+>", "", s or "").strip()
+
+
+def wikimedia_search(query, want=8):
+    """Search Wikimedia Commons for freely-licensed images; return candidate
+    (title, thumb_url, descriptionurl) tuples, largest first."""
+    import urllib.parse
+    api = ("https://commons.wikimedia.org/w/api.php?action=query&format=json"
+           "&generator=search&gsrnamespace=6&gsrlimit=" + str(want) +
+           "&gsrsearch=" + urllib.parse.quote(query) +
+           "&prop=imageinfo&iiprop=url|size|mime|mediatype|extmetadata"
+           "&iiurlwidth=1280")
+    req = urllib.request.Request(api, headers={"User-Agent": "ICSE-decks/1.0"})
+    with urllib.request.urlopen(req, timeout=40) as r:
+        data = json.loads(r.read())
+    pages = (data.get("query", {}) or {}).get("pages", {})
+    out = []
+    for p in pages.values():
+        ii = (p.get("imageinfo") or [{}])[0]
+        url = ii.get("thumburl") or ii.get("url")
+        mime = ii.get("mime", "")
+        # only real raster photos; skip PDFs, videos, audio, raw SVG
+        if not url or mime not in ("image/jpeg", "image/png"):
+            continue
+        em = ii.get("extmetadata", {})
+        lic = em.get("LicenseShortName", {}).get("value", "?")
+        artist = em.get("Artist", {}).get("value", "")
+        out.append({"title": p.get("title", ""), "url": url,
+                    "desc": ii.get("descriptionurl", ""), "license": lic,
+                    "artist": _strip_html(artist),
+                    "w": ii.get("thumbwidth") or ii.get("width", 0)})
+    out.sort(key=lambda d: d.get("w", 0), reverse=True)
+    return out
+
+
+def fetch_wikimedia(key, query, ext="jpg"):
+    """Search Commons and download the first image that passes QA."""
+    for cand in wikimedia_search(query):
+        try:
+            p = download(key, cand["url"], ext)
+            print(f"    via Commons: {cand['title']} [{cand['license']}]")
+            return p, cand
+        except Exception as e:
+            print(f"    skip {cand.get('title')}: {e}")
+    raise ValueError(f"no usable Commons image for {query!r}")
+
+
 def _http_json(url, payload, key):
     body = json.dumps(payload).encode()
     req = urllib.request.Request(
