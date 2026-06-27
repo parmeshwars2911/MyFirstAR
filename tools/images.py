@@ -37,8 +37,9 @@ os.makedirs(ASSETS, exist_ok=True)
 # the key itself must be passed via env QWEN_API_KEY — never hard-coded/committed)
 QWEN_BASE = os.environ.get(
     "QWEN_BASE",
-    "https://ws-qomife91njyip4db.cn-beijing.maas.aliyuncs.com")
-QWEN_MODEL = os.environ.get("QWEN_MODEL", "wan2.2-t2i-flash")
+    "https://ws-ybmxvbl2gr7ygzua.ap-southeast-1.maas.aliyuncs.com")
+QWEN_MODEL = os.environ.get("QWEN_MODEL", "qwen-image-2.0-pro")
+QWEN_SIZE = os.environ.get("QWEN_SIZE", "1328*747")  # 16:9-ish
 
 
 def asset_path(key, ext="jpg"):
@@ -145,40 +146,33 @@ def _http_json(url, payload, key):
         return json.loads(r.read())
 
 
-def qwen_generate(key, prompt, ext="jpg", size="1280*720"):
-    """Generate an illustration with the Qwen/DashScope text-to-image model.
-
-    Uses the DashScope async text2image task API. Requires env QWEN_API_KEY.
+def qwen_generate(key, prompt, ext="png", size=None, negative=None):
+    """Generate an illustration with the Qwen image model (DashScope
+    multimodal-generation, synchronous). Requires env QWEN_API_KEY. Returns the
+    QA-passed asset path, or raises.
     """
     api = os.environ.get("QWEN_API_KEY")
     if not api:
         raise RuntimeError("set QWEN_API_KEY in the environment first")
-    create = f"{QWEN_BASE}/api/v1/services/aigc/text2image/image-synthesis"
+    url = f"{QWEN_BASE}/api/v1/services/aigc/multimodal-generation/generation"
+    content = [{"text": prompt}]
+    params = {"size": size or QWEN_SIZE}
+    if negative:
+        params["negative_prompt"] = negative
     payload = {"model": QWEN_MODEL,
-               "input": {"prompt": prompt},
-               "parameters": {"size": size, "n": 1}}
+               "input": {"messages": [{"role": "user", "content": content}]},
+               "parameters": params}
     req = urllib.request.Request(
-        create, data=json.dumps(payload).encode(),
+        url, data=json.dumps(payload).encode(),
         headers={"Authorization": f"Bearer {api}",
-                 "Content-Type": "application/json",
-                 "X-DashScope-Async": "enable"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        task = json.loads(r.read())
-    tid = task["output"]["task_id"]
-    poll = f"{QWEN_BASE}/api/v1/tasks/{tid}"
-    for _ in range(40):
-        time.sleep(3)
-        req = urllib.request.Request(
-            poll, headers={"Authorization": f"Bearer {api}"})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            st = json.loads(r.read())
-        status = st["output"]["task_status"]
-        if status == "SUCCEEDED":
-            img_url = st["output"]["results"][0]["url"]
-            return download(key, img_url, ext)
-        if status in ("FAILED", "CANCELED", "UNKNOWN"):
-            raise RuntimeError(f"qwen task {status}: {st['output']}")
-    raise TimeoutError("qwen generation timed out")
+                 "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=180) as r:
+        resp = json.loads(r.read())
+    try:
+        img_url = resp["output"]["choices"][0]["message"]["content"][0]["image"]
+    except Exception:
+        raise RuntimeError(f"unexpected qwen response: {resp}")
+    return download(key, img_url, ext)
 
 
 def build_from_manifest(manifest_path):
