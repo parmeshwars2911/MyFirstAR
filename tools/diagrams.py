@@ -1031,6 +1031,59 @@ def barometer(key):
     return _render(key, _svg("".join(body), 460, 450), 600, 587)
 
 
+def upthrust_balance(key):
+    """A spring balance reads less in water — apparent loss of weight =
+    upthrust."""
+    body = [_txt(320, 40, "Apparent loss in weight = upthrust", INK, 17)]
+
+    def rig(x, reading, water, label):
+        out = [
+            # spring balance
+            f'<rect x="{x-18}" y="70" width="36" height="90" rx="6" '
+            f'fill="#FFFFFF" stroke="{INK}" stroke-width="2"/>',
+            _txt(x, 120, reading, RED, 16),
+            f'<line x1="{x}" y1="160" x2="{x}" y2="200" stroke="{INK}" '
+            f'stroke-width="2"/>',
+            # block
+            f'<rect x="{x-26}" y="200" width="52" height="52" fill="#C8A24B" '
+            f'stroke="{INK}" stroke-width="2"/>',
+            _txt(x, 300, label, MUT, 14),
+        ]
+        if water:
+            out.insert(0, f'<rect x="{x-90}" y="178" width="180" height="120" '
+                          f'fill="{WATER}" stroke="{INK}" stroke-width="2"/>')
+            out.insert(1, _txt(x+70, 195, "water", "#27496D", 12))
+        return out
+    body += rig(180, "5.0 N", False, "in air")
+    body += rig(460, "3.0 N", True, "in water")
+    body.append(_txt(320, 350, "Block weighs less in water — the water pushes "
+                               "up with an upthrust of 2 N", INK, 14))
+    return _render(key, _svg("".join(body), 640, 370), 860, 497)
+
+
+def floatation(key):
+    """A floating object: weight balanced by upthrust (weight of displaced
+    liquid)."""
+    body = [
+        f'<rect x="80" y="170" width="440" height="200" fill="{WATER}" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _line(80, 170, 520, 170, INK, 2),
+        # boat-like block, partly submerged
+        f'<path d="M220 130 L380 130 L360 250 L240 250 Z" fill="#C8A24B" '
+        f'stroke="{INK}" stroke-width="3"/>',
+        _txt(300, 195, "floating body", "#7A5C1E", 14),
+        # weight arrow down
+        _line(300, 190, 300, 320, RED, 4, marker="arrowR"),
+        _txt(300, 340, "Weight (down)", RED, 14),
+        # upthrust arrow up
+        _line(300, 250, 300, 150, TEAL, 4, marker="arrowT"),
+        _txt(300, 110, "Upthrust (up)", TEAL, 14),
+        _txt(300, 395, "Floats when Upthrust = Weight = weight of displaced "
+                       "liquid", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 600, 420), 760, 532)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
