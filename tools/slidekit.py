@@ -348,3 +348,72 @@ def quiz(b, qno, topic, question, options, correct, why):
     option selected and a short Why."""
     _quiz_slide(b, qno, topic, question, options)
     _quiz_slide(b, qno, topic, question, options, correct=correct, why=why)
+
+
+# ---------------------------------------------------------------------------
+# House style: applied repo-wide without editing every call site.
+#   * no footer and no brand text on any slide
+#   * title eyebrows carry no grade / board name
+#   * feature cards get icons
+#   * quiz answer slide mirrors the question slide (correct option selected)
+# Call apply_house_style() once after importing the deck's Builder.
+# ---------------------------------------------------------------------------
+def _correct_index(answer, options):
+    a = (answer or "").strip()
+    if len(a) >= 2 and a[0].upper() in "ABCD" and a[1] in ").:.-  ":
+        return "ABCD".index(a[0].upper())
+    for i, o in enumerate(options):
+        if o and (o.lower() in a.lower() or a.lower() in o.lower()):
+            return i
+    return 0
+
+
+def _clean_eyebrow(eyebrow):
+    import re
+    parts = [p.strip() for p in str(eyebrow).split("•")]
+    keep = [p for p in parts
+            if p and not re.match(r"(?i)^(icse|cbse|class\s*\d+|grade\s*\d+)$",
+                                  p)]
+    return " • ".join(keep) if keep else "Physics"
+
+
+def apply_house_style():
+    """Monkeypatch engine.Builder so existing decks adopt the house style with
+    no edits to their call sites (no footer/brand, neutral eyebrows, icon
+    cards, mirrored quiz answer slides)."""
+    from engine import Builder
+    if getattr(Builder, "_house_styled", False):
+        return
+    _orig_init = Builder.__init__
+    _orig_title = Builder.title
+
+    def init(self, footer="", accent=None, brand="Infinity Learn  |  Physics"):
+        _orig_init(self, "", accent=accent, brand="")
+
+    def title(self, eyebrow, ttl, subtitle, img=None):
+        return _orig_title(self, _clean_eyebrow(eyebrow), ttl, subtitle,
+                           img=img)
+
+    def cards_m(self, badge, title_, items, notes=""):
+        return cards(self, badge, title_, items, notes=notes)
+
+    def quiz_q(self, qno, topic, question, options):
+        self._last_quiz = (qno, topic, question, list(options))
+        return _quiz_slide(self, qno, topic, question, options)
+
+    def quiz_a(self, qno, answer, why):
+        q = getattr(self, "_last_quiz", None)
+        if q and q[0] == qno:
+            _qno, topic, question, options = q
+        else:
+            _qno, topic, question, options = qno, "", answer, []
+        correct = _correct_index(answer, options)
+        return _quiz_slide(self, qno, topic, question, options,
+                           correct=correct, why=why)
+
+    Builder.__init__ = init
+    Builder.title = title
+    Builder.cards = cards_m
+    Builder.quiz_q = quiz_q
+    Builder.quiz_a = quiz_a
+    Builder._house_styled = True

@@ -533,6 +533,174 @@ def lunar_eclipse(key):
     return _render(key, _svg("".join(body), vw, vh), 860, 480)
 
 
+# ===========================================================================
+# MAGNETISM — Grade 6 (S69, S70)
+# ===========================================================================
+def bar_magnet_field(key):
+    """A bar magnet with its magnetic field lines running from N to S."""
+    vw, vh = 680, 430
+    x1, x2 = 260, 420
+    mid = (x1 + x2) / 2
+    y1, y2 = 200, 250
+    cy = (y1 + y2) / 2
+    body = [
+        _rect(x1, y1, mid - x1, y2 - y1, fill=RED, stroke=INK, sw=2),
+        _rect(mid, y1, x2 - mid, y2 - y1, fill=BLUE, stroke=INK, sw=2),
+        _txt((x1 + mid) / 2, cy + 8, "N", "#FFFFFF", 24),
+        _txt((mid + x2) / 2, cy + 8, "S", "#FFFFFF", 24),
+    ]
+    for d in (40, 90, 140):
+        body.append(f'<path d="M {x1} {cy} C {x1} {cy - d}, {x2} {cy - d}, '
+                    f'{x2} {cy}" fill="none" stroke="{TEAL}" stroke-width="2.5" '
+                    f'marker-end="url(#arrowT)"/>')
+        body.append(f'<path d="M {x1} {cy} C {x1} {cy + d}, {x2} {cy + d}, '
+                    f'{x2} {cy}" fill="none" stroke="{TEAL}" stroke-width="2.5" '
+                    f'marker-end="url(#arrowT)"/>')
+    body.append(_txt(340, 44, "Magnetic field of a bar magnet", INK, 22))
+    body.append(_txt(340, 408,
+                     "Field lines run from N to S outside the magnet", MUT, 16))
+    return _render(key, _svg("".join(body), vw, vh), 820, 518)
+
+
+def _mag_bar(x, y, left, right, w=132, h=46):
+    lc = RED if left == "N" else BLUE
+    rc = RED if right == "N" else BLUE
+    return (_rect(x, y, w / 2, h, fill=lc, stroke=INK, sw=2)
+            + _rect(x + w / 2, y, w / 2, h, fill=rc, stroke=INK, sw=2)
+            + _txt(x + w / 4, y + h / 2 + 7, left, "#FFFFFF", 20)
+            + _txt(x + 3 * w / 4, y + h / 2 + 7, right, "#FFFFFF", 20))
+
+
+def like_unlike_poles(key):
+    """Like poles repel, unlike poles attract."""
+    vw, vh = 680, 400
+    body = [_txt(340, 40, "Law of magnetic poles", INK, 21)]
+    # repel: facing poles are both N
+    body.append(_mag_bar(120, 95, "S", "N"))
+    body.append(_mag_bar(428, 95, "N", "S"))
+    body.append(_line(300, 118, 250, 118, ORANGE, 5, marker="arrowO"))
+    body.append(_line(380, 118, 430, 118, ORANGE, 5, marker="arrowO"))
+    body.append(_txt(340, 175, "Like poles repel", MUT, 17))
+    # attract: facing poles are N and S
+    body.append(_mag_bar(120, 250, "S", "N"))
+    body.append(_mag_bar(428, 250, "S", "N"))
+    body.append(_line(258, 273, 308, 273, GREEN, 5, marker="arrowT"))
+    body.append(_line(422, 273, 372, 273, GREEN, 5, marker="arrowT"))
+    body.append(_txt(340, 330, "Unlike poles attract", MUT, 17))
+    return _render(key, _svg("".join(body), vw, vh), 820, 482)
+
+
+def making_magnet_stroke(key):
+    """Making a magnet by the single-touch (stroking) method."""
+    vw, vh = 680, 380
+    bx1, bx2, by = 150, 510, 250
+    body = [
+        _txt(340, 40, "Making a magnet by single touch", INK, 21),
+        _rect(bx1, by, bx2 - bx1, 40, fill=IRON, stroke=INK, sw=2),
+        _txt(330, by + 64, "steel bar", MUT, 15),
+        # induced poles on the steel bar
+        _txt(bx1 + 16, by + 27, "N", RED, 20),
+        _txt(bx2 - 16, by + 27, "S", BLUE, 20),
+        # the stroking permanent magnet (lifted, near the finishing end)
+        _rect(430, 120, 36, 90, fill=RED, stroke=INK, sw=2),
+        _rect(430, 120, 36, 45, fill=BLUE, stroke=INK, sw=2),
+        _txt(448, 150, "S", "#FFFFFF", 16),
+        _txt(448, 196, "N", "#FFFFFF", 16),
+        # stroke-direction arrow along the bar
+        _line(175, 222, 500, 222, TEAL, 5, marker="arrowT"),
+        _txt(300, 210, "stroke in one direction", TEAL, 15),
+    ]
+    return _render(key, _svg("".join(body), vw, vh), 820, 458)
+
+
+def electromagnet(key):
+    """A solenoid: wire wound continuously around a soft-iron core, wired to a
+    cell and a switch. The coil is layered so the front of every turn shows in
+    front of the core and the back of each turn is hidden behind it."""
+    vw, vh = 700, 410
+    cy = 170
+    rod_t, rod_b = cy - 24, cy + 24            # soft-iron core thickness
+    xs, xe = 222, 498                          # coil span along the core
+    turns = 9
+    ry = 48                                     # coil half-height
+    ct, cb = cy - ry, cy + ry                   # coil top / bottom
+    pitch = (xe - xs) / (turns - 1)
+    cu = COPPER
+    body = [_txt(350, 40, "Electromagnet", INK, 21)]
+
+    # 1) BACK of each turn: slanted strands that will be hidden by the core
+    for i in range(turns - 1):
+        x1 = xs + i * pitch
+        x2 = xs + (i + 1) * pitch
+        body.append(f'<line x1="{x1}" y1="{cb}" x2="{x2}" y2="{ct}" '
+                    f'stroke="{cu}" stroke-width="6" stroke-linecap="round"/>')
+
+    # 2) the soft-iron core (covers the middle band -> back strands go behind)
+    body.append(_rect(186, rod_t, 332, rod_b - rod_t, fill=IRON, stroke=INK,
+                      sw=2))
+    body.append(_txt(352, cy + 6, "soft-iron core", "#33373F", 14))
+    body.append(_txt(156, cy + 8, "N", RED, 24))
+    body.append(_txt(560, cy + 8, "S", BLUE, 24))
+
+    # 3) FRONT of each turn: drawn over the core, bulging slightly forward
+    for i in range(turns):
+        x = xs + i * pitch
+        body.append(f'<path d="M {x} {ct} Q {x + 13} {cy} {x} {cb}" '
+                    f'fill="none" stroke="{cu}" stroke-width="6" '
+                    f'stroke-linecap="round"/>')
+
+    # 4) leads from the two coil ends down to a cell + switch (one circuit)
+    yb = 340
+    body += [
+        # entry lead (top-left end of the winding)
+        _line(xs, ct, xs - 34, ct, cu, 5),
+        _line(xs - 34, ct, xs - 34, yb, cu, 5),
+        _line(xs - 34, yb, 300, yb, INK, 3),
+        # cell
+        _line(312, yb - 16, 312, yb + 16, INK, 3),       # long plate (+)
+        _line(326, yb - 9, 326, yb + 9, INK, 7),         # short plate (-)
+        _txt(319, yb + 38, "cell", MUT, 14),
+        _line(326, yb, 408, yb, INK, 3),
+        # switch
+        f'<circle cx="410" cy="{yb}" r="4.5" fill="{INK}"/>',
+        f'<circle cx="452" cy="{yb}" r="4.5" fill="{INK}"/>',
+        _line(410, yb, 446, yb - 20, INK, 3),
+        _txt(431, yb + 38, "switch", MUT, 14),
+        _line(452, yb, xe + 34, yb, INK, 3),
+        # return lead (bottom-right end of the winding)
+        _line(xe + 34, yb, xe + 34, cb, cu, 5),
+        _line(xe + 34, cb, xe, cb, cu, 5),
+        _txt(350, 400, "Current in the coil magnetises the iron core",
+             MUT, 15),
+    ]
+    return _render(key, _svg("".join(body), vw, vh), 840, 492)
+
+
+def earths_magnetism(key):
+    """The Earth behaves like a giant bar magnet tilted from the spin axis."""
+    vw, vh = 680, 450
+    cx, cy, r = 340, 235, 150
+    ang = 12
+    dx = math.sin(math.radians(ang)) * 112
+    dy = math.cos(math.radians(ang)) * 112
+    nx, ny = cx + dx, cy + dy
+    sx, sy = cx - dx, cy - dy
+    body = [
+        _txt(340, 40, "The Earth as a giant magnet", INK, 21),
+        _circle(cx, cy, r, fill="#DCECFB", stroke=BLUE, sw=2),
+        _line(cx, cy - r - 12, cx, cy + r + 12, MUT, 2, dash="6 6"),
+        _line(sx, sy, cx, cy, BLUE, 18),
+        _line(cx, cy, nx, ny, RED, 18),
+        _txt(sx - 14, sy + 6, "S", BLUE, 18),
+        _txt(nx + 14, ny + 4, "N", RED, 18),
+        _txt(cx, cy - r - 18, "Geographic North", MUT, 14),
+        _txt(cx, cy + r + 30, "Geographic South", MUT, 14),
+        _txt(340, 430,
+             "A magnetic S-pole lies near the geographic North", MUT, 15),
+    ]
+    return _render(key, _svg("".join(body), vw, vh), 760, 503)
+
+
 if __name__ == "__main__":
     funcs = [
         lambda: lever("xt_lever1", 1),
@@ -551,6 +719,11 @@ if __name__ == "__main__":
         lambda: shadow_formation("xt_shadow"),
         lambda: solar_eclipse("xt_solar"),
         lambda: lunar_eclipse("xt_lunar"),
+        lambda: bar_magnet_field("xt_barfield"),
+        lambda: like_unlike_poles("xt_poles"),
+        lambda: making_magnet_stroke("xt_stroke"),
+        lambda: electromagnet("xt_emag"),
+        lambda: earths_magnetism("xt_earth"),
     ]
     for f in funcs:
         print(f())

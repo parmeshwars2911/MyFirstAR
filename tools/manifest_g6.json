@@ -1,0 +1,10 @@
+{
+  "g6_electromagnet_photo": {
+    "subject": "a large industrial electromagnet on a crane lifting scrap iron and steel",
+    "prompt": "A realistic photograph of a big round industrial lifting electromagnet hanging from a crane in a scrapyard, lifting a heavy load of scrap iron and steel pieces that cling to its flat face, outdoor daytime light, sharp focus, no people, no text, no watermark"
+  },
+  "g6_compass_photo": {
+    "subject": "a magnetic compass with a needle pointing north",
+    "prompt": "A realistic close-up photograph of a classic magnetic compass lying flat, its magnetised needle and the N E S W markings on the dial clearly visible, clean even lighting, sharp focus, no hand, no text overlay, no watermark"
+  }
+}

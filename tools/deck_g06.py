@@ -19,6 +19,11 @@ import diagrams as D
 import diagrams_extra as DX
 import slidekit as SK
 
+# House style for every deck (no footer/branding on slides, neutral title
+# eyebrows, icon cards, and quiz answer slides that mirror the question slide
+# with the correct option selected). One monkeypatch, no call-site edits.
+SK.apply_house_style()
+
 OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ppt",
                                    "Grade06"))
 os.makedirs(OUT, exist_ok=True)
@@ -1083,12 +1088,501 @@ def light_deck2():
 
 
 # ---------------------------------------------------------------------------
+# ===========================================================================
+# MAGNETISM  (S69, S70)
+# ===========================================================================
+def mag_deck1():
+    """S69 — Magnetism 1: natural/artificial magnets, magnetic materials,
+    properties of a magnet, magnetic field, the Earth's magnetism."""
+    b = Builder("", accent=C["teal"], brand="")
+    field = DX.bar_magnet_field("g6m1_field")
+    poles = DX.like_unlike_poles("g6m1_poles")
+    earth = DX.earths_magnetism("g6m1_earth")
+    magnet_photo = b.asset("g6_bar_magnet_photo", field)
+
+    b.title("Magnetism", "Magnetism — 1",
+            "Natural & artificial magnets  •  Magnetic materials  •  "
+            "Properties of a magnet  •  The Earth as a magnet", img=magnet_photo)
+    b.objectives([
+        "Describe how magnets were discovered and name their kinds",
+        "Tell magnetic materials apart from non-magnetic ones",
+        "List the main properties of a magnet",
+        "State the law of magnetic poles and the sure test of magnetism",
+        "Explain what a magnetic field is and draw its field lines",
+        "Describe the Earth's magnetism and how a compass works",
+    ])
+
+    # ---- Part 1 : Magnets and their properties ----
+    b.divider(1, "Part 1", "Magnets & Their Properties",
+              "What magnets are and how they behave")
+    b.statement("MAGNET", "What Is a Magnet?",
+                "A magnet is a substance that attracts magnetic materials like "
+                "iron and points north–south when hung freely.",
+                points=["Magnets were first found as a natural rock called "
+                        "lodestone (magnetite) that attracted iron.",
+                        "The word 'magnet' comes from Magnesia, the place where "
+                        "lodestone was discovered.",
+                        "Every magnet has two poles — a north pole and a south "
+                        "pole.",
+                        "Magnets are used in compasses, fridge doors, "
+                        "loudspeakers, motors and many machines."],
+                notes="Begin with the story of lodestone — a natural rock that "
+                      "pulled iron. Establish the two defining behaviours: it "
+                      "attracts iron and it points north–south. These lead into "
+                      "the properties later.")
+    b.cards("KINDS", "Natural and Artificial Magnets", [
+        ("Natural magnets", "Found in nature as lodestone (magnetite). They are "
+         "irregular in shape and rather weak."),
+        ("Artificial magnets", "Made by people from steel or other materials. "
+         "They are stronger and made in useful shapes."),
+        ("Common shapes", "Bar magnet, horseshoe (U-shaped) magnet, cylindrical "
+         "magnet, magnetic needle and the ring magnet."),
+        ("Why artificial?", "We can make them strong, give them any shape and "
+         "make them last — so they are far more useful."),
+    ], notes="Contrast natural lodestone with artificial magnets. Show or name "
+             "the common shapes. Stress why artificial magnets are preferred — "
+             "strength and a chosen shape.")
+    b.cards("MATERIALS", "Magnetic and Non-magnetic Materials", [
+        ("Magnetic materials", "Attracted by a magnet — iron, steel, nickel "
+         "and cobalt."),
+        ("Non-magnetic materials", "Not attracted — wood, plastic, rubber, "
+         "glass, paper, copper and aluminium."),
+        ("A simple test", "Bring a magnet close: if the object is pulled "
+         "towards it, the material is magnetic."),
+        ("In daily life", "Pins and nails (iron) stick to a magnet, but a "
+         "wooden pencil or a plastic ruler does not."),
+    ], notes="Sort materials into magnetic and non-magnetic. Let students "
+             "predict, then test, a few classroom objects. Iron, nickel and "
+             "cobalt are the key magnetic metals.")
+    b.cards("PROPERTIES", "Properties of a Magnet", [
+        ("Attracts iron", "A magnet attracts magnetic materials, and the pull "
+         "is strongest at its two poles."),
+        ("Points north–south", "A freely suspended magnet always comes to rest "
+         "pointing north–south (the directive property)."),
+        ("Two poles", "Every magnet has a north and a south pole; break a "
+         "magnet and each piece is a new magnet with both poles."),
+        ("Poles and forces", "Like poles repel each other and unlike poles "
+         "attract each other."),
+    ], notes="Run through the four properties. Demonstrate the directive "
+             "property with a suspended magnet. The 'break a magnet' idea — you "
+             "can never get a single pole — surprises students.")
+    b.text_image("LAW OF POLES", "Like Repels, Unlike Attracts",
+                 ["Bring two north poles together and they push apart — they "
+                  "repel.",
+                  "Bring a north pole near a south pole and they pull together "
+                  "— they attract.",
+                  "Repulsion happens only between two magnets, so repulsion is "
+                  "the sure test of magnetism.",
+                  "Attraction alone is not a sure test, because a magnet also "
+                  "attracts ordinary iron."],
+                 poles, img_side="left", img_w=5.6, img_h=3.6,
+                 panel_title="The sure test",
+                 caption="Like poles repel; unlike poles attract",
+                 notes="Drill the law of poles, then the key exam point: only "
+                       "repulsion proves an object is a magnet, because both a "
+                       "magnet and plain iron will show attraction.")
+    b.cards("EVERYDAY MAGNETS", "Magnets in Everyday Life", [
+        ("Compass", "A tiny magnet that always points north–south and helps us "
+         "find direction."),
+        ("Fridge & cupboards", "Small magnets in the door seal hold the door "
+         "shut, and fridge magnets stick notes up."),
+        ("Sound & motion", "Magnets make loudspeakers, earphones and electric "
+         "motors work."),
+        ("Sorting & lifting", "Big magnets lift and separate iron and steel in "
+         "scrapyards and recycling plants."),
+    ], notes="Show how widely magnets are used so the topic feels real. Ask "
+             "students to spot magnets at home — the fridge door and "
+             "earphones are good starting points.")
+
+    # ---- Quiz 1 ----
+    b.quiz_intro("Quiz 1", "Quick Check — Magnets & Materials", 4)
+    b.quiz_q(1, "Materials", "Which of these is a magnetic material?",
+             ["Wood", "Iron", "Plastic", "Glass"])
+    b.quiz_a(1, "B. Iron",
+             "Iron is attracted by a magnet, so it is a magnetic material. "
+             "Wood, plastic and glass are non-magnetic — a magnet does not "
+             "attract them.")
+    b.quiz_q(2, "Poles", "When the north poles of two magnets are brought "
+             "close, they:", ["Attract", "Repel", "Do nothing",
+                               "Join together"])
+    b.quiz_a(2, "B. Repel",
+             "Like poles repel each other. Two north poles are like poles, so "
+             "they push apart.")
+    b.quiz_q(3, "Sure test", "The sure test of whether an object is a magnet "
+             "is:", ["Attraction", "Repulsion", "Its colour", "Its weight"])
+    b.quiz_a(3, "B. Repulsion",
+             "Only two magnets repel. A magnet also attracts ordinary iron, so "
+             "attraction is not a sure test — but repulsion proves the object "
+             "is a magnet.")
+    b.quiz_q(4, "Poles", "If a bar magnet is broken into two pieces, each "
+             "piece will have:", ["Only a north pole", "Only a south pole",
+                                  "Both north and south poles", "No poles"])
+    b.quiz_a(4, "C. Both north and south poles",
+             "You can never get a single pole. Each broken piece becomes a "
+             "complete new magnet with its own north and south pole.")
+
+    # ---- Part 2 : Magnetic field and the Earth ----
+    b.divider(2, "Part 2", "Magnetic Field & the Earth",
+              "The space around a magnet, and our planet's magnetism")
+    b.text_image("MAGNETIC FIELD", "The Magnetic Field",
+                 ["The magnetic field is the region around a magnet where its "
+                  "force can be felt.",
+                  "We picture it using magnetic field lines.",
+                  "Outside the magnet the field lines run from the north pole "
+                  "to the south pole.",
+                  "The lines are closest together near the poles, where the "
+                  "field is strongest."],
+                 field, img_side="right", img_w=5.6, img_h=3.6,
+                 panel_title="Field lines",
+                 caption="Field lines run from N to S outside the magnet",
+                 notes="Define the magnetic field as the region of influence. "
+                       "Introduce field lines as a way to picture it. Crowded "
+                       "lines near the poles mean a stronger field there.")
+    b.bullets("FIELD LINES", "Properties of Magnetic Field Lines", [
+        ("Direction", "Outside the magnet they point from the north pole to "
+         "the south pole."),
+        ("They never cross", "Two field lines never cut across each other."),
+        ("Crowding shows strength", "Where the lines are closer together, the "
+         "magnetic field is stronger — that is near the poles."),
+        ("Closed loops", "Each field line is a closed loop, continuing from S "
+         "back to N inside the magnet."),
+    ], panel_title="Reading a field pattern",
+       notes="List the rules for field lines. The two most tested: lines go N "
+             "to S outside, and they never cross. Crowding near the poles = a "
+             "stronger field.")
+    b.text_image("EARTH", "The Earth Is a Giant Magnet",
+                 ["The Earth behaves as if a huge bar magnet lies inside it.",
+                  "This is why a freely suspended magnet always points "
+                  "north–south.",
+                  "The Earth's magnetic south pole lies near the geographic "
+                  "north, so a compass needle's north end points north.",
+                  "The Earth's magnetism shields us and helps us find "
+                  "direction."],
+                 earth, img_side="left", img_w=5.0, img_h=4.0,
+                 panel_title="Earth's magnetism",
+                 caption="A magnetic S-pole lies near the geographic North",
+                 notes="Explain that the Earth itself acts like a bar magnet, "
+                       "which is why compasses work. Clarify the neat twist: a "
+                       "magnetic south pole sits near the geographic north.")
+    b.cards("COMPASS", "The Magnetic Compass", [
+        ("What it is", "A small magnetised needle, free to turn, that always "
+         "settles pointing north–south."),
+        ("Why it works", "It lines up with the Earth's magnetic field, just "
+         "like any freely suspended magnet."),
+        ("Finding direction", "Sailors, pilots and trekkers use it to know "
+         "which way is north."),
+        ("Keep it away from", "Iron objects and other magnets, which disturb "
+         "the needle and give a wrong reading."),
+    ], notes="The compass is the everyday use of the directive property. Note "
+             "that nearby iron or magnets spoil the reading.")
+    b.bullets("PLOTTING THE FIELD", "Mapping a Magnetic Field", [
+        ("Use a small compass", "Place a plotting compass near a bar magnet on "
+         "paper and mark where its needle points."),
+        ("Move and mark", "Move the compass a little, mark again, and join the "
+         "marks to trace one field line."),
+        ("Build the pattern", "Start from different points to draw the whole "
+         "field-line pattern around the magnet."),
+        ("Read the strength", "Where your lines come out close together, the "
+         "field is strong; where they spread out, it is weak."),
+    ], panel_title="Compass-and-paper method",
+       notes="Describe the standard practical of plotting field lines with a "
+             "small compass. It links the abstract field lines to something "
+             "students can actually do and see.")
+
+    b.recap("WRAP UP", "Quick Recap", [
+        ("Magnet", "attracts iron and points north–south; first found as "
+         "lodestone"),
+        ("Materials", "iron, steel, nickel, cobalt are magnetic; most others "
+         "are not"),
+        ("Properties", "attracts at poles, directive, two inseparable poles"),
+        ("Law of poles", "like repel, unlike attract; repulsion is the sure "
+         "test"),
+        ("Field", "region of force; lines run N to S, never cross"),
+        ("Earth", "acts like a giant magnet, so a compass points north"),
+    ], notes="Rapid recap. Cold-call for the law of poles and the sure test, "
+             "which are the most examined points.")
+
+    # ---- Quiz 2 ----
+    b.quiz_intro("Quiz 2", "Final Check — Fields & the Earth", 4)
+    b.quiz_q(1, "Field lines", "Outside a magnet, the magnetic field lines run "
+             "from:", ["South pole to north pole", "North pole to south pole",
+                       "Pole to the middle", "They do not move"])
+    b.quiz_a(1, "B. North pole to south pole",
+             "By convention, magnetic field lines outside a magnet are drawn "
+             "from the north pole to the south pole.")
+    b.quiz_q(2, "Field strength", "The magnetic field of a bar magnet is "
+             "strongest:", ["At its centre", "At its two poles",
+                            "Far away from it", "It is the same everywhere"])
+    b.quiz_a(2, "B. At its two poles",
+             "The field is strongest at the poles, where the field lines are "
+             "most crowded; it is weakest near the middle of the magnet.")
+    b.quiz_q(3, "Earth", "A compass needle points north–south because:",
+             ["It is blown by the wind", "The Earth acts like a giant magnet",
+              "It is made of gold", "It is very light"])
+    b.quiz_a(3, "B. The Earth acts like a giant magnet",
+             "The Earth behaves like a huge bar magnet, so the compass needle "
+             "lines up with the Earth's magnetic field and points north–south.")
+    b.quiz_q(4, "Field lines", "Two magnetic field lines can never:",
+             ["Be curved", "Cross each other", "Be close together",
+              "Point to a pole"])
+    b.quiz_a(4, "B. Cross each other",
+             "Field lines never cross. If they did, the field would point in "
+             "two directions at one place, which is impossible.")
+
+    b.closing("The Pull of Magnets",
+              "Magnets attract iron, always seek north and fill the space "
+              "around them with an invisible field — even our planet is one.")
+    return b
+
+
+def mag_deck2():
+    """S70 — Magnetism 2: making magnets, electromagnets, care & storage,
+    demagnetisation."""
+    b = Builder("", accent=C["teal"], brand="")
+    stroke = DX.making_magnet_stroke("g6m2_stroke")
+    emag = DX.electromagnet("g6m2_emag")
+    field = DX.bar_magnet_field("g6m2_field")
+    emag_photo = b.asset("g6_electromagnet_photo", emag)
+
+    b.title("Magnetism", "Magnetism — 2",
+            "Making a magnet  •  Electromagnets  •  Care & storage  •  "
+            "Losing magnetism", img=emag_photo)
+    b.objectives([
+        "Describe ways of making a magnet",
+        "Explain the single-touch (stroking) method",
+        "Describe an electromagnet and how to make one stronger",
+        "Tell temporary magnets apart from permanent magnets",
+        "State how magnets should be stored and cared for",
+        "List the ways a magnet can lose its magnetism",
+    ])
+
+    # ---- Part 1 : Making magnets ----
+    b.divider(1, "Part 1", "Making Magnets",
+              "Turning steel and iron into magnets")
+    b.cards("HOW TO MAGNETISE", "Ways to Make a Magnet", [
+        ("Single touch", "Stroke a steel bar again and again in one direction "
+         "with one pole of a magnet."),
+        ("Double touch", "Stroke the bar from the middle outwards using two "
+         "unlike poles together."),
+        ("By induction", "Simply bringing a magnet near a piece of iron makes "
+         "the iron a temporary magnet."),
+        ("By electricity", "Pass an electric current through a coil wound "
+         "around the bar — this makes an electromagnet."),
+    ], notes="Introduce the four ways to magnetise. Single touch is the one to "
+             "know in detail. Induction is temporary; the electrical method is "
+             "the strongest and is used in electromagnets.")
+    b.text_image("SINGLE TOUCH", "The Single-Touch Method",
+                 ["Place the steel bar flat on the table.",
+                  "Stroke it from one end to the other with one pole of a "
+                  "magnet.",
+                  "Lift the magnet high at the end of each stroke and repeat "
+                  "many times in the same direction.",
+                  "The bar becomes a magnet; the end where the stroking pole "
+                  "leaves it gets the opposite polarity."],
+                 stroke, img_side="right", img_w=5.6, img_h=3.4,
+                 panel_title="Stroke one way",
+                 caption="Stroke in one direction, again and again",
+                 notes="Demonstrate the stroking action. Two rules: always "
+                       "stroke in the SAME direction, and lift the pole well "
+                       "clear between strokes. The finishing end takes the "
+                       "polarity opposite to the stroking pole.")
+    b.text_image("ELECTROMAGNET", "Making an Electromagnet",
+                 ["Wind insulated copper wire into a coil around a soft-iron "
+                  "core.",
+                  "Connect the ends of the coil to a cell through a switch.",
+                  "When current flows, the iron core becomes a strong magnet.",
+                  "Switch the current off and the magnetism almost completely "
+                  "disappears — it is a temporary magnet."],
+                 emag, img_side="left", img_w=5.6, img_h=3.4,
+                 panel_title="Coil + iron core",
+                 caption="Current in the coil magnetises the iron core",
+                 notes="Build the electromagnet step by step. The headline "
+                       "idea: its magnetism can be switched on and off with the "
+                       "current — that is what makes it so useful.")
+    b.cards("STRONGER", "Making an Electromagnet Stronger", [
+        ("More turns", "Winding more turns of wire on the coil makes the "
+         "electromagnet stronger."),
+        ("More current", "Increasing the current through the coil increases "
+         "its strength."),
+        ("A soft-iron core", "A soft-iron core becomes strongly magnetic and "
+         "boosts the field."),
+        ("Switchable", "Its magnetism can be turned on and off and even "
+         "reversed — a permanent magnet cannot do this."),
+    ], notes="Three ways to strengthen: more turns, more current, soft-iron "
+             "core. End on the big advantage — it can be switched and reversed.")
+    b.cards("TEMPORARY vs PERMANENT", "Temporary and Permanent Magnets", [
+        ("Temporary magnets", "Made of soft iron; magnetic only while the "
+         "current flows. Used in electromagnets."),
+        ("Permanent magnets", "Made of steel; keep their magnetism for a long "
+         "time. Used in compasses and fridge magnets."),
+        ("Soft iron", "Is easy to magnetise and easy to demagnetise."),
+        ("Steel", "Is harder to magnetise but holds its magnetism well."),
+    ], notes="Contrast soft iron (temporary, for electromagnets) with steel "
+             "(permanent). Tie the choice of material to the job the magnet "
+             "must do.")
+    b.bullets("INDUCTION", "Magnetism by Induction", [
+        ("No touching needed", "Simply bringing a magnet near a piece of iron "
+         "turns the iron into a temporary magnet."),
+        ("Chains of pins", "A nail clinging to a magnet can itself pick up more "
+         "nails, which hang in a chain."),
+        ("It is temporary", "Take the magnet away and the induced magnetism "
+         "almost completely disappears."),
+        ("Why attraction works", "A magnet first induces magnetism in the iron, "
+         "and that is what lets it then pull the iron in."),
+    ], panel_title="A magnet makes more magnets",
+       notes="Demonstrate induction with a chain of pins hanging from one "
+             "magnet. The key idea: induction comes first, and that is the "
+             "real reason a magnet can attract a piece of iron.")
+
+    # ---- Quiz 1 ----
+    b.quiz_intro("Quiz 1", "Quick Check — Making Magnets", 4)
+    b.quiz_q(1, "Method", "In the single-touch method, the steel bar is "
+             "stroked:", ["In both directions", "In one direction only",
+                          "Very gently once", "Without a magnet"])
+    b.quiz_a(1, "B. In one direction only",
+             "In single touch you stroke the bar repeatedly in the same "
+             "direction with one pole, lifting the magnet clear between "
+             "strokes.")
+    b.quiz_q(2, "Electromagnet", "An electromagnet is made by passing current "
+             "through a coil wound on a core of:", ["Steel", "Soft iron",
+                                                    "Copper", "Plastic"])
+    b.quiz_a(2, "B. Soft iron",
+             "A soft-iron core becomes strongly magnetic when current flows and "
+             "loses it when the current stops, making a good electromagnet.")
+    b.quiz_q(3, "Strength", "Which change makes an electromagnet stronger?",
+             ["Fewer turns of wire", "Less current",
+              "More turns of wire", "A plastic core"])
+    b.quiz_a(3, "C. More turns of wire",
+             "More turns of wire (and more current, and a soft-iron core) make "
+             "an electromagnet stronger.")
+    b.quiz_q(4, "Type", "A permanent magnet is usually made of:",
+             ["Soft iron", "Steel", "Copper", "Aluminium"])
+    b.quiz_a(4, "B. Steel",
+             "Steel is hard to magnetise but holds its magnetism for a long "
+             "time, so it is used to make permanent magnets.")
+
+    # ---- Part 2 : Using, keeping and losing magnetism ----
+    b.divider(2, "Part 2", "Uses, Care & Demagnetisation",
+              "Where electromagnets help, and how magnetism is kept or lost")
+    b.cards("USES", "Uses of Electromagnets", [
+        ("Lifting cranes", "Powerful electromagnets on cranes lift heavy iron "
+         "and steel scrap, then drop it by switching off."),
+        ("Electric bell", "An electromagnet makes the hammer strike the gong "
+         "again and again."),
+        ("Machines", "Electromagnets are used in electric motors, "
+         "loudspeakers, telephones and many devices."),
+        ("Separating metals", "They pull magnetic metals out of mixed waste "
+         "for recycling."),
+    ], notes="Connect electromagnets to real machines. The crane (switch on to "
+             "lift, off to drop) best shows why a switchable magnet is so "
+             "useful.")
+    b.bullets("CARE", "Caring For and Storing Magnets", [
+        ("Store in pairs", "Keep bar magnets in pairs with unlike poles "
+         "together."),
+        ("Use keepers", "Place soft-iron pieces (keepers) across the ends to "
+         "preserve their magnetism."),
+        ("Keep them safe", "Do not drop, hammer or heat magnets — this weakens "
+         "them."),
+        ("Keep apart", "Store magnets away from watches, mobile phones and "
+         "other magnets."),
+    ], panel_title="Looking after magnets",
+       notes="Explain why magnets need care. Keepers give the field a closed "
+             "path and stop the magnet weakening. Heat, shock and stray fields "
+             "are the enemies.")
+    b.statement("DEMAGNETISATION", "How a Magnet Loses Its Magnetism",
+                "A magnet can lose its magnetism if it is treated roughly or "
+                "heated — this is called demagnetisation.",
+                points=["Heating a magnet strongly and then cooling it makes "
+                        "it lose its magnetism.",
+                        "Hammering or dropping a magnet again and again weakens "
+                        "it.",
+                        "Placing it in a coil carrying alternating current (AC) "
+                        "removes its magnetism.",
+                        "Careless storage near other magnets also makes a "
+                        "magnet weaker over time."],
+                notes="List the three deliberate ways to demagnetise — heating, "
+                      "rough handling, and an AC coil — and tie them back to "
+                      "the care rules from the previous slide.")
+    b.cards("PERMANENT vs TEMPORARY", "Choosing the Right Magnet", [
+        ("Need it to last?", "Use a permanent (steel) magnet — for a compass "
+         "or a fridge magnet."),
+        ("Need to switch it?", "Use an electromagnet — for a crane or an "
+         "electric bell."),
+        ("Need it strong?", "An electromagnet can be made very strong with "
+         "more turns and more current."),
+        ("Keep it safe", "Either kind weakens with heat, shock and careless "
+         "storage, so handle with care."),
+    ], notes="Wrap the chapter by matching the magnet to the job: permanent "
+             "for lasting magnetism, electromagnet for switchable strength.")
+    b.bullets("KEEPERS", "Why Magnets Need Keepers", [
+        ("Free poles weaken", "Left on their own, the free poles of a magnet "
+         "slowly lose their strength."),
+        ("Store in pairs", "Place two bar magnets side by side with unlike "
+         "poles next to each other."),
+        ("Add soft-iron keepers", "Lay small soft-iron bars across the ends to "
+         "link the poles together."),
+        ("A complete loop", "The keepers give the magnetism a closed path, so "
+         "the magnets stay strong for much longer."),
+    ], panel_title="Storing bar magnets safely",
+       notes="Explain how keepers work: by completing the magnetic loop they "
+             "stop the poles weakening. This ties the storage rule back to the "
+             "idea of field lines forming closed loops.")
+
+    b.recap("WRAP UP", "Quick Recap", [
+        ("Making magnets", "single touch, double touch, induction, electricity"),
+        ("Single touch", "stroke one way, lift between strokes"),
+        ("Electromagnet", "coil + soft-iron core; magnetism while current "
+         "flows"),
+        ("Stronger", "more turns, more current, soft-iron core"),
+        ("Care", "store in pairs with keepers; avoid heat, shock, stray "
+         "fields"),
+        ("Demagnetise", "heating, hammering/dropping, an AC coil"),
+    ], notes="Rapid recap. Cold-call students for the ways to make a magnet "
+             "and the ways to demagnetise one.")
+
+    # ---- Quiz 2 ----
+    b.quiz_intro("Quiz 2", "Final Check — Using & Losing Magnetism", 4)
+    b.quiz_q(1, "Uses", "A crane in a scrapyard lifts heavy iron using a:",
+             ["Permanent magnet", "Wooden hook", "An electromagnet",
+              "A plastic clamp"])
+    b.quiz_a(1, "C. An electromagnet",
+             "A crane uses an electromagnet: switch the current on to lift the "
+             "iron, and off to drop it. A permanent magnet could not let go.")
+    b.quiz_q(2, "Care", "The soft-iron pieces placed across the ends of stored "
+             "magnets are called:", ["Poles", "Keepers", "Cores", "Coils"])
+    b.quiz_a(2, "B. Keepers",
+             "Keepers are soft-iron pieces placed across the poles of stored "
+             "magnets to preserve their magnetism.")
+    b.quiz_q(3, "Demagnetise", "Which of these will make a magnet lose its "
+             "magnetism?", ["Storing it with keepers",
+                            "Strongly heating it", "Keeping it dry",
+                            "Handling it gently"])
+    b.quiz_a(3, "B. Strongly heating it",
+             "Strong heating, repeated hammering or dropping, and an AC coil "
+             "all destroy magnetism. Careful storage with keepers preserves "
+             "it.")
+    b.quiz_q(4, "Electromagnet", "The magnetism of an electromagnet lasts:",
+             ["For ever", "Only while current flows", "Only at night",
+              "Only when it is hot"])
+    b.quiz_a(4, "B. Only while current flows",
+             "An electromagnet is a temporary magnet — it is magnetic only "
+             "while current flows through its coil, and loses it when switched "
+             "off.")
+
+    b.closing("Magnets On Demand",
+              "From a stroked steel bar to a switchable electromagnet, we can "
+              "make, use and even switch off magnetism whenever we need it.")
+    return b
+
+
 def build():
     jobs = [
         ("G06_S30_Simple_Machines_1.pptx", sm_deck1),
         ("G06_S31_Simple_Machines_2.pptx", sm_deck2),
         ("G06_S52_Light_1.pptx", light_deck1),
         ("G06_S53_Light_2.pptx", light_deck2),
+        ("G06_S69_Magnetism_1.pptx", mag_deck1),
+        ("G06_S70_Magnetism_2.pptx", mag_deck2),
     ]
     for fname, fn in jobs:
         b = fn()
