@@ -1348,6 +1348,73 @@ def simple_circuit(key):
     return _render(key, _svg("".join(body), 600, 380), 720, 456)
 
 
+def bar_magnet_field(key):
+    """Magnetic field lines of a bar magnet looping from N to S."""
+    cy = 230
+    nL, nR = 240, 360   # magnet left/right edges
+    body = [
+        f'<rect x="{nL}" y="{cy-28}" width="120" height="56" fill="#9AA1AB" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        f'<rect x="{nL}" y="{cy-28}" width="60" height="56" fill="{RED}"/>',
+        f'<rect x="300" y="{cy-28}" width="60" height="56" fill="{BLUE}"/>',
+        _txt(270, cy+8, "N", "#FFFFFF", 22), _txt(330, cy+8, "S", "#FFFFFF", 22),
+        _txt(300, 55, "Field lines loop from North to South outside the magnet",
+             INK, 15),
+        _txt(300, cy + 175, "Closest at the poles, where the field is "
+                            "strongest", MUT, 14),
+    ]
+    # loops emerge from the N end (left), bulge out around, enter the S end
+    for h in (55, 105, 160):
+        # top loop
+        body.append(
+            f'<path d="M {nL} {cy} C {nL-h} {cy-h} {nR+h} {cy-h} {nR} {cy}" '
+            f'fill="none" stroke="{PURPLE}" stroke-width="2"/>')
+        # right-pointing arrowhead at the apex (N -> S)
+        ay = cy - h * 0.72
+        body.append(f'<path d="M {300-7} {ay-7} L {300+9} {ay} '
+                    f'L {300-7} {ay+7} Z" fill="{PURPLE}"/>')
+        # bottom loop (mirror)
+        body.append(
+            f'<path d="M {nL} {cy} C {nL-h} {cy+h} {nR+h} {cy+h} {nR} {cy}" '
+            f'fill="none" stroke="{PURPLE}" stroke-width="2"/>')
+        by = cy + h * 0.72
+        body.append(f'<path d="M {300-7} {by-7} L {300+9} {by} '
+                    f'L {300-7} {by+7} Z" fill="{PURPLE}"/>')
+    return _render(key, _svg("".join(body), 600, 460), 800, 614)
+
+
+def neutral_points(key):
+    """A bar magnet in the Earth's field, showing two neutral points."""
+    cy = 200
+    body = [
+        f'<rect x="240" y="{cy-25}" width="120" height="50" fill="#9AA1AB" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        f'<rect x="240" y="{cy-25}" width="60" height="50" fill="{RED}"/>',
+        f'<rect x="300" y="{cy-25}" width="60" height="50" fill="{BLUE}"/>',
+        _txt(270, cy+7, "N", "#FFFFFF", 20), _txt(330, cy+7, "S", "#FFFFFF", 20),
+        # Earth's uniform field (arrows pointing up = toward geographic north)
+    ]
+    for x in (120, 480):
+        body.append(f'<line x1="{x}" y1="{cy+120}" x2="{x}" y2="{cy-120}" '
+                    f'stroke="{TEAL}" stroke-width="2" '
+                    f'marker-end="url(#arrowT)"/>')
+    body += [
+        _txt(120, cy+140, "Earth's field", TEAL, 13),
+        # neutral points (on equatorial line, east & west)
+        f'<circle cx="180" cy="{cy}" r="7" fill="none" stroke="{RED}" '
+        f'stroke-width="2"/>',
+        f'<circle cx="420" cy="{cy}" r="7" fill="none" stroke="{RED}" '
+        f'stroke-width="2"/>',
+        _txt(180, cy-18, "neutral point", RED, 12),
+        _txt(420, cy-18, "neutral point", RED, 12),
+        _txt(300, 50, "Neutral points: magnet's field cancels Earth's field",
+             INK, 15),
+        _txt(300, 400, "Net magnetic field is zero at a neutral point", MUT,
+             14),
+    ]
+    return _render(key, _svg("".join(body), 600, 420), 800, 560)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
