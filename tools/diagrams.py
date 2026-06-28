@@ -765,6 +765,125 @@ def power_transmission(key):
     return _render(key, _svg("".join(body), 820, 320), 1000, 390)
 
 
+def field_straight_wire(key):
+    """Concentric magnetic field lines around a current-carrying wire."""
+    cx, cy = 300, 230
+    body = [
+        f'<rect x="60" y="200" width="480" height="60" fill="#F0F2F5"/>',
+        _txt(300, 60, "Magnetic field around a straight wire", INK, 17),
+        # wire (coming out of the page)
+        f'<circle cx="{cx}" cy="{cy}" r="16" fill="#FFFFFF" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        f'<circle cx="{cx}" cy="{cy}" r="4" fill="{INK}"/>',
+        _txt(cx, cy + 60, "current out of page", TEAL, 14),
+    ]
+    for r in (50, 85, 120):
+        body.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="none" '
+                    f'stroke="{PURPLE}" stroke-width="2.5"/>')
+        # arrowhead on each circle (anticlockwise for current out of page)
+        body.append(f'<path d="M {cx+r} {cy-8} L {cx+r-9} {cy} L {cx+r} {cy+8}" '
+                    f'fill="none" stroke="{PURPLE}" stroke-width="2.5"/>')
+    body.append(_txt(300, 400, "Right-hand thumb = current; curled fingers = "
+                               "field direction", MUT, 14))
+    return _render(key, _svg("".join(body), 600, 430), 760, 545)
+
+
+def solenoid_field(key):
+    """A current-carrying solenoid behaves like a bar magnet."""
+    body = [_txt(320, 50, "A solenoid (electromagnet)", INK, 17)]
+    # coils
+    x = 150
+    for i in range(7):
+        body.append(f'<ellipse cx="{x}" cy="200" rx="14" ry="55" fill="none" '
+                    f'stroke="{INK}" stroke-width="3"/>')
+        x += 45
+    # field lines through and around
+    for dy in (0,):
+        body.append(f'<path d="M150 200 L470 200" stroke="{PURPLE}" '
+                    f'stroke-width="3" marker-end="url(#arrowP)"/>')
+    body += [
+        f'<path d="M470 200 C 560 200 560 90 470 120 C 250 150 200 150 150 200" '
+        f'fill="none" stroke="{PURPLE}" stroke-width="2"/>',
+        f'<path d="M470 200 C 560 200 560 310 470 280 C 250 250 200 250 150 200" '
+        f'fill="none" stroke="{PURPLE}" stroke-width="2"/>',
+        _txt(120, 205, "N", RED, 24, anchor="end"),
+        _txt(500, 205, "S", BLUE, 24, anchor="start"),
+        _txt(320, 380, "Field like a bar magnet; reverse the current to swap "
+                       "the poles", MUT, 14),
+    ]
+    return _render(key, _svg("".join(body), 640, 410), 840, 538)
+
+
+def dc_motor(key):
+    """A current-carrying coil in a magnetic field experiences a turning
+    force (simple DC motor)."""
+    body = [
+        _txt(320, 45, "Force on a coil — the DC motor", INK, 17),
+        # magnet poles
+        f'<rect x="40" y="120" width="70" height="180" fill="#E63946" '
+        f'stroke="{INK}" stroke-width="2"/>', _txt(75, 215, "N", "#FFFFFF", 26),
+        f'<rect x="490" y="120" width="70" height="180" fill="#2563EB" '
+        f'stroke="{INK}" stroke-width="2"/>', _txt(525, 215, "S", "#FFFFFF", 26),
+        # field lines N->S
+    ]
+    for y in (150, 200, 250):
+        body.append(_line(110, y, 490, y, MUT, 1.5, marker="arrow"))
+    body += [
+        # coil
+        f'<rect x="230" y="150" width="140" height="120" fill="none" '
+        f'stroke="{PURPLE}" stroke-width="4"/>',
+        # forces (up on one side, down on the other)
+        _line(230, 150, 230, 95, TEAL, 3, marker="arrowT"),
+        _line(370, 270, 370, 325, TEAL, 3, marker="arrowT"),
+        _txt(205, 90, "force", TEAL, 13, anchor="end"),
+        _txt(395, 330, "force", TEAL, 13, anchor="start"),
+        # commutator
+        f'<rect x="270" y="285" width="60" height="26" fill="#C8A24B" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(300, 340, "split-ring commutator", MUT, 13),
+        _txt(320, 380, "Opposite forces on the two sides turn the coil", MUT,
+             14),
+    ]
+    return _render(key, _svg("".join(body), 640, 400), 860, 538)
+
+
+def emi_coil(key):
+    """Electromagnetic induction: moving a magnet near a coil induces a
+    current (shown on a galvanometer)."""
+    body = [
+        _txt(320, 45, "Electromagnetic induction", INK, 17),
+        # coil
+    ]
+    x = 300
+    for i in range(5):
+        body.append(f'<ellipse cx="{x}" cy="200" rx="12" ry="50" fill="none" '
+                    f'stroke="{INK}" stroke-width="3"/>')
+        x += 30
+    body += [
+        # bar magnet moving toward coil
+        f'<rect x="120" y="175" width="110" height="50" fill="#888" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        f'<rect x="120" y="175" width="55" height="50" fill="#E63946"/>',
+        _txt(147, 207, "N", "#FFFFFF", 20), _txt(202, 207, "S", "#FFFFFF", 20),
+        _line(150, 130, 250, 130, ORANGE, 3, marker="arrowO"),
+        _txt(200, 118, "move", ORANGE, 13),
+        # wires to galvanometer
+        f'<line x1="300" y1="250" x2="300" y2="330" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="420" y1="250" x2="420" y2="330" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="300" y1="330" x2="335" y2="330" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="385" y1="330" x2="420" y2="330" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<circle cx="360" cy="330" r="26" fill="#FFFFFF" stroke="{INK}" '
+        f'stroke-width="3"/>', _txt(360, 338, "G", TEAL, 20),
+        _txt(360, 385, "Moving the magnet induces a current (G deflects)", MUT,
+             14),
+    ]
+    return _render(key, _svg("".join(body), 640, 410), 840, 538)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
