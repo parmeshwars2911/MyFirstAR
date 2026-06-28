@@ -1446,6 +1446,43 @@ def pendulum_energy(key):
     return _render(key, _svg("".join(body), 600, 420), 800, 560)
 
 
+def states_of_matter(key):
+    """Particle arrangement in solid, liquid and gas."""
+    import random
+    body = [_txt(330, 40, "Particles in solids, liquids and gases", INK, 16)]
+    boxes = [(60, "Solid", "#F4C28B", "tightly packed, vibrate in place"),
+             (260, "Liquid", "#BFD8F2", "close but can slide past each other"),
+             (460, "Gas", "#D7E8F5", "far apart, move freely & fast")]
+    for bx, name, col, desc in boxes:
+        body.append(f'<rect x="{bx}" y="80" width="160" height="160" rx="8" '
+                    f'fill="{col}" stroke="{INK}" stroke-width="2"/>')
+        body.append(_txt(bx + 80, 70, name, INK, 16))
+        random.seed(hash(name) % 1000)
+        if name == "Solid":
+            for r in range(4):
+                for c in range(4):
+                    cx = bx + 28 + c * 36
+                    cy = 108 + r * 36
+                    body.append(f'<circle cx="{cx}" cy="{cy}" r="11" '
+                                f'fill="{INK}"/>')
+        elif name == "Liquid":
+            for _ in range(13):
+                cx = bx + random.randint(20, 140)
+                cy = 100 + random.randint(0, 130)
+                body.append(f'<circle cx="{cx}" cy="{cy}" r="11" '
+                            f'fill="{INK}"/>')
+        else:
+            for _ in range(7):
+                cx = bx + random.randint(15, 145)
+                cy = 95 + random.randint(0, 135)
+                body.append(f'<circle cx="{cx}" cy="{cy}" r="10" '
+                            f'fill="{INK}"/>')
+        body.append(_txt(bx + 80, 262, desc, MUT, 11))
+    body.append(_txt(330, 295, "Heating gives particles more energy: they "
+                              "vibrate and move faster", MUT, 13))
+    return _render(key, _svg("".join(body), 660, 320), 900, 436)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
