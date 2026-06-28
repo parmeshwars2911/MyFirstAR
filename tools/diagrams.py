@@ -376,6 +376,101 @@ def lens_as_prisms(key):
     return _render(key, _svg("".join(body), 600, 470), 800, 627)
 
 
+VIBGYOR = [("Violet", "#7F00FF"), ("Indigo", "#4B0082"), ("Blue", "#0000FF"),
+           ("Green", "#00A000"), ("Yellow", "#FFD000"), ("Orange", "#FF7F00"),
+           ("Red", "#FF0000")]
+
+
+def dispersion_spectrum(key):
+    """White light splitting into the seven colours through a prism."""
+    body = [
+        f'<polygon points="320,90 200,360 440,360" fill="{GLASS}" '
+        f'stroke="{INK}" stroke-width="3"/>',
+        _txt(320, 80, "prism", MUT, 18),
+        # incoming white beam (shown grey so it is visible on white)
+        _line(60, 205, 262, 232, "#9AA1AB", 5, marker="arrow"),
+        # internal ray through the glass
+        _line(262, 232, 360, 300, "#9AA1AB", 4),
+        _txt(70, 188, "white light", INK, 16, anchor="start"),
+    ]
+    # fan of coloured rays from exit face; red deviates least, violet most
+    ex, ey = 360, 300
+    for i, (name, col) in enumerate(reversed(VIBGYOR)):  # red first (top)
+        ang = 6 + i * 4.2
+        import math as _m
+        x2 = ex + 200 * _m.cos(_m.radians(ang))
+        y2 = ey + 200 * _m.sin(_m.radians(ang))
+        body.append(_line(ex, ey, x2, y2, col, 4))
+        body.append(_txt(x2 + 14, y2 + 5, name, col, 13, anchor="start"))
+    body.append(_txt(300, 420, "Violet bends most, red bends least — "
+                               "dispersion gives a spectrum", INK, 16))
+    return _render(key, _svg("".join(body), 640, 460), 860, 619)
+
+
+def em_spectrum(key):
+    """The electromagnetic spectrum as a labelled band, visible part in colour."""
+    bands = [("Radio", "#6B7280"), ("Micro-\nwave", "#8B5CF6"),
+             ("Infrared", "#E63946"), ("Visible", None),
+             ("Ultra-\nviolet", "#7C3AED"), ("X-rays", "#2563EB"),
+             ("Gamma", "#0A9396")]
+    body = []
+    x0, w, y, h = 40, 80, 150, 90
+    for i, (name, col) in enumerate(bands):
+        x = x0 + i * w
+        if name == "Visible":
+            # rainbow strip
+            for j, (_, c) in enumerate(reversed(VIBGYOR)):
+                bw = w / 7
+                body.append(f'<rect x="{x + j*bw}" y="{y}" width="{bw+0.5}" '
+                            f'height="{h}" fill="{c}"/>')
+            body.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" '
+                        f'fill="none" stroke="{INK}" stroke-width="1.5"/>')
+        else:
+            body.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" '
+                        f'fill="{col}" stroke="{INK}" stroke-width="1.5"/>')
+        for k, line in enumerate(name.split("\n")):
+            body.append(_txt(x + w/2, y - 18 + k*16, line, INK, 13))
+    body.append(_line(40, y + h + 18, 40 + 7*w, y + h + 18, INK, 2,
+                      marker="arrow"))
+    body.append(_txt(60, y + h + 42, "long wavelength", MUT, 13,
+                     anchor="start"))
+    body.append(_txt(40 + 7*w - 20, y + h + 42, "short wavelength", MUT, 13,
+                     anchor="end"))
+    body.append(_txt((40 + 7*w)/2 + 20, y + h + 70,
+                     "increasing frequency  →", MUT, 13))
+    body.append(_txt((40 + 7*w)/2 + 20, 60,
+                     "The Electromagnetic Spectrum", INK, 19))
+    return _render(key, _svg("".join(body), 640, 330), 980, 505)
+
+
+def scattering(key):
+    """Blue sky and red sunset by scattering of sunlight."""
+    body = [
+        f'<rect x="0" y="0" width="640" height="240" fill="#BBD6F2" rx="0"/>',
+        f'<rect x="0" y="240" width="640" height="120" fill="#E8C9A0"/>',
+        f'<circle cx="540" cy="90" r="34" fill="{GOLD}"/>',
+        _txt(540, 150, "Sun", MUT, 14),
+        # incoming ray
+        _line(506, 110, 300, 200, "#FFFFFF", 4, marker="arrow"),
+        # scattered blue dots
+    ]
+    import random
+    random.seed(3)
+    for _ in range(26):
+        x = random.randint(120, 460)
+        y = random.randint(60, 220)
+        body.append(f'<circle cx="{x}" cy="{y}" r="3" fill="#1E6Fd0"/>')
+    body += [
+        _txt(220, 50, "Blue scatters most → blue sky", "#0B3D91", 15),
+        f'<circle cx="120" cy="300" r="14" fill="none" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        _txt(120, 335, "observer", INK, 13),
+        _txt(320, 350, "At sunset light travels further; blue is scattered "
+                       "away, leaving red", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 640, 360), 860, 484)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [

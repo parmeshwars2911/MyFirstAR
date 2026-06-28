@@ -122,36 +122,45 @@ def deck1():
         ("Concave lens", "Gives only a virtual, erect, diminished image."),
     ], notes="Define real vs virtual precisely — the screen test is the "
              "clearest way for students to tell them apart.")
-    b.quiz_intro("Quiz 1", "Quick Check — Lens Basics", 4)
-    b.quiz_q(1, "Lens Type", "A lens that is thicker in the middle than at the "
-             "edges is a:", ["Concave lens", "Convex lens", "Plane lens",
-                             "Diverging lens"])
-    b.quiz_a(1, "B. Convex lens",
-             "A convex lens is thicker in the middle. It converges parallel "
-             "rays to a real focus, so it is also called a converging lens.")
-    b.quiz_q(2, "Central Ray", "A ray of light passing through the optical "
-             "centre of a thin lens:", ["Bends toward the axis",
-             "Bends away from the axis", "Passes straight through, undeviated",
-             "Is totally reflected"])
-    b.quiz_a(2, "C. Passes straight through, undeviated",
-             "At the optical centre the two lens surfaces are parallel, so a "
-             "ray through O emerges along the same line (with only a tiny, "
-             "ignorable shift in a thin lens).")
-    b.quiz_q(3, "Focus", "The principal focus of a convex lens is the point "
-             "where:", ["The lens is thickest",
-             "Parallel rays meet after refraction",
-             "The object is placed", "Light is totally reflected"])
-    b.quiz_a(3, "B. Parallel rays meet after refraction",
-             "Rays parallel to the principal axis converge at the principal "
-             "focus F after passing through a convex lens. Its distance from "
-             "O is the focal length.")
-    b.quiz_q(4, "Two Foci", "A convex lens has two principal foci because:",
-             ["It has two optical centres", "Light can fall on either surface",
-              "It is made of two prisms", "It has two focal lengths"])
-    b.quiz_a(4, "B. Light can fall on either surface",
-             "Light can enter from either side, so there is a focus on each "
-             "side of the lens, both at the same distance f from the optical "
-             "centre.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_q(1, "Predict the Image", "An object is placed 25 cm from a convex "
+             "lens of focal length 10 cm. Without calculating, what is the "
+             "image like?", ["Real, inverted and diminished",
+             "Real, inverted and magnified", "Virtual, erect and magnified",
+             "No image is formed"])
+    b.quiz_a(1, "A. Real, inverted and diminished",
+             "f = 10 cm, so 2F = 20 cm. The object (25 cm) lies beyond 2F, so "
+             "the image is real, inverted and diminished — the camera case. "
+             "Knowing the 2F landmark lets you predict this without any "
+             "arithmetic.")
+    b.quiz_q(2, "Half-Covered Lens", "The lower half of a convex lens is "
+             "covered with black paper. The image of an object will be:",
+             ["Only the top half of the object",
+              "The complete image, but fainter (less bright)",
+              "Only the bottom half of the object",
+              "Turned the right way up"])
+    b.quiz_a(2, "B. The complete image, but fainter",
+             "Every part of the lens collects light from the whole object, so "
+             "the uncovered half still forms a complete image. With fewer rays "
+             "reaching it, the image is simply dimmer — a classic conceptual "
+             "trap.")
+    b.quiz_q(3, "Which Lens Bends More?", "Two convex lenses are identical in "
+             "size, but lens X is fatter (more sharply curved) than lens Y. "
+             "Compared with Y, lens X has a:",
+             ["Longer focal length", "Shorter focal length",
+              "Larger optical centre", "Weaker converging power"])
+    b.quiz_a(3, "B. Shorter focal length",
+             "A more sharply curved lens bends light more strongly, bringing "
+             "parallel rays to a focus closer to the lens. So the fatter lens "
+             "X has a shorter focal length and greater power.")
+    b.quiz_q(4, "Place the Object", "Where should an object be placed before a "
+             "convex lens to get a real image larger than the object (as in a "
+             "projector)?", ["Beyond 2F", "At 2F", "Between F and 2F",
+              "Within F"])
+    b.quiz_a(4, "C. Between F and 2F",
+             "With the object between F and 2F, the image forms beyond 2F and "
+             "is real, inverted and magnified — exactly how a projector throws "
+             "an enlarged picture on the screen.")
     b.divider(2, "Part 2", "Images in a Convex Lens",
               "How the image changes as the object moves")
     b.text_image("IMAGE FORMATION", "Object Beyond 2F",
@@ -327,18 +336,27 @@ def deck2():
                    "far side. Cross-check with the image table (object between "
                    "F and 2F → magnified real image beyond 2F).")
     b.quiz_intro("Quiz 1", "Quick Check — Concave & Formula", 3)
-    b.quiz_q(1, "Concave Image", "The image formed by a concave lens is "
-             "always:", ["Real and inverted", "Virtual, erect and diminished",
-             "Real and magnified", "Virtual and magnified"])
-    b.quiz_a(1, "B. Virtual, erect and diminished",
-             "A concave (diverging) lens forms a virtual, erect, diminished "
-             "image for every position of the object.")
-    b.quiz_q(2, "Sign of f", "In the New Cartesian sign convention, the focal "
-             "length of a concave lens is taken as:", ["Positive", "Negative",
-             "Zero", "Infinite"])
-    b.quiz_a(2, "B. Negative",
-             "A convex lens has a positive focal length; a concave (diverging) "
-             "lens has a negative focal length.")
+    b.quiz_q(1, "Moving the Object", "An object is slowly moved closer to a "
+             "concave lens. The image it forms:",
+             ["Becomes real and inverted",
+              "Stays virtual and erect, getting slightly larger but always "
+              "smaller than the object",
+              "Disappears at the focus",
+              "Becomes magnified and inverted"])
+    b.quiz_a(1, "B. Stays virtual & erect, always smaller",
+             "A concave lens gives a virtual, erect, diminished image for "
+             "every object position. As the object approaches, the image "
+             "grows a little but never exceeds the object's size or becomes "
+             "real.")
+    b.quiz_q(2, "Identify the Lens", "A lens has a power of −2.5 D. This lens "
+             "is:", ["A convex lens of focal length 40 cm",
+             "A concave lens of focal length 40 cm",
+             "A convex lens of focal length 25 cm",
+             "A concave lens of focal length 25 cm"])
+    b.quiz_a(2, "B. Concave lens, f = 40 cm",
+             "P = 1/f, so f = 1/P = 1/(−2.5) = −0.4 m = −40 cm. The negative "
+             "sign means it is a diverging (concave) lens, and its focal "
+             "length is 40 cm.")
     b.quiz_q(3, "Lens Formula", "The correct lens formula is:",
              ["1/v + 1/u = 1/f", "1/v − 1/u = 1/f", "1/u − 1/v = 1/f",
               "v − u = f"])

@@ -317,8 +317,9 @@ class Builder(Deck):
         return s
 
     # 4. Feature cards (2 or 4) -------------------------------------------
-    def cards(self, badge, title, items, notes=""):
-        """items: list of (heading, body). 2 per row."""
+    def cards(self, badge, title, items, notes="", icons=None):
+        """items: list of (heading, body). 2 per row. An icon (auto-picked
+        from the heading, or supplied via `icons`) sits on the coloured tile."""
         s = self._slide(C["bg_light"])
         n = self._next()
         self._chrome(s, badge, title, self.accent, n)
@@ -336,6 +337,8 @@ class Builder(Deck):
                       shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.05)
             self._box(s, x + 0.35, y + 0.32, 0.55, 0.55, fill=ac,
                       shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.3)
+            self._badge_icon(s, head, x + 0.35, y + 0.32, 0.55,
+                             icons[i] if icons else None)
             self._text(s, x + 1.1, y + 0.28, cw - 1.4, 0.5,
                        [[{"t": head, "size": 17, "bold": True,
                           "color": C["text"]}]])
@@ -343,6 +346,17 @@ class Builder(Deck):
                        [[{"t": body, "size": 13.5, "color": C["muted"]}]])
         self._notes(s, notes or _auto_notes(title, items))
         return s
+
+    def _badge_icon(self, s, heading, bx, by, bsize, name=None):
+        """Place a white icon glyph centred on a coloured badge tile."""
+        try:
+            from icons import render, for_heading
+            path = render(name) if name else for_heading(heading)
+            isz = bsize * 0.56
+            off = (bsize - isz) / 2
+            self._pic(s, path, bx + off, by + off, isz, isz)
+        except Exception:
+            pass
 
     # 5. Text + image two-column ------------------------------------------
     def text_image(self, badge, title, bullets, img, img_side="left",

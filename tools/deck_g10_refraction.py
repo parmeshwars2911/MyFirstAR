@@ -158,28 +158,35 @@ def deck1():
                  notes="Demonstrate with the diagram by flipping the arrowheads. "
                        "Introduce the reciprocal relation ₁n₂ = 1 / ₂n₁.")
     # 13 QUIZ 1
-    b.quiz_intro("Quiz 1", "Quick Check — The Basics", 3)
-    b.quiz_q(1, "Bending", "Light passes from air into glass. The refracted "
-             "ray bends:", ["Away from the normal", "Toward the normal",
-                            "Along the surface", "It does not bend"])
-    b.quiz_a(1, "B. Toward the normal",
-             "Glass is denser than air, so light slows down and bends toward "
-             "the normal. Hence the angle of refraction is smaller than the "
-             "angle of incidence.")
-    b.quiz_q(2, "Refractive Index", "The refractive index of a medium is the "
-             "ratio of:", ["v in medium to c in vacuum",
-                           "c in vacuum to v in medium",
-                           "sin r to sin i", "wavelength to frequency"])
-    b.quiz_a(2, "B. c (vacuum) to v (medium)",
-             "n = c / v. Because v is always less than c in a real medium, n "
-             "is always greater than 1. It is a pure ratio, so it has no unit.")
-    b.quiz_q(3, "Snell's Law", "In Snell's law, the angles i and r are always "
-             "measured from the:", ["Surface of the medium", "Normal",
-                                    "Refracted ray", "Horizontal"])
-    b.quiz_a(3, "B. The normal",
-             "Both the angle of incidence and the angle of refraction are "
-             "measured between the ray and the normal at the point of "
-             "incidence — never from the surface.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 3)
+    b.quiz_q(1, "Crossing a Boundary", "A ray of light passes from water "
+             "(n = 1.33) into glass (n = 1.5). On entering the glass the ray "
+             "will:", ["Bend toward the normal and slow down",
+                       "Bend away from the normal and speed up",
+                       "Go straight through without bending",
+                       "Bend toward the normal and speed up"])
+    b.quiz_a(1, "A. Bend toward the normal and slow down",
+             "Glass is optically denser than water (higher n), so light slows "
+             "down on entering it and bends toward the normal — even though "
+             "neither medium is air. Density, not 'air vs glass', decides the "
+             "direction of bending.")
+    b.quiz_q(2, "What Changes?", "When light passes from air into a glass "
+             "block, which of these does NOT change?",
+             ["Its speed", "Its wavelength", "Its frequency", "Its direction"])
+    b.quiz_a(2, "C. Its frequency",
+             "Inside the glass the light slows down and its wavelength "
+             "shortens, and at the surface its direction changes. Only the "
+             "frequency (set by the source) stays the same — a common exam "
+             "trap.")
+    b.quiz_q(3, "Comparing Media", "Light travels fastest in the medium with "
+             "the:", ["Highest refractive index",
+                      "Lowest refractive index",
+                      "Largest angle of refraction",
+                      "Greatest density"])
+    b.quiz_a(3, "B. Lowest refractive index",
+             "Since n = c/v, a smaller n means a larger speed v. So light is "
+             "fastest in the optically rarest medium (lowest n) — for example "
+             "it travels faster in water than in diamond.")
     # 20 part 2
     b.divider(2, "Part 2", "Through a Glass Block",
               "Lateral shift, experiments and thick-glass images")
@@ -272,15 +279,16 @@ def deck1():
              "revealing it.")
     # 28 QUIZ 2
     b.quiz_intro("Quiz 2", "Final Check — Applying It", 4)
-    b.quiz_q(1, "Glass Block", "After passing through a rectangular glass "
-             "block, the emergent ray is:",
-             ["Bent toward the normal", "Parallel to the incident ray but "
-              "shifted", "Perpendicular to the incident ray",
-              "Turned back on itself"])
-    b.quiz_a(1, "B. Parallel but shifted sideways",
-             "The two faces of the block are parallel, so the emergent ray is "
-             "parallel to the incident ray. It is only displaced sideways by "
-             "the lateral shift.")
+    b.quiz_q(1, "Glass Block", "A ray enters a rectangular glass slab at an "
+             "angle of incidence of 50°. What is the angle of emergence as it "
+             "leaves the opposite, parallel face?",
+             ["Less than 50°", "Exactly 50°", "More than 50°",
+              "It depends on the glass thickness"])
+    b.quiz_a(1, "B. Exactly 50°",
+             "Because the two faces are parallel, the bending on entering is "
+             "exactly undone on leaving. The angle of emergence equals the "
+             "angle of incidence (50°); the ray is only shifted sideways, not "
+             "rotated. Thickness changes the shift, not the angle.")
     b.quiz_q(2, "Refractive Index", "Light travels at 2 × 10⁸ m/s in a "
              "medium. Its refractive index is (c = 3 × 10⁸ m/s):",
              ["0.67", "1.5", "2.0", "6 × 10¹⁶"])
@@ -400,27 +408,37 @@ def deck2():
          "raised from the bottom."),
     ], notes="Each is a consequence of atmospheric or water refraction. Ask "
              "students which ones they have noticed.")
-    b.quiz_intro("Quiz 1", "Quick Check — Prism & Depth", 3)
-    b.quiz_q(1, "Prism", "Light passing through a triangular prism bends "
-             "toward the:", ["Apex (top)", "Base", "Normal at exit",
-                              "Incident ray"])
-    b.quiz_a(1, "B. The base",
-             "At both surfaces the ray bends in the same rotational sense, so "
-             "the overall bending is toward the thicker part — the base of "
-             "the prism.")
-    b.quiz_q(2, "Apparent Depth", "Compared with its real depth, a pond "
-             "always appears:", ["Deeper", "Shallower", "The same",
-                                 "Twice as deep"])
-    b.quiz_a(2, "B. Shallower",
-             "Light from the bottom bends away from the normal on leaving the "
-             "water and our eyes project it back along a straight line, so the "
-             "bottom looks raised — apparent depth < real depth.")
-    b.quiz_q(3, "Deviation", "The angle between the incident ray and the "
-             "emergent ray of a prism is called the angle of:",
-             ["Incidence", "Refraction", "Deviation", "Prism"])
-    b.quiz_a(3, "C. Deviation",
-             "The angle of deviation δ measures how much the prism turns the "
-             "light from its original direction.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 3)
+    b.quiz_q(1, "Prism vs Slab", "How does a prism differ from a parallel-"
+             "sided glass slab in its effect on a ray of light?",
+             ["Both leave the ray parallel to the incident ray",
+              "A prism deviates the ray; a slab only shifts it sideways",
+              "A slab deviates the ray; a prism only shifts it",
+              "Neither changes the ray's direction"])
+    b.quiz_a(1, "B. A prism deviates; a slab only shifts",
+             "A slab's faces are parallel, so the emergent ray is parallel to "
+             "the incident ray (just shifted). A prism's faces are inclined, "
+             "so the ray emerges in a new direction — deviated toward the "
+             "base by the angle δ.")
+    b.quiz_q(2, "Apparent Depth", "A fish is 2.0 m below the surface of a "
+             "pond (n = 1.33). To a person looking straight down, the fish "
+             "appears to be about how deep?",
+             ["2.66 m", "2.0 m", "1.5 m", "1.33 m"])
+    b.quiz_a(2, "C. 1.5 m",
+             "Apparent depth = real depth / n = 2.0 / 1.33 ≈ 1.5 m. Refraction "
+             "raises the apparent position, so the fish looks shallower than "
+             "it really is.")
+    b.quiz_q(3, "Atmospheric Refraction", "We can see the Sun for a few "
+             "minutes before it has actually risen above the horizon because:",
+             ["The Sun moves faster at dawn",
+              "Light from the Sun is refracted by the atmosphere",
+              "The Sun is closer at sunrise",
+              "Clouds reflect the sunlight"])
+    b.quiz_a(3, "B. Light is refracted by the atmosphere",
+             "Air is denser nearer the ground, so sunlight bends as it passes "
+             "through the atmosphere. This lifts the Sun's apparent position, "
+             "letting us see it slightly before it actually rises (and after "
+             "it sets).")
     b.divider(2, "Part 2", "Critical Angle & T.I.R.",
               "When light cannot escape a denser medium")
     b.text_image("CRITICAL ANGLE", "The Critical Angle",
@@ -519,19 +537,27 @@ def deck2():
         ("Uses", "optical fibres, reflecting prisms, mirage, diamond sparkle"),
     ], notes="Rapid recap; cold-call for each result.")
     b.quiz_intro("Quiz 2", "Final Check — Critical Angle & T.I.R.", 4)
-    b.quiz_q(1, "Critical Angle", "At the critical angle, the angle of "
-             "refraction is:", ["0°", "45°", "90°", "Equal to i"])
-    b.quiz_a(1, "C. 90°",
-             "At the critical angle the refracted ray just grazes along the "
-             "surface, so the angle of refraction is 90°.")
-    b.quiz_q(2, "Conditions", "Total internal reflection can occur only when "
-             "light travels from:", ["Rarer to denser medium",
-                                     "Denser to rarer medium",
-                                     "Air to vacuum", "Any medium to any other"])
-    b.quiz_a(2, "B. Denser to rarer medium",
-             "T.I.R. needs the ray to go from a denser to a rarer medium AND "
-             "the angle of incidence to exceed the critical angle. Both "
-             "conditions are essential.")
+    b.quiz_q(1, "Will It Escape?", "Light inside glass (critical angle 42°) "
+             "strikes the glass–air surface at 40°. What happens?",
+             ["It is totally internally reflected",
+              "It refracts and passes out into the air",
+              "It travels along the surface",
+              "It is absorbed by the glass"])
+    b.quiz_a(1, "B. It refracts and passes out",
+             "40° is less than the critical angle of 42°, so the ray is still "
+             "refracted out of the glass (bending away from the normal). T.I.R. "
+             "would only happen if the angle exceeded 42°.")
+    b.quiz_q(2, "Diamond vs Glass", "A diamond (critical angle ≈ 24°) sparkles "
+             "more than a glass crystal (critical angle ≈ 42°) because:",
+             ["Diamond reflects all colours equally",
+              "Light meets its surfaces beyond the critical angle more often",
+              "Diamond is a better conductor",
+              "Glass absorbs more light"])
+    b.quiz_a(2, "B. Light exceeds the critical angle more often",
+             "A smaller critical angle means more rays strike the inner "
+             "surfaces beyond it and undergo total internal reflection. So "
+             "diamond traps and bounces light around far more than glass, "
+             "giving its sparkle.")
     b.quiz_q(3, "Refractive Index", "If the critical angle of a medium is 30°, "
              "its refractive index is:", ["0.5", "1.5", "2.0", "1.0"])
     b.quiz_a(3, "C. 2.0",
