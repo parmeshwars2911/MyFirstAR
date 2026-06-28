@@ -1162,6 +1162,96 @@ def bimetallic_strip(key):
     return _render(key, _svg("".join(body), 600, 300), 820, 410)
 
 
+def plane_mirror_image(key):
+    """Object in front of a plane mirror forms a virtual image behind it."""
+    mx = 300
+    body = [
+        # mirror (vertical) with hatching on the back
+        f'<line x1="{mx}" y1="60" x2="{mx}" y2="360" stroke="{INK}" '
+        f'stroke-width="4"/>',
+        _txt(mx, 45, "mirror", MUT, 14),
+        # object arrow
+        _line(160, 300, 160, 200, ORANGE, 4, marker="arrowO"),
+        _txt(160, 320, "object", ORANGE, 14),
+        # virtual image (dashed) equal distance behind
+        _line(440, 300, 440, 200, RED, 3, dash="6 5", marker="arrowR"),
+        _txt(440, 320, "virtual image", RED, 14),
+        # rays from object top to mirror and to eye
+        _line(160, 200, 270, 250, TEAL, 2),
+        _line(270, 250, 150, 130, TEAL, 2, marker="arrowT"),
+        _line(270, 250, 440, 200, MUT, 1.5, dash="5 5"),  # apparent ray
+        f'<circle cx="135" cy="120" r="13" fill="none" stroke="{INK}" '
+        f'stroke-width="2"/>', _txt(135, 100, "eye", INK, 12),
+        _txt(300, 395, "Image is as far behind as the object is in front "
+                       "(virtual, erect, same size)", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 600, 420), 760, 532)
+
+
+def _mirror_arc(cx, cy, r, concave=True):
+    if concave:
+        return (f'<path d="M {cx} {cy-90} A {r} {r} 0 0 0 {cx} {cy+90}" '
+                f'fill="none" stroke="{INK}" stroke-width="5"/>')
+    return (f'<path d="M {cx} {cy-90} A {r} {r} 0 0 1 {cx} {cy+90}" '
+            f'fill="none" stroke="{INK}" stroke-width="5"/>')
+
+
+def concave_mirror_image(key):
+    """Concave mirror: object beyond C -> real, inverted, diminished image."""
+    cy = 220
+    mx = 500
+    body = [
+        _line(60, cy, mx + 10, cy, MUT, 2),       # principal axis
+        _mirror_arc(mx, cy, 240, True),
+        f'<circle cx="320" cy="{cy}" r="3" fill="{MUT}"/>',  # C
+        _txt(320, cy + 22, "C", MUT, 14),
+        f'<circle cx="410" cy="{cy}" r="3" fill="{MUT}"/>',  # F
+        _txt(410, cy + 22, "F", MUT, 14),
+        # object beyond C
+        _line(230, cy, 230, cy - 80, ORANGE, 4, marker="arrowO"),
+        _txt(230, cy - 92, "object", ORANGE, 13),
+        # ray parallel -> through F
+        _line(230, cy - 80, mx, cy - 80, RED, 2.5),
+        _line(mx, cy - 80, 360, cy + 40, RED, 2.5),
+        # ray through C -> reflects back on itself
+        _line(230, cy - 80, mx - 40, cy + 55, TEAL, 2.5),
+        # image (between C and F): real inverted
+        _line(370, cy, 370, cy + 38, PURPLE, 4, marker="arrowP"),
+        _txt(372, cy + 58, "image", PURPLE, 13, anchor="start"),
+        _txt(300, 40, "Concave mirror: object beyond C → real, inverted, "
+                      "diminished", INK, 15),
+    ]
+    return _render(key, _svg("".join(body), 600, 360), 820, 492)
+
+
+def convex_mirror_image(key):
+    """Convex mirror: always a virtual, erect, diminished image behind."""
+    cy = 200
+    mx = 470
+    body = [
+        _line(60, cy, mx + 90, cy, MUT, 2),
+        _mirror_arc(mx, cy, 240, False),
+        f'<circle cx="{mx+95}" cy="{cy}" r="3" fill="{MUT}"/>',
+        _txt(mx + 95, cy + 22, "F", MUT, 13),
+        # object
+        _line(220, cy, 220, cy - 80, ORANGE, 4, marker="arrowO"),
+        _txt(220, cy - 92, "object", ORANGE, 13),
+        # ray parallel -> reflects as if from F behind
+        _line(220, cy - 80, mx, cy - 80, RED, 2.5),
+        _line(mx, cy - 80, 120, cy - 20, RED, 2.5, marker="arrowR"),
+        _line(mx, cy - 80, mx + 95, cy, MUT, 1.5, dash="5 5"),
+        # ray toward centre -> reflects
+        _line(220, cy - 80, mx, cy - 36, TEAL, 2.5),
+        _line(mx, cy - 36, 150, cy + 30, TEAL, 2.5, marker="arrowT"),
+        # virtual image behind (small, erect)
+        _line(mx + 55, cy, mx + 55, cy - 26, PURPLE, 4, marker="arrowP"),
+        _txt(mx + 55, cy + 22, "image", PURPLE, 12),
+        _txt(300, 40, "Convex mirror: always virtual, erect, diminished",
+             INK, 15),
+    ]
+    return _render(key, _svg("".join(body), 640, 340), 860, 457)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
