@@ -1415,6 +1415,37 @@ def neutral_points(key):
     return _render(key, _svg("".join(body), 600, 420), 800, 560)
 
 
+def pendulum_energy(key):
+    """A swinging pendulum converting between potential and kinetic energy."""
+    px, py = 300, 70   # pivot
+    body = [
+        f'<circle cx="{px}" cy="{py}" r="5" fill="{INK}"/>',
+        f'<line x1="{px}" y1="{py}" x2="{px}" y2="320" stroke="{MUT}" '
+        f'stroke-width="1" stroke-dasharray="4 5"/>',
+    ]
+    # three positions: left top (PE max), bottom (KE max), right top (PE max)
+    for (x, y, lab, col, pe, ke) in [
+            (150, 250, "max PE", RED, True, False),
+            (300, 330, "max KE", TEAL, False, True),
+            (450, 250, "max PE", RED, True, False)]:
+        body.append(f'<line x1="{px}" y1="{py}" x2="{x}" y2="{y}" '
+                    f'stroke="{INK}" stroke-width="1.5" opacity="0.5"/>')
+        body.append(f'<circle cx="{x}" cy="{y}" r="18" fill="{col}" '
+                    f'stroke="{INK}" stroke-width="2"/>')
+        body.append(_txt(x, y + 45, lab, col, 14))
+    # swing arrows
+    body += [
+        f'<path d="M180 290 Q 240 340 290 332" fill="none" stroke="{PURPLE}" '
+        f'stroke-width="2" marker-end="url(#arrowP)"/>',
+        f'<path d="M310 332 Q 360 340 420 290" fill="none" stroke="{PURPLE}" '
+        f'stroke-width="2" marker-end="url(#arrowP)"/>',
+        _txt(300, 40, "A swinging pendulum: PE ⇄ KE", INK, 16),
+        _txt(300, 390, "At the top: all potential energy.  At the bottom: all "
+                       "kinetic energy.", MUT, 14),
+    ]
+    return _render(key, _svg("".join(body), 600, 420), 800, 560)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
