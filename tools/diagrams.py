@@ -579,6 +579,111 @@ def resonance_pendulums(key):
     return _render(key, _svg("".join(body), 660, 360), 900, 491)
 
 
+def _cell(x, y):
+    return (f'<line x1="{x}" y1="{y-16}" x2="{x}" y2="{y+16}" stroke="{INK}" '
+            f'stroke-width="4"/>'
+            f'<line x1="{x+12}" y1="{y-8}" x2="{x+12}" y2="{y+8}" '
+            f'stroke="{INK}" stroke-width="4"/>')
+
+
+def ohm_circuit(key):
+    """Circuit to verify Ohm's law: cell, switch, ammeter (series),
+    resistor with a voltmeter across it."""
+    L, R, T, B = 90, 550, 90, 330
+    body = [
+        # wires (rectangle)
+        f'<rect x="{L}" y="{T}" width="{R-L}" height="{B-T}" fill="none" '
+        f'stroke="{INK}" stroke-width="3"/>',
+        # cell on left side
+        _cell(L, (T+B)//2),
+        _txt(L-26, (T+B)//2+5, "cell", MUT, 15, anchor="end"),
+        # switch on bottom
+        f'<circle cx="270" cy="{B}" r="4" fill="{INK}"/>',
+        f'<line x1="270" y1="{B}" x2="310" y2="{B-18}" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        f'<circle cx="316" cy="{B}" r="4" fill="{INK}"/>',
+        _txt(290, B+28, "switch", MUT, 14),
+        # ammeter on top (series)
+        f'<circle cx="270" cy="{T}" r="22" fill="#FFFFFF" stroke="{INK}" '
+        f'stroke-width="3"/>', _txt(270, T+7, "A", TEAL, 20),
+        _txt(270, T-30, "ammeter", MUT, 14),
+        # resistor on right side
+        f'<rect x="{R-13}" y="160" width="26" height="100" fill="#FFFFFF" '
+        f'stroke="{INK}" stroke-width="3"/>',
+        _txt(R+20, 215, "R", PURPLE, 18, anchor="start"),
+        # voltmeter across the resistor
+        f'<circle cx="{R+90}" cy="210" r="22" fill="#FFFFFF" stroke="{INK}" '
+        f'stroke-width="3"/>', _txt(R+90, 217, "V", ORANGE, 20),
+        _txt(R+90, 250, "voltmeter", MUT, 14),
+        f'<line x1="{R}" y1="160" x2="{R+90}" y2="160" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="{R+90}" y1="160" x2="{R+90}" y2="188" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="{R}" y1="260" x2="{R+90}" y2="260" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="{R+90}" y1="260" x2="{R+90}" y2="232" stroke="{INK}" '
+        f'stroke-width="2"/>',
+    ]
+    body.insert(0, _txt(350, 28, "Circuit to verify Ohm's law", INK, 17))
+    return _render(key, _svg("".join(body), 700, 380), 900, 489)
+
+
+def ohm_graph(key):
+    """V–I straight line through the origin (Ohm's law)."""
+    body = [
+        _line(70, 330, 70, 60, INK, 3, marker="arrow"),
+        _line(70, 330, 470, 330, INK, 3, marker="arrow"),
+        _txt(40, 60, "I", INK, 20), _txt(470, 360, "V", INK, 20),
+        _line(70, 330, 430, 90, RED, 4),
+        _txt(360, 120, "slope = 1/R", RED, 16, anchor="start"),
+        _txt(270, 385, "V ∝ I at constant temperature", INK, 16),
+        f'<circle cx="250" cy="210" r="4" fill="{INK}"/>',
+    ]
+    return _render(key, _svg("".join(body), 520, 410), 660, 520)
+
+
+def resistors_combo(key):
+    """Resistors in series and in parallel, side by side."""
+    body = [_txt(170, 40, "Series", INK, 18), _txt(480, 40, "Parallel", INK, 18)]
+    # series: three resistors in a line
+    y = 130
+    xs = 60
+    body.append(f'<line x1="{xs}" y1="{y}" x2="{xs+20}" y2="{y}" '
+                f'stroke="{INK}" stroke-width="3"/>')
+    x = xs + 20
+    for i, lab in enumerate(["R1", "R2", "R3"]):
+        body.append(f'<rect x="{x}" y="{y-13}" width="50" height="26" '
+                    f'fill="#FFFFFF" stroke="{INK}" stroke-width="3"/>')
+        body.append(_txt(x+25, y-22, lab, PURPLE, 14))
+        x += 50
+        body.append(f'<line x1="{x}" y1="{y}" x2="{x+22}" y2="{y}" '
+                    f'stroke="{INK}" stroke-width="3"/>')
+        x += 22
+    body.append(_cell(xs+5, y+90))
+    body.append(f'<path d="M{xs} {y} L{xs} {y+90} M{xs} {y+90} L{xs+5} {y+90} '
+                f'M{xs+17} {y+90} L{x} {y+90} L{x} {y}" fill="none" '
+                f'stroke="{INK}" stroke-width="3"/>')
+    body.append(_txt(180, 250, "R = R₁ + R₂ + R₃", PURPLE, 16))
+    # parallel: three resistors between two rails
+    px1, px2 = 430, 620
+    body.append(f'<line x1="{px1}" y1="90" x2="{px2}" y2="90" stroke="{INK}" '
+                f'stroke-width="3"/>')
+    body.append(f'<line x1="{px1}" y1="200" x2="{px2}" y2="200" '
+                f'stroke="{INK}" stroke-width="3"/>')
+    for i, bx in enumerate([460, 525, 590]):
+        body.append(f'<rect x="{bx-13}" y="120" width="26" height="50" '
+                    f'fill="#FFFFFF" stroke="{INK}" stroke-width="3"/>')
+        body.append(f'<line x1="{bx}" y1="90" x2="{bx}" y2="120" '
+                    f'stroke="{INK}" stroke-width="3"/>')
+        body.append(f'<line x1="{bx}" y1="170" x2="{bx}" y2="200" '
+                    f'stroke="{INK}" stroke-width="3"/>')
+    body.append(_cell(525, 250))
+    body.append(f'<path d="M{px1} 90 L{px1} 250 L519 250 M531 250 L{px2} 250 '
+                f'L{px2} 200" fill="none" stroke="{INK}" stroke-width="3"/>')
+    body.append(_txt(525, 295, "1/R = 1/R₁ + 1/R₂ + 1/R₃", PURPLE, 15))
+    return _render(key, _svg("".join(body), 700, 320), 940, 430)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
