@@ -684,6 +684,87 @@ def resistors_combo(key):
     return _render(key, _svg("".join(body), 700, 320), 940, 430)
 
 
+def three_pin_plug(key):
+    """A 3-pin plug: live (with fuse), neutral and a longer, thicker earth."""
+    body = [
+        f'<rect x="180" y="120" width="280" height="300" rx="30" '
+        f'fill="#EAEDF1" stroke="{INK}" stroke-width="3"/>',
+        _txt(150, 175, "Three-pin", INK, 17, anchor="end"),
+        _txt(150, 198, "plug", INK, 17, anchor="end"),
+        # earth pin (top, longer & thicker)
+        f'<rect x="300" y="40" width="40" height="90" rx="6" fill="#2A9D8F" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(420, 70, "Earth (E)", "#1B7A6E", 15, anchor="start"),
+        _txt(420, 92, "green/yellow", MUT, 12, anchor="start"),
+        # live pin (bottom-left) with fuse
+        f'<rect x="220" y="420" width="34" height="70" rx="5" fill="#8B5A2B" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        f'<rect x="214" y="300" width="46" height="70" rx="6" fill="#FFE2C2" '
+        f'stroke="{INK}" stroke-width="2"/>', _txt(237, 342, "fuse", "#8B5A2B", 12),
+        _txt(150, 470, "Live (L)", "#8B5A2B", 15, anchor="end"),
+        _txt(150, 492, "brown", MUT, 12, anchor="end"),
+        # neutral pin (bottom-right)
+        f'<rect x="386" y="420" width="34" height="70" rx="5" fill="#2563EB" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(500, 470, "Neutral (N)", "#1E40AF", 15, anchor="start"),
+        _txt(500, 492, "blue", MUT, 12, anchor="start"),
+        # internal wires
+        f'<line x1="320" y1="130" x2="320" y2="200" stroke="#2A9D8F" '
+        f'stroke-width="4"/>',
+        f'<line x1="237" y1="300" x2="237" y2="240" stroke="#8B5A2B" '
+        f'stroke-width="4"/>',
+        f'<line x1="403" y1="420" x2="403" y2="240" stroke="#2563EB" '
+        f'stroke-width="4"/>',
+        _txt(320, 540, "Earth pin is longer & thicker; fuse goes in the live "
+                       "wire", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 640, 560), 700, 613)
+
+
+def power_transmission(key):
+    """Generating station → step-up → transmission lines → step-down → home."""
+    def box(x, w, label, col):
+        return (f'<rect x="{x}" y="150" width="{w}" height="70" rx="8" '
+                f'fill="{col}" stroke="{INK}" stroke-width="2"/>'
+                + _txt(x + w / 2, 192, label, "#FFFFFF", 14))
+    body = [
+        box(30, 110, "Power\\nstation", "#6B7280"),
+        box(190, 90, "Step-up\\ntransformer", ORANGE),
+        box(380, 120, "Transmission\\n(high voltage)", PURPLE),
+        box(560, 90, "Step-down\\ntransformer", ORANGE),
+        box(720, 80, "Home", TEAL),
+    ]
+    # fix multi-line labels (svg text doesn't wrap) -> redo labels manually
+    body = [
+        f'<rect x="30" y="150" width="110" height="70" rx="8" fill="#6B7280" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(85, 180, "Power", "#FFFFFF", 14), _txt(85, 202, "station",
+                                                    "#FFFFFF", 14),
+        f'<rect x="190" y="150" width="100" height="70" rx="8" fill="{ORANGE}" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(240, 180, "Step-up", "#FFFFFF", 13), _txt(240, 202, "↑ voltage",
+                                                       "#FFFFFF", 13),
+        f'<rect x="345" y="150" width="150" height="70" rx="8" fill="{PURPLE}" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(420, 180, "Transmission", "#FFFFFF", 13),
+        _txt(420, 202, "high voltage", "#FFFFFF", 13),
+        f'<rect x="550" y="150" width="100" height="70" rx="8" fill="{ORANGE}" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(600, 180, "Step-down", "#FFFFFF", 13),
+        _txt(600, 202, "↓ voltage", "#FFFFFF", 13),
+        f'<rect x="705" y="150" width="80" height="70" rx="8" fill="{TEAL}" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(745, 188, "Home", "#FFFFFF", 14),
+    ]
+    for x in (140, 290, 495, 650):
+        body.append(_line(x, 185, x + 50, 185, INK, 3, marker="arrow"))
+    body.insert(0, _txt(400, 60, "Power from the station to your home", INK, 18))
+    body.append(_txt(400, 280, "Voltage is stepped up for transmission "
+                               "(less loss), then stepped down for use",
+                     MUT, 14))
+    return _render(key, _svg("".join(body), 820, 320), 1000, 390)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
