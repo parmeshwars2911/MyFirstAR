@@ -1252,6 +1252,36 @@ def convex_mirror_image(key):
     return _render(key, _svg("".join(body), 640, 340), 860, 457)
 
 
+def wave_terms(key):
+    """A wave showing wavelength, amplitude, crest and trough."""
+    import math as _m
+    cx0, mid, amp = 70, 200, 70
+    pts = []
+    for i in range(0, 481):
+        x = cx0 + i
+        y = mid - amp * _m.sin(2 * _m.pi * i / 160)
+        pts.append(f"{x},{y:.1f}")
+    body = [
+        _line(cx0, mid, cx0 + 480, mid, MUT, 1.5, dash="5 5"),
+        f'<polyline points="{" ".join(pts)}" fill="none" stroke="{BLUE}" '
+        f'stroke-width="3.5"/>',
+        # wavelength (crest to crest): crest at i=40 and i=200 -> x=110, 270
+        f'<line x1="110" y1="110" x2="270" y2="110" stroke="{ORANGE}" '
+        f'stroke-width="2" marker-start="url(#arrowO)" '
+        f'marker-end="url(#arrowO)"/>',
+        _txt(190, 98, "wavelength λ", ORANGE, 14),
+        # amplitude (mid to crest) at x=110
+        f'<line x1="430" y1="200" x2="430" y2="130" stroke="{RED}" '
+        f'stroke-width="2" marker-end="url(#arrowR)"/>',
+        _txt(470, 165, "amplitude", RED, 13, anchor="start"),
+        _txt(110, 95, "crest", TEAL, 12),
+        _txt(190, 295, "trough", PURPLE, 12),
+        _txt(300, 360, "Wavelength: crest to crest   •   Amplitude: rest to "
+                       "crest", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 600, 390), 800, 520)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
