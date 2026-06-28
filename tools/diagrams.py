@@ -1084,6 +1084,84 @@ def floatation(key):
     return _render(key, _svg("".join(body), 600, 420), 760, 532)
 
 
+def anomalous_water(key):
+    """Density of water vs temperature, peaking at 4 deg C."""
+    import math as _m
+    body = [
+        _line(70, 320, 70, 50, INK, 3, marker="arrow"),
+        _line(70, 320, 520, 320, INK, 3, marker="arrow"),
+        _txt(45, 50, "Density", INK, 15), _txt(470, 350, "Temperature (°C)",
+                                               INK, 14),
+    ]
+    # stylised (exaggerated) curve: rises to a peak at 4 deg C then declines
+    body.append(
+        '<path d="M 90 150 C 100 120 120 110 136 110 '   # 0C -> peak ~4C
+        'C 170 110 200 150 260 200 '                      # decline
+        'C 330 250 410 280 500 300" '                     # gentle tail
+        f'fill="none" stroke="{BLUE}" stroke-width="4"/>')
+    body += [
+        f'<line x1="136" y1="110" x2="136" y2="320" stroke="{ORANGE}" '
+        f'stroke-width="1.5" stroke-dasharray="4 4"/>',
+        f'<circle cx="136" cy="110" r="6" fill="{ORANGE}"/>',
+        _txt(150, 100, "max density at 4°C", ORANGE, 14, anchor="start"),
+        _txt(136, 340, "4", MUT, 13),
+        _txt(300, 380, "Water is densest at 4°C — it expands when cooled "
+                       "below this", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 560, 400), 720, 514)
+
+
+def greenhouse_effect(key):
+    """Sunlight in, Earth re-radiates heat, greenhouse gases trap some."""
+    body = [
+        f'<rect x="0" y="300" width="600" height="80" fill="#7CB342"/>',
+        _txt(300, 350, "Earth's surface", "#2E5A12", 14),
+        # gas layer
+        f'<rect x="40" y="120" width="520" height="40" fill="#D7E8F5" '
+        f'opacity="0.8" stroke="{MUT}" stroke-width="1"/>',
+        _txt(300, 110, "greenhouse gases (CO₂)", MUT, 13),
+        # sun
+        f'<circle cx="80" cy="60" r="30" fill="{GOLD}"/>',
+        _txt(80, 110, "Sun", MUT, 13),
+        # incoming sunlight (passes through)
+        _line(110, 80, 250, 300, GOLD, 4, marker="arrowO"),
+        _txt(150, 200, "sunlight in", "#B5701F", 13, anchor="start"),
+        # re-radiated heat from earth (some escapes, some trapped)
+        _line(330, 300, 360, 160, RED, 3, marker="arrowR"),
+        _line(360, 160, 330, 300, RED, 3, marker="arrowR"),  # reflected back
+        _line(420, 300, 470, 130, RED, 3, marker=None),
+        _line(470, 160, 470, 90, RED, 3, marker="arrowR"),  # some escapes
+        _txt(380, 230, "heat radiated", RED, 12, anchor="start"),
+        _txt(300, 200, "trapped ↺", RED, 13),
+        _txt(300, 405, "Gases trap heat radiated by the Earth, warming the "
+                       "planet", INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 600, 430), 760, 545)
+
+
+def bimetallic_strip(key):
+    """A bimetallic strip bends on heating (two metals expand differently)."""
+    body = [
+        _txt(300, 45, "Bimetallic strip bends on heating", INK, 16),
+        # before
+        f'<rect x="80" y="110" width="200" height="16" fill="#D98C3F" '
+        f'stroke="{INK}" stroke-width="1.5"/>',
+        f'<rect x="80" y="126" width="200" height="16" fill="#9AA1AB" '
+        f'stroke="{INK}" stroke-width="1.5"/>',
+        _txt(180, 170, "cold — straight", MUT, 13),
+        # after (curved): two arcs
+        f'<path d="M340 130 Q 450 130 520 220" fill="none" stroke="#D98C3F" '
+        f'stroke-width="16"/>',
+        f'<path d="M340 146 Q 450 150 512 232" fill="none" stroke="#9AA1AB" '
+        f'stroke-width="16"/>',
+        _txt(430, 270, "hot — bends toward the metal that expands less",
+             MUT, 13),
+        _txt(120, 95, "brass", "#B5701F", 12),
+        _txt(120, 158, "iron", MUT, 12),
+    ]
+    return _render(key, _svg("".join(body), 600, 300), 820, 410)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
