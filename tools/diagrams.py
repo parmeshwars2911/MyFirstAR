@@ -1282,6 +1282,72 @@ def wave_terms(key):
     return _render(key, _svg("".join(body), 600, 390), 800, 520)
 
 
+def circuit_symbols(key):
+    """A chart of common circuit symbols."""
+    body = [_txt(300, 35, "Common circuit symbols", INK, 17)]
+    cells = [
+        ("cell", lambda x, y: _cell(x + 30, y) + _line(x, y, x + 30, y, INK, 2)
+         + _line(x + 42, y, x + 60, y, INK, 2)),
+        ("battery", lambda x, y: _cell(x + 18, y) + _cell(x + 42, y)
+         + _line(x, y, x + 18, y, INK, 2) + _line(x + 54, y, x + 60, y, INK, 2)),
+        ("bulb", lambda x, y: f'<circle cx="{x+30}" cy="{y}" r="14" '
+         f'fill="none" stroke="{INK}" stroke-width="2"/>'
+         f'<line x1="{x+20}" y1="{y-10}" x2="{x+40}" y2="{y+10}" '
+         f'stroke="{INK}" stroke-width="2"/>'
+         f'<line x1="{x+20}" y1="{y+10}" x2="{x+40}" y2="{y-10}" '
+         f'stroke="{INK}" stroke-width="2"/>'
+         + _line(x, y, x + 16, y, INK, 2) + _line(x + 44, y, x + 60, y, INK, 2)),
+        ("switch (open)", lambda x, y: f'<circle cx="{x+18}" cy="{y}" r="3" '
+         f'fill="{INK}"/><circle cx="{x+44}" cy="{y}" r="3" fill="{INK}"/>'
+         + _line(x, y, x + 18, y, INK, 2) + _line(x + 18, y, x + 42, y - 16, INK, 2)
+         + _line(x + 44, y, x + 60, y, INK, 2)),
+        ("resistor", lambda x, y: f'<rect x="{x+15}" y="{y-8}" width="30" '
+         f'height="16" fill="none" stroke="{INK}" stroke-width="2"/>'
+         + _line(x, y, x + 15, y, INK, 2) + _line(x + 45, y, x + 60, y, INK, 2)),
+        ("ammeter", lambda x, y: f'<circle cx="{x+30}" cy="{y}" r="14" '
+         f'fill="none" stroke="{INK}" stroke-width="2"/>'
+         + _txt(x + 30, y + 5, "A", TEAL, 14)
+         + _line(x, y, x + 16, y, INK, 2) + _line(x + 44, y, x + 60, y, INK, 2)),
+        ("voltmeter", lambda x, y: f'<circle cx="{x+30}" cy="{y}" r="14" '
+         f'fill="none" stroke="{INK}" stroke-width="2"/>'
+         + _txt(x + 30, y + 5, "V", ORANGE, 14)
+         + _line(x, y, x + 16, y, INK, 2) + _line(x + 44, y, x + 60, y, INK, 2)),
+        ("wire", lambda x, y: _line(x, y, x + 60, y, INK, 2)),
+    ]
+    for i, (name, draw) in enumerate(cells):
+        col = i % 2
+        row = i // 2
+        x = 80 + col * 260
+        y = 90 + row * 75
+        body.append(draw(x, y))
+        body.append(_txt(x + 90, y + 5, name, MUT, 14, anchor="start"))
+    return _render(key, _svg("".join(body), 600, 420), 760, 532)
+
+
+def simple_circuit(key):
+    """A simple circuit: cell, switch and a bulb in a loop."""
+    L, R, T, B = 120, 480, 110, 320
+    body = [
+        f'<rect x="{L}" y="{T}" width="{R-L}" height="{B-T}" fill="none" '
+        f'stroke="{INK}" stroke-width="3"/>',
+        _cell(L, (T+B)//2), _txt(L-22, (T+B)//2+5, "cell", MUT, 14,
+                                 anchor="end"),
+        # bulb on top
+        f'<circle cx="300" cy="{T}" r="20" fill="#FFF6CC" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        f'<line x1="286" y1="{T-14}" x2="314" y2="{T+14}" stroke="{INK}" '
+        f'stroke-width="2"/>',
+        f'<line x1="286" y1="{T+14}" x2="314" y2="{T-14}" stroke="{INK}" '
+        f'stroke-width="2"/>', _txt(300, T-32, "bulb", MUT, 14),
+        # switch on bottom
+        f'<circle cx="285" cy="{B}" r="4" fill="{INK}"/>'
+        f'<circle cx="315" cy="{B}" r="4" fill="{INK}"/>',
+        _line(285, B, 312, B-16, INK, 3), _txt(300, B+26, "switch", MUT, 14),
+        _txt(300, 70, "A simple electric circuit", INK, 16),
+    ]
+    return _render(key, _svg("".join(body), 600, 380), 720, 456)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
