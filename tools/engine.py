@@ -164,21 +164,21 @@ class Deck:
     def _notes(self, s, text):
         s.notes_slide.notes_text_frame.text = text
 
+    def _logo_space(self, s):
+        """Reserve a clean circular area, top-right, for the brand logo."""
+        self._box(s, 11.95, 0.4, 0.95, 0.95, fill=None, line="DDE2E8",
+                  line_w=1.25, shape=MSO_SHAPE.OVAL, deco=True)
+
     def _chrome(self, s, badge, title, accent, n):
-        """Top badge + title + footer that every content slide shares."""
+        """Top badge + title + reserved logo space (no footer)."""
+        self._logo_space(s)
         self._box(s, 0.6, 0.55, 0.28, 0.28, fill=accent)
-        self._text(s, 1.0, 0.5, 11.0, 0.35,
+        self._text(s, 1.0, 0.5, 10.4, 0.35,
                    [[{"t": badge.upper(), "size": 13, "bold": True,
                       "color": accent, "font": LABEL_FONT}]])
-        self._text(s, 0.6, 0.85, 12.1, 0.9,
+        self._text(s, 0.6, 0.85, 10.9, 0.9,
                    [[{"t": title, "size": 30, "bold": True,
                       "color": C["text"], "font": TITLE_FONT}]])
-        self._text(s, 0.6, 7.05, 9.5, 0.3,
-                   [[{"t": self.footer, "size": 9, "color": C["muted"],
-                      "font": LABEL_FONT}]])
-        self._text(s, 12.4, 7.05, 0.5, 0.3,
-                   [[{"t": str(n), "size": 9, "color": C["muted"],
-                      "font": LABEL_FONT}]], align=PP_ALIGN.RIGHT)
 
     # -- QA: record bounding boxes for overlap detection ---------------------
     def qa(self):
@@ -264,9 +264,6 @@ class Builder(Deck):
                       "color": "FFFFFF"}]], anchor=MSO_ANCHOR.BOTTOM)
         self._text(s, 0.8, 4.05, 8.8 if img else 11.0, 1.6,
                    [[{"t": subtitle, "size": 19, "color": C["subtitle"]}]])
-        self._text(s, 0.8, 6.5, 9.0, 0.4,
-                   [[{"t": self.brand, "size": 13, "color": C["footer_dark"],
-                      "font": LABEL_FONT}]])
         if img:
             self._pic(s, img, 9.9, 2.3, 2.9, 3.0)
         self._next()
@@ -317,12 +314,6 @@ class Builder(Deck):
                    [[{"t": title, "size": 42, "bold": True, "color": "FFFFFF"}]])
         self._text(s, 0.85, 4.5, 8.0, 0.9,
                    [[{"t": subtitle, "size": 18, "color": C["subtitle"]}]])
-        self._text(s, 0.6, 7.05, 9.5, 0.3,
-                   [[{"t": self.footer, "size": 9, "color": C["footer_dark"],
-                      "font": LABEL_FONT}]])
-        self._text(s, 12.4, 7.05, 0.5, 0.3,
-                   [[{"t": str(n), "size": 9, "color": C["footer_dark"],
-                      "font": LABEL_FONT}]], align=PP_ALIGN.RIGHT)
         return s
 
     # 4. Feature cards (2 or 4) -------------------------------------------
@@ -494,66 +485,86 @@ class Builder(Deck):
                    [[{"t": f"{count} questions  •  think before the answer "
                           f"reveals on the next slide",
                       "size": 18, "color": C["subtitle"]}]])
-        self._text(s, 0.6, 7.05, 9.5, 0.3,
-                   [[{"t": self.footer, "size": 9, "color": C["footer_dark"],
-                      "font": LABEL_FONT}]])
-        self._text(s, 12.4, 7.05, 0.5, 0.3,
-                   [[{"t": str(n), "size": 9, "color": C["footer_dark"],
-                      "font": LABEL_FONT}]], align=PP_ALIGN.RIGHT)
         return s
 
-    # 10. Quiz question ----------------------------------------------------
-    def quiz_q(self, qno, topic, question, options):
+    # 10/11. Quiz question + mirrored answer reveal ------------------------
+    def _quiz_slide(self, qno, topic, question, options, reveal=None, why=None):
+        """Shared composition for the question slide and its mirrored answer
+        slide. When `reveal` (0-based index) is given, the correct option is
+        highlighted and a 'Why' panel is shown — same layout as the question."""
         s = self._slide(C["bg_light"])
         n = self._next()
-        self._chrome(s, "QUIZ QUESTION", f"Q{qno} — {topic}", self.accent, n)
-        self._box(s, 0.7, 2.0, 11.9, 1.7, fill=C["card"], shadow=True,
+        is_ans = reveal is not None
+        badge = "ANSWER REVEALED" if is_ans else "QUIZ QUESTION"
+        accent = C["green"] if is_ans else self.accent
+        self._chrome(s, badge, f"Q{qno} — {topic}", accent, n)
+        # question card (identical on both slides)
+        self._box(s, 0.7, 1.95, 11.9, 1.45, fill=C["card"], shadow=True,
                   shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.04)
-        self._text(s, 1.1, 2.0, 11.1, 1.7,
-                   [[{"t": question, "size": 19, "bold": True,
+        self._text(s, 1.1, 1.95, 11.1, 1.45,
+                   [[{"t": question, "size": 18, "bold": True,
                       "color": C["text"]}]], anchor=MSO_ANCHOR.MIDDLE)
+        # options grid (identical positions on both slides)
         labels = "ABCD"
         for i, opt in enumerate(options):
             r, c = divmod(i, 2)
             x = 0.7 + c * (5.85 + 0.2)
-            y = 4.1 + r * (0.95 + 0.18)
-            self._box(s, x, y, 5.85, 0.95, fill=C["option"],
-                      shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.12)
-            self._box(s, x + 0.3, y + 0.25, 0.45, 0.45, fill=self.accent,
+            y = 3.65 + r * (0.95 + 0.18)
+            correct = is_ans and i == reveal
+            if correct:
+                fill, oc, txtcol = C["answer_bg"], C["green"], C["text"]
+                self._box(s, x, y, 5.85, 0.95, fill=fill, line=C["green"],
+                          line_w=2.0, shape=MSO_SHAPE.ROUNDED_RECTANGLE,
+                          radius=0.12)
+            else:
+                dim = is_ans  # fade the wrong options on the answer slide
+                fill = C["option"]
+                oc = "B7C2CC" if dim else accent
+                txtcol = C["muted"] if dim else C["text"]
+                self._box(s, x, y, 5.85, 0.95, fill=fill,
+                          shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.12)
+            self._box(s, x + 0.3, y + 0.25, 0.45, 0.45, fill=oc,
                       shape=MSO_SHAPE.OVAL)
             self._text(s, x + 0.3, y + 0.25, 0.45, 0.45,
-                       [[{"t": labels[i], "size": 14, "bold": True,
-                          "color": "FFFFFF"}]], align=PP_ALIGN.CENTER,
-                       anchor=MSO_ANCHOR.MIDDLE)
+                       [[{"t": ("✓" if correct else labels[i]),
+                          "size": 14, "bold": True, "color": "FFFFFF"}]],
+                       align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
             self._text(s, x + 0.95, y, 4.7, 0.95,
-                       [[{"t": opt, "size": 14.5, "color": C["text"]}]],
+                       [[{"t": opt, "size": 14.5,
+                          "bold": bool(correct), "color": txtcol}]],
                        anchor=MSO_ANCHOR.MIDDLE)
+        # why panel (answer slide only)
+        if is_ans and why:
+            self._box(s, 0.7, 5.95, 11.9, 1.2, fill=C["card"], shadow=True,
+                      shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.05)
+            self._text(s, 1.1, 6.12, 5.0, 0.35,
+                       [[{"t": "WHY", "size": 13, "bold": True,
+                          "color": C["green"], "font": LABEL_FONT}]])
+            self._text(s, 1.1, 6.5, 11.1, 0.6,
+                       [[{"t": why, "size": 14.5, "color": C["text"]}]],
+                       line_spacing=1.05)
         return s
 
-    # 11. Answer reveal ----------------------------------------------------
+    def quiz_q(self, qno, topic, question, options):
+        self._cur_quiz = dict(qno=qno, topic=topic, question=question,
+                              options=options)
+        return self._quiz_slide(qno, topic, question, options)
+
     def quiz_a(self, qno, answer, why):
-        s = self._slide(C["bg_light"])
-        n = self._next()
-        self._chrome(s, "ANSWER REVEAL", f"Q{qno} — Answer", C["green"], n)
-        self._box(s, 0.7, 2.0, 11.9, 1.7, fill=C["answer_bg"],
-                  shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.04)
-        self._box(s, 1.1, 2.45, 0.8, 0.8, fill=C["green"],
-                  shape=MSO_SHAPE.OVAL)
-        self._text(s, 1.1, 2.45, 0.8, 0.8,
-                   [[{"t": "✓", "size": 30, "bold": True, "color": "FFFFFF"}]],
-                   align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
-        self._text(s, 2.1, 2.0, 10.2, 1.7,
-                   [[{"t": answer, "size": 22, "bold": True,
-                      "color": C["text"]}]], anchor=MSO_ANCHOR.MIDDLE)
-        self._box(s, 0.7, 4.0, 11.9, 2.2, fill=C["card"], shadow=True,
-                  shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.03)
-        self._text(s, 1.1, 4.25, 5.0, 0.4,
-                   [[{"t": "WHY", "size": 14, "bold": True,
-                      "color": C["green"], "font": LABEL_FONT}]])
-        self._text(s, 1.1, 4.7, 11.1, 1.4,
-                   [[{"t": why, "size": 16, "color": C["text"]}]],
-                   line_spacing=1.1)
-        return s
+        """Mirrors the matching question slide and reveals the answer. `answer`
+        starts with the option letter (e.g. 'B. ...'); that letter selects
+        which option to highlight, reusing the stored question + options."""
+        q = getattr(self, "_cur_quiz", None)
+        idx = 0
+        if answer and answer[0].upper() in "ABCD":
+            idx = "ABCD".index(answer[0].upper())
+        if not q or q["qno"] != qno:
+            # fallback: no stored question (shouldn't happen) — show answer only
+            q = dict(qno=qno, topic="Answer", question=answer,
+                     options=[answer])
+            idx = 0
+        return self._quiz_slide(qno, q["topic"], q["question"], q["options"],
+                                reveal=idx, why=why)
 
     # 12. Recap ------------------------------------------------------------
     def recap(self, badge, title, items, notes=""):
@@ -584,9 +595,6 @@ class Builder(Deck):
                    [[{"t": title, "size": 46, "bold": True, "color": "FFFFFF"}]])
         self._text(s, 0.8, 3.9, 11.0, 1.2,
                    [[{"t": message, "size": 19, "color": C["subtitle"]}]])
-        self._text(s, 0.8, 6.5, 9.0, 0.4,
-                   [[{"t": self.brand, "size": 13, "color": C["footer_dark"],
-                      "font": LABEL_FONT}]])
         return s
 
 
