@@ -109,10 +109,16 @@ def wikimedia_search(query, want=8):
     out = []
     for p in pages.values():
         ii = (p.get("imageinfo") or [{}])[0]
-        url = ii.get("thumburl") or ii.get("url")
         mime = ii.get("mime", "")
-        # only real raster photos; skip PDFs, videos, audio, raw SVG
-        if not url or mime not in ("image/jpeg", "image/png"):
+        # raster photos AND vector diagrams (SVG), the latter via their PNG
+        # thumbnail. Skip PDFs, video, audio.
+        if mime in ("image/jpeg", "image/png"):
+            url = ii.get("thumburl") or ii.get("url")
+        elif mime == "image/svg+xml":
+            url = ii.get("thumburl")  # PNG render of the SVG
+        else:
+            continue
+        if not url:
             continue
         em = ii.get("extmetadata", {})
         lic = em.get("LicenseShortName", {}).get("value", "?")
@@ -188,25 +194,62 @@ def _edu_prompt(brief):
         f"no logos; photorealistic or clean 3D render; minimal clutter.")
 
 
-def qwen_review(image_path, brief):
+def qwen_review(image_path, brief, mode="diagram"):
     """Ask the vision model to grade an image for educational use. Returns a
-    dict {pass, score, issues, improved_prompt}."""
+    dict {pass, score, issues, improved_prompt}. `mode` is 'diagram' (strict
+    scientific correctness) or 'photo' (lenient decorative hero image)."""
     api = os.environ.get("QWEN_API_KEY")
     if not api:
         raise RuntimeError("set QWEN_API_KEY in the environment first")
     import mimetypes
     mime = mimetypes.guess_type(image_path)[0] or "image/png"
     b64 = base64.b64encode(open(image_path, "rb").read()).decode()
-    rubric = (
-        "You are an ICSE Class 10 physics teacher reviewing an AI-generated "
-        f"image meant to illustrate: '{brief}'. "
-        "Judge it on: (1) scientific correctness/appropriateness, (2) clarity "
-        "and focus, (3) absence of garbled text, distorted objects or "
-        "artefacts, (4) suitability as a clean slide hero. "
-        "Reply with ONLY compact JSON: "
-        '{"pass": true|false, "score": 1-10, "issues": "short reason", '
-        '"improved_prompt": "a refined generation prompt fixing the issues"}. '
-        "Pass only if score >= 7 and there are no serious problems.")
+    if mode == "web":
+        rubric = (
+            "You are selecting an educational image for an ICSE Class 10 "
+            f"physics slide about: '{brief}'. The image is from a curated "
+            "encyclopaedia, so assume the physics is correct. "
+            "Decide only whether it is a CLEAR, RELEVANT illustration or "
+            "diagram of that exact topic, good enough to show students. "
+            "FAIL it only if: it is off-topic or irrelevant; it has garbled, "
+            "unreadable or wrong-language text; it is very low quality, "
+            "cluttered, a photo of apparatus rather than the requested "
+            "diagram, or otherwise unsuitable for a clean slide. "
+            "Do NOT nitpick minor styling or labelling. "
+            "Reply with ONLY compact JSON: "
+            '{"pass": true|false, "score": 1-10, "issues": "short reason", '
+            '"improved_prompt": ""}. Pass if on-topic and clear, score >= 7.')
+    elif mode == "photo":
+        rubric = (
+            "You are reviewing a DECORATIVE photo for the title slide of an "
+            f"ICSE physics lesson about: '{brief}'. It is illustrative only — "
+            "it does NOT need labels, arrows, diagrams or scientific detail. "
+            "FAIL it only if: it is irrelevant to the topic; it contains "
+            "garbled/misspelt text; it has obvious distortions, duplicated or "
+            "broken objects or ugly AI artefacts; or it is visually unclear/"
+            "unattractive. Otherwise pass. "
+            "Reply with ONLY compact JSON: "
+            '{"pass": true|false, "score": 1-10, "issues": "short reason", '
+            '"improved_prompt": "a refined prompt"}. Pass if score >= 7.')
+    else:
+        rubric = (
+            "You are a STRICT ICSE Class 10 physics examiner reviewing a "
+            f"DIAGRAM meant to illustrate: '{brief}'. "
+            "Reject the image if ANY of these is true: "
+            "(a) it is scientifically wrong or misleading; "
+            "(b) a circuit is not a complete closed loop, or components/"
+            "symbols are wrong, missing or wrongly connected; "
+            "(c) ray paths, field lines, arrows, poles (N/S) or labels are "
+            "incorrect, missing or inconsistent with the physics; "
+            "(d) there is any garbled, misspelt or nonsensical text/numbers; "
+            "(e) objects are distorted, duplicated or have AI artefacts; "
+            "(f) it is cluttered or unclear for a teaching slide. "
+            "Be harsh: when in doubt, FAIL it. "
+            "Reply with ONLY compact JSON: "
+            '{"pass": true|false, "score": 1-10, "issues": "specific '
+            'problems", "improved_prompt": "a refined generation prompt"}. '
+            "Pass ONLY if scientifically correct AND complete AND clean, "
+            "score >= 8.")
     payload = {"model": QWEN_VISION, "temperature": 0,
                "messages": [{"role": "user", "content": [
                    {"type": "text", "text": rubric},
@@ -229,7 +272,7 @@ def qwen_review(image_path, brief):
                 "improved_prompt": ""}
 
 
-def qwen_generate_reviewed(key, brief, ext="png", size=None, attempts=3):
+def qwen_generate_reviewed(key, brief, ext="png", size=None, attempts=3, mode="diagram"):
     """Generate an educational image, then have the vision model review it.
     Regenerate (refining the prompt with the reviewer's feedback) up to
     `attempts` times until it passes. Returns (path, review)."""
@@ -237,7 +280,7 @@ def qwen_generate_reviewed(key, brief, ext="png", size=None, attempts=3):
     best = None
     for i in range(attempts):
         path = qwen_generate(key, prompt, ext=ext, size=size)
-        review = qwen_review(path, brief)
+        review = qwen_review(path, brief, mode=mode)
         score = review.get("score", 0)
         print(f"    attempt {i+1}: score {score} "
               f"{'PASS' if review.get('pass') else 'retry'} "
@@ -252,51 +295,58 @@ def qwen_generate_reviewed(key, brief, ext="png", size=None, attempts=3):
     return best
 
 
-def vision_ok(image_path, brief, min_score=7):
+def vision_ok(image_path, brief, min_score=8, mode="diagram"):
     """Use the vision model to accept/reject an image for a topic."""
-    review = qwen_review(image_path, brief)
+    review = qwen_review(image_path, brief, mode=mode)
     return review.get("pass") and review.get("score", 0) >= min_score, review
 
 
 def best_image(key, search_query, gen_brief, svg_fallback=None,
-               want=6, min_score=7):
-    """Source the best image for a slide, in priority order:
-       1) a freely-licensed photo/diagram from Wikimedia Commons (vision-vetted)
-       2) a Qwen-generated, vision-reviewed image
-       3) the SVG fallback diagram.
-    Returns the chosen image path. Caches into assets/img/<key>.
+               want=8, min_score=8, allow_qwen=True, mode="diagram",
+               web_mode=None):
+    """Source the best image for a slide, in strict priority order:
+       1) a freely-licensed image from Wikimedia Commons (strictly vision-vetted)
+       2) a Qwen-generated, strictly vision-reviewed image
+       3) the SVG fallback diagram (always correct).
+    Nothing that fails the strict review is used — for schematics this means
+    the accurate SVG is kept rather than a flawed AI image.
     """
     existing = find_asset(key)
     if existing:
         return existing
-    # 1) Wikimedia Commons, vetted by the vision model
+    if web_mode is None:
+        web_mode = "photo" if mode == "photo" else "web"
+    web_min = 7  # curated web images: lenient relevance threshold
+    # 1) Wikimedia Commons first, each candidate vetted for relevance/clarity
     try:
         for cand in wikimedia_search(search_query, want=want):
             try:
                 p = download(key, cand["url"], "jpg")
             except Exception:
                 continue
-            ok, review = vision_ok(p, gen_brief, min_score)
+            ok, review = vision_ok(p, gen_brief, web_min, mode=web_mode)
             if ok:
-                print(f"  [{key}] web: {cand['title'][:48]} "
+                print(f"  [{key}] WEB ✓ {cand['title'][:46]} "
                       f"[{cand['license']}] score {review.get('score')}")
                 return p
-            os.remove(p)  # rejected, try next
+            print(f"  [{key}] web reject ({review.get('score')}): "
+                  f"{review.get('issues','')[:60]}")
+            os.remove(p)
     except Exception as e:
         print(f"  [{key}] web search failed: {e}")
-    # 2) Qwen generation, vision-reviewed
-    try:
-        res = qwen_generate_reviewed(key, gen_brief, attempts=2)
-        if res and res[1].get("score", 0) >= min_score:
-            print(f"  [{key}] qwen: score {res[1].get('score')}")
-            return res[0]
-        if res:  # keep best effort even if below threshold
-            print(f"  [{key}] qwen best-effort score {res[1].get('score')}")
-            return res[0]
-    except Exception as e:
-        print(f"  [{key}] qwen failed: {e}")
-    # 3) SVG fallback
-    print(f"  [{key}] using SVG fallback")
+    # 2) Qwen generation, strictly reviewed — only if it genuinely passes
+    if allow_qwen:
+        try:
+            res = qwen_generate_reviewed(key, gen_brief, attempts=3, mode=mode)
+            if res and res[1].get("pass") and res[1].get("score", 0) >= min_score:
+                print(f"  [{key}] QWEN ✓ score {res[1].get('score')}")
+                return res[0]
+            if res and find_asset(key):
+                os.remove(res[0])  # discard sub-par generation
+        except Exception as e:
+            print(f"  [{key}] qwen failed: {e}")
+    # 3) accurate SVG fallback
+    print(f"  [{key}] SVG fallback (no correct image found)")
     return svg_fallback
 
 
