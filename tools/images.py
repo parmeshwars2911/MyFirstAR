@@ -73,13 +73,28 @@ def qa_image(path, min_w=400, min_h=300):
 
 
 def download(key, url, ext="jpg"):
-    """Download an image URL into assets/img and QA it."""
+    """Download an image URL into assets/img, flatten any transparency onto a
+    white background (Commons SVG thumbnails are transparent and otherwise
+    render black), and QA it."""
     out = asset_path(key, ext)
     req = urllib.request.Request(url, headers={"User-Agent": "ICSE-decks/1.0"})
     with urllib.request.urlopen(req, timeout=40) as r:
         data = r.read()
-    with open(out, "wb") as f:
+    tmp = out + ".raw"
+    with open(tmp, "wb") as f:
         f.write(data)
+    try:
+        im = Image.open(tmp)
+        if im.mode in ("RGBA", "LA", "P"):
+            im = im.convert("RGBA")
+            bg = Image.new("RGBA", im.size, (255, 255, 255, 255))
+            im = Image.alpha_composite(bg, im).convert("RGB")
+        else:
+            im = im.convert("RGB")
+        im.save(out, "JPEG", quality=90)
+        os.remove(tmp)
+    except Exception:
+        os.replace(tmp, out)
     ok, reason = qa_image(out)
     if not ok:
         os.remove(out)

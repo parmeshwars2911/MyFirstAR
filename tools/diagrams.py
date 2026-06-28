@@ -951,6 +951,86 @@ def calorimeter(key):
     return _render(key, _svg("".join(body), 640, 440), 760, 523)
 
 
+def liquid_pressure(key):
+    """A tank with holes at three depths: deeper holes squirt water further,
+    showing pressure increases with depth."""
+    body = [
+        f'<rect x="120" y="80" width="200" height="300" fill="{WATER}" '
+        f'stroke="{INK}" stroke-width="3"/>',
+        _line(120, 80, 320, 80, INK, 2),
+        _txt(220, 60, "water", "#27496D", 16),
+    ]
+    # three jets from the right wall at increasing depth -> increasing range
+    for (y, reach, col) in [(150, 80, TEAL), (240, 150, BLUE), (330, 230, PURPLE)]:
+        body.append(f'<path d="M320 {y} Q {320+reach*0.6} {y+10} '
+                    f'{320+reach} {y+90}" fill="none" stroke="{col}" '
+                    f'stroke-width="3"/>')
+        body.append(f'<circle cx="320" cy="{y}" r="3" fill="{INK}"/>')
+    body += [
+        _txt(560, 380, "Deeper hole → greater pressure → water travels "
+                       "further", INK, 14, anchor="end"),
+        _txt(360, 150, "shallow", TEAL, 13, anchor="start"),
+        _txt(430, 240, "deeper", BLUE, 13, anchor="start"),
+        _txt(540, 330, "deepest", PURPLE, 13, anchor="start"),
+        _txt(220, 410, "Pressure in a liquid increases with depth", INK, 15),
+    ]
+    return _render(key, _svg("".join(body), 600, 440), 800, 587)
+
+
+def hydraulic_press(key):
+    """Pascal's law: a small force on a narrow piston gives a large force on a
+    wide piston."""
+    body = [
+        # connected vessel: narrow column (left) + wide column (right)
+        f'<path d="M120 220 L120 330 L540 330 L540 220 L420 220 L420 160 '
+        f'L320 160 L320 220 L240 220 L240 150 L170 150 L170 220 Z" '
+        f'fill="{WATER}" stroke="{INK}" stroke-width="3"/>',
+        # small piston (left, NARROW) with small input force
+        f'<rect x="168" y="132" width="74" height="20" fill="#9AA1AB" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _line(205, 132, 205, 80, RED, 3, marker="arrowR"),
+        _txt(205, 68, "small force f", RED, 14),
+        _txt(205, 248, "area a", MUT, 12),
+        # large piston (right, WIDE) with large output force
+        f'<rect x="318" y="142" width="104" height="20" fill="#9AA1AB" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _line(370, 142, 370, 78, TEAL, 7, marker="arrowT"),
+        _txt(370, 66, "large force F", TEAL, 14),
+        _txt(370, 250, "area A", MUT, 12),
+        _txt(330, 370, "Same pressure everywhere → a small force lifts a "
+                       "big load", INK, 14),
+        _txt(330, 398, "f / a  =  F / A   (Pascal's law)", PURPLE, 16),
+    ]
+    return _render(key, _svg("".join(body), 660, 420), 860, 547)
+
+
+def barometer(key):
+    """A simple mercury barometer measuring atmospheric pressure (76 cm)."""
+    body = [
+        # trough of mercury
+        f'<rect x="120" y="350" width="220" height="50" fill="#B0B0B8" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(230, 420, "mercury trough", MUT, 13),
+        # tube
+        f'<rect x="200" y="70" width="44" height="285" fill="#B0B0B8" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        # vacuum at top
+        f'<rect x="202" y="72" width="40" height="60" fill="#FFFFFF"/>',
+        _txt(222, 105, "vacuum", MUT, 12),
+        # mercury column height marker
+        f'<line x1="270" y1="132" x2="270" y2="375" stroke="{ORANGE}" '
+        f'stroke-width="2" marker-start="url(#arrowO)" '
+        f'marker-end="url(#arrowO)"/>',
+        _txt(300, 250, "76 cm", ORANGE, 16, anchor="start"),
+        # atmospheric pressure arrows on trough
+        _line(150, 320, 150, 348, BLUE, 3, marker="arrow"),
+        _line(310, 320, 310, 348, BLUE, 3, marker="arrow"),
+        _txt(230, 305, "atmospheric pressure", BLUE, 13),
+        _txt(230, 55, "Mercury barometer", INK, 16),
+    ]
+    return _render(key, _svg("".join(body), 460, 450), 600, 587)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
