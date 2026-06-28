@@ -471,6 +471,114 @@ def scattering(key):
     return _render(key, _svg("".join(body), 640, 360), 860, 484)
 
 
+def longitudinal_wave(key):
+    """Compressions and rarefactions of a sound wave in air (explicit groups)."""
+    body = [_txt(320, 40, "A sound wave: compressions (C) and rarefactions (R)",
+                 INK, 17)]
+    y0, y1 = 90, 250
+    centers = [(110, "C", 9, 6), (250, "R", 4, 16), (390, "C", 9, 6),
+               (530, "R", 4, 16)]
+    for cx, lab, count, gap in centers:
+        for k in range(-(count // 2), count // 2 + 1):
+            xp = cx + k * gap
+            body.append(f'<line x1="{xp}" y1="{y0}" x2="{xp}" y2="{y1}" '
+                        f'stroke="{INK}" stroke-width="2"/>')
+        col = RED if lab == "C" else BLUE
+        body.append(_txt(cx, 285, lab, col, 20))
+    body += [
+        f'<line x1="110" y1="305" x2="390" y2="305" stroke="{ORANGE}" '
+        f'stroke-width="2" marker-end="url(#arrowO)" '
+        f'marker-start="url(#arrowO)"/>',
+        _txt(250, 335, "one wavelength λ", ORANGE, 15),
+    ]
+    return _render(key, _svg("".join(body), 640, 360), 880, 495)
+
+
+def echo_diagram(key):
+    """Sound from a source reflecting off a cliff back to the listener."""
+    body = [
+        f'<rect x="500" y="60" width="120" height="320" fill="#C9B79C" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(560, 210, "cliff", "#6B5A45", 16),
+        # person
+        f'<circle cx="90" cy="180" r="16" fill="none" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        f'<line x1="90" y1="196" x2="90" y2="250" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        _txt(90, 285, "observer", INK, 15),
+    ]
+    # outgoing arcs
+    for r in (60, 95, 130):
+        body.append(f'<path d="M {120+r} {130} A {r} {r} 0 0 1 {120+r} {230}" '
+                    f'fill="none" stroke="{RED}" stroke-width="2.5"/>')
+    # returning arcs
+    for r in (55, 90, 125):
+        body.append(f'<path d="M {500-r} {135} A {r} {r} 0 0 0 {500-r} {225}" '
+                    f'fill="none" stroke="{TEAL}" stroke-width="2.5"/>')
+    body += [
+        _txt(250, 110, "sound out →", RED, 15),
+        _txt(330, 300, "← echo returns", TEAL, 15),
+        _txt(320, 360, "Echo heard when the reflected sound returns after "
+                       "≥ 0.1 s", INK, 15),
+    ]
+    return _render(key, _svg("".join(body), 640, 390), 860, 524)
+
+
+def sound_characteristics(key):
+    """Three waveforms: loud vs soft (amplitude), high vs low pitch
+    (frequency)."""
+    import math as _m
+
+    def wave(x0, y0, w, amp, cycles, col):
+        pts = []
+        for i in range(0, 121):
+            x = x0 + (i / 120) * w
+            y = y0 - amp * _m.sin(2 * _m.pi * cycles * i / 120)
+            pts.append(f"{x:.1f},{y:.1f}")
+        return (f'<polyline points="{" ".join(pts)}" fill="none" '
+                f'stroke="{col}" stroke-width="3"/>')
+    body = [
+        _txt(170, 40, "Amplitude → loudness", INK, 16),
+        _txt(490, 40, "Frequency → pitch", INK, 16),
+        # loud (big amplitude) vs soft
+        wave(40, 110, 260, 45, 3, RED),
+        _txt(120, 175, "loud (large amplitude)", RED, 13),
+        wave(40, 250, 260, 18, 3, BLUE),
+        _txt(120, 300, "soft (small amplitude)", BLUE, 13),
+        # high pitch vs low pitch
+        wave(360, 110, 260, 32, 6, PURPLE),
+        _txt(470, 175, "high pitch (high f)", PURPLE, 13),
+        wave(360, 250, 260, 32, 2, GREEN),
+        _txt(470, 300, "low pitch (low f)", GREEN, 13),
+    ]
+    return _render(key, _svg("".join(body), 660, 340), 900, 464)
+
+
+def resonance_pendulums(key):
+    """Coupled pendulums: the one matching the driver's length swings most."""
+    body = [
+        f'<line x1="60" y1="70" x2="600" y2="70" stroke="{INK}" '
+        f'stroke-width="4"/>',
+    ]
+    lengths = [(120, 120, "A", MUT), (220, 200, "B (driver)", RED),
+               (330, 90, "C", MUT), (430, 200, "D", TEAL), (530, 150, "E", MUT)]
+    for x, L, lab, col in lengths:
+        swing = 0
+        if "driver" in lab:
+            swing = -26
+        if lab == "D":
+            swing = 24  # equal length resonates strongly
+        bx = x + swing
+        body.append(f'<line x1="{x}" y1="70" x2="{bx}" y2="{70+L}" '
+                    f'stroke="{col}" stroke-width="2.5"/>')
+        body.append(f'<circle cx="{bx}" cy="{70+L}" r="13" fill="{col}"/>')
+        body.append(_txt(x, 70 + L + 34 if L < 210 else 70 + L + 30, lab,
+                         col, 13))
+    body.append(_txt(330, 320, "B drives all; only D (same length) resonates "
+                               "and swings widely", INK, 15))
+    return _render(key, _svg("".join(body), 660, 360), 900, 491)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
