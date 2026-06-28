@@ -884,6 +884,73 @@ def emi_coil(key):
     return _render(key, _svg("".join(body), 640, 410), 840, 538)
 
 
+def heating_curve(key):
+    """Temperature vs heat added for ice → water → steam (two plateaus)."""
+    body = [
+        _line(70, 350, 70, 50, INK, 3, marker="arrow"),
+        _line(70, 350, 600, 350, INK, 3, marker="arrow"),
+        _txt(40, 50, "Temp", INK, 16), _txt(600, 380, "Heat added →", INK, 15),
+        # segments
+        # ice warming
+        _line(70, 320, 140, 270, RED, 4),
+        # melting plateau (0 C)
+        _line(140, 270, 260, 270, BLUE, 4),
+        # water warming
+        _line(260, 270, 360, 130, RED, 4),
+        # boiling plateau (100 C)
+        _line(360, 130, 500, 130, BLUE, 4),
+        # steam warming
+        _line(500, 130, 570, 90, RED, 4),
+        # dashed level lines
+        f'<line x1="70" y1="270" x2="140" y2="270" stroke="{MUT}" '
+        f'stroke-width="1" stroke-dasharray="4 4"/>',
+        f'<line x1="70" y1="130" x2="360" y2="130" stroke="{MUT}" '
+        f'stroke-width="1" stroke-dasharray="4 4"/>',
+        _txt(55, 275, "0°C", MUT, 13, anchor="end"),
+        _txt(55, 135, "100°C", MUT, 13, anchor="end"),
+        # labels
+        _txt(200, 258, "melting", BLUE, 13),
+        _txt(430, 118, "boiling", BLUE, 13),
+        _txt(105, 305, "ice", RED, 12),
+        _txt(310, 215, "water", RED, 12),
+        _txt(535, 105, "steam", RED, 12),
+        _txt(335, 60, "Plateaus: heat goes to latent heat, not temperature",
+             INK, 14),
+    ]
+    return _render(key, _svg("".join(body), 640, 400), 880, 550)
+
+
+def calorimeter(key):
+    """A calorimeter with stirrer, thermometer and insulating jacket."""
+    body = [
+        # outer insulating jacket
+        f'<rect x="120" y="150" width="400" height="240" rx="10" '
+        f'fill="#EFE7D8" stroke="{INK}" stroke-width="2"/>',
+        _txt(320, 415, "insulating jacket (lagging)", MUT, 13),
+        # inner copper vessel
+        f'<rect x="200" y="190" width="240" height="190" rx="6" '
+        f'fill="#F6C28B" stroke="{INK}" stroke-width="3"/>',
+        # liquid
+        f'<rect x="206" y="250" width="228" height="124" fill="#BFD8F2"/>',
+        _txt(320, 320, "liquid", "#27496D", 15),
+        _txt(455, 300, "copper", "#A05A2C", 13, anchor="start"),
+        # thermometer
+        f'<rect x="270" y="80" width="14" height="200" rx="6" fill="#FFFFFF" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        f'<circle cx="277" cy="285" r="11" fill="{RED}"/>',
+        f'<rect x="273" y="150" width="8" height="130" fill="{RED}"/>',
+        _txt(277, 70, "thermometer", MUT, 13),
+        # stirrer
+        f'<line x1="370" y1="95" x2="370" y2="300" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        f'<line x1="350" y1="300" x2="390" y2="300" stroke="{INK}" '
+        f'stroke-width="3"/>',
+        _txt(395, 110, "stirrer", MUT, 13, anchor="start"),
+        _txt(320, 50, "Calorimeter (method of mixtures)", INK, 17),
+    ]
+    return _render(key, _svg("".join(body), 640, 440), 760, 523)
+
+
 def optical_fibre(key):
     """Light zig-zagging down a fibre by repeated total internal reflection."""
     body = [
