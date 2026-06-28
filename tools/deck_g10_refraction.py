@@ -21,10 +21,10 @@ FOOTER1 = "Refraction of Light at Plane Surfaces  •  ICSE Class 10 Physics"
 def deck1():
     b = Builder(FOOTER1, accent=C["teal"])
     # diagrams
-    bend1 = D.refraction_bending("g10r1_bend_denser", denser_below=True)
-    bend2 = D.refraction_bending("g10r1_bend_rarer", denser_below=False)
-    snell = D.refraction_bending("g10r1_snell", denser_below=True)
-    block = D.glass_block("g10r1_block")
+    bend1 = b.asset("g10r1_bend_denser", D.refraction_bending("g10r1_bend_denser", denser_below=True))
+    bend2 = b.asset("g10r1_bend_rarer", D.refraction_bending("g10r1_bend_rarer", denser_below=False))
+    snell = b.asset("g10r1_snell", D.refraction_bending("g10r1_snell", denser_below=True))
+    block = b.asset("g10r1_block", D.glass_block("g10r1_block"))
 
     # 1 title
     b.title("ICSE • Class 10 • Optics", "Refraction of Light",
@@ -319,12 +319,12 @@ def deck2():
     """Session 35 — Lesson 2: prism, real & apparent depth, critical angle,
     total internal reflection."""
     b = Builder(FOOTER1, accent=C["purple"])
-    prism = D.prism_refraction("g10r2_prism")
-    depth = D.real_apparent_depth("g10r2_depth")
-    tir = D.total_internal_reflection("g10r2_tir")
-    bend = D.refraction_bending("g10r2_bend", denser_below=False)
-    fibre = D.optical_fibre("g10r2_fibre")
-    rprism = D.reflecting_prism("g10r2_rprism")
+    prism = b.asset("g10r2_prism", D.prism_refraction("g10r2_prism"))
+    depth = b.asset("g10r2_depth", D.real_apparent_depth("g10r2_depth"))
+    tir = b.asset("g10r2_tir", D.total_internal_reflection("g10r2_tir"))
+    bend = b.asset("g10r2_bend", D.refraction_bending("g10r2_bend", denser_below=False))
+    fibre = b.asset("g10r2_fibre", D.optical_fibre("g10r2_fibre"))
+    rprism = b.asset("g10r2_rprism", D.reflecting_prism("g10r2_rprism"))
 
     b.title("ICSE • Class 10 • Optics", "Refraction — Prisms & T.I.R.",
             "The prism  •  Real and apparent depth  •  Critical angle  •  "

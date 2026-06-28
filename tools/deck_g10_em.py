@@ -19,8 +19,8 @@ FOOTER = "Electromagnetism  •  ICSE Class 10 Physics"
 
 def deck1():
     b = Builder(FOOTER, accent=C["teal"])
-    wire = D.field_straight_wire("g10em_wire")
-    sol = D.solenoid_field("g10em_sol")
+    wire = b.asset("g10em_wire", D.field_straight_wire("g10em_wire"))
+    sol = b.asset("g10em_sol", D.solenoid_field("g10em_sol"))
     hero = b.asset("g10_em_hero", sol)
 
     b.title("ICSE • Class 10 • Magnetism", "Magnetic Effect of Current",
@@ -233,8 +233,8 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["purple"])
-    motor = D.dc_motor("g10em_motor")
-    emi = D.emi_coil("g10em_emi")
+    motor = b.asset("g10em_motor", D.dc_motor("g10em_motor"))
+    emi = b.asset("g10em_emi", D.emi_coil("g10em_emi"))
     hero = b.asset("g10_motor_hero", motor)
 
     b.title("ICSE • Class 10 • Magnetism", "Motors & Induction",

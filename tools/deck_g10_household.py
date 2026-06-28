@@ -19,8 +19,8 @@ FOOTER = "Household Circuits  •  ICSE Class 10 Physics"
 
 def deck1():
     b = Builder(FOOTER, accent=C["teal"])
-    trans = D.power_transmission("g10hc_trans")
-    plug = D.three_pin_plug("g10hc_plug1")
+    trans = b.asset("g10hc_trans", D.power_transmission("g10hc_trans"))
+    plug = b.asset("g10hc_plug1", D.three_pin_plug("g10hc_plug1"))
     hero = b.asset("g10_house_hero", trans)
 
     b.title("ICSE • Class 10 • Electricity", "Power to Your Home",
@@ -236,7 +236,7 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["purple"])
-    plug = D.three_pin_plug("g10hc_plug2")
+    plug = b.asset("g10hc_plug2", D.three_pin_plug("g10hc_plug2"))
     hero = b.asset("g10_house_hero", plug)
 
     b.title("ICSE • Class 10 • Electricity", "Earthing, Plugs & Safety",

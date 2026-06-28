@@ -215,8 +215,8 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["teal"])
-    calo = D.calorimeter("g10cal_calo")
-    curve = D.heating_curve("g10cal_curve2")
+    calo = b.asset("g10cal_calo", D.calorimeter("g10cal_calo"))
+    curve = b.asset("g10cal_curve2", D.heating_curve("g10cal_curve2"))
     hero = b.asset("g10_ice_hero", calo)
 
     b.title("ICSE • Class 10 • Heat", "Calorimetry & Melting",
@@ -429,7 +429,7 @@ def deck2():
 
 def deck3():
     b = Builder(FOOTER, accent=C["purple"])
-    curve = D.heating_curve("g10cal_curve3")
+    curve = b.asset("g10cal_curve3", D.heating_curve("g10cal_curve3"))
     hero = b.asset("g10_heat_hero", curve)
 
     b.title("ICSE • Class 10 • Heat", "Boiling & Latent Heat",

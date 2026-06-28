@@ -20,9 +20,9 @@ FOOTER = "Refraction Through a Lens  •  ICSE Class 10 Physics"
 
 def deck1():
     b = Builder(FOOTER, accent=C["teal"])
-    prisms = D.lens_as_prisms("g10l_prisms")
-    convex = D.convex_lens_image("g10l_convex")
-    magn = D.convex_magnifier("g10l_magnifier")
+    prisms = b.asset("g10l_prisms", D.lens_as_prisms("g10l_prisms"))
+    convex = b.asset("g10l_convex", D.convex_lens_image("g10l_convex"))
+    magn = b.asset("g10l_magnifier", D.convex_magnifier("g10l_magnifier"))
     hero = b.asset("g10_lens_hero", convex)
 
     b.title("ICSE • Class 10 • Optics", "Refraction Through a Lens",
@@ -263,9 +263,9 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["purple"])
-    concave = D.concave_lens_image("g10l_concave")
-    convex = D.convex_lens_image("g10l_convex2")
-    magn = D.convex_magnifier("g10l_magnifier2")
+    concave = b.asset("g10l_concave", D.concave_lens_image("g10l_concave"))
+    convex = b.asset("g10l_convex2", D.convex_lens_image("g10l_convex2"))
+    magn = b.asset("g10l_magnifier2", D.convex_magnifier("g10l_magnifier2"))
     hero = b.asset("g10_concave_hero", concave)
     apps = b.asset("g10_eye_optics", None)
 

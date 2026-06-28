@@ -19,9 +19,9 @@ FOOTER = "Spectrum  •  ICSE Class 10 Physics"
 
 def deck1():
     b = Builder(FOOTER, accent=C["purple"])
-    prism = D.prism_refraction("g10sp_prism")
-    disp = D.dispersion_spectrum("g10sp_disp")
-    em = D.em_spectrum("g10sp_em")
+    prism = b.asset("g10sp_prism", D.prism_refraction("g10sp_prism"))
+    disp = b.asset("g10sp_disp", D.dispersion_spectrum("g10sp_disp"))
+    em = b.asset("g10sp_em", D.em_spectrum("g10sp_em"))
     hero = b.asset("g10_spectrum_hero", disp)
 
     b.title("ICSE • Class 10 • Optics", "Spectrum & Dispersion",
@@ -251,8 +251,8 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["orange"])
-    em = D.em_spectrum("g10sp_em2")
-    scat = D.scattering("g10sp_scatter")
+    em = b.asset("g10sp_em2", D.em_spectrum("g10sp_em2"))
+    scat = b.asset("g10sp_scatter", D.scattering("g10sp_scatter"))
     hero = b.asset("g10_sky_hero", scat)
 
     b.title("ICSE • Class 10 • Optics", "EM Radiations & Scattering",

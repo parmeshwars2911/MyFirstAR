@@ -252,6 +252,54 @@ def qwen_generate_reviewed(key, brief, ext="png", size=None, attempts=3):
     return best
 
 
+def vision_ok(image_path, brief, min_score=7):
+    """Use the vision model to accept/reject an image for a topic."""
+    review = qwen_review(image_path, brief)
+    return review.get("pass") and review.get("score", 0) >= min_score, review
+
+
+def best_image(key, search_query, gen_brief, svg_fallback=None,
+               want=6, min_score=7):
+    """Source the best image for a slide, in priority order:
+       1) a freely-licensed photo/diagram from Wikimedia Commons (vision-vetted)
+       2) a Qwen-generated, vision-reviewed image
+       3) the SVG fallback diagram.
+    Returns the chosen image path. Caches into assets/img/<key>.
+    """
+    existing = find_asset(key)
+    if existing:
+        return existing
+    # 1) Wikimedia Commons, vetted by the vision model
+    try:
+        for cand in wikimedia_search(search_query, want=want):
+            try:
+                p = download(key, cand["url"], "jpg")
+            except Exception:
+                continue
+            ok, review = vision_ok(p, gen_brief, min_score)
+            if ok:
+                print(f"  [{key}] web: {cand['title'][:48]} "
+                      f"[{cand['license']}] score {review.get('score')}")
+                return p
+            os.remove(p)  # rejected, try next
+    except Exception as e:
+        print(f"  [{key}] web search failed: {e}")
+    # 2) Qwen generation, vision-reviewed
+    try:
+        res = qwen_generate_reviewed(key, gen_brief, attempts=2)
+        if res and res[1].get("score", 0) >= min_score:
+            print(f"  [{key}] qwen: score {res[1].get('score')}")
+            return res[0]
+        if res:  # keep best effort even if below threshold
+            print(f"  [{key}] qwen best-effort score {res[1].get('score')}")
+            return res[0]
+    except Exception as e:
+        print(f"  [{key}] qwen failed: {e}")
+    # 3) SVG fallback
+    print(f"  [{key}] using SVG fallback")
+    return svg_fallback
+
+
 def build_from_manifest(manifest_path):
     """manifest: {key: {prompt: ...} | {url: ...}}. Skips already-built keys."""
     man = json.load(open(manifest_path))

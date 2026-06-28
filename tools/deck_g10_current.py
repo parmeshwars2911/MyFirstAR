@@ -19,8 +19,8 @@ FOOTER = "Current Electricity  •  ICSE Class 10 Physics"
 
 def deck1():
     b = Builder(FOOTER, accent=C["teal"])
-    circ = D.ohm_circuit("g10ce_circ")
-    graph = D.ohm_graph("g10ce_graph")
+    circ = b.asset("g10ce_circ", D.ohm_circuit("g10ce_circ"))
+    graph = b.asset("g10ce_graph", D.ohm_graph("g10ce_graph"))
     hero = b.asset("g10_current_hero", circ)
 
     b.title("ICSE • Class 10 • Electricity", "Current & Ohm's Law",
@@ -221,7 +221,7 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["purple"])
-    graph = D.ohm_graph("g10ce_graph2")
+    graph = b.asset("g10ce_graph2", D.ohm_graph("g10ce_graph2"))
     hero = b.asset("g10_resistance_hero", graph)
 
     b.title("ICSE • Class 10 • Electricity", "Resistance & Cells",
@@ -438,7 +438,7 @@ def deck2():
 
 def deck3():
     b = Builder(FOOTER, accent=C["orange"])
-    combo = D.resistors_combo("g10ce_combo")
+    combo = b.asset("g10ce_combo", D.resistors_combo("g10ce_combo"))
     hero = b.asset("g10_power_hero", combo)
 
     b.title("ICSE • Class 10 • Electricity", "Resistor Networks, Energy & Power",

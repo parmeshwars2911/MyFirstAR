@@ -19,8 +19,8 @@ FOOTER = "Sound  •  ICSE Class 10 Physics"
 
 def deck1():
     b = Builder(FOOTER, accent=C["teal"])
-    wave = D.longitudinal_wave("g10so_wave")
-    echo = D.echo_diagram("g10so_echo")
+    wave = b.asset("g10so_wave", D.longitudinal_wave("g10so_wave"))
+    echo = b.asset("g10so_echo", D.echo_diagram("g10so_echo"))
     hero = b.asset("g10_sound_hero", wave)
 
     b.title("ICSE • Class 10 • Sound", "Sound Waves & Echo",
@@ -229,8 +229,8 @@ def deck1():
 
 def deck2():
     b = Builder(FOOTER, accent=C["purple"])
-    chars = D.sound_characteristics("g10so_chars")
-    reson = D.resonance_pendulums("g10so_reson")
+    chars = b.asset("g10so_chars", D.sound_characteristics("g10so_chars"))
+    reson = b.asset("g10so_reson", D.resonance_pendulums("g10so_reson"))
     hero = b.asset("g10_resonance_hero", reson)
 
     b.title("ICSE • Class 10 • Sound", "Vibrations & Sound Quality",
