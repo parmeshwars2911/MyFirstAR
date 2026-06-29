@@ -130,6 +130,17 @@ def deck1():
              "the block goes under, it displaces more water and the upthrust "
              "grows — until it is fully submerged, after which it no longer "
              "changes.")
+    b.cards("THREE CASES", "Sink, Float or Hang Submerged", [
+        ("Weight > max upthrust", "The body sinks (its density is greater than "
+         "the fluid's)."),
+        ("Weight = upthrust submerged", "The body floats fully submerged at any "
+         "depth (densities equal)."),
+        ("Weight < max upthrust", "The body rises and floats partly out "
+         "(its density is less than the fluid's)."),
+        ("The deciding factor", "Compare the body's density with the fluid's "
+         "density."),
+    ], notes="Three outcomes set by the density comparison: denser sinks, equal "
+             "stays submerged, lighter floats partly out.")
     b.divider(2, "Part 2", "Archimedes' Principle",
               "Exactly how much upthrust?")
     b.statement("ARCHIMEDES", "Archimedes' Principle",
@@ -175,7 +186,7 @@ def deck1():
         ("Verification", "eureka can: loss of weight = weight of overflow"),
         ("Float/sink", "floats if average density < fluid density"),
     ], notes="Rapid recap; Archimedes' principle is the central result.")
-    b.quiz_intro("Quiz 2", "Final Check — Archimedes", 5)
+    b.quiz_intro("Quiz 2", "Final Check — Archimedes", 6)
     b.quiz_q(1, "How Much Upthrust?", "A body displaces 200 g of water when "
              "immersed. The upthrust on it equals the weight of:",
              ["200 g of the body", "200 g of water", "The whole body",
@@ -215,6 +226,15 @@ def deck1():
              "A floating body is in equilibrium, so the upward upthrust must "
              "exactly balance its downward weight — it sinks just far enough "
              "to displace its own weight of water.")
+    b.quiz_q(6, "Will It Stay Submerged?", "A sealed ball has exactly the same "
+             "density as water. Released under the surface, it will:",
+             ["Shoot to the surface", "Sink to the bottom",
+              "Stay floating at whatever depth it is left (fully submerged)",
+              "Dissolve"])
+    b.quiz_a(6, "C. Stay at whatever depth it is left",
+             "When a body's density equals the fluid's, its weight exactly "
+             "equals the upthrust while fully submerged. The forces balance at "
+             "any depth, so it neither rises nor sinks.")
     b.closing("Why Ships Float",
               "Archimedes' principle — upthrust equals the weight of fluid "
               "displaced — explains everything from a floating cork to a "
@@ -351,6 +371,40 @@ def deck2():
                  caption="Equilibrium of a floating body",
                  notes="Two balanced forces: weight down, upthrust up. The "
                        "body settles at the depth where they are equal.")
+    b.statement("HOW MUCH SUBMERGED", "Fraction of a Floating Body Submerged",
+                "The fraction of a floating body that lies below the surface "
+                "equals the ratio of its density to the fluid's density.",
+                formula="submerged fraction  =  ρ(body) / ρ(fluid)",
+                points=["Ice (ρ ≈ 0.9) in water floats with about 0.9 of it "
+                        "submerged.",
+                        "A body of density 0.6 g/cm³ floats with 60% under "
+                        "water.",
+                        "It follows directly from weight = weight of displaced "
+                        "fluid."],
+                notes="Submerged fraction = density ratio. This explains the "
+                      "iceberg and lets students predict how high a body "
+                      "floats.")
+    b.worked("WORKED EXAMPLE", "Fraction of Wood Submerged",
+             "A block of wood of density 0.6 g/cm³ floats in water "
+             "(1.0 g/cm³). What fraction of its volume is under water?",
+             ["submerged fraction = ρ(wood) / ρ(water)",
+              "= 0.6 / 1.0",
+              "= 0.6"],
+             "0.6 (60%) of the block is below the surface; 40% shows above",
+             notes="Apply submerged fraction = density ratio. 60% under, 40% "
+                   "above — a quick check on floatation.")
+    b.bullets("LIGHT SOLID", "R.D. of a Solid Lighter Than Water", [
+        ("The problem", "A solid that floats cannot simply be weighed fully "
+         "immersed — it will not stay under."),
+        ("Use a sinker", "Attach a heavy sinker so the solid is dragged fully "
+         "under water."),
+        ("Weigh in stages", "Find the loss of weight with only the sinker "
+         "immersed, then with both immersed."),
+        ("Get the R.D.", "The extra loss of weight is the upthrust on the "
+         "solid alone, giving its R.D."),
+    ], panel_title="The sinker method",
+       notes="For a solid lighter than water, a sinker keeps it submerged; the "
+             "extra loss of weight gives the upthrust on the solid alone.")
     b.cards("APPLICATIONS", "Applications of Floatation", [
         ("Ships", "A steel ship is hollow, so it displaces a huge weight of "
          "water and floats."),
