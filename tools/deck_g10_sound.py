@@ -51,6 +51,18 @@ def deck1():
                  notes="Contrast with light (transverse, no medium needed). A "
                        "ringing bell in a vacuum jar goes silent — sound needs "
                        "matter.")
+    b.cards("SPEED FACTORS", "What the Speed of Sound Depends On", [
+        ("Medium", "Fastest in solids (~5000 m/s in steel), slower in liquids "
+         "(~1500 m/s in water), slowest in gases (~340 m/s in air)."),
+        ("Temperature", "In air the speed rises by about 0.6 m/s for every "
+         "1 °C rise in temperature."),
+        ("Humidity", "Moist air is less dense than dry air, so sound travels a "
+         "little faster in humid air."),
+        ("Independent of pressure", "At constant temperature, changing the "
+         "pressure of a gas does not change the speed."),
+    ], notes="Selina detail: speed depends on medium, temperature (+0.6 m/s "
+             "per °C) and humidity, but not on pressure alone. Contrast the "
+             "three states' speeds.")
     b.cards("REFLECTION", "Sound Reflects Like Light", [
         ("Same laws", "The angle of incidence equals the angle of reflection, "
          "and all lie in one plane."),
@@ -89,6 +101,27 @@ def deck1():
                         "valleys, not small rooms."],
                 notes="Show the factor of 2 for the round trip. Reinforce that "
                       "small rooms give reverberation, not echo.")
+    b.cards("GOOD ECHO", "Conditions for Hearing a Distinct Echo", [
+        ("Far enough", "The reflecting surface must be at least about 17 m "
+         "away (so the echo returns ≥ 0.1 s later)."),
+        ("Large & hard", "The reflector should be large and hard (a cliff, a "
+         "wall), not small or soft."),
+        ("Loud enough", "The original sound must be loud, as some energy is "
+         "lost on reflection."),
+        ("Low noise", "Surroundings should be quiet so the echo is not masked."),
+    ], notes="List the conditions for a clear echo: distance ≥ 17 m, a large "
+             "hard reflector, a loud source and quiet surroundings.")
+    b.statement("REVERBERATION", "Reverberation and Its Control",
+                "Reverberation is the persistence of sound in a hall caused by "
+                "repeated reflections that overlap the original.",
+                points=["It happens when reflectors are nearer than 17 m, so "
+                        "reflections merge instead of forming clear echoes.",
+                        "Too much reverberation blurs speech and music.",
+                        "It is reduced by absorbent materials — curtains, "
+                        "carpets, perforated ceilings and soft seating."],
+                notes="Distinguish reverberation (overlapping reflections, "
+                      "< 17 m) from a clean echo. Control it with sound-"
+                      "absorbing materials in halls.")
     b.worked("WORKED EXAMPLE", "Distance From an Echo",
              "A person shouts toward a cliff and hears the echo 3 seconds "
              "later. If the speed of sound is 340 m/s, how far away is the "
@@ -99,7 +132,7 @@ def deck1():
              "The cliff is 510 m away",
              notes="The classic trap: the echo time covers the round trip, so "
                    "divide by 2. Students who forget this double their answer.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Through a Vacuum", "An astronaut on the airless Moon strikes "
              "a bell. A nearby astronaut hears nothing because:",
              ["The bell is too quiet", "Sound cannot travel without a "
@@ -132,6 +165,14 @@ def deck1():
              "Sound travels fastest in solids, where particles are tightly "
              "packed and pass on the vibration quickly. It is slower in water, "
              "slower still in air, and impossible in a vacuum.")
+    b.quiz_q(5, "Hotter Day", "On a hot afternoon the speed of sound in air is "
+             "compared with a cold morning. It is:",
+             ["Lower, because heat slows sound", "Higher, because speed rises "
+              "with temperature", "Exactly the same", "Zero"])
+    b.quiz_a(5, "B. Higher, because speed rises with temperature",
+             "The speed of sound in air increases by about 0.6 m/s for each "
+             "1 °C rise. So on a warm afternoon sound travels faster than on a "
+             "cold morning — temperature, not loudness, sets the speed.")
     b.divider(2, "Part 2", "Speed of Sound & Uses of Echo",
               "Measuring sound and putting echoes to work")
     b.bullets("EXPERIMENT", "Speed of Sound by the Echo Method", [
@@ -152,6 +193,17 @@ def deck1():
              "Speed of sound ≈ 340 m/s",
              notes="Reinforces 2d again. The answer matches the standard speed "
                    "of sound in air at room temperature.")
+    b.worked("WORKED EXAMPLE", "Thunder and Lightning",
+             "A student sees a lightning flash and hears the thunder 5 s "
+             "later. How far away was the lightning? (speed of sound = 340 "
+             "m/s; light is effectively instant)",
+             ["The light reaches the eye almost instantly.",
+              "The sound takes the full 5 s for the one-way trip.",
+              "distance = v × t = 340 × 5"],
+             "Distance ≈ 1700 m (1.7 km) away",
+             notes="Unlike an echo, this is a ONE-way trip, so do NOT divide "
+                   "by 2. Light arrives instantly; the sound delay gives the "
+                   "distance.")
     b.cards("USES OF ECHO", "Putting Echoes to Work", [
         ("SONAR", "Ships send sound pulses and time the echo from the seabed "
          "to measure depth and find shoals or wrecks."),
@@ -163,6 +215,28 @@ def deck1():
          "SONAR."),
     ], notes="Each use is the echo principle applied. The depth/SONAR formula "
              "is the same 'divide by 2' idea.")
+    b.cards("ECHO vs REVERB", "Echo Compared With Reverberation", [
+        ("Echo", "A single, clearly separate repetition of the sound."),
+        ("Reverberation", "Many overlapping reflections heard as a prolonged "
+         "'tail' of sound."),
+        ("Distance", "Echo needs a reflector ≥ 17 m away; reverberation comes "
+         "from nearer surfaces."),
+        ("Where", "Echoes in open valleys and large halls; reverberation "
+         "inside ordinary rooms."),
+    ], notes="Crisp comparison: echo = one distinct repeat; reverberation = "
+             "overlapping reflections. Distance is the deciding factor.")
+    b.bullets("ULTRASOUND", "Ultrasonic Sound and Its Uses", [
+        ("What it is", "Sound above 20,000 Hz — beyond the range of human "
+         "hearing."),
+        ("Narrow beam", "Its short wavelength lets it travel as a fine, "
+         "directed beam carrying fine detail."),
+        ("Industry", "Cleaning delicate parts, drilling, welding plastics and "
+         "detecting cracks/flaws in metals."),
+        ("Medicine & SONAR", "Scanning the body and unborn babies, and "
+         "echo-ranging the seabed and shoals."),
+    ], panel_title="Above 20 kHz",
+       notes="Ultrasonics: above 20 kHz, narrow beam, fine detail. List the "
+             "industrial and medical uses Selina expects.")
     b.text_image("SONAR", "How SONAR Finds the Seabed",
                  ["A ship sends a pulse of sound straight down into the water.",
                   "The pulse reflects off the seabed and returns as an echo.",
@@ -283,6 +357,18 @@ def deck2():
                  caption="Only the matching pendulum resonates",
                  notes="Define resonance as a frequency match giving large "
                        "amplitude. The pendulum demo makes it visual.")
+    b.bullets("FORCED & SOUNDING BOARDS", "Forced Vibrations in Instruments", [
+        ("Forced vibration", "A body driven to vibrate at the frequency of an "
+         "applied periodic force, not its own."),
+        ("Sounding board", "The hollow body of a guitar or violin is forced to "
+         "vibrate, pushing far more air and so sounding louder."),
+        ("Tuning fork on a table", "A struck fork held on a table forces the "
+         "table to vibrate, making the sound much louder."),
+        ("Why louder", "A larger surface sets more air in motion, increasing "
+         "the loudness."),
+    ], panel_title="Driving a larger surface",
+       notes="Forced vibration plus a large sounding board is how instruments "
+             "get their loudness — a bigger area moves more air.")
     b.cards("EXAMPLES", "Resonance Around Us", [
         ("Tuning a radio", "We match the circuit's frequency to the station's "
          "to pick out one signal."),
@@ -355,6 +441,27 @@ def deck2():
                  caption="Amplitude → loudness; frequency → pitch",
                  notes="Keep loudness (amplitude) and pitch (frequency) "
                        "strictly separate — a common confusion.")
+    b.cards("LOUDNESS FACTORS", "What the Loudness Depends On", [
+        ("Amplitude", "Greater amplitude of vibration gives a louder sound."),
+        ("Distance", "Loudness falls as we move away from the source."),
+        ("Area of vibrating body", "A larger vibrating surface (sounding "
+         "board) makes a louder sound."),
+        ("Density & resonance", "A denser medium and the presence of "
+         "resonating bodies both increase loudness."),
+    ], notes="Selina lists several factors for loudness: amplitude, distance, "
+             "area of the vibrating body, density of medium and resonance.")
+    b.statement("INTENSITY & DECIBEL", "Loudness, Intensity and the Decibel",
+                "Intensity is the sound energy crossing unit area per second; "
+                "loudness is how loud that sound seems to the listener.",
+                formula="Loudness level is measured in decibels (dB)",
+                points=["Greater intensity is heard as greater loudness.",
+                        "Loudness also depends on the listener's ear, not on "
+                        "intensity alone.",
+                        "Rough levels: whisper ~10 dB, talk ~60 dB, traffic "
+                        "~80 dB, jet ~120 dB (painful)."],
+                notes="Distinguish intensity (physical, energy/area) from "
+                      "loudness (perceived). Unit is the decibel; give a feel "
+                      "for the scale.")
     b.bullets("AUDIBLE RANGE", "What We Can — and Cannot — Hear", [
         ("Audible range", "Humans hear roughly 20 Hz to 20,000 Hz."),
         ("Infrasonic", "Below 20 Hz — too low to hear; produced by "
@@ -365,6 +472,28 @@ def deck2():
     ], panel_title="20 Hz – 20,000 Hz",
        notes="Anchor the 20 Hz–20 kHz range, then place infrasonic below and "
              "ultrasonic above it, each with examples.")
+    b.cards("PITCH FACTORS", "What Decides the Pitch of a String or Pipe", [
+        ("Length", "A shorter string or air column vibrates faster, giving a "
+         "higher pitch."),
+        ("Tension", "A tighter string vibrates faster — higher pitch."),
+        ("Thickness / mass", "A thinner, lighter string vibrates faster — "
+         "higher pitch."),
+        ("In tune", "Players adjust length and tension to set the frequency, "
+         "and hence the pitch."),
+    ], notes="Frequency (pitch) of a string rises with tension, and falls with "
+             "length and thickness — the basis of tuning instruments.")
+    b.statement("HARMONICS", "Overtones, Harmonics and Waveform",
+                "A real musical note is the lowest (fundamental) frequency "
+                "plus quieter higher frequencies called overtones or "
+                "harmonics.",
+                points=["The fundamental sets the pitch we hear.",
+                        "The particular mix of overtones gives the note its "
+                        "waveform shape.",
+                        "That waveform shape is what we perceive as the quality "
+                        "(timbre) of the sound."],
+                notes="Quality comes from overtones. Same fundamental + "
+                      "different overtone mix = different waveform = different "
+                      "timbre.")
     b.cards("QUALITY", "Quality (Timbre) of Sound", [
         ("Why instruments differ", "A piano and a violin playing the same "
          "note still sound different."),
@@ -386,6 +515,17 @@ def deck2():
          "too."),
     ], notes="Music = regular/periodic; noise = irregular. Tie back to "
              "waveform shape.")
+    b.cards("NOISE POLLUTION", "Noise Pollution and Its Control", [
+        ("What it is", "Unwanted, excessively loud sound that disturbs and "
+         "harms us."),
+        ("Sources", "Traffic, loudspeakers, machinery, construction and "
+         "crackers."),
+        ("Effects", "Stress, loss of sleep, poor concentration and gradual "
+         "hearing damage."),
+        ("Control", "Silencers, sound barriers and trees, limits on horns, and "
+         "noise-free zones near schools and hospitals."),
+    ], notes="Noise pollution: sources, health effects and control measures — "
+             "a commonly examined application.")
     b.recap("WRAP UP", "Quick Recap", [
         ("Free vibration", "at the natural frequency, no outside force"),
         ("Damped", "amplitude dies away as energy is lost"),
