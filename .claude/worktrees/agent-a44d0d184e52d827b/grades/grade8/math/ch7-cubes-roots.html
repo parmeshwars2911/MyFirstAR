@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cubes and Cube Roots – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Cubes and Cube Roots</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Cubes and Cube Roots</h1>
+    <p class="subtitle">Chapter 7 · Grade 8 Mathematics</p>
+    <p>In this chapter we study perfect cubes, interesting properties of cube numbers, the Hardy-Ramanujan number, and techniques for finding cube roots by prime factorisation and estimation.</p>
+    <ul>
+      <li>Perfect cubes and the Hardy-Ramanujan number (1729)</li>
+      <li>Properties of cube numbers</li>
+      <li>Cube root by prime factorisation</li>
+      <li>Estimation of cube roots</li>
+      <li>Cube roots of negative numbers and fractions</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 2: Perfect Cubes -->
+  <div class="slide">
+    <h2>Perfect Cubes</h2>
+    <p>The <strong>cube</strong> of a number n is n × n × n, written as n³. A <strong>perfect cube</strong> is an integer that can be expressed as the cube of another integer.</p>
+    <table border="1" style="width:100%; border-collapse:collapse; margin:10px 0;">
+      <thead>
+        <tr style="background:#e8f4f8;">
+          <th style="padding:7px;">n</th>
+          <th style="padding:7px;">n³</th>
+          <th style="padding:7px;">n</th>
+          <th style="padding:7px;">n³</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:7px; text-align:center;">1</td><td style="padding:7px; text-align:center;">1</td><td style="padding:7px; text-align:center;">6</td><td style="padding:7px; text-align:center;">216</td></tr>
+        <tr><td style="padding:7px; text-align:center;">2</td><td style="padding:7px; text-align:center;">8</td><td style="padding:7px; text-align:center;">7</td><td style="padding:7px; text-align:center;">343</td></tr>
+        <tr><td style="padding:7px; text-align:center;">3</td><td style="padding:7px; text-align:center;">27</td><td style="padding:7px; text-align:center;">8</td><td style="padding:7px; text-align:center;">512</td></tr>
+        <tr><td style="padding:7px; text-align:center;">4</td><td style="padding:7px; text-align:center;">64</td><td style="padding:7px; text-align:center;">9</td><td style="padding:7px; text-align:center;">729</td></tr>
+        <tr><td style="padding:7px; text-align:center;">5</td><td style="padding:7px; text-align:center;">125</td><td style="padding:7px; text-align:center;">10</td><td style="padding:7px; text-align:center;">1000</td></tr>
+      </tbody>
+    </table>
+    <h3>The Hardy-Ramanujan Number: 1729</h3>
+    <p>The number <strong>1729</strong> is famous in mathematics. It is the <em>smallest positive integer</em> that can be expressed as the sum of two positive cubes in two different ways:</p>
+    <div class="formula">
+      1729 = 1³ + 12³ = 1 + 1728 = 1729
+    </div>
+    <div class="formula">
+      1729 = 9³ + 10³ = 729 + 1000 = 1729
+    </div>
+    <p>This property was discovered when the famous British mathematician G.H. Hardy visited the Indian mathematical genius Srinivasa Ramanujan in hospital. Hardy mentioned that he arrived in a taxi with the "dull" number 1729, and Ramanujan immediately pointed out this remarkable property. Numbers with this property are now called <strong>taxicab numbers</strong>.</p>
+    <p>Such numbers that can be expressed as the sum of two cubes in multiple ways are called <strong>Hardy-Ramanujan numbers</strong>.</p>
+  </div>
+
+  <!-- SLIDE 3: Properties of Cubes -->
+  <div class="slide">
+    <h2>Properties of Cube Numbers</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Parity Property</h3>
+        <ul>
+          <li>The cube of an <strong>even</strong> number is always <strong>even</strong>.<br>Example: 4³ = 64 (even), 6³ = 216 (even).</li>
+          <li>The cube of an <strong>odd</strong> number is always <strong>odd</strong>.<br>Example: 3³ = 27 (odd), 5³ = 125 (odd).</li>
+        </ul>
+        <h3>Sign Property</h3>
+        <ul>
+          <li>The cube of a <strong>positive</strong> number is <strong>positive</strong>.</li>
+          <li>The cube of a <strong>negative</strong> number is <strong>negative</strong>.<br>Example: (−3)³ = −3 × −3 × −3 = −27.</li>
+          <li>The cube of <strong>zero</strong> is <strong>zero</strong>: 0³ = 0.</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Unit Digit Property</h3>
+        <table border="1" style="width:100%; border-collapse:collapse;">
+          <thead>
+            <tr style="background:#e8f4f8;">
+              <th style="padding:5px;">Unit digit of n</th>
+              <th style="padding:5px;">Unit digit of n³</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:5px; text-align:center;">1</td><td style="padding:5px; text-align:center;">1</td></tr>
+            <tr><td style="padding:5px; text-align:center;">2</td><td style="padding:5px; text-align:center;">8</td></tr>
+            <tr><td style="padding:5px; text-align:center;">3</td><td style="padding:5px; text-align:center;">7</td></tr>
+            <tr><td style="padding:5px; text-align:center;">4</td><td style="padding:5px; text-align:center;">4</td></tr>
+            <tr><td style="padding:5px; text-align:center;">5</td><td style="padding:5px; text-align:center;">5</td></tr>
+            <tr><td style="padding:5px; text-align:center;">6</td><td style="padding:5px; text-align:center;">6</td></tr>
+            <tr><td style="padding:5px; text-align:center;">7</td><td style="padding:5px; text-align:center;">3</td></tr>
+            <tr><td style="padding:5px; text-align:center;">8</td><td style="padding:5px; text-align:center;">2</td></tr>
+            <tr><td style="padding:5px; text-align:center;">9</td><td style="padding:5px; text-align:center;">9</td></tr>
+            <tr><td style="padding:5px; text-align:center;">0</td><td style="padding:5px; text-align:center;">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <h3>Interesting Pattern: Cubes as Sums of Consecutive Odd Numbers</h3>
+    <p>1³ = 1 &nbsp;&nbsp; | &nbsp;&nbsp; 2³ = 3 + 5 = 8 &nbsp;&nbsp; | &nbsp;&nbsp; 3³ = 7 + 9 + 11 = 27 &nbsp;&nbsp; | &nbsp;&nbsp; 4³ = 13 + 15 + 17 + 19 = 64</p>
+    <p>Also: 1³ + 2³ + 3³ + ... + n³ = [n(n+1)/2]² (sum of cubes of first n natural numbers)</p>
+    <div class="formula">
+      Sum of first n odd numbers = n²
+    </div>
+    <p>A perfect cube in the prime factorisation always has every prime appearing a multiple of 3 times.</p>
+  </div>
+
+  <!-- SLIDE 4: Cube Root by Prime Factorisation -->
+  <div class="slide">
+    <h2>Finding Cube Root by Prime Factorisation</h2>
+    <p>The <strong>cube root</strong> of a number x is the number y such that y³ = x. It is written as &#8731;x or x^(1/3).</p>
+    <p>In a perfect cube, every prime factor appears a number of times that is a multiple of 3 (i.e., in groups of three identical factors).</p>
+    <h3>Method</h3>
+    <ol>
+      <li>Find the prime factorisation of the given number.</li>
+      <li>Group the prime factors into triples (groups of three identical factors).</li>
+      <li>Take one factor from each triple.</li>
+      <li>Multiply all the selected factors together — the result is the cube root.</li>
+    </ol>
+    <h3>Example 1: Find &#8731;216</h3>
+    <p>Prime factorisation: 216 = 2 × 108 = 2 × 2 × 54 = 2 × 2 × 2 × 27 = 2 × 2 × 2 × 3 × 3 × 3</p>
+    <div class="formula">
+      216 = 2³ × 3³ &nbsp; so &nbsp; &#8731;216 = 2 × 3 = 6
+    </div>
+    <p>Check: 6³ = 216. Correct.</p>
+    <h3>Example 2: Find &#8731;3375</h3>
+    <p>3375 = 3 × 1125 = 3 × 3 × 375 = 3 × 3 × 3 × 125 = 3 × 3 × 3 × 5 × 5 × 5</p>
+    <div class="formula">
+      3375 = 3³ × 5³ &nbsp; so &nbsp; &#8731;3375 = 3 × 5 = 15
+    </div>
+    <p>Check: 15³ = 3375. Correct.</p>
+    <h3>Example 3: Find &#8731;13824</h3>
+    <p>13824 = 2 × 6912 = 2² × 3456 = 2³ × 1728 = 2³ × 12³ (since 1728 = 12³ = 1728, and 12 = 4 × 3 = 2² × 3)</p>
+    <p>More carefully: 13824 = 2³ × 1728 = 2³ × (2³ × 216) = 2³ × 2³ × 6³</p>
+    <div class="formula">
+      13824 = 2⁶ × 3³ × ... &#8731;13824 = 24 &nbsp; (since 24³ = 13824)
+    </div>
+    <h3>Checking if a Number is a Perfect Cube</h3>
+    <p>Factorise the number. If every distinct prime factor appears exactly 3 times (or 6 times, 9 times — any multiple of 3), it is a perfect cube. Example: 500 = 2² × 5³. Since 2 appears only twice, 500 is NOT a perfect cube.</p>
+  </div>
+
+  <!-- SLIDE 5: Estimation of Cube Roots -->
+  <div class="slide">
+    <h2>Estimation of Cube Roots</h2>
+    <p>When a number is large, we can estimate its cube root by identifying which two consecutive perfect cubes the number lies between, then using the unit digit trick to find the exact cube root.</p>
+    <h3>Method for Estimating &#8731;n (where n is a 5 or 6 digit number)</h3>
+    <ol>
+      <li><strong>Step 1 — Unit digit trick:</strong> Look at the unit digit of n. Use the unit digit table (from Slide 3) to find the unit digit of the cube root. (E.g., if n ends in 3, the cube root ends in 7.)</li>
+      <li><strong>Step 2 — Group the digits:</strong> Separate the last three digits from the remaining digits. The remaining digits form the "left group".</li>
+      <li><strong>Step 3 — Estimate the tens digit (or hundreds digit):</strong> Find the largest integer k such that k³ is less than or equal to the left group. This k becomes the leading digit(s) of the cube root.</li>
+      <li><strong>Step 4 — Combine:</strong> The cube root is the two-digit number formed from k (step 3) and the unit digit (step 1).</li>
+    </ol>
+    <h3>Worked Example: Find &#8731;74088</h3>
+    <p><strong>Step 1 — Unit digit:</strong> 74088 ends in 8. From the table: unit digit of cube root = 2.</p>
+    <p><strong>Step 2 — Separate:</strong> Last three digits: 088. Left group: 74.</p>
+    <p><strong>Step 3 — Estimate:</strong> Find k such that k³ &le; 74. We know 4³ = 64 and 5³ = 125. Since 64 &le; 74 &lt; 125, we have k = 4.</p>
+    <p><strong>Step 4 — Combine:</strong> Cube root = 42.</p>
+    <div class="formula">
+      &#8731;74088 = 42 &nbsp; (check: 42³ = 74088)
+    </div>
+    <h3>Another Example: Find &#8731;17576</h3>
+    <p>Unit digit of 17576 is 6 → unit digit of cube root is 6.</p>
+    <p>Left group: 17. Largest k: 2³ = 8 &le; 17 &lt; 27 = 3³, so k = 2.</p>
+    <div class="formula">
+      &#8731;17576 = 26 &nbsp; (check: 26³ = 17576)
+    </div>
+    <h3>Example: Find &#8731;91125</h3>
+    <p>Unit digit of 91125 is 5 → unit digit of cube root is 5.</p>
+    <p>Left group: 91. Largest k: 4³ = 64 &le; 91 &lt; 125 = 5³, so k = 4.</p>
+    <div class="formula">
+      &#8731;91125 = 45 &nbsp; (check: 45³ = 91125)
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Cube Roots of Negatives and Fractions -->
+  <div class="slide">
+    <h2>Cube Roots of Negative Numbers and Fractions</h2>
+    <h3>Cube Roots of Negative Numbers</h3>
+    <p>Unlike square roots, cube roots of negative numbers are defined and are negative. This is because the cube of a negative number is negative:</p>
+    <div class="formula">
+      &#8731;(–a) = –&#8731;a &nbsp; (for any positive number a)
+    </div>
+    <p>This follows from the fact that (–y)³ = –y³. So if y³ = a, then (–y)³ = –a, meaning &#8731;(–a) = –y = –&#8731;a.</p>
+    <h3>Examples of Cube Roots of Negative Numbers</h3>
+    <ul>
+      <li>&#8731;(–8) = –&#8731;8 = –2 &nbsp; (since (–2)³ = –8)</li>
+      <li>&#8731;(–27) = –&#8731;27 = –3 &nbsp; (since (–3)³ = –27)</li>
+      <li>&#8731;(–125) = –&#8731;125 = –5 &nbsp; (since (–5)³ = –125)</li>
+      <li>&#8731;(–1000) = –&#8731;1000 = –10 &nbsp; (since (–10)³ = –1000)</li>
+      <li>&#8731;(–343) = –&#8731;343 = –7 &nbsp; (since (–7)³ = –343)</li>
+    </ul>
+    <h3>Cube Roots of Fractions</h3>
+    <p>For a fraction p/q, the cube root is found by taking the cube root of numerator and denominator separately:</p>
+    <div class="formula">
+      &#8731;(p/q) = &#8731;p / &#8731;q
+    </div>
+    <h3>Examples</h3>
+    <ul>
+      <li>&#8731;(8/27) = &#8731;8 / &#8731;27 = 2/3 &nbsp; (check: (2/3)³ = 8/27)</li>
+      <li>&#8731;(1/64) = &#8731;1 / &#8731;64 = 1/4 &nbsp; (check: (1/4)³ = 1/64)</li>
+      <li>&#8731;(27/125) = &#8731;27 / &#8731;125 = 3/5 &nbsp; (check: (3/5)³ = 27/125)</li>
+      <li>&#8731;(–64/125) = –&#8731;(64/125) = –4/5 &nbsp; (since (–4/5)³ = –64/125)</li>
+      <li>&#8731;(216/343) = &#8731;216 / &#8731;343 = 6/7 &nbsp; (check: (6/7)³ = 216/343)</li>
+    </ul>
+    <div class="two-col">
+      <div class="col-box">
+        <h4>Combined Rule</h4>
+        <p>For negative fractions, combine both rules:</p>
+        <div class="formula">
+          &#8731;(–p/q) = –&#8731;p / &#8731;q
+        </div>
+      </div>
+      <div class="col-box">
+        <h4>Key Contrast with Square Roots</h4>
+        <ul>
+          <li>&#8730;(–4) is NOT a real number (undefined in real numbers).</li>
+          <li>&#8731;(–8) = –2 IS a real number.</li>
+          <li>Cube root is defined for all real numbers; square root is defined only for non-negatives.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Chapter 7 Summary – Cubes and Cube Roots</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Perfect Cubes Table</h3>
+        <table border="1" style="width:100%; border-collapse:collapse;">
+          <tbody>
+            <tr><td style="padding:5px;">1³ = 1</td><td style="padding:5px;">6³ = 216</td></tr>
+            <tr><td style="padding:5px;">2³ = 8</td><td style="padding:5px;">7³ = 343</td></tr>
+            <tr><td style="padding:5px;">3³ = 27</td><td style="padding:5px;">8³ = 512</td></tr>
+            <tr><td style="padding:5px;">4³ = 64</td><td style="padding:5px;">9³ = 729</td></tr>
+            <tr><td style="padding:5px;">5³ = 125</td><td style="padding:5px;">10³ = 1000</td></tr>
+          </tbody>
+        </table>
+        <h3>Key Properties</h3>
+        <ul>
+          <li>Cube of even = even; cube of odd = odd</li>
+          <li>Cube of negative = negative</li>
+          <li>Every prime factor in a perfect cube appears 3k times</li>
+          <li>Hardy-Ramanujan: 1729 = 1³+12³ = 9³+10³</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Key Formulas</h3>
+        <div class="formula">
+          &#8731;(–a) = –&#8731;a
+        </div>
+        <div class="formula">
+          &#8731;(p/q) = &#8731;p / &#8731;q
+        </div>
+        <h3>Prime Factorisation Method</h3>
+        <p>Factorise → group factors in triples → take one from each triple → multiply.</p>
+        <p>Example: &#8731;3375 = &#8731;(3³ × 5³) = 3 × 5 = 15</p>
+        <h3>Estimation Method</h3>
+        <ol>
+          <li>Unit digit of n → unit digit of &#8731;n (use digit table)</li>
+          <li>Separate last 3 digits; left group → k (where k³ &le; left group)</li>
+          <li>Cube root = 10k + (unit digit)</li>
+        </ol>
+        <h3>Unit Digit Table</h3>
+        <p>1→1, 2→8, 3→7, 4→4, 5→5, 6→6, 7→3, 8→2, 9→9, 0→0</p>
+      </div>
+    </div>
+    <p style="margin-top:12px; background:#e8f8ec; padding:10px; border-radius:6px;"><strong>Remember:</strong> Cube roots differ from square roots — they exist for negative numbers too. Always verify by cubing your answer. 1729 is the smallest taxicab number.</p>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>
