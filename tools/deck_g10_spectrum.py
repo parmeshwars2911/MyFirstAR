@@ -89,6 +89,29 @@ def deck1():
     ], panel_title="From violet to red",
        notes="Anchor the two ends: violet (short λ, high f) and red (long λ, "
              "low f). Everything else lies between.")
+    b.cards("NEWTON'S PROOF", "Showing White Light Is Composite", [
+        ("Experiment 1", "A single prism spreads white light into the seven "
+         "colours — dispersion."),
+        ("Experiment 2", "A second, inverted prism recombines those colours "
+         "back into white light."),
+        ("Experiment 3", "Passing just one colour of the spectrum through "
+         "another prism gives no new colours."),
+        ("Conclusion", "The colours are already present in white light; the "
+         "prism only separates them."),
+    ], notes="Newton's three classic experiments. The third (single-colour "
+             "test) clinches that the prism does not manufacture colour.")
+    b.statement("PURE vs IMPURE", "Pure and Impure Spectrum",
+                "In an impure spectrum the colours overlap; in a pure spectrum "
+                "each colour is sharply separated.",
+                points=["A simple prism alone gives an impure spectrum — "
+                        "neighbouring colours overlap.",
+                        "Adding lenses to focus each colour to a sharp band "
+                        "gives a pure spectrum.",
+                        "A pure spectrum needs the colours to be parallel and "
+                        "separately focused."],
+                notes="Distinguish pure (sharp, focused) from impure "
+                      "(overlapping) spectra; a pure spectrum needs lenses plus "
+                      "the prism, not the prism alone.")
     b.statement("RECOMBINATION", "White Light Can Be Re-made",
                 "A second, inverted prism can recombine the spectrum back into "
                 "white light — proving the colours were always in the white "
@@ -102,7 +125,19 @@ def deck1():
                 notes="Use Newton's two-prism and spinning-disc demonstrations "
                       "to prove white light is a mixture, not the prism's "
                       "creation.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 3)
+    b.statement("ONE COLOUR vs MANY", "Monochromatic and Polychromatic Light",
+                "Light of a single wavelength is monochromatic; light made of "
+                "many wavelengths is polychromatic.",
+                points=["Monochromatic light (e.g. from a sodium lamp) is not "
+                        "split by a prism — it has only one colour.",
+                        "White light is polychromatic — a mixture of all seven "
+                        "colours, so a prism disperses it.",
+                        "The visible spectrum is continuous: the colours merge "
+                        "smoothly from violet to red."],
+                notes="Define monochromatic vs polychromatic. A prism cannot "
+                      "disperse monochromatic light — a useful test and a "
+                      "common exam point.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Most Deviated", "When white light passes through a glass "
              "prism, which colour emerges closest to the base of the prism "
              "(deviated most)?", ["Red", "Yellow", "Green", "Violet"])
@@ -132,6 +167,24 @@ def deck1():
              "The eye blends the rapidly changing colours together. Their "
              "recombination producing white proves white light is a mixture "
              "of all seven colours.")
+    b.quiz_q(4, "Monochromatic", "A beam of pure yellow sodium light is passed "
+             "through a glass prism. What happens?",
+             ["It splits into seven colours",
+              "It is deviated but not dispersed (stays one colour)",
+              "It disappears", "It turns white"])
+    b.quiz_a(4, "B. It is deviated but not dispersed",
+             "Sodium light is monochromatic — a single wavelength. The prism "
+             "bends (deviates) it, but with only one colour present there is "
+             "nothing to split, so no spectrum forms.")
+    b.quiz_q(5, "Cause of Dispersion", "Dispersion occurs in glass but not in "
+             "vacuum because, in glass, different colours have different:",
+             ["Frequencies", "Speeds (and so refractive indices)",
+              "Amplitudes", "Energies"])
+    b.quiz_a(5, "B. Speeds (and so refractive indices)",
+             "In glass each colour travels at a slightly different speed, so "
+             "the refractive index differs by colour and each is deviated "
+             "differently. In vacuum all colours share speed c, so there is no "
+             "dispersion.")
     b.divider(2, "Part 2", "The Electromagnetic Spectrum",
               "Visible light is one small part of a much larger family")
     b.text_image("EM SPECTRUM", "The Electromagnetic Spectrum",
@@ -149,6 +202,19 @@ def deck1():
                  notes="Stress that visible light is a tiny slice. Learn the "
                        "order both ways: by increasing frequency and by "
                        "decreasing wavelength.")
+    b.cards("WAVELENGTH RANGES", "Each Band by Wavelength and Source", [
+        ("Radio (> 0.1 m)", "Made by oscillating circuits/aerials; received by "
+         "aerials and tuned circuits."),
+        ("Microwave (mm–cm)", "From klystrons/magnetrons and masers; detected "
+         "by aerials and crystal detectors."),
+        ("Infrared (700 nm–1 mm)", "Emitted by all warm bodies; detected by "
+         "thermopiles, blackened thermometers, IR cameras."),
+        ("UV → X-ray → Gamma (< 400 nm)", "From the Sun/sparks, X-ray tubes "
+         "and radioactive nuclei; detected by photographic plates and "
+         "fluorescence/Geiger tubes."),
+    ], notes="Selina wants the wavelength range, a source and a means of "
+             "detection for each band. Visible sits at 400–700 nm between IR "
+             "and UV.")
     b.cards("SHARED PROPERTIES", "What All EM Waves Have in Common", [
         ("Same speed", "All travel at 3 × 10⁸ m/s in vacuum — the speed of "
          "light, c."),
@@ -197,6 +263,15 @@ def deck1():
     ], panel_title="Each drop is a tiny prism + mirror",
        notes="Trace the path: refraction → internal reflection → refraction. "
              "The geometry puts red outside and violet inside.")
+    b.worked("WORKED EXAMPLE", "Frequency of Light",
+             "Yellow light has a wavelength of 600 nm (6 × 10⁻⁷ m) in vacuum. "
+             "Find its frequency. (c = 3 × 10⁸ m/s)",
+             ["c = f × λ   →   f = c / λ",
+              "f = (3 × 10⁸) / (6 × 10⁻⁷)",
+              "f = 5 × 10¹⁴ Hz"],
+             "f = 5 × 10¹⁴ Hz — visible light has frequencies near 10¹⁴ Hz",
+             notes="Rearrange c = fλ for f, keeping powers of ten tidy. Visible "
+                   "frequencies are around 10¹⁴ Hz.")
     b.recap("WRAP UP", "Quick Recap", [
         ("Deviation", "a prism bends light toward its base by angle δ"),
         ("Dispersion", "white light splits because index depends on colour"),
@@ -324,6 +399,46 @@ def deck2():
     ], panel_title="Three neighbouring bands",
        notes="These three are commonly compared. Anchor by where they sit "
              "around the visible band and by energy order.")
+    b.cards("INFRARED IN DETAIL", "Infrared — Source, Property, Detection", [
+        ("Source", "Emitted by every warm body — the Sun, fires, our own "
+         "skin."),
+        ("Property", "Invisible; strong heating effect; longer wavelength than "
+         "red light."),
+        ("Detection", "A blackened-bulb thermometer, a thermopile or an "
+         "infrared camera."),
+        ("Uses", "Remote controls, thermal/night-vision cameras, physiotherapy "
+         "heat lamps, weather satellites."),
+    ], notes="Selina asks for source/property/detection/use of IR. Anchor: hot "
+             "bodies emit it; it is the heat radiation just beyond red.")
+    b.cards("ULTRAVIOLET IN DETAIL", "Ultraviolet — Source, Property, Detection", [
+        ("Source", "The Sun, electric sparks and mercury-vapour (UV) lamps."),
+        ("Property", "Invisible; higher energy than visible; causes "
+         "fluorescence and affects photographic film."),
+        ("Detection", "Photographic plates, or the fluorescence (glow) it "
+         "produces in certain materials."),
+        ("Uses", "Sterilising water and instruments, detecting forged notes, "
+         "producing vitamin D in skin."),
+    ], notes="UV source/property/detection/use. Most solar UV is absorbed by "
+             "the ozone layer — link to the protection slide.")
+    b.cards("X-RAYS IN DETAIL", "X-rays — Source, Property, Detection", [
+        ("Source", "Produced in an X-ray tube when fast electrons strike a "
+         "metal target."),
+        ("Property", "Very penetrating and ionising; pass through flesh but "
+         "not bone or metal."),
+        ("Detection", "Photographic plates and fluorescent screens."),
+        ("Uses", "Imaging bones and teeth, airport security scanning, studying "
+         "crystal structures."),
+    ], notes="X-ray source/property/detection/use. Penetrating power and the "
+             "flesh-vs-bone contrast are the key facts.")
+    b.cards("GAMMA RAYS IN DETAIL", "Gamma Rays — Source, Property, Use", [
+        ("Source", "Emitted by the nuclei of radioactive atoms."),
+        ("Property", "The most penetrating and most energetic EM radiation; "
+         "strongly ionising."),
+        ("Detection", "Geiger–Müller tube and photographic film."),
+        ("Uses", "Killing cancer cells (radiotherapy), sterilising medical "
+         "equipment and food, industrial flaw detection."),
+    ], notes="Gamma: highest energy, most penetrating, from the nucleus. Tie "
+             "uses to its penetrating, cell-killing power.")
     b.cards("PROTECTION", "Living With Radiation Safely", [
         ("Ozone layer", "High in the atmosphere it absorbs most harmful UV "
          "from the Sun, shielding life below."),
@@ -335,7 +450,7 @@ def deck2():
          "carefully dosed to limit exposure."),
     ], notes="Tie protection measures to the hazard of high-energy radiation. "
              "The ozone layer is the planet's natural UV shield.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Match the Use", "A TV remote control sends a signal to the "
              "television using:", ["Ultraviolet", "Infrared", "X-rays",
               "Radio waves of visible light"])
@@ -368,6 +483,14 @@ def deck2():
              "Warm bodies emit infrared radiation. A thermal/IR camera detects "
              "this heat radiation, so it works even with no visible light — "
              "the basis of night vision.")
+    b.quiz_q(5, "Detecting UV", "Ultraviolet radiation is often detected by "
+             "the fact that it:", ["Feels hot on the skin",
+              "Makes certain materials fluoresce (glow)",
+              "Is easily seen as violet", "Bends around corners"])
+    b.quiz_a(5, "B. Makes certain materials fluoresce",
+             "UV itself is invisible, but it makes some substances glow with "
+             "visible light (fluorescence) and darkens photographic film — both "
+             "used to detect it, as in checking banknotes.")
     b.divider(2, "Part 2", "Scattering of Light",
               "Why the sky is blue and sunsets are red")
     b.text_image("SCATTERING", "What Is Scattering?",
@@ -384,6 +507,19 @@ def deck2():
                  notes="Define scattering and the key fact: shorter wavelength "
                        "scatters more. This single idea explains the next two "
                        "slides.")
+    b.statement("HOW MUCH?", "Scattering Depends Strongly on Wavelength",
+                "The amount of scattering by tiny particles rises very steeply "
+                "as the wavelength gets shorter.",
+                formula="amount of scattering  ∝  1 / λ⁴",
+                points=["Halving the wavelength scatters light about 16 times "
+                        "more.",
+                        "So blue/violet (short λ) scatter far more than red "
+                        "(long λ).",
+                        "Scattering of light by fine (colloidal) particles is "
+                        "called the Tyndall effect."],
+                notes="The 1/λ⁴ rule (Rayleigh) explains why blue dominates the "
+                      "sky. Name the Tyndall effect — scattering by colloidal "
+                      "particles such as dust, smoke and fine droplets.")
     b.cards("CONSEQUENCES", "Blue Skies and Red Sunsets", [
         ("Why the sky is blue", "Air scatters blue sunlight in all "
          "directions, so the whole sky glows blue."),
@@ -398,8 +534,9 @@ def deck2():
     b.bullets("MORE EFFECTS", "Scattering Around Us", [
         ("Clouds look white", "Large water droplets scatter all colours "
          "equally, so clouds appear white."),
-        ("Sun looks white overhead", "At noon light passes through less air, "
-         "so little is scattered away."),
+        ("Why blue, not violet?", "Violet scatters even more, but the Sun "
+         "sends less violet and our eyes are less sensitive to it — so the sky "
+         "looks blue."),
         ("Reddened Sun", "The rising or setting Sun itself looks red for the "
          "same reason its surroundings do."),
         ("Clear vs hazy", "More dust and particles mean more scattering and a "
