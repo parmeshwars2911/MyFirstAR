@@ -1,0 +1,366 @@
+{
+ "6": [
+  {
+   "session": 30,
+   "chapter": "Simple Machines",
+   "lesson": "Simple Machines - 1",
+   "topics": "Work and energy, Machines, Principle of a machine, Efficiency of a machine, Ideal machine, Actual machine, Functions of a Simple machine, Mechanical advantage, Levers, Principle of a lever, Orders of levers"
+  },
+  {
+   "session": 31,
+   "chapter": "Simple Machines",
+   "lesson": "Simple Machines - 2",
+   "topics": "Pulley, Mechanical advantage of the pulley, Wheel and axle, Inclined plane, Wedge, Screw, Care of machines"
+  },
+  {
+   "session": 52,
+   "chapter": "Light",
+   "lesson": "Light - 1",
+   "topics": "Light, Sources of light, Luminous and Non-luminous bodies, Some important terms, Rectilinear propagation of light, Application of rectilinear propagation of light"
+  },
+  {
+   "session": 53,
+   "chapter": "Light",
+   "lesson": "Light - 2",
+   "topics": "Pin hole camera, shadow, Eclipes"
+  },
+  {
+   "session": 69,
+   "chapter": "Magnetism",
+   "lesson": "Magnetism - 1",
+   "topics": "Discovery of magnets, Natural magnets, Artificial magnets, Magnetic and non-magnetic substances, Characteristic of a magnet, Properties of magnet, Magnetic field around a magnet, Earth's magnetic field"
+  },
+  {
+   "session": 70,
+   "chapter": "Magnetism",
+   "lesson": "Magnetism - 2",
+   "topics": "Making a magnet, Electromagnets, Care and storage of magnets, Demagnetisation of a magnet"
+  }
+ ],
+ "7": [
+  {
+   "session": 37,
+   "chapter": "Light Energy",
+   "lesson": "Light Energy 1",
+   "topics": "Light, Reflection of light, Plane mirror, Some terms related to reflection of light, Laws of reflection of light, Verification of laws of reflection, Reflection of a ray of light normally incident on a plane mirror, Formation of image by a plane mirror,"
+  },
+  {
+   "session": 38,
+   "chapter": "Light Energy",
+   "lesson": "Light Energy 2",
+   "topics": "Real and virtual images, lateral inversion, Characteristics of the image formed by a plane mirror, Regular and irregular reflection, uses of a plane mirror, Speed of light, Constituent colours of white light from the sun, Primary colours, Secondary colours, Substraction of colours"
+  },
+  {
+   "session": 55,
+   "chapter": "Heat",
+   "lesson": "Heat 1",
+   "topics": "Heat is a form of energy, Units of heat, Temperature, Units of temperature, Measurement of temperature, Scales of temperature"
+  },
+  {
+   "session": 56,
+   "chapter": "Heat",
+   "lesson": "Heat 2",
+   "topics": "Effects of heat, Thermal expansion"
+  },
+  {
+   "session": 57,
+   "chapter": "Heat",
+   "lesson": "Heat 3",
+   "topics": "Three modes of transfer of heat, Conductors, Insulators, Some applications of conductors and insulators in daily life, Some application of convection in daily life, Some application of black and white surfaces in daily life, Thermos flask"
+  },
+  {
+   "session": 66,
+   "chapter": "Sound",
+   "lesson": "Sound 1",
+   "topics": "Sound, Sound is produced due to vibrations, Sources of sound, Sound needs a medium for propagation, Sound travels in air in the form of logitudinal waves"
+  },
+  {
+   "session": 67,
+   "chapter": "Sound",
+   "lesson": "Sound 2",
+   "topics": "Some terms related to a wave, Audible sound, Ultrasonic sound, Infrasonic or subsonic sound, Characteristics of sound, Speed of sound, Reflection of sound, Absorption of sound"
+  },
+  {
+   "session": 76,
+   "chapter": "Electricity and Magnetism",
+   "lesson": "Electricity and Magnetism 1",
+   "topics": "Introduction, Law of magnetism, Repulsion is the sure test for a magnet, Magnetic field, Electromagnet, Making an electromagnet, uses of electromagnets"
+  },
+  {
+   "session": 77,
+   "chapter": "Electricity and Magnetism",
+   "lesson": "Electricity and Magnetism 2",
+   "topics": "Electric bell, Earth's magnetic declination, Use of electricity and its sources, Sources of electricity, Use of dry cells in torch, Flow of electicity in a circuit, Conductors and insulators"
+  },
+  {
+   "session": 78,
+   "chapter": "Electricity and Magnetism",
+   "lesson": "Electricity and Magnetism 3",
+   "topics": "Flow of charges constitute current, Symbols and functions of various components of an electric switch, Series and parallel circuits, Precautions to be taken before the circuits is switched ON"
+  }
+ ],
+ "8": [
+  {
+   "session": 33,
+   "chapter": "Energy",
+   "lesson": "Energy",
+   "topics": "Work, Definition of work, Units of work, Energy, Unit of energy, Mechanical energy, Some other examples of potential energy"
+  },
+  {
+   "session": 34,
+   "chapter": "Energy",
+   "lesson": "Energy",
+   "topics": "Expression for the gravitational potential energy, Kinetic energy, Conversion of potential energy into kinetic energy, Different forms of energy, Some examples of transformation of energy,"
+  },
+  {
+   "session": 43,
+   "chapter": "Light Energy",
+   "lesson": "Light Energy",
+   "topics": "Speed of light in different media, Refraction of light, Some terms related to refraction of light, Laws of refraction, Effects of refraction, Early sunrise and late sunset, mirage in a desert, Refraction of light through a rectangular glass block, Refraction of light through a prism, Dispersion of white light"
+  },
+  {
+   "session": 44,
+   "chapter": "Light Energy",
+   "lesson": "Light Energy",
+   "topics": "Cause of dispersion, Sperical mirrors, Kinds of spherical mirrors, Some terms related to spherical mirrors, Focus and focal length, Rules for making ray diagram in a spherical mirrors, Real and virtual image, Images formed by a concave mirror, Use of a concave mirror"
+  },
+  {
+   "session": 53,
+   "chapter": "Heat Transfer",
+   "lesson": "Heat Transfer",
+   "topics": "Introduction, Effects of heat, Effects of temperature on molecular motion, Change of liquid into vapor state, Explanation of evaporation on the basis of molecular motion, Boiling, Explanation of boiling by molecular motion, difference between evaporation and boiling"
+  },
+  {
+   "session": 54,
+   "chapter": "Heat Transfer",
+   "lesson": "Heat Transfer",
+   "topics": "Thermal expansion, Thermal expansion in solids, Linear expansion, Thermal expansion in liquids, Thermal expansion in gases, Variation of density with temperature"
+  },
+  {
+   "session": 61,
+   "chapter": "Sound",
+   "lesson": "Sound",
+   "topics": "Nature of Sound, Propagation of Sound, Characteristics of Sound, Frequency and Time Period"
+  },
+  {
+   "session": 62,
+   "chapter": "Sound",
+   "lesson": "Sound",
+   "topics": "Audible Range of Sound, Speed of Sound, Reflection of Sound, Human Ear, Music and Noise"
+  },
+  {
+   "session": 71,
+   "chapter": "Electricity",
+   "lesson": "Electricity",
+   "topics": "Electrical energy and power consumed in a circuit, Transmission of power from the power generating station to the consumer, Suppy of power to a house, Colour coding of live, neutral and earth wires, Connection from pole to the distribution board, Commercial unit of electrical energy"
+  },
+  {
+   "session": 72,
+   "chapter": "Electricity",
+   "lesson": "Electricity",
+   "topics": "Electric fuse, Characteristics of a fuse, Miniature circuit breaker, household electrical circuits, Electric circuits in a room, Earthing of the appliances, Power rating of appliances, Household consumption of energy, Hazards of electricity, precautions"
+  }
+ ],
+ "9": [
+  {
+   "session": 39,
+   "chapter": "Pressure in Fluids and Atmospheric Pressure",
+   "lesson": "Pressure in Fluids and Atmospheric Pressure",
+   "topics": "Thrust and pressure, Pressure in fluids, Pressure exerted by a liquid column,Laws of liquid pressure, Some consequences of liquid pressure, Transmission of pressure in liquids, Application of pascal's law, Laws of liquid pressure, Some consequences of liquid pressure, Transmission of pressure in liquids, Application of pascal's law"
+  },
+  {
+   "session": 40,
+   "chapter": "Pressure in Fluids and Atmospheric Pressure",
+   "lesson": "Pressure in Fluids and Atmospheric Pressure",
+   "topics": "Examples of hydraulic machines, Atmospheric pressure, Demonstration of atmospheric pressure, Common consequences of the atmospheric pressure, Measurement of atmospheric pressure, Variation of atmospheric pressure with altitude, Weather forecast by the use of barometer, Altimeter"
+  },
+  {
+   "session": 53,
+   "chapter": "Upthrust in Fluids and Archimedes Principle and Floatation",
+   "lesson": "Upthrust in Fluids and Archimedes Principle and Floatation 1",
+   "topics": "Buoyancy and upthrust, Characteristic properties of upthrust, Reason of upthrust, upthrust is equal to the weight of displaced liquid, Archimede's principle, Experiemental verification of archimedes's principle, float and sink,"
+  },
+  {
+   "session": 54,
+   "chapter": "Upthrust in Fluids and Archimedes Principle and Floatation",
+   "lesson": "Upthrust in Fluids and Archimedes Principle and Floatation 2",
+   "topics": "Density, Relative density, Determination of relative density of solid, Determination of relative density of liquid,Principle of floatation, Application of the principle of floatation"
+  },
+  {
+   "session": 65,
+   "chapter": "Heat and Energy",
+   "lesson": "Heat and Energy 1",
+   "topics": "Concept of heat, Concept of temperature, Thermal expansion, Anomalous expansion of water, Hope's experiment, Consequences of anomalous expansion of water, Energy flow in ecosystem, Application of laws of thermodynamics in energy flow"
+  },
+  {
+   "session": 66,
+   "chapter": "Heat and Energy",
+   "lesson": "Heat and Energy 2",
+   "topics": "Sources of energy, Renewable or the non conventional sources of energy, Non-renewable or the conventional sourcs of energy, Judicious use of energy, Production of electricity from solar energy"
+  },
+  {
+   "session": 67,
+   "chapter": "Heat and Energy",
+   "lesson": "Heat and Energy 3",
+   "topics": "From wind energy, from water energy, from nuclear energy, Energy degradation, Green house effect, Global warming, ways to minimise the impact of global warming"
+  },
+  {
+   "session": 87,
+   "chapter": "Reflection of Light",
+   "lesson": "Reflection of Light 1",
+   "topics": "Reflection of light, Some terms related with reflection, Laws of reflection, Experimental verification of laws of reflection, Formation of image by reflection, Image of a point object formed by a plane mirror, Image of an extended object formed by a plane mirror, Position of image, Lateral inversion, Characteristics of the image formed by a plane mirror"
+  },
+  {
+   "session": 88,
+   "chapter": "Reflection of Light",
+   "lesson": "Reflection of Light 2",
+   "topics": "Spherical mirrors, terms related to spherical mirrors, Reflection of light ray from a spherical mirror, Focus and Focal length, Convenient rays for the construction of image by ray diagram,  Ray diagrams for formation of images in a concave mirror, Ray diagrams for formation of images in a concave mirror, Ray diagram for formation of image in a convex mirror, Relationship between the focal length and radius of curvature, Sign convention of measurement of distances, Formulae for the spherical mirror, uses of sphrical mirrors, Distinction between a plane mirror, concave mirror and convext mirror"
+  },
+  {
+   "session": 101,
+   "chapter": "Propagation of Sound Waves",
+   "lesson": "Propagation of Sound Waves 1",
+   "topics": "Sound and its production from vibrations, Sound propagation requires a material medium, Propagation of sound in a medium, Some terms related to wave motion, Relationship between the wavelength, wave velocity, and frequency, Speed of sound in different media"
+  },
+  {
+   "session": 102,
+   "chapter": "Propagation of Sound Waves",
+   "lesson": "Propagation of Sound Waves 2",
+   "topics": "Factors affecting the speed of sound in a gas, Factors not affecting the speed of sound in a gas, comparison of speed of sound with speed of light, Experimental determination of speed of sound in AIR, Infrasonic, sonic and ultrasonic frequencies, Ultrasound and its applications"
+  },
+  {
+   "session": 113,
+   "chapter": "Current Electricity",
+   "lesson": "Current Electricity 1",
+   "topics": "Sources of direct current, Electric current, Symbols used in circuit diagram, Simple electric circuit, Insulators and conductors, Closed and open circuits,"
+  },
+  {
+   "session": 114,
+   "chapter": "Current Electricity",
+   "lesson": "Current Electricity 2",
+   "topics": "Flow of electrons between the conductors, Direction of the electric current, Elementary idea about work, Electrical resistance, efficient use of energy, Social initiatives"
+  },
+  {
+   "session": 122,
+   "chapter": "Magnetism",
+   "lesson": "Magnetism 1",
+   "topics": "Introduction, Induced magnetism, Lines of magnetic field, Properties of magnetic field, Magnetic field of earth, Plotting of uniform magnetic field lines of earth"
+  },
+  {
+   "session": 123,
+   "chapter": "Magnetism",
+   "lesson": "Magnetism 2",
+   "topics": "Plotting of non uniform magnetic field of a strong bar magnet, neutral points, Neutral points, Electromagets, Comparision of an electromagnet with a parmanent magnet, Advantage of an electromagnet over a permanent magnet, Uses of electromagntes"
+  }
+ ],
+ "10": [
+  {
+   "session": 34,
+   "chapter": "Refraction of Light at Plane Surfaces",
+   "lesson": "Refraction of Light at Plane Surfaces -1",
+   "topics": "Refraction of light, Laws of refraction, Speed of light in different media, Relationship between refractive index and speed of light, Principle of reversibility of the path of light,Experimental verification of the laws of refraction and determination of refractive index of glass, Refraction of light through a rectangular glass block, Multiple images in a thick plane glass plate or thick mirror, Prism, Refraction of light through prism,"
+  },
+  {
+   "session": 35,
+   "chapter": "Refraction of Light at Plane Surfaces",
+   "lesson": "Refraction of Light at Plane Surfaces -2",
+   "topics": "Real and apparent depth, Apparent bending of stick under water, Some consequences of refraction of light, Transmission of light from a denser to rarer medium, Critical angle, Relationship between critical angle and refractive index,Total internal reflection, Total internal reflection in prism, Use of total internal reflecting prism in place of a plane mirror, Consequences of total internal reflection"
+  },
+  {
+   "session": 43,
+   "chapter": "Refraction Through A Lens",
+   "lesson": "Refraction Through A Lens",
+   "topics": "Lens, Action of a lens as a set of prism, Technical terms related to lens, Refraction of light through the equi-convex and equi-concave lens, Principal rays for ray diagrams, Construction of ray diagram for a lens,"
+  },
+  {
+   "session": 44,
+   "chapter": "Refraction Through A Lens",
+   "lesson": "Refraction Through A Lens",
+   "topics": "Characteristics and location of images for a convex lens, Characteristics and location of images for a concave lens, Difference between image formed by a concave and convex lens, Sign convention of measurement of distances, Lens formula, Linear magnification, Power of a lens,Magnifying glass or simple microscope, Application of lenses, Experimental determination of focal length of convex lens, To differentiate between a convex and concave lens"
+  },
+  {
+   "session": 53,
+   "chapter": "Spectrum",
+   "lesson": "Spectrum",
+   "topics": "Deviation produced by a triangular prism, Colours in white light with their wavelength and frequency range, Dispersion of white light through a prism and formation of spectrum, Electromagnetic spectrum"
+  },
+  {
+   "session": 54,
+   "chapter": "Spectrum",
+   "lesson": "Spectrum",
+   "topics": "Properties and uses of different radiations of electromagnetic spectrum, Distinction between ultraviolet, visible and infrared radiations, Scattering of light, Some application of scattering"
+  },
+  {
+   "session": 62,
+   "chapter": "Sound",
+   "lesson": "Sound",
+   "topics": "Sound waves, Reflection of sound waves, Echo, Determination of speed of sound by the method of echo, Uses of echo"
+  },
+  {
+   "session": 63,
+   "chapter": "Sound",
+   "lesson": "Sound",
+   "topics": "Natural vibrations, Damped vibrations, Forced vibrations, Resonance, Some examples of resonance, Characteristics of sound, Music and noise"
+  },
+  {
+   "session": 75,
+   "chapter": "Current Electricity",
+   "lesson": "Current Electricity",
+   "topics": "Concept of charge, Concept of current, Concept of potential energy and potential difference, Concept of resistance, Ohm's law, Experimental verification of Ohm's law"
+  },
+  {
+   "session": 76,
+   "chapter": "Current Electricity",
+   "lesson": "Current Electricity",
+   "topics": "Ohmic and non-ohmic resistors, Factors affecting resistance, Specific resistance, Choice of material of a wire, Superconductors,Electromotive force of a cell, Terminal voltage of a cell, Internal resistance of a cell"
+  },
+  {
+   "session": 77,
+   "chapter": "Current Electricity",
+   "lesson": "Current Electricity",
+   "topics": "Combination of resistors, Electrical energy, Measurement of electrical energy, Electrical power and its expression, Commercial unit of electrical energy, Power rating of common electrical appliances, Household consumption of electrical energy, Heating effect of current"
+  },
+  {
+   "session": 91,
+   "chapter": "Household-Circuits",
+   "lesson": "Household-Circuits",
+   "topics": "Transmission of power from the generating station to the consumer, Power distribution to a house, House wiring, Fuse, Switches, Circuits with dual control switches"
+  },
+  {
+   "session": 92,
+   "chapter": "Household-Circuits",
+   "lesson": "Household-Circuits",
+   "topics": "Earthing, Three pin plug and socket, Colour coding of wires in a cable, High tension wires, Safety precautions while using electricity"
+  },
+  {
+   "session": 101,
+   "chapter": "Electro Magnetism",
+   "lesson": "Electro Magnetism",
+   "topics": "Oersted's experiment on magnetic effect of electric current, Magnetic field and field lines due to current in a straight wire, Rule to find the direction of magnetic field, Magnetic field due to current in a loop, Magnetic field due to current carrying cylindrical coil, Electromagnet, Permanent magnet, Comparison of an electromagnet with permanent magnet, Advantages of an electromagnet over permanent magnet"
+  },
+  {
+   "session": 102,
+   "chapter": "Electro Magnetism",
+   "lesson": "Electro Magnetism",
+   "topics": "Uses of electromagnet, Force on a current carrying conductor in a magnetic field, Simple DC motor, Electromagnetic induction, Faraday's laws of Electromagnetic induction, AC generator, Frequency of AC in household circuits, Distinction between AC generator and DC generator, Transformer"
+  },
+  {
+   "session": 111,
+   "chapter": "Calorimetry",
+   "lesson": "Calorimetry",
+   "topics": "Concept of heat, Concept of temperature, Factors affecting the quantity of heat absorbed to increase the temperature of a body, Difference between heat and temperature, Thermal capacity, Specific heat capacity, Distinction between heat capacity and specific heat capacity, Specific heat capacity of some common substances"
+  },
+  {
+   "session": 112,
+   "chapter": "Calorimetry",
+   "lesson": "Calorimetry",
+   "topics": "Calorimeter, Principle of method of mixtures, Natural phenomena and consequences of high specific heat capacity of water, Some examples of high and low heat capacity, Change of phase, Melting and fusion, Heating curve of ice during melting, Change in volume on melting"
+  },
+  {
+   "session": 113,
+   "chapter": "Calorimetry",
+   "lesson": "Calorimetry",
+   "topics": "Effect of pressure on melting point, Effect of impurities on melting point, Vaporisation or boiling, Heating curve for water, Change in volume on boiling, Effect of pressure on boiling point, Effect of impurities on boiling point, Latent heat and specific latent heat, Specific latent heat of fusion of ice, Explanation of latent heat of melting on the basis of kinetic model, Natural consequences of high specific latent heat of fusion of ice"
+  }
+ ]
+}

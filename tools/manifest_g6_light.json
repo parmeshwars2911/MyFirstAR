@@ -1,0 +1,14 @@
+{
+  "g6_sunbeams_photo": {
+    "subject": "sunlight shining in straight beams (crepuscular rays) through gaps in a forest canopy, showing that light travels in straight lines",
+    "prompt": "A realistic photograph of bright sunbeams streaming in straight rays through the gaps between tall trees in a misty forest in early morning, distinct straight shafts of light reaching the ground, atmospheric, natural lighting, high detail, no people"
+  },
+  "g6_solar_eclipse_photo": {
+    "subject": "a total solar eclipse with the Sun's glowing white corona around a black Moon disc",
+    "prompt": "A realistic astronomy photograph of a total solar eclipse, a perfectly round black disc of the Moon covering the Sun with the bright white wispy solar corona glowing all around it, against a very dark sky, sharp and clean, no text"
+  },
+  "g6_shadow_photo": {
+    "subject": "the long shadow of a single person cast on the ground in low evening sunlight",
+    "prompt": "A realistic photograph looking down at the ground showing the long dark shadow of one standing person cast across a plain paved surface in warm low evening sunlight, clear sharp shadow outline, no text, no watermark"
+  }
+}
