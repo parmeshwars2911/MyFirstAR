@@ -1,0 +1,42 @@
+{
+  "g7_mirror_photo": {
+    "subject": "a flat plane mirror on a wall reflecting a clear, sharp image of a simple object",
+    "prompt": "A realistic photograph of a clean rectangular plane mirror hanging on a plain wall, reflecting a sharp, clear image of a small object on a table in front of it, soft even lighting, no people, no text"
+  },
+  "g7_rainbow_photo": {
+    "subject": "a glass prism splitting a beam of white light into a rainbow spectrum (VIBGYOR)",
+    "prompt": "A realistic studio photograph of a triangular glass prism on a dark surface with a beam of white light entering and a bright rainbow spectrum of colours fanning out of the other side onto a screen, crisp and clean, no text, no watermark"
+  },
+  "g7_thermometer_photo": {
+    "subject": "a laboratory liquid-in-glass thermometer with a clear scale",
+    "prompt": "A realistic close-up photograph of a laboratory liquid-in-glass thermometer lying on a white surface, the coloured liquid column and the temperature scale clearly visible, sharp focus, no text overlay, no watermark"
+  },
+  "g7_kettle_photo": {
+    "subject": "a kettle of boiling water with steam rising, showing change of state",
+    "prompt": "A realistic photograph of a metal kettle on a stove with white steam rising from its spout as the water boils, warm kitchen lighting, sharp detail, no people, no text"
+  },
+  "g7_thermos_photo": {
+    "subject": "a stainless-steel vacuum (thermos) flask standing upright",
+    "prompt": "A realistic product photograph of a shiny stainless-steel vacuum flask (thermos) standing upright on a plain light background, clean studio lighting, sharp focus, no text, no logo"
+  },
+  "g7_guitar_photo": {
+    "subject": "an acoustic guitar with six taut strings clearly visible over the sound hole (a musical instrument that produces sound)",
+    "prompt": "A realistic close-up photograph of an acoustic guitar resting against a plain background, the six taut strings and the round sound hole clearly visible and in sharp focus, warm natural lighting, no people, no text, no watermark"
+  },
+  "g7_drum_photo": {
+    "subject": "a drum with a stretched membrane that vibrates to make sound",
+    "prompt": "A realistic photograph of a single hand drum (tabla or similar) with its taut stretched skin membrane clearly visible from above, plain background, clean lighting, no people, no text, no watermark"
+  },
+  "g7_magnet_filings_photo": {
+    "subject": "a bar magnet surrounded by iron filings forming the magnetic field pattern",
+    "prompt": "A realistic top-down photograph of a red-and-blue bar magnet on white paper, with iron filings arranged in clear curved lines showing the magnetic field pattern around the poles, sharp focus, no text, no watermark"
+  },
+  "g7_bell_photo": {
+    "subject": "an old-style round electric bell with a metal gong",
+    "prompt": "A realistic photograph of a classic round electric bell with a shiny metal dome (gong) mounted on a wall, clean lighting, sharp detail, no people, no text, no watermark"
+  },
+  "g7_circuit_photo": {
+    "subject": "a simple circuit with a battery, a small bulb and wires lighting up",
+    "prompt": "A realistic photograph of a simple school science circuit on a desk: a battery connected by wires to a small light bulb that is glowing, with a switch, clean bright lighting, sharp focus, no people, no text, no watermark"
+  }
+}
