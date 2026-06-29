@@ -80,6 +80,30 @@ def deck1():
          "same depth."),
     ], notes="The four laws. The 'all directions' and 'same at same depth' "
              "points are commonly tested.")
+    b.statement("TOTAL PRESSURE", "Total Pressure at a Depth",
+                "The total pressure at a depth in an open liquid is the "
+                "atmospheric pressure pushing on the surface plus the pressure "
+                "of the liquid column.",
+                formula="P_total  =  P_atmospheric  +  h ρ g",
+                points=["The liquid column adds hρg to the air pressure above "
+                        "it.",
+                        "The deeper the point, the larger the hρg term.",
+                        "If only the liquid's own pressure is wanted, use just "
+                        "h ρ g."],
+                notes="Distinguish gauge pressure (hρg) from total/absolute "
+                      "pressure (atmospheric + hρg). Exam questions specify "
+                      "which they want.")
+    b.cards("OWN LEVEL", "Liquids Find Their Own Level", [
+        ("Communicating vessels", "Liquid poured into connected vessels "
+         "settles at the same height in each."),
+        ("Why", "At the joining level the pressure must be equal, and equal "
+         "pressure means equal height (same liquid)."),
+        ("Whatever the shape", "It is true however wide, narrow or tilted each "
+         "vessel is."),
+        ("Everyday use", "Water-level tubes, canal locks and a spirit level "
+         "all rely on this."),
+    ], notes="Communicating vessels: a liquid reaches the same level "
+             "everywhere because pressure balances at a common depth.")
     b.cards("CONSEQUENCES", "Consequences of Liquid Pressure", [
         ("Thick dam walls", "Dams are built much thicker at the bottom to "
          "withstand the greater pressure there."),
@@ -103,7 +127,7 @@ def deck1():
     ], panel_title="Pressure has no preferred direction",
        notes="Reinforce that liquid pressure acts in all directions — leads "
              "naturally to upthrust in the next chapter.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Sharp Knife", "A sharp knife cuts more easily than a blunt "
              "one because, for the same force, the sharp edge gives:",
              ["Less pressure (larger area)", "More pressure (smaller area)",
@@ -135,6 +159,16 @@ def deck1():
     b.quiz_a(4, "C. 20,000 Pa",
              "P = h ρ g = 2 × 1000 × 10 = 20,000 Pa. Multiply depth, density "
              "and g.")
+    b.quiz_q(5, "Same Level", "A liquid is poured into a set of connected "
+             "tubes of different widths and shapes. The liquid settles so "
+             "that:", ["It is highest in the narrowest tube",
+              "It reaches the same level in every tube",
+              "It is highest in the widest tube",
+              "Each tube has a different level"])
+    b.quiz_a(5, "B. It reaches the same level in every tube",
+             "In communicating vessels the pressure must balance at the "
+             "joining level, so the same liquid stands at the same height in "
+             "each — regardless of the tubes' shapes or widths.")
     b.divider(2, "Part 2", "Pascal's Law",
               "How pressure is transmitted through liquids")
     b.text_image("PASCAL'S LAW", "Transmission of Pressure",
@@ -361,6 +395,18 @@ def deck2():
                  notes="Explain the balance: atmospheric pressure on the "
                        "trough equals the pressure of the 76 cm mercury "
                        "column. Mercury's density keeps it compact.")
+    b.bullets("MANOMETER", "The Manometer — Measuring Gas Pressure", [
+        ("What it is", "A simple U-tube containing a liquid, used to measure "
+         "the pressure of an enclosed gas."),
+        ("How it reads", "The gas pushes the liquid down one arm; the "
+         "difference in levels gives the pressure."),
+        ("Above atmospheric", "If the gas arm is lower, the gas pressure is "
+         "greater than the atmosphere by hρg."),
+        ("Below atmospheric", "If the gas arm is higher, the gas pressure is "
+         "less than the atmosphere."),
+    ], panel_title="A U-tube pressure gauge",
+       notes="The manometer compares an enclosed gas pressure with the "
+             "atmosphere via the difference in liquid levels (hρg).")
     b.bullets("ALTITUDE", "Pressure and Altitude", [
         ("Falls with height", "Atmospheric pressure decreases as you go "
          "higher — there is less air above."),
