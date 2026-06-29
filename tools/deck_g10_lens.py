@@ -23,6 +23,7 @@ def deck1():
     prisms = b.asset("g10l_prisms", D.lens_as_prisms("g10l_prisms"))
     convex = b.asset("g10l_convex", D.convex_lens_image("g10l_convex"))
     magn = b.asset("g10l_magnifier", D.convex_magnifier("g10l_magnifier"))
+    ltypes = b.asset("g10l_types", D.lens_types("g10l_types"))
     hero = b.asset("g10_lens_hero", convex)
 
     b.title("ICSE • Class 10 • Optics", "Refraction Through a Lens",
@@ -50,6 +51,20 @@ def deck1():
     ], notes="Hold up a real convex and concave lens if available. The single "
              "rule behind both: light bends toward the thicker part of the "
              "glass.")
+    b.text_image("LENS SHAPES", "The Six Common Lens Shapes",
+                 ["Converging lenses are thicker in the middle: bi-convex, "
+                  "plano-convex and the converging meniscus.",
+                  "Diverging lenses are thinner in the middle: bi-concave, "
+                  "plano-concave and the diverging meniscus.",
+                  "A meniscus lens has one convex and one concave face.",
+                  "Whatever the shape, thicker-in-the-middle converges and "
+                  "thinner-in-the-middle diverges."],
+                 ltypes, img_side="right", img_w=6.0, img_h=3.6,
+                 panel_title="Converging vs diverging shapes",
+                 caption="Six standard lens cross-sections",
+                 notes="Show all six shapes. The one rule: judge by the middle "
+                       "— thicker converges, thinner diverges, regardless of "
+                       "the exact faces.")
     b.bullets("REFRACTION", "Refraction Through Equi-Convex & Equi-Concave Lenses", [
         ("Equi-convex lens", "Both surfaces bulge outward; a parallel beam "
          "converges to a real focus on the far side."),
@@ -90,6 +105,17 @@ def deck1():
     ], panel_title="The vocabulary of lenses",
        notes="Drill these terms with the diagram. Stress a lens has TWO foci, "
              "equally spaced on both sides.")
+    b.cards("MORE TERMS", "Curvature, Aperture & the Two Centres", [
+        ("Centres of curvature", "the centres of the two spheres whose "
+         "surfaces form the lens (C₁ and C₂)."),
+        ("Radii of curvature", "the radii of those two spheres (R₁ and R₂); a "
+         "smaller radius is more sharply curved."),
+        ("Aperture", "the effective diameter of the lens through which light "
+         "passes."),
+        ("Brightness", "a larger aperture gathers more light, giving a "
+         "brighter (not bigger) image."),
+    ], notes="Define centre/radius of curvature and aperture. Tie aperture to "
+             "brightness — sets up the half-covered-lens idea.")
     b.statement("FOCAL LENGTH", "Principal Focus & Focal Length",
                 "Parallel rays close to the principal axis converge at the "
                 "principal focus of a convex lens after refraction.",
@@ -122,7 +148,19 @@ def deck1():
         ("Concave lens", "Gives only a virtual, erect, diminished image."),
     ], notes="Define real vs virtual precisely — the screen test is the "
              "clearest way for students to tell them apart.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.statement("DEPENDS ON THE MEDIUM", "A Lens Depends on the Surrounding Medium",
+                "Whether a lens converges or diverges depends on how its "
+                "refractive index compares with that of the medium around it.",
+                points=["In air, a convex glass lens is converging because "
+                        "glass is denser than air.",
+                        "Placed in a still denser medium, a convex lens can act "
+                        "as a diverging lens.",
+                        "An air bubble in water is thicker in the middle yet "
+                        "diverges light — it behaves like a concave lens."],
+                notes="Important ICSE subtlety: 'convex = converging' only holds "
+                      "when the lens is optically denser than its surroundings. "
+                      "The air-bubble-in-water example is the classic test.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Predict the Image", "An object is placed 25 cm from a convex "
              "lens of focal length 10 cm. Without calculating, what is the "
              "image like?", ["Real, inverted and diminished",
@@ -161,6 +199,15 @@ def deck1():
              "With the object between F and 2F, the image forms beyond 2F and "
              "is real, inverted and magnified — exactly how a projector throws "
              "an enlarged picture on the screen.")
+    b.quiz_q(5, "Air Bubble", "A spherical air bubble inside water is thicker "
+             "in the middle, yet it makes a parallel beam of light spread out. "
+             "It behaves like a:", ["Converging (convex) lens",
+              "Diverging (concave) lens", "Plane glass slab", "Prism"])
+    b.quiz_a(5, "B. Diverging (concave) lens",
+             "The bubble is optically rarer than the surrounding water, so "
+             "light bends the opposite way to a glass-in-air lens. Despite its "
+             "convex shape it diverges light — whether a lens converges depends "
+             "on its index relative to the medium around it.")
     b.divider(2, "Part 2", "Images in a Convex Lens",
               "How the image changes as the object moves")
     b.text_image("IMAGE FORMATION", "Object Beyond 2F",
@@ -210,6 +257,28 @@ def deck1():
                  caption="Within F → virtual, erect, magnified image",
                  notes="Demonstrate with a real magnifying glass over text. "
                        "Emphasise the object must be within the focal length.")
+    b.cards("CONVEX vs CONCAVE", "Convex and Concave Lens at a Glance", [
+        ("Shape", "Convex is thicker in the middle; concave is thinner in the "
+         "middle."),
+        ("Action on light", "Convex converges a parallel beam; concave "
+         "diverges it."),
+        ("Focus", "Convex has a real focus; concave has a virtual focus."),
+        ("Typical image", "Convex can give real or virtual images; concave "
+         "gives only virtual, erect, diminished images."),
+    ], notes="A clean comparison table — a common 'state the differences' "
+             "exam question.")
+    b.bullets("IDENTIFY IT", "Telling a Convex Lens From a Concave Lens", [
+        ("By touch", "A convex lens feels thicker at the centre; a concave "
+         "lens feels thinner at the centre."),
+        ("Look through it", "Convex magnifies nearby print; concave always "
+         "makes it look smaller."),
+        ("Move it over print", "With a convex lens the letters move opposite "
+         "to the lens; with a concave lens they move the same way."),
+        ("Focus the Sun", "Only a convex lens can focus sunlight to a tiny "
+         "bright spot."),
+    ], panel_title="Simple lab tests",
+       notes="Practical ways to identify a lens without instruments — useful "
+             "for the lab and for application questions.")
     b.cards("REAL LIFE", "Where Convex Lenses Are Used", [
         ("Camera", "Forms a small real image of the scene on the film/sensor."),
         ("Projector", "Object just beyond F gives a large real image on the "
@@ -227,7 +296,7 @@ def deck1():
         ("Convex images", "real & inverted beyond F; virtual & erect within F"),
         ("Magnifier", "object within F → virtual, erect, magnified"),
     ], notes="Cold-call the six image cases as a rapid recap.")
-    b.quiz_intro("Quiz 2", "Final Check — Convex Images", 4)
+    b.quiz_intro("Quiz 2", "Final Check — Convex Images", 5)
     b.quiz_q(1, "Camera", "To form a small, real, inverted image (as in a "
              "camera), the object should be:", ["Within F", "At F",
              "Between F and 2F", "Beyond 2F"])
@@ -255,6 +324,14 @@ def deck1():
     b.quiz_a(4, "C. At the focus F",
              "With the object exactly at F, the refracted rays emerge parallel "
              "and meet only at infinity — so no image is formed on a screen.")
+    b.quiz_q(5, "Distant Object", "The image of a very distant object (the Sun) "
+             "formed by a convex lens is:", ["At 2F, the same size",
+              "At F, a tiny real inverted image", "Within F, virtual and "
+              "erect", "At infinity"])
+    b.quiz_a(5, "B. At F, a tiny real inverted image",
+             "Rays from a far object reach the lens almost parallel, so they "
+             "converge at the focus. The image is real, inverted and very "
+             "small — the basis of the distant-object method for finding f.")
     b.closing("Convex Lenses Shape Our World",
               "From your eye to a camera — placement decides whether the image "
               "is big or small, real or virtual.")
@@ -335,7 +412,7 @@ def deck2():
              notes="Show every sign. The positive v means a real image on the "
                    "far side. Cross-check with the image table (object between "
                    "F and 2F → magnified real image beyond 2F).")
-    b.quiz_intro("Quiz 1", "Quick Check — Concave & Formula", 3)
+    b.quiz_intro("Quiz 1", "Quick Check — Concave & Formula", 5)
     b.quiz_q(1, "Moving the Object", "An object is slowly moved closer to a "
              "concave lens. The image it forms:",
              ["Becomes real and inverted",
@@ -363,6 +440,20 @@ def deck2():
     b.quiz_a(3, "B. 1/v − 1/u = 1/f",
              "The thin-lens formula is 1/v − 1/u = 1/f, with all quantities "
              "carrying their proper signs.")
+    b.quiz_q(4, "Virtual & Diminished", "An object placed anywhere in front of "
+             "a lens always gives a virtual, erect, diminished image. The lens "
+             "must be:", ["Convex", "Concave", "A plane glass slab",
+              "A converging meniscus"])
+    b.quiz_a(4, "B. Concave",
+             "Only a concave (diverging) lens forms a virtual, erect, "
+             "diminished image for every object position. A convex lens does "
+             "this only when the object lies within its focal length.")
+    b.quiz_q(5, "Combined Power", "A +4 D convex lens is held in contact with a "
+             "−1 D concave lens. The power of the combination is:",
+             ["+5 D", "+3 D", "−3 D", "+4 D"])
+    b.quiz_a(5, "B. +3 D",
+             "Powers in contact add algebraically: P = (+4) + (−1) = +3 D. The "
+             "combination behaves as a single convex lens of power 3 D.")
     b.divider(2, "Part 2", "Magnification, Power & Uses",
               "Measuring images, lens strength and applications")
     b.statement("MAGNIFICATION", "Linear Magnification",
@@ -377,6 +468,17 @@ def deck2():
                         "and u."],
                 notes="Define m two ways (heights and distances). The SIGN of m "
                       "encodes real/inverted vs virtual/erect.")
+    b.worked("WORKED EXAMPLE", "Magnification From Heights",
+             "A 4 cm tall object placed before a convex lens forms a real "
+             "image 12 cm tall. Find the magnification and the image height's "
+             "meaning.",
+             ["m = height of image / height of object",
+              "m = h_i / h_o = 12 / 4",
+              "|m| = 3   (image is 3× the object)",
+              "real & inverted, so we write m = −3"],
+             "m = −3 : the image is three times as tall, real and inverted",
+             notes="Use m = h_i/h_o. For a real image we attach a negative "
+                   "sign (inverted). Magnitude 3 means three times taller.")
     b.worked("WORKED EXAMPLE", "Finding the Magnification",
              "For the previous lens, u = −30 cm and v = +60 cm. Find the "
              "magnification and describe the image.",
@@ -406,6 +508,28 @@ def deck2():
              "P = −4 D (negative, because it is a diverging lens)",
              notes="Convert to metres first, keep the negative sign for the "
                    "concave lens.")
+    b.statement("COMBINING LENSES", "Power of Lenses in Contact",
+                "When two thin lenses are placed in contact, their powers "
+                "simply add — taking each sign into account.",
+                formula="P  =  P₁ + P₂        (1/f = 1/f₁ + 1/f₂)",
+                points=["Add the powers with their proper signs (+ for convex, "
+                        "− for concave).",
+                        "The combination acts as a single lens of power P.",
+                        "This is how opticians build a lens of any required "
+                        "power."],
+                notes="Powers in contact add algebraically. Watch the signs — a "
+                      "convex and concave together can partly cancel.")
+    b.worked("WORKED EXAMPLE", "Combining Two Lenses",
+             "A convex lens of power +5 D is placed in contact with a concave "
+             "lens of power −2 D. Find the power and focal length of the "
+             "combination.",
+             ["P = P₁ + P₂ = (+5) + (−2)",
+              "P = +3 D",
+              "f = 1 / P = 1 / 3 m",
+              "f = 0.33 m = 33.3 cm"],
+             "P = +3 D, f ≈ +33 cm — the pair acts as one convex lens",
+             notes="Add powers algebraically (+5 − 2 = +3 D). The positive "
+                   "result means the combination is still converging.")
     b.text_image("APPLICATIONS", "Lenses Around Us",
                  ["Spectacles correct short sight (concave) and long sight "
                   "(convex).",
@@ -428,6 +552,17 @@ def deck2():
          "focus near objects."),
     ], notes="A favourite application question. Match the defect to the "
              "corrective lens and its sign of power.")
+    b.cards("CONCAVE USES", "Where Concave Lenses Are Used", [
+        ("Spectacles for myopia", "A concave lens of the right negative power "
+         "corrects short sight."),
+        ("Door viewer (peephole)", "Gives a wide, erect, diminished view of "
+         "the area outside the door."),
+        ("In instruments", "Used with convex lenses to widen the field of view "
+         "and reduce defects."),
+        ("Laser/beam spreading", "Spreads a narrow beam out over a larger "
+         "area."),
+    ], notes="Concave lenses are less common than convex; the peephole and "
+             "myopia spectacles are the standard examples.")
     b.bullets("EXPERIMENT", "Finding the Focal Length of a Convex Lens", [
         "Point the lens at a distant object (a far window or tree).",
         "Move a white screen behind the lens until a sharp image forms.",

@@ -376,6 +376,49 @@ def lens_as_prisms(key):
     return _render(key, _svg("".join(body), 600, 470), 800, 627)
 
 
+def lens_types(key):
+    """Cross-sections of the six common lens shapes, grouped by type."""
+    h = 42      # half height of a lens
+    def biconvex(cx, cy, b=18):
+        return (f'<path d="M {cx},{cy-h} Q {cx+b},{cy} {cx},{cy+h} '
+                f'Q {cx-b},{cy} {cx},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def planoconvex(cx, cy, b=20):
+        return (f'<path d="M {cx-6},{cy-h} L {cx-6},{cy+h} '
+                f'Q {cx+b},{cy} {cx-6},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def meniscus_conv(cx, cy):
+        # both faces curve the same way; convex face wins → thick centre
+        return (f'<path d="M {cx},{cy-h} Q {cx+22},{cy} {cx},{cy+h} '
+                f'Q {cx+6},{cy} {cx},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def biconcave(cx, cy, w=20, wm=6):
+        return (f'<path d="M {cx-w},{cy-h} L {cx+w},{cy-h} '
+                f'Q {cx+wm},{cy} {cx+w},{cy+h} L {cx-w},{cy+h} '
+                f'Q {cx-wm},{cy} {cx-w},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def planoconcave(cx, cy, w=16, wm=4):
+        return (f'<path d="M {cx-w},{cy-h} L {cx+6},{cy-h} L {cx+6},{cy+h} '
+                f'L {cx-w},{cy+h} Q {cx-wm},{cy} {cx-w},{cy-h} Z" '
+                f'fill="{GLASS}" stroke="{INK}" stroke-width="2"/>')
+    def meniscus_div(cx, cy):
+        # concave face wins → thin centre
+        return (f'<path d="M {cx-4},{cy-h} Q {cx+20},{cy} {cx-4},{cy+h} '
+                f'Q {cx-14},{cy} {cx-4},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    body = [
+        _txt(300, 36, "Converging — thicker in the middle", TEAL, 16),
+        biconvex(140, 110), _txt(140, 178, "bi-convex", MUT, 13),
+        planoconvex(300, 110), _txt(300, 178, "plano-convex", MUT, 13),
+        meniscus_conv(465, 110), _txt(465, 178, "converging meniscus", MUT, 12),
+        _txt(300, 240, "Diverging — thinner in the middle", PURPLE, 16),
+        biconcave(140, 315), _txt(140, 380, "bi-concave", MUT, 13),
+        planoconcave(300, 315), _txt(300, 380, "plano-concave", MUT, 13),
+        meniscus_div(465, 315), _txt(465, 380, "diverging meniscus", MUT, 12),
+    ]
+    return _render(key, _svg("".join(body), 600, 410), 820, 560)
+
+
 VIBGYOR = [("Violet", "#7F00FF"), ("Indigo", "#4B0082"), ("Blue", "#0000FF"),
            ("Green", "#00A000"), ("Yellow", "#FFD000"), ("Orange", "#FF7F00"),
            ("Red", "#FF0000")]
