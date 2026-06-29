@@ -82,7 +82,20 @@ def deck1():
     ], panel_title="The pin-and-protractor method",
        notes="Standard practical: measure i and r for several angles and show "
              "they are equal.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.statement("ROTATING MIRROR", "When the Mirror Turns",
+                "If the mirror is rotated while the incident ray is kept fixed, "
+                "the reflected ray turns through twice that angle.",
+                formula="mirror rotates by θ  →  reflected ray rotates by 2θ",
+                points=["Turning the mirror by θ increases the angle of "
+                        "incidence by θ.",
+                        "The angle of reflection also increases by θ, so the "
+                        "reflected ray swings by 2θ.",
+                        "This is used in the optical lever and in moving-mirror "
+                        "galvanometers."],
+                notes="A favourite ICSE result: for a fixed incident ray, "
+                      "rotating the mirror by θ turns the reflected ray by 2θ. "
+                      "Basis of the optical lever.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Angle of Reflection", "A ray strikes a mirror so that it "
              "makes an angle of 30° with the mirror surface. The angle of "
              "reflection is:", ["30°", "60°", "90°", "15°"])
@@ -112,6 +125,13 @@ def deck1():
     b.quiz_a(4, "B. In the same plane",
              "The second law states that the incident ray, the reflected ray "
              "and the normal at the point of incidence are all in one plane.")
+    b.quiz_q(5, "Turn the Mirror", "A fixed ray of light strikes a mirror. If "
+             "the mirror is rotated by 10°, the reflected ray turns by:",
+             ["5°", "10°", "20°", "0°"])
+    b.quiz_a(5, "C. 20°",
+             "For a fixed incident ray, rotating the mirror by an angle turns "
+             "the reflected ray by twice that angle. So a 10° turn of the "
+             "mirror swings the reflected ray by 20°.")
     b.divider(2, "Part 2", "Plane-Mirror Images",
               "What a flat mirror does to light")
     b.text_image("IMAGE", "Image in a Plane Mirror",
@@ -257,6 +277,17 @@ def deck2():
     ], panel_title="Pole, centre, focus, focal length",
        notes="Define each term against a diagram. These feed straight into the "
              "ray diagrams and f = R/2.")
+    b.cards("MORE TERMS", "Principal Axis, Aperture & the Normal", [
+        ("Principal axis", "The straight line through the pole P and the centre "
+         "of curvature C."),
+        ("Aperture", "The width of the mirror — the part that actually "
+         "reflects light."),
+        ("Normal at a point", "The line joining that point to the centre of "
+         "curvature C."),
+        ("Small aperture", "We assume a small aperture so the rays focus "
+         "sharply at a single point."),
+    ], notes="Round out the terms: principal axis (P–C line), aperture (mirror "
+             "width), and that the normal at any point passes through C.")
     b.statement("f = R/2", "Focus and Focal Length",
                 "For a spherical mirror, the principal focus lies exactly "
                 "halfway between the pole and the centre of curvature.",
@@ -287,7 +318,7 @@ def deck2():
              "Radius of curvature R = 30 cm",
              notes="A distant object images at F, so the screen distance is f. "
                    "Then R = 2f. A neat way to find R experimentally.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Which Converges?", "Which spherical mirror converges a "
              "parallel beam of light to a real focus?",
              ["Convex mirror", "Concave mirror", "Plane mirror",
@@ -315,6 +346,14 @@ def deck2():
     b.quiz_a(4, "B. Virtual, behind the mirror",
              "A convex mirror diverges parallel rays; they only appear to come "
              "from a point behind the mirror, so its focus is virtual.")
+    b.quiz_q(5, "Same-Size Image", "An object placed at the centre of curvature "
+             "of a concave mirror gives an image that is the same size as the "
+             "object. The image is at:", ["The focus F", "The pole P",
+              "The centre of curvature C", "Infinity"])
+    b.quiz_a(5, "C. The centre of curvature C",
+             "With the object at C, the rays return to C, forming a real, "
+             "inverted image of the same size right at the centre of "
+             "curvature.")
     b.divider(2, "Part 2", "Images and Uses",
               "What curved mirrors do, and where we use them")
     b.text_image("CONCAVE IMAGES", "Images in a Concave Mirror",
@@ -329,6 +368,16 @@ def deck2():
                  notes="Concave mirror images change with object position — "
                        "real & inverted for far objects, virtual & magnified "
                        "when close (within F).")
+    b.cards("CONCAVE TABLE", "Concave Mirror: All Object Positions", [
+        ("At infinity / beyond C", "Image at F or between F and C — real, "
+         "inverted, diminished (used in a reflecting telescope)."),
+        ("At C", "Image at C — real, inverted, the same size as the object."),
+        ("Between C and F", "Image beyond C — real, inverted, magnified (a "
+         "projector)."),
+        ("At F / within F", "At F the image is at infinity; within F it is "
+         "virtual, erect and magnified (a shaving mirror)."),
+    ], notes="The full set of concave-mirror cases. Note the cross-over: within "
+             "F the image becomes virtual, erect and magnified.")
     b.text_image("CONVEX IMAGES", "Images in a Convex Mirror",
                  ["A convex mirror always forms the same kind of image.",
                   "The image is virtual, erect and diminished.",
