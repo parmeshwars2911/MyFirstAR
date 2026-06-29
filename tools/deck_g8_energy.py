@@ -75,6 +75,26 @@ def deck1():
              "Work done = 100 J",
              notes="First find the force (the weight), then multiply by the "
                    "height. A clean two-step calculation.")
+    b.statement("POWER", "Power — the Rate of Doing Work",
+                "Power is the rate at which work is done, or the rate at which "
+                "energy is used.",
+                formula="Power  =  work done / time taken        (unit: watt, "
+                        "W)",
+                points=["1 watt = 1 joule of work done in 1 second.",
+                        "A more powerful machine does the same work in less "
+                        "time.",
+                        "Larger powers are measured in kilowatts (1 kW = 1000 "
+                        "W)."],
+                notes="Power = work/time, measured in watts. Distinguish from "
+                      "work: the same job done faster needs more power.")
+    b.worked("WORKED EXAMPLE", "Calculating Power",
+             "A motor does 600 J of work in 4 seconds. Find its power.",
+             ["Power = work done / time taken",
+              "Power = 600 / 4",
+              "Power = 150 W"],
+             "Power = 150 W (150 joules per second)",
+             notes="Divide work by time to get power in watts. Reinforces the "
+                   "difference between work and power.")
     b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Is Work Done?", "In which case is NO work done in the "
              "scientific sense?", ["Lifting a book onto a shelf",
@@ -329,6 +349,17 @@ def deck2():
                         "Some energy usually becomes heat, which spreads out."],
                 notes="The conservation law: energy is only transformed, never "
                       "created or destroyed. Some always ends up as heat.")
+    b.cards("SOURCES", "Sources of Energy", [
+        ("The Sun", "The ultimate source of almost all energy on Earth."),
+        ("Renewable", "Replenished naturally and clean — solar, wind, water "
+         "(hydro) and biomass."),
+        ("Non-renewable", "Finite and polluting — coal, petroleum and natural "
+         "gas (the fossil fuels)."),
+        ("Use wisely", "Save energy and prefer renewables, since fossil fuels "
+         "will run out."),
+    ], notes="Energy sources: the Sun is ultimate; renewables (clean, "
+             "replenished) vs non-renewables (finite fossil fuels). Conserve "
+             "and shift to renewables.")
     b.recap("WRAP UP", "Quick Recap", [
         ("Gravitational PE", "PE = m g h; grows with mass and height"),
         ("Kinetic energy", "KE = ½ m v²; grows with the square of speed"),
