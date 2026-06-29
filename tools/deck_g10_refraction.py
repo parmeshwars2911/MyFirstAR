@@ -106,6 +106,36 @@ def deck1():
     ], panel_title="Light slows down in a denser medium",
        notes="Read the table as a story: as we move to denser media the speed "
              "falls and n rises. Diamond's huge n is why it sparkles.")
+    # 8b relative refractive index
+    b.statement("RELATIVE INDEX", "Absolute and Relative Refractive Index",
+                "The absolute refractive index is measured with respect to "
+                "vacuum; the relative refractive index compares any two media.",
+                formula="₁n₂  =  n₂ / n₁  =  v₁ / v₂  =  λ₁ / λ₂  =  sin i / "
+                        "sin r",
+                points=["Absolute index of a medium: n = c / v (speed in "
+                        "vacuum ÷ speed in medium).",
+                        "Relative index of medium 2 w.r.t. medium 1: ₁n₂ = "
+                        "n₂ / n₁.",
+                        "It equals the ratio of speeds v₁/v₂ and of "
+                        "wavelengths λ₁/λ₂ in the two media.",
+                        "By reversibility, ₁n₂ × ₂n₁ = 1."],
+                notes="Distinguish absolute (w.r.t. vacuum) from relative "
+                      "(between two media). The chain ₁n₂ = n₂/n₁ = v₁/v₂ = "
+                      "λ₁/λ₂ is heavily used in numericals.")
+    # 8c factors affecting refractive index
+    b.cards("WHAT IT DEPENDS ON", "Factors Affecting Refractive Index", [
+        ("Nature of the media", "It depends on the optical densities of the "
+         "two media involved."),
+        ("Colour / wavelength", "n is greatest for violet and least for red; "
+         "it increases as the wavelength decreases."),
+        ("Temperature", "Refractive index decreases slightly as the "
+         "temperature of the medium rises."),
+        ("Optical ≠ mass density", "'Optically denser' means a higher n — not "
+         "necessarily more mass: kerosene is optically denser than water yet "
+         "lighter."),
+    ], notes="Four factors. The colour dependence (violet bends most) underlies "
+             "dispersion; the optical-vs-mass-density distinction is a classic "
+             "ICSE trap (kerosene example).")
     # 9 laws of refraction
     b.statement("LAWS OF REFRACTION", "The Two Laws of Refraction",
                 "Snell's law: the ratio of sin i to sin r is constant for a "
@@ -144,6 +174,18 @@ def deck1():
              "r ≈ 28°  (the ray bends toward the normal, as expected)",
              notes="Set up Snell's law, substitute, solve for sin r, then take "
                    "the inverse sine. Sanity check: r < i because air → glass.")
+    # 11b worked example — relative refractive index
+    b.worked("WORKED EXAMPLE", "Relative Refractive Index",
+             "Light travels at 2.25 × 10⁸ m/s in water and 2.0 × 10⁸ m/s in "
+             "glass. Find the refractive index of glass with respect to water.",
+             ["Relative index:  ₁n₂ = v₁ / v₂   (1 = water, 2 = glass)",
+              "wn_g = v_water / v_glass",
+              "wn_g = (2.25 × 10⁸) / (2.0 × 10⁸)",
+              "wn_g = 1.125"],
+             "Refractive index of glass w.r.t. water ≈ 1.13 (glass is "
+             "optically denser than water)",
+             notes="Use ₁n₂ = v₁/v₂. The answer > 1 confirms glass is optically "
+                   "denser than water, so light slows going water → glass.")
     # 12 refractive index values + reversibility
     b.text_image("REVERSIBILITY", "Principle of Reversibility",
                  ["If a ray of light retraces its path, it travels back along "
@@ -158,7 +200,7 @@ def deck1():
                  notes="Demonstrate with the diagram by flipping the arrowheads. "
                        "Introduce the reciprocal relation ₁n₂ = 1 / ₂n₁.")
     # 13 QUIZ 1
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 3)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Crossing a Boundary", "A ray of light passes from water "
              "(n = 1.33) into glass (n = 1.5). On entering the glass the ray "
              "will:", ["Bend toward the normal and slow down",
@@ -187,6 +229,20 @@ def deck1():
              "Since n = c/v, a smaller n means a larger speed v. So light is "
              "fastest in the optically rarest medium (lowest n) — for example "
              "it travels faster in water than in diamond.")
+    b.quiz_q(4, "Relative Index", "A ray passes from glass (n = 1.5) into "
+             "water (n = 1.33). The refractive index of water with respect to "
+             "glass is about:", ["1.13", "0.89", "1.50", "0.75"])
+    b.quiz_a(4, "B. 0.89",
+             "Relative index = n_water / n_glass = 1.33 / 1.5 ≈ 0.89. A value "
+             "below 1 tells us the second medium (water) is optically rarer "
+             "than the first (glass), so the ray bends away from the normal.")
+    b.quiz_q(5, "Colour and Bending", "White light enters a glass block. Which "
+             "colour is refracted (bent) the most?",
+             ["Red", "Green", "Violet", "All bend equally"])
+    b.quiz_a(5, "C. Violet",
+             "Refractive index is greatest for the shortest wavelength, so "
+             "glass bends violet light most and red least. This unequal bending "
+             "by colour is exactly what splits white light into a spectrum.")
     # 20 part 2
     b.divider(2, "Part 2", "Through a Glass Block",
               "Lateral shift, experiments and thick-glass images")
@@ -278,7 +334,7 @@ def deck1():
     ], notes="Rapid recap. Cold-call students to give each result before "
              "revealing it.")
     # 28 QUIZ 2
-    b.quiz_intro("Quiz 2", "Final Check — Applying It", 4)
+    b.quiz_intro("Quiz 2", "Final Check — Applying It", 5)
     b.quiz_q(1, "Glass Block", "A ray enters a rectangular glass slab at an "
              "angle of incidence of 50°. What is the angle of emergence as it "
              "leaves the opposite, parallel face?",
@@ -308,6 +364,18 @@ def deck1():
     b.quiz_a(4, "B. 0.67",
              "By the principle of reversibility, ₁n₂ × ₂n₁ = 1. So air w.r.t. "
              "glass = 1 / 1.5 = 0.67.")
+    b.quiz_q(5, "Optical vs Mass Density", "Kerosene (n ≈ 1.44) floats on "
+             "water (n ≈ 1.33) yet has a higher refractive index. A ray of "
+             "light passing from water into kerosene will:",
+             ["Bend away from the normal and speed up",
+              "Bend toward the normal and slow down",
+              "Pass straight through",
+              "Be totally internally reflected"])
+    b.quiz_a(5, "B. Bend toward the normal and slow down",
+             "What decides bending is optical density (refractive index), not "
+             "mass density. Kerosene has the higher n, so it is optically "
+             "denser; light entering it slows down and bends toward the normal "
+             "— even though kerosene is the lighter liquid.")
     # closing
     b.closing("Light Bends — With Rules",
               "Remember: speed change causes bending, measure angles from the "
@@ -325,6 +393,8 @@ def deck2():
     bend = b.asset("g10r2_bend", D.refraction_bending("g10r2_bend", denser_below=False))
     fibre = b.asset("g10r2_fibre", D.optical_fibre("g10r2_fibre"))
     rprism = b.asset("g10r2_rprism", D.reflecting_prism("g10r2_rprism"))
+    devgraph = b.asset("g10r2_devgraph", D.prism_deviation_graph("g10r2_devgraph"))
+    mirage = b.asset("g10r2_mirage", D.mirage("g10r2_mirage"))
 
     b.title("ICSE • Class 10 • Optics", "Refraction — Prisms & T.I.R.",
             "The prism  •  Real and apparent depth  •  Critical angle  •  "
@@ -365,6 +435,20 @@ def deck2():
     ], panel_title="Deviation δ depends on three things",
        notes="Introduce the idea of minimum deviation qualitatively; the full "
              "formula is not required, but the U-shaped trend is.")
+    b.text_image("MINIMUM DEVIATION", "The i–δ Curve and Minimum Deviation",
+                 ["Plot the deviation δ against the angle of incidence i.",
+                  "As i increases, δ first falls, reaches a least value, then "
+                  "rises again.",
+                  "This least value is the angle of minimum deviation, δm.",
+                  "At δm the ray passes symmetrically through the prism, so "
+                  "the angle of incidence equals the angle of emergence "
+                  "(i₁ = i₂)."],
+                 devgraph, img_side="right", img_w=5.8, img_h=3.6,
+                 panel_title="One least deviation",
+                 caption="δ is least when the ray passes symmetrically",
+                 notes="Read the U-shaped graph: a single minimum δm at which "
+                       "i₁ = i₂ and the ray inside runs parallel to the base. "
+                       "Qualitative treatment only.")
     b.text_image("APPARENT DEPTH", "Real Depth vs Apparent Depth",
                  ["Light from an object under water bends away from the normal "
                   "as it leaves the water.",
@@ -386,6 +470,27 @@ def deck2():
              "Apparent depth = 1.0 m  (the tank looks 0.33 m shallower)",
              notes="Rearrange the depth formula. Stress the answer is smaller "
                    "than the real depth.")
+    b.statement("APPARENT SHIFT", "How Much an Object is Raised",
+                "The upward shift of an object seen through a medium is the "
+                "difference between its real and apparent depths.",
+                formula="shift  =  real depth − apparent depth  =  t (1 − 1/n)",
+                points=["t is the real depth (thickness) of the medium.",
+                        "A larger refractive index n gives a larger upward "
+                        "shift.",
+                        "The shift does not depend on the angle when viewed "
+                        "nearly straight down."],
+                notes="Derive the shift as real − apparent = t(1 − 1/n). Useful "
+                      "for 'by how much is it raised' numericals.")
+    b.worked("WORKED EXAMPLE", "Apparent Shift of a Coin",
+             "A coin lies at the bottom of a vessel containing water 12 cm "
+             "deep (n = 1.33). By how much does it appear to be raised?",
+             ["shift = t (1 − 1/n)",
+              "shift = 12 × (1 − 1/1.33)",
+              "shift = 12 × (1 − 0.752)",
+              "shift = 12 × 0.248 = 2.98 cm"],
+             "The coin appears raised by ≈ 3 cm (apparent depth ≈ 9 cm)",
+             notes="Apply shift = t(1 − 1/n). Cross-check: apparent depth = "
+                   "12/1.33 ≈ 9 cm, and 12 − 9 = 3 cm matches.")
     b.cards("PRISM vs BLOCK", "Prism Compared With a Glass Block", [
         ("Glass block", "Opposite faces are parallel — the emergent ray is "
          "parallel to the incident ray, only shifted sideways."),
@@ -404,11 +509,12 @@ def deck2():
          "has actually set."),
         ("Stars twinkle", "Light from stars refracts through moving air "
          "layers, so their brightness flickers."),
-        ("Bent / raised look", "Objects in water look bent at the surface and "
-         "raised from the bottom."),
-    ], notes="Each is a consequence of atmospheric or water refraction. Ask "
-             "students which ones they have noticed.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 3)
+        ("Oval Sun at sunset", "Near the horizon the lower edge is lifted more "
+         "than the upper, so the Sun looks flattened/oval."),
+    ], notes="Each is a consequence of atmospheric or water refraction. The "
+             "oval/flattened Sun and the lengthening of the day by a few "
+             "minutes are favourite exam points.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Prism vs Slab", "How does a prism differ from a parallel-"
              "sided glass slab in its effect on a ray of light?",
              ["Both leave the ray parallel to the incident ray",
@@ -439,6 +545,24 @@ def deck2():
              "through the atmosphere. This lifts the Sun's apparent position, "
              "letting us see it slightly before it actually rises (and after "
              "it sets).")
+    b.quiz_q(4, "Minimum Deviation", "As the angle of incidence on a prism is "
+             "increased from a small value, the angle of deviation:",
+             ["Keeps increasing steadily",
+              "Keeps decreasing steadily",
+              "First decreases to a minimum, then increases",
+              "Stays exactly constant"])
+    b.quiz_a(4, "C. First decreases to a minimum, then increases",
+             "The i–δ graph is U-shaped: deviation falls to a single least "
+             "value (the angle of minimum deviation, where i₁ = i₂) and then "
+             "rises again as i is increased further.")
+    b.quiz_q(5, "Raised Coin", "A coin lies under 16 cm of water (n = 1.33). "
+             "By roughly how much does it appear raised when viewed from "
+             "directly above?", ["About 1 cm", "About 4 cm", "About 8 cm",
+              "About 12 cm"])
+    b.quiz_a(5, "B. About 4 cm",
+             "Shift = t(1 − 1/n) = 16 × (1 − 1/1.33) = 16 × 0.248 ≈ 4 cm. "
+             "Equivalently, apparent depth = 16/1.33 ≈ 12 cm, so it is raised "
+             "by about 4 cm.")
     b.divider(2, "Part 2", "Critical Angle & T.I.R.",
               "When light cannot escape a denser medium")
     b.text_image("CRITICAL ANGLE", "The Critical Angle",
@@ -469,6 +593,18 @@ def deck2():
                 notes="State both conditions clearly. Highlight that T.I.R. is "
                       "a perfect, loss-free reflection — the basis of its many "
                       "uses.")
+    b.cards("T.I.R. vs MIRROR", "Total Internal Reflection vs a Plane Mirror", [
+        ("Brightness", "T.I.R. reflects 100% of the light; a silvered mirror "
+         "absorbs a little, so its image is dimmer."),
+        ("No multiple images", "A glass mirror gives faint extra images; "
+         "T.I.R. gives a single, sharp image."),
+        ("No tarnishing", "A mirror's silvering can peel or tarnish; a "
+         "T.I.R. prism surface cannot."),
+        ("Condition", "A mirror reflects at any angle; T.I.R. needs denser → "
+         "rarer and i greater than the critical angle."),
+    ], notes="Direct syllabus comparison. The headline: T.I.R. is total "
+             "(loss-free, single bright image) whereas a mirror loses some "
+             "light and can give multiple/faint images.")
     b.bullets("CRITICAL ANGLE", "Critical Angle of Common Media", [
         ("Water", "n ≈ 1.33, so critical angle C ≈ 49°."),
         ("Ordinary glass", "n ≈ 1.5, so critical angle C ≈ 42°."),
@@ -520,6 +656,21 @@ def deck2():
                  notes="Explain why 45° works: it beats glass's 42° critical "
                        "angle. Contrast with a silvered mirror, which absorbs "
                        "some light.")
+    b.text_image("MIRAGE", "Why a Mirage Forms",
+                 ["On a hot day the air near the road is hottest and "
+                  "optically rarest; higher layers are cooler and denser.",
+                  "Light from the sky bends more and more as it passes down "
+                  "into the rarer air.",
+                  "Near the ground it exceeds the critical angle and is "
+                  "totally internally reflected upward.",
+                  "The eye traces it back to a shimmering patch that looks "
+                  "like water — a mirage."],
+                 mirage, img_side="right", img_w=6.0, img_h=3.4,
+                 panel_title="T.I.R. in hot air",
+                 caption="Sky light curves up by T.I.R. near the hot road",
+                 notes="Mirage is T.I.R. in the atmosphere: rarer hot air below, "
+                       "denser cool air above. The 'water' is really an image "
+                       "of the sky. A classic application question.")
     b.worked("WORKED EXAMPLE", "Critical Angle from Refractive Index",
              "The refractive index of glass is 1.5. Find its critical angle.",
              ["n = 1 / sin C   →   sin C = 1 / n",
@@ -536,7 +687,7 @@ def deck2():
         ("T.I.R.", "denser → rarer and i > C; perfect, loss-free reflection"),
         ("Uses", "optical fibres, reflecting prisms, mirage, diamond sparkle"),
     ], notes="Rapid recap; cold-call for each result.")
-    b.quiz_intro("Quiz 2", "Final Check — Critical Angle & T.I.R.", 4)
+    b.quiz_intro("Quiz 2", "Final Check — Critical Angle & T.I.R.", 5)
     b.quiz_q(1, "Will It Escape?", "Light inside glass (critical angle 42°) "
              "strikes the glass–air surface at 40°. What happens?",
              ["It is totally internally reflected",
@@ -569,6 +720,18 @@ def deck2():
              "Light entering a fibre strikes the walls beyond the critical "
              "angle and undergoes repeated T.I.R., travelling along the fibre "
              "with almost no loss.")
+    b.quiz_q(5, "Prism vs Mirror", "A periscope made with totally reflecting "
+             "prisms gives a brighter, sharper image than one made with plane "
+             "mirrors because total internal reflection:",
+             ["Bends light by a larger angle",
+              "Reflects all the light with no loss or multiple images",
+              "Splits the light into colours",
+              "Works only for red light"])
+    b.quiz_a(5, "B. Reflects all the light with no loss",
+             "A silvered mirror absorbs a little light and can form faint extra "
+             "images. T.I.R. inside a 45° prism reflects 100% of the light and "
+             "gives a single sharp image, so the prism periscope is brighter "
+             "and clearer.")
     b.closing("Trapping Light",
               "Beyond the critical angle, light cannot escape — that is how "
               "optical fibres carry the world's data.")
