@@ -1524,6 +1524,64 @@ def reflecting_prism(key):
     return _render(key, _svg("".join(body), 600, 540), 620, 558)
 
 
+def gold_leaf_electroscope(key):
+    """A gold-leaf electroscope with leaves diverging when charged."""
+    body = [
+        _txt(300, 45, "Gold-leaf electroscope (charged)", INK, 17),
+        # metal disc / cap
+        f'<rect x="220" y="80" width="160" height="18" rx="6" fill="#C9CDD4" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(300, 75, "metal disc", MUT, 13),
+        # vertical metal rod
+        f'<rect x="294" y="98" width="12" height="150" fill="#C9CDD4" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(445, 210, "metal rod", MUT, 13, anchor="start"),
+        _line(438, 207, 312, 200, MUT, 1.2),
+        # glass jar
+        f'<rect x="170" y="150" width="260" height="250" rx="10" '
+        f'fill="{GLASS}" fill-opacity="0.35" stroke="{INK}" stroke-width="2"/>',
+        f'<rect x="200" y="130" width="200" height="26" rx="6" fill="#C9CDD4" '
+        f'stroke="{INK}" stroke-width="2"/>',
+        _txt(455, 300, "glass jar", MUT, 13, anchor="start"),
+        # two diverging gold leaves
+        f'<polygon points="300,248 258,362 270,362 300,250" fill="{GOLD}" '
+        f'stroke="{INK}" stroke-width="1.5"/>',
+        f'<polygon points="300,248 342,362 330,362 300,250" fill="{GOLD}" '
+        f'stroke="{INK}" stroke-width="1.5"/>',
+        _txt(300, 392, "gold leaves diverge", "#9A7B00", 13),
+        # like charges on the leaves
+        _txt(252, 320, "–", RED, 26), _txt(348, 320, "–", RED, 26),
+        _txt(300, 470, "Like charges on the leaves repel, so they spread apart",
+             MUT, 15),
+    ]
+    return _render(key, _svg("".join(body), 600, 500), 700, 583)
+
+
+def charge_interaction(key):
+    """Like charges repel, unlike charges attract."""
+    def ball(cx, cy, sign, col):
+        s = (f'<circle cx="{cx}" cy="{cy}" r="34" fill="none" '
+             f'stroke="{INK}" stroke-width="2.5"/>')
+        s += _txt(cx, cy + 12, sign, col, 34)
+        return s
+    body = [
+        _txt(300, 45, "How charges interact", INK, 18),
+        # top row: like charges repel (force arrows point outward)
+        ball(210, 140, "+", RED), ball(390, 140, "+", RED),
+        _line(170, 140, 110, 140, MUT, 3, marker="arrow"),
+        _line(430, 140, 490, 140, MUT, 3, marker="arrow"),
+        _txt(300, 200, "Like charges REPEL", INK, 16),
+        # bottom row: unlike charges attract (force arrows point inward)
+        ball(160, 320, "+", RED), ball(440, 320, "–", BLUE),
+        _line(208, 320, 270, 320, MUT, 3, marker="arrow"),
+        _line(392, 320, 330, 320, MUT, 3, marker="arrow"),
+        _txt(300, 385, "Unlike charges ATTRACT", INK, 16),
+        _txt(300, 445, "Two of the same sign push apart; opposite signs pull "
+                       "together", MUT, 14),
+    ]
+    return _render(key, _svg("".join(body), 600, 480), 760, 608)
+
+
 if __name__ == "__main__":
     # smoke test
     for fn in [refraction_bending, glass_block, real_apparent_depth,
