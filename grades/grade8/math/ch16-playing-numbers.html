@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Playing with Numbers – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Playing with Numbers</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Playing with Numbers</h1>
+    <p class="subtitle">Chapter 16 · Grade 8 Mathematics</p>
+    <div class="highlight">Numbers have deep patterns hidden inside them. Algebra helps us reveal those patterns — explaining why tricks work, why divisibility rules hold, and how to crack digit puzzles.</div>
+    <p>Topics covered: Numbers in general form · Digit games · Divisibility rules · Cryptarithmetic · Word problems</p>
+  </div>
+
+  <!-- Slide 2: Numbers in General Form -->
+  <div class="slide">
+    <h2>Numbers in General Form</h2>
+    <p>Any number can be expressed algebraically using its digits. This lets us <em>prove</em> why number tricks and divisibility rules work.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>2-Digit Number</h3>
+        <p>A 2-digit number with tens digit <em>a</em> and units digit <em>b</em>:</p>
+        <p class="formula">Number = 10a + b</p>
+        <p><strong>Example:</strong> 47 = <span class="formula">10(4) + 7 = 47 ✓</span></p>
+        <p><strong>Reversed number:</strong> <span class="formula">10b + a</span></p>
+        <p><strong>Sum with reverse:</strong></p>
+        <p><span class="formula">(10a + b) + (10b + a) = 11(a + b)</span></p>
+        <p>Always divisible by 11!</p>
+        <p><strong>Difference with reverse:</strong></p>
+        <p><span class="formula">(10a + b) − (10b + a) = 9(a − b)</span></p>
+        <p>Always divisible by 9!</p>
+      </div>
+      <div class="col-box">
+        <h3>3-Digit Number</h3>
+        <p>A 3-digit number with hundreds digit <em>a</em>, tens digit <em>b</em>, units digit <em>c</em>:</p>
+        <p class="formula">Number = 100a + 10b + c</p>
+        <p><strong>Example:</strong> 352 = <span class="formula">100(3) + 10(5) + 2 ✓</span></p>
+        <p><strong>Three cyclic permutations:</strong></p>
+        <p><span class="formula">100a+10b+c</span></p>
+        <p><span class="formula">100b+10c+a</span></p>
+        <p><span class="formula">100c+10a+b</span></p>
+        <p><strong>Sum of all three:</strong></p>
+        <p><span class="formula">= 111(a+b+c) = 3 × 37 × (a+b+c)</span></p>
+        <p>Always divisible by 3, 37, and 111!</p>
+        <div class="highlight">Writing numbers in general form (using algebra) turns observations into proofs.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Games with Numbers -->
+  <div class="slide">
+    <h2>Games with Numbers: Reversing and Summing Digits</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Game 1: Reversing a 2-Digit Number — Sum</h3>
+        <p>Think of a 2-digit number. Add it to its reverse. Divide by 11. You get the sum of digits — always!</p>
+        <p><strong>Proof:</strong> <span class="formula">(10a+b) + (10b+a) = 11(a+b)</span></p>
+        <p>Divided by 11 = <span class="formula">a + b</span> (sum of digits) ✓</p>
+        <p><strong>Try it:</strong> 73 + 37 = 110 = 11 × (7+3) = 11 × 10</p>
+        <h3>Game 2: Reversing a 2-Digit Number — Difference</h3>
+        <p><strong>Proof:</strong> <span class="formula">(10a+b) − (10b+a) = 9(a−b)</span></p>
+        <p>Always a multiple of 9.</p>
+        <p><strong>Example:</strong> 84 − 48 = 36 = 9 × (8−4) = 9 × 4 ✓</p>
+      </div>
+      <div class="col-box">
+        <h3>Game 3: Three-Digit Cyclic Rotation</h3>
+        <p>Write a 3-digit number abc, then its cyclic rotations bca and cab. Sum all three. The result is always 111 × (a+b+c).</p>
+        <p><strong>Example:</strong> 197, 971, 719</p>
+        <p><span class="formula">197 + 971 + 719 = 1887</span></p>
+        <p><span class="formula">1887 ÷ 111 = 17 = 1+9+7 ✓</span></p>
+        <p><span class="formula">1887 ÷ 37 = 51 = 3 × (1+9+7) ✓</span></p>
+        <h3>Why Tricks Work</h3>
+        <p>All such "magic" results follow from the general form. Algebra reveals the hidden structure — the "magic" is just mathematics!</p>
+        <div class="highlight">Next time you see a number trick, write the number as 10a+b (or 100a+10b+c) and work through the algebra — you'll understand exactly why it works.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Divisibility Rules -->
+  <div class="slide">
+    <h2>Divisibility Rules</h2>
+    <p>These rules let you test divisibility <em>without actually dividing</em>. All can be proved using the general form of numbers.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Divisibility by 2, 5, 10</h3>
+        <p><strong>By 2:</strong> Last digit is 0, 2, 4, 6, or 8 (even).</p>
+        <p><em>Proof:</em> <span class="formula">10a+b</span>; 10a is always even, so only b matters.</p>
+        <p><strong>By 5:</strong> Last digit is 0 or 5.</p>
+        <p><strong>By 10:</strong> Last digit is 0.</p>
+        <h3>Divisibility by 4</h3>
+        <p>The last two digits form a number divisible by 4.</p>
+        <p><strong>Example:</strong> 5236 → last two digits 36; 36 ÷ 4 = 9 ✓</p>
+        <p><strong>Example:</strong> 5238 → last two digits 38; 38 ÷ 4 = 9.5 ✗</p>
+        <h3>Divisibility by 3</h3>
+        <p>Sum of all digits is divisible by 3.</p>
+        <p><strong>Example:</strong> 1,234,563 → 1+2+3+4+5+6+3 = 24; 24÷3 = 8 ✓</p>
+      </div>
+      <div class="col-box">
+        <h3>Divisibility by 9</h3>
+        <p>Sum of all digits is divisible by 9.</p>
+        <p><strong>Example:</strong> 729 → 7+2+9 = 18; 18÷9 = 2 ✓</p>
+        <p><em>Proof (2-digit):</em> <span class="formula">10a+b = 9a + (a+b)</span>. 9a is divisible by 9, so it reduces to checking <span class="formula">a+b</span>.</p>
+        <h3>Divisibility by 11</h3>
+        <p>The alternating digit sum (units − tens + hundreds − …) is divisible by 11 (or equals 0).</p>
+        <p><strong>Example:</strong> 2728 → 8−2+7−2 = 11 ✓</p>
+        <p><strong>Example:</strong> 5082 → 2−8+0−5 = −11 ✓ (negative is fine)</p>
+        <p><strong>Example:</strong> 1001 → 1−0+0−1 = 0 ✓ (0 is divisible by 11)</p>
+        <div class="highlight">Rules for 3 and 9 work because 10 ≡ 1 (mod 3) and (mod 9) — so all powers of 10 contribute just their digit value.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Cryptarithmetic -->
+  <div class="slide">
+    <h2>Letters for Digits (Cryptarithmetic)</h2>
+    <p>In cryptarithmetic puzzles, letters replace digits in arithmetic sums. Your task: find the unique digit each letter represents.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Rules of Cryptarithmetic</h3>
+        <ul>
+          <li>Each letter represents a unique single digit (0–9)</li>
+          <li>Different letters must represent different digits</li>
+          <li>The leading digit of any multi-digit number cannot be 0</li>
+          <li>Use column-by-column logic and carry constraints</li>
+        </ul>
+        <h3>Strategy</h3>
+        <ol>
+          <li>Look at the leftmost column — carries and leading-digit constraints limit options</li>
+          <li>Work column by column (units → tens → hundreds)</li>
+          <li>Use divisibility or range constraints to narrow digits</li>
+          <li>Try candidates systematically and eliminate contradictions</li>
+        </ol>
+      </div>
+      <div class="col-box">
+        <h3>Example 1: AB + BA = CBC</h3>
+        <p>In general form: <span class="formula">(10A+B) + (10B+A) = 100C+10B+C</span></p>
+        <p><span class="formula">11(A+B) = 101C + 10B</span></p>
+        <p>Since digits are 0–9, max LHS = 11×18 = 198, so C = 1.</p>
+        <p><span class="formula">11A + B = 101</span>. With A ≤ 9: A = 9, B = 2.</p>
+        <p>Check: <span class="formula">92 + 29 = 121 = CBC</span> (C=1, B=2) ✓</p>
+        <h3>Example 2: ON × ON = WON</h3>
+        <p>A 2-digit number squared = a 3-digit number starting with W, O, N.</p>
+        <p>So O, N, W are all different digits. 2-digit perfect squares in 100s: 100–999 → ON between 10–31. Try ON = 11 to 31 and check pattern.</p>
+        <div class="highlight">Cryptarithmetic combines algebra, number theory, and logic — a beautiful puzzle format used in math olympiads.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Puzzles and Word Problems -->
+  <div class="slide">
+    <h2>Test of Divisibility Puzzles and Word Problems</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Finding Missing Digits</h3>
+        <p><strong>Problem 1:</strong> Find A so that 31A5 is divisible by 3.</p>
+        <p>Sum = 3+1+A+5 = 9+A must be divisible by 3.</p>
+        <p>9 is divisible by 3, so A can be 0, 3, 6, or 9.</p>
+        <p><strong>Problem 2:</strong> Find A so that 7A3 is divisible by 9.</p>
+        <p>Sum = 7+A+3 = 10+A must be divisible by 9.</p>
+        <p><span class="formula">A = 8</span> (since 10+8 = 18 = 2×9) ✓</p>
+        <p>Check: 783 ÷ 9 = 87 ✓</p>
+        <p><strong>Problem 3:</strong> For what values of A is 64A3 divisible by 11?</p>
+        <p>Alternating sum: 3−A+4−6 = 1−A must be divisible by 11.</p>
+        <p><span class="formula">1−A = 0 → A = 1</span> or <span class="formula">1−A = −11 → A = 12</span> (impossible).</p>
+        <p>So A = 1. Check: 6413; alt sum = 3−1+4−6 = 0 ✓</p>
+      </div>
+      <div class="col-box">
+        <h3>Word Problems</h3>
+        <p><strong>Problem 1:</strong> The sum of a 2-digit number and its reverse is 110. Their difference is 36. Find the number.</p>
+        <p>Sum: <span class="formula">11(a+b) = 110 → a+b = 10</span></p>
+        <p>Difference: <span class="formula">9(a−b) = 36 → a−b = 4</span></p>
+        <p>Solving: <span class="formula">a = 7, b = 3 → 73</span></p>
+        <p>Verify: 73+37 = 110 ✓; 73−37 = 36 ✓</p>
+        <p><strong>Problem 2:</strong> A 2-digit number is 4 times the sum of its digits. If 9 is added, the digits reverse. Find the number.</p>
+        <p>Number = <span class="formula">10a+b = 4(a+b) → 6a = 3b → b = 2a</span></p>
+        <p>Reversed: <span class="formula">10a+b+9 = 10b+a → 9a−9b = −9 → b−a = 1</span></p>
+        <p><span class="formula">b = 2a</span> and <span class="formula">b−a = 1 → a = 1, b = 2 → 12</span></p>
+        <p>Verify: 12 = 4(1+2) = 12 ✓; 12+9 = 21 (reversed) ✓</p>
+        <div class="highlight">Always verify your answer by substituting back into the original problem — both conditions must be satisfied.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Chapter Summary – Playing with Numbers</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>General Forms</h3>
+        <p class="formula">2-digit (ab) = 10a + b</p>
+        <p class="formula">3-digit (abc) = 100a + 10b + c</p>
+        <p>Sum with reverse (2-digit) = <span class="formula">11(a+b)</span></p>
+        <p>Difference with reverse = <span class="formula">9(a−b)</span></p>
+        <p>Sum of 3 cyclic rotations = <span class="formula">111(a+b+c)</span></p>
+        <h3>Divisibility Rules</h3>
+        <p><strong>By 2:</strong> last digit even</p>
+        <p><strong>By 3:</strong> digit sum divisible by 3</p>
+        <p><strong>By 4:</strong> last two digits divisible by 4</p>
+        <p><strong>By 5:</strong> last digit 0 or 5</p>
+        <p><strong>By 9:</strong> digit sum divisible by 9</p>
+        <p><strong>By 10:</strong> last digit 0</p>
+        <p><strong>By 11:</strong> alternating digit sum divisible by 11</p>
+      </div>
+      <div class="col-box">
+        <h3>Cryptarithmetic</h3>
+        <ul>
+          <li>Each letter = unique digit (0–9)</li>
+          <li>Leading digit ≠ 0</li>
+          <li>Use column logic, carries, and range constraints</li>
+          <li>Verify answer in original sum</li>
+        </ul>
+        <h3>Problem-Solving Approach</h3>
+        <ol>
+          <li>Write the number(s) in general form</li>
+          <li>Set up algebraic equations from the given conditions</li>
+          <li>Solve the system and check digit constraints (0–9, integer, not leading zero)</li>
+          <li>Verify all conditions are satisfied</li>
+        </ol>
+        <div class="highlight">The central theme: algebra explains why number properties hold. Every "magic" number trick is a theorem in disguise!</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>

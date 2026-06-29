@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Grade 9 – AR Learning Hub</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: #060614; color: #fff; min-height: 100vh; }
+header { padding: 28px 32px 0; text-align: center; }
+header .badge { font-size: 11px; letter-spacing: 3px; color: #64b4ff; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+header h1 { font-size: 2.4rem; font-weight: 800; background: linear-gradient(90deg,#64b4ff,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+header p { color: #7799bb; margin-top: 8px; font-size: 0.95rem; }
+
+nav.breadcrumb { padding: 12px 32px; font-size: 0.82rem; color: #446; }
+nav.breadcrumb a { color: #64b4ff; text-decoration: none; }
+
+.subjects { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 28px 32px 60px; max-width: 1100px; margin: 0 auto; }
+@media(max-width:700px){ .subjects { grid-template-columns: 1fr; } }
+
+.subject-card {
+  background: linear-gradient(135deg, #0e1a3a, #0b1e30);
+  border-radius: 14px;
+  border: 1px solid rgba(100,180,255,0.15);
+  overflow: hidden;
+}
+
+.subject-card .card-header {
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid rgba(100,180,255,0.1);
+}
+
+.subject-card .card-header .icon { font-size: 2rem; }
+.subject-card .card-header h2 { font-size: 1.15rem; font-weight: 700; }
+.subject-card .card-header span { font-size: 0.78rem; color: #7799bb; }
+
+.chapter-list { padding: 12px 0; }
+.chapter-list a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 22px;
+  color: #cde;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.chapter-list a:hover { background: rgba(100,180,255,0.08); color: #fff; }
+.chapter-list a .num {
+  min-width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(100,180,255,0.12); border: 1px solid rgba(100,180,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 700; color: #64b4ff;
+}
+
+footer { text-align: center; padding: 20px; color: #446; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+footer a { color: #64b4ff; text-decoration: none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">AR Learning Platform</div>
+  <h1>Grade 9</h1>
+  <p>Interactive AR-powered lessons for Science &amp; Mathematics</p>
+</header>
+<nav class="breadcrumb"><a href="../../index.html">Home</a> › Grade 9</nav>
+
+<div class="subjects">
+  <!-- Science -->
+  <div class="subject-card">
+    <div class="card-header">
+      <div class="icon">🔬</div>
+      <div>
+        <h2>Science</h2>
+        <span>15 Chapters</span>
+      </div>
+    </div>
+    <div class="chapter-list">
+      <a href="science/ch1-matter.html"><span class="num">1</span> Matter in Our Surroundings</a>
+      <a href="science/ch2-pure-substances.html"><span class="num">2</span> Is Matter Around Us Pure?</a>
+      <a href="science/ch3-atoms-molecules.html"><span class="num">3</span> Atoms and Molecules</a>
+      <a href="science/ch4-structure-atom.html"><span class="num">4</span> Structure of the Atom</a>
+      <a href="science/ch5-fundamental-unit.html"><span class="num">5</span> The Fundamental Unit of Life</a>
+      <a href="science/ch6-tissues.html"><span class="num">6</span> Tissues</a>
+      <a href="science/ch7-diversity.html"><span class="num">7</span> Diversity in Living Organisms</a>
+      <a href="science/ch8-motion.html"><span class="num">8</span> Motion</a>
+      <a href="science/ch9-force-laws.html"><span class="num">9</span> Force and Laws of Motion</a>
+      <a href="science/ch10-gravitation.html"><span class="num">10</span> Gravitation</a>
+      <a href="science/ch11-work-energy.html"><span class="num">11</span> Work and Energy</a>
+      <a href="science/ch12-sound-g9.html"><span class="num">12</span> Sound</a>
+      <a href="science/ch13-disease.html"><span class="num">13</span> Why Do We Fall Ill?</a>
+      <a href="science/ch14-natural-resources.html"><span class="num">14</span> Natural Resources</a>
+      <a href="science/ch15-food-resources.html"><span class="num">15</span> Improvement in Food Resources</a>
+    </div>
+  </div>
+
+  <!-- Math -->
+  <div class="subject-card">
+    <div class="card-header">
+      <div class="icon">📐</div>
+      <div>
+        <h2>Mathematics</h2>
+        <span>15 Chapters</span>
+      </div>
+    </div>
+    <div class="chapter-list">
+      <a href="math/ch1-number-systems.html"><span class="num">1</span> Number Systems</a>
+      <a href="math/ch2-polynomials.html"><span class="num">2</span> Polynomials</a>
+      <a href="math/ch3-coordinate-geometry.html"><span class="num">3</span> Coordinate Geometry</a>
+      <a href="math/ch4-linear-equations-2var.html"><span class="num">4</span> Linear Equations in Two Variables</a>
+      <a href="math/ch5-euclid-geometry.html"><span class="num">5</span> Introduction to Euclid's Geometry</a>
+      <a href="math/ch6-lines-angles.html"><span class="num">6</span> Lines and Angles</a>
+      <a href="math/ch7-triangles.html"><span class="num">7</span> Triangles</a>
+      <a href="math/ch8-quadrilaterals.html"><span class="num">8</span> Quadrilaterals</a>
+      <a href="math/ch9-areas-parallelograms.html"><span class="num">9</span> Areas of Parallelograms and Triangles</a>
+      <a href="math/ch10-circles.html"><span class="num">10</span> Circles</a>
+      <a href="math/ch11-constructions.html"><span class="num">11</span> Constructions</a>
+      <a href="math/ch12-heron-formula.html"><span class="num">12</span> Heron's Formula</a>
+      <a href="math/ch13-surface-volumes.html"><span class="num">13</span> Surface Areas and Volumes</a>
+      <a href="math/ch14-statistics.html"><span class="num">14</span> Statistics</a>
+      <a href="math/ch15-probability.html"><span class="num">15</span> Probability</a>
+    </div>
+  </div>
+</div>
+
+<footer><a href="../../index.html">← Back to Home</a> &nbsp;|&nbsp; Grade 9 AR Learning Hub</footer>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visualising Solid Shapes – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Visualising Solid Shapes</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Visualising Solid Shapes</h1>
+    <p class="subtitle">Chapter 10 · Grade 8 Mathematics</p>
+    <div class="highlight">Moving from 2D drawings to understanding true 3D forms — how shapes look, how we count their parts, and how we represent them on paper.</div>
+    <p>Topics covered: 3D shape review · Views of solids · Euler's formula · Maps vs pictures · Polyhedra and Platonic solids</p>
+  </div>
+
+  <!-- Slide 2: 3D Shapes Review -->
+  <div class="slide">
+    <h2>3D Shapes: A Review</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Common 3D Shapes</h3>
+        <p><strong>Cube:</strong> 6 square faces, all equal. Example: dice.</p>
+        <p><strong>Cuboid (Rectangular Prism):</strong> 6 rectangular faces. Example: brick, matchbox.</p>
+        <p><strong>Cylinder:</strong> 2 circular flat faces + 1 curved surface. Example: tin can.</p>
+        <p><strong>Cone:</strong> 1 circular base + 1 curved surface tapering to a point. Example: ice-cream cone.</p>
+        <p><strong>Sphere:</strong> Perfectly round, no edges or vertices. Example: ball.</p>
+      </div>
+      <div class="col-box">
+        <h3>Prisms and Pyramids</h3>
+        <p><strong>Prism:</strong> Two identical, parallel polygonal bases joined by rectangles.</p>
+        <ul>
+          <li>Triangular prism: triangular bases</li>
+          <li>Square prism = cuboid</li>
+          <li>Hexagonal prism: hexagonal bases</li>
+        </ul>
+        <p><strong>Pyramid:</strong> One polygonal base; all other faces are triangles meeting at an apex.</p>
+        <ul>
+          <li>Square pyramid: square base + 4 triangular faces</li>
+          <li>Triangular pyramid = tetrahedron</li>
+        </ul>
+        <div class="highlight">Number of faces in a prism = n + 2 (where n = sides of base polygon). In a pyramid = n + 1.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Views of 3D Shapes -->
+  <div class="slide">
+    <h2>Views of 3D Shapes: Front, Side, and Top</h2>
+    <p>A 3D solid can look completely different depending on the direction from which you view it. Engineers and architects use three standard views.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Three Standard Views</h3>
+        <p><strong>Front view (elevation):</strong> What you see looking straight at the front of the object.</p>
+        <p><strong>Side view (side elevation):</strong> What you see looking from the left or right.</p>
+        <p><strong>Top view (plan):</strong> What you see looking directly from above (bird's-eye view).</p>
+        <h3>Example: Cylinder</h3>
+        <p>Front view → Rectangle</p>
+        <p>Side view → Rectangle</p>
+        <p>Top view → Circle</p>
+      </div>
+      <div class="col-box">
+        <h3>Example: Cone</h3>
+        <p>Front view → Triangle</p>
+        <p>Side view → Triangle</p>
+        <p>Top view → Circle with a dot at centre</p>
+        <h3>Example: Sphere</h3>
+        <p>Front / Side / Top view → All circles!</p>
+        <h3>Example: Cube</h3>
+        <p>Front view → Square</p>
+        <p>Side view → Square</p>
+        <p>Top view → Square</p>
+        <div class="highlight">Isometric drawing represents 3D objects on a 2D surface using a triangular dot grid, preserving relative dimensions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Euler's Formula -->
+  <div class="slide">
+    <h2>Euler's Formula: V − E + F = 2</h2>
+    <p>For any convex polyhedron, the number of Vertices (V), Edges (E), and Faces (F) are always related by:</p>
+    <p class="formula">V − E + F = 2</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Verification with Common Shapes</h3>
+        <p><strong>Cube:</strong> V = 8, E = 12, F = 6</p>
+        <p><span class="formula">8 − 12 + 6 = 2 ✓</span></p>
+        <p><strong>Triangular Prism:</strong> V = 6, E = 9, F = 5</p>
+        <p><span class="formula">6 − 9 + 5 = 2 ✓</span></p>
+        <p><strong>Square Pyramid:</strong> V = 5, E = 8, F = 5</p>
+        <p><span class="formula">5 − 8 + 5 = 2 ✓</span></p>
+        <p><strong>Tetrahedron:</strong> V = 4, E = 6, F = 4</p>
+        <p><span class="formula">4 − 6 + 4 = 2 ✓</span></p>
+      </div>
+      <div class="col-box">
+        <h3>Using Euler's Formula</h3>
+        <p>If a polyhedron has 12 faces and 30 edges, how many vertices?</p>
+        <p><span class="formula">V − 30 + 12 = 2</span></p>
+        <p><span class="formula">V = 2 + 30 − 12 = 20</span></p>
+        <p>This is the dodecahedron (12 pentagonal faces)!</p>
+        <h3>Important Limitations</h3>
+        <ul>
+          <li>Formula applies only to polyhedra (flat faces, straight edges)</li>
+          <li>Does not apply to shapes with holes (e.g., a doughnut)</li>
+          <li>Does not apply to non-convex (concave) polyhedra in all cases</li>
+        </ul>
+        <div class="highlight">Leonhard Euler (1707–1783) discovered this relationship — one of the most elegant results in geometry!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Maps vs Pictures -->
+  <div class="slide">
+    <h2>Maps vs Pictures; Scale in Maps</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Maps vs Photographs/Pictures</h3>
+        <p><strong>Photographs/Pictures:</strong></p>
+        <ul>
+          <li>Show perspective — objects closer appear bigger</li>
+          <li>Not to a fixed scale; dimensions not directly readable</li>
+          <li>Represent a scene from a particular viewpoint</li>
+        </ul>
+        <p><strong>Maps:</strong></p>
+        <ul>
+          <li>Top-down (bird's-eye) view</li>
+          <li>Drawn to a fixed scale throughout</li>
+          <li>Distances can be measured and converted</li>
+          <li>Direction is consistent (North usually up)</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Scale in Maps</h3>
+        <p><strong>Scale</strong> expresses the ratio of map distance to actual distance.</p>
+        <p class="formula">Scale = Map Distance / Actual Distance</p>
+        <p><strong>Example:</strong> A map has scale 1 : 50,000. If two towns are 4 cm apart on the map:</p>
+        <p><span class="formula">Actual distance = 4 × 50,000 = 200,000 cm = 2 km</span></p>
+        <p><strong>Another example:</strong> Scale 1 cm : 5 m. A room is 3 m × 4 m. On the map: <span class="formula">0.6 cm × 0.8 cm</span></p>
+        <div class="highlight">Maps use a uniform scale — every part of the map uses the same ratio, unlike pictures which show perspective distortion.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Polyhedra and Platonic Solids -->
+  <div class="slide">
+    <h2>Polyhedra: Convex, Concave, and Platonic Solids</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Types of Polyhedra</h3>
+        <p><strong>Polyhedron:</strong> A 3D solid with flat polygonal faces, straight edges, and sharp vertices. No curved surfaces.</p>
+        <p><strong>Convex polyhedron:</strong> Any two points inside can be joined by a segment that stays entirely inside. No "dent." Example: cube.</p>
+        <p><strong>Concave (non-convex) polyhedron:</strong> Has at least one "dent" — a segment joining two interior points may go outside. Example: a star-shaped solid.</p>
+        <p><strong>Regular polyhedron:</strong> All faces are identical regular polygons and all vertices are identical.</p>
+      </div>
+      <div class="col-box">
+        <h3>The Five Platonic Solids</h3>
+        <p>These are the only 5 convex regular polyhedra:</p>
+        <p><strong>Tetrahedron:</strong> 4 equilateral triangles, V=4, E=6, F=4</p>
+        <p><strong>Cube (Hexahedron):</strong> 6 squares, V=8, E=12, F=6</p>
+        <p><strong>Octahedron:</strong> 8 equilateral triangles, V=6, E=12, F=8</p>
+        <p><strong>Dodecahedron:</strong> 12 pentagons, V=20, E=30, F=12</p>
+        <p><strong>Icosahedron:</strong> 20 equilateral triangles, V=12, E=30, F=20</p>
+        <div class="highlight">All five Platonic solids satisfy Euler's formula: V − E + F = 2. Plato associated them with the four elements and the cosmos!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Chapter Summary – Visualising Solid Shapes</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Key Concepts</h3>
+        <ul>
+          <li>3D shapes have length, breadth, and height; key types include prisms, pyramids, cylinders, cones, spheres</li>
+          <li>Any solid can be viewed from front, side, or top — each gives a 2D projection</li>
+          <li>Euler's formula: <span class="formula">V − E + F = 2</span> holds for all convex polyhedra</li>
+          <li>Maps are to scale (top-view); pictures show perspective</li>
+          <li>Scale = map distance ÷ actual distance</li>
+          <li>Only 5 Platonic (convex regular) solids exist</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Key Terms</h3>
+        <p><strong>Polyhedron:</strong> Solid with flat faces</p>
+        <p><strong>Edge:</strong> Line segment where two faces meet</p>
+        <p><strong>Vertex:</strong> Corner point where edges meet</p>
+        <p><strong>Face:</strong> Flat polygonal surface</p>
+        <p><strong>Convex:</strong> No "dents"; all diagonals inside</p>
+        <p><strong>Prism:</strong> Two parallel identical bases</p>
+        <p><strong>Pyramid:</strong> One base, triangular lateral faces</p>
+        <p><strong>Euler's Formula:</strong> <span class="formula">V − E + F = 2</span></p>
+        <p><strong>Scale:</strong> Ratio of map distance to real distance</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mensuration – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Mensuration</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Mensuration</h1>
+    <p class="subtitle">Chapter 11 · Grade 8 Mathematics</p>
+    <div class="highlight">The branch of mathematics that deals with the measurement of geometric figures — their lengths, areas, and volumes.</div>
+    <p>Topics covered: Area of trapezium &amp; rhombus · Area of general polygons · Surface area of 3D shapes · Volume of 3D shapes · Unit conversions</p>
+  </div>
+
+  <!-- Slide 2: Area of Trapezium and Rhombus -->
+  <div class="slide">
+    <h2>Area of Trapezium and Rhombus</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Trapezium</h3>
+        <p>A trapezium has one pair of parallel sides (called parallel sides or bases) with lengths <em>a</em> and <em>b</em>, and a perpendicular height <em>h</em> between them.</p>
+        <p class="formula">Area of trapezium = ½ × (a + b) × h</p>
+        <p><strong>Why?</strong> A trapezium can be split into a rectangle and two triangles, or seen as the average of the two parallel sides multiplied by the height.</p>
+        <p><strong>Example:</strong> Parallel sides = 8 cm and 12 cm, height = 5 cm</p>
+        <p><span class="formula">Area = ½ × (8 + 12) × 5 = ½ × 20 × 5 = 50 cm²</span></p>
+      </div>
+      <div class="col-box">
+        <h3>Rhombus</h3>
+        <p>A rhombus has all four sides equal. Its diagonals bisect each other at right angles. If the diagonals have lengths <em>d₁</em> and <em>d₂</em>:</p>
+        <p class="formula">Area of rhombus = ½ × d₁ × d₂</p>
+        <p><strong>Why?</strong> The diagonals divide the rhombus into 4 right-angled triangles. Total area = 4 × (½ × d₁/2 × d₂/2) = ½ d₁d₂.</p>
+        <p><strong>Example:</strong> d₁ = 10 cm, d₂ = 6 cm</p>
+        <p><span class="formula">Area = ½ × 10 × 6 = 30 cm²</span></p>
+        <div class="highlight">A square is a special rhombus where d₁ = d₂. For a square of side a: <span class="formula">d₁ = d₂ = a√2</span>, giving Area = ½ × a√2 × a√2 = a² ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Area of General Polygon -->
+  <div class="slide">
+    <h2>Area of a General Polygon</h2>
+    <p>Irregular polygons can be divided into triangles and trapezoids (trapeziums) whose areas are easy to calculate.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Triangulation Method</h3>
+        <p>Draw diagonals from one vertex to split the polygon into triangles.</p>
+        <p>For an <em>n</em>-sided polygon: it splits into <em>(n−2)</em> triangles.</p>
+        <p><strong>Example (Pentagon):</strong> 5 sides → 3 triangles</p>
+        <p>Calculate area of each triangle using <span class="formula">½ × base × height</span> and add up.</p>
+        <h3>Strip Method</h3>
+        <p>For irregular shapes drawn on grid paper:</p>
+        <ul>
+          <li>Count whole squares inside</li>
+          <li>Count half-squares (roughly ½ each)</li>
+          <li><span class="formula">Area ≈ full squares + ½ × boundary squares</span></li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Trapezoid-Strip Method (for fields)</h3>
+        <p>Divide the polygon into vertical strips using a base line. Each strip is approximately a trapezium.</p>
+        <p>Measure heights at regular intervals (h₀, h₁, h₂, …hₙ) and use:</p>
+        <p class="formula">Area ≈ d × [(h₀+hₙ)/2 + h₁ + h₂ + … + hₙ₋₁]</p>
+        <p>where <em>d</em> is the uniform strip width.</p>
+        <h3>Practical Example</h3>
+        <p>A hexagonal plot: draw a rectangle around it, calculate the rectangle's area, then subtract the corner triangles that lie outside the hexagon.</p>
+        <div class="highlight">All mensuration problems reduce to: identify the component shapes, find each area/volume, and add or subtract.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Surface Area of 3D Shapes -->
+  <div class="slide">
+    <h2>Surface Area of Cube, Cuboid, and Cylinder</h2>
+    <p><strong>Surface area</strong> = total area of all faces of a 3D solid. Think of it as the area of the net (unfolded shape).</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Cube (side = a)</h3>
+        <p>6 identical square faces, each with area <span class="formula">a²</span></p>
+        <p class="formula">Total Surface Area = 6a²</p>
+        <p><strong>Example:</strong> a = 5 cm → SA = 6 × 25 = 150 cm²</p>
+        <h3>Cuboid (l × b × h)</h3>
+        <p>3 pairs of rectangular faces:</p>
+        <ul>
+          <li>Top + Bottom: <span class="formula">2 × lb</span></li>
+          <li>Front + Back: <span class="formula">2 × lh</span></li>
+          <li>Left + Right: <span class="formula">2 × bh</span></li>
+        </ul>
+        <p class="formula">Total Surface Area = 2(lb + bh + lh)</p>
+        <p><strong>Example:</strong> l=6, b=4, h=3 → SA = 2(24+12+18) = 2×54 = 108 cm²</p>
+        <p><strong>Lateral Surface Area</strong> (excluding top &amp; bottom): <span class="formula">2(l + b) × h</span></p>
+      </div>
+      <div class="col-box">
+        <h3>Cylinder (radius = r, height = h)</h3>
+        <p>Components of surface:</p>
+        <ul>
+          <li>2 circular ends: <span class="formula">2 × πr²</span></li>
+          <li>Curved surface (roll out to rectangle: width = circumference = 2πr, height = h): <span class="formula">2πrh</span></li>
+        </ul>
+        <p class="formula">Total Surface Area = 2πr² + 2πrh = 2πr(r + h)</p>
+        <p class="formula">Curved Surface Area = 2πrh</p>
+        <p><strong>Example:</strong> r = 7 cm, h = 10 cm (use π = 22/7)</p>
+        <p><span class="formula">TSA = 2 × (22/7) × 7 × (7+10) = 2 × 22 × 17 = 748 cm²</span></p>
+        <div class="highlight">For open cylinders (like a pipe), use only the curved surface area formula.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Volume -->
+  <div class="slide">
+    <h2>Volume of Cube, Cuboid, and Cylinder</h2>
+    <p><strong>Volume</strong> = amount of space occupied by a 3D solid. Measured in cubic units (cm³, m³, etc.).</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Cube (side = a)</h3>
+        <p class="formula">Volume = a³</p>
+        <p><strong>Example:</strong> a = 4 cm → V = 64 cm³</p>
+        <h3>Cuboid (l × b × h)</h3>
+        <p class="formula">Volume = l × b × h</p>
+        <p><strong>Example:</strong> l=8, b=5, h=3 → V = 120 cm³</p>
+        <p><strong>Intuition:</strong> Volume = Base area × Height = (l × b) × h</p>
+        <h3>Cylinder (radius = r, height = h)</h3>
+        <p class="formula">Volume = πr²h</p>
+        <p><strong>Intuition:</strong> Volume = (Area of circular base) × Height</p>
+        <p><strong>Example:</strong> r = 3.5 cm, h = 10 cm</p>
+        <p><span class="formula">V = (22/7) × 3.5² × 10 = (22/7) × 12.25 × 10 = 385 cm³</span></p>
+      </div>
+      <div class="col-box">
+        <h3>Comparing Surface Area and Volume</h3>
+        <p><strong>Cube vs Cuboid:</strong> A cube uses the least surface area to enclose a given volume — that's why nature uses spheres and cubes efficiently.</p>
+        <p><strong>Example:</strong> Which holds more — a cylinder with r=7, h=2 or r=3.5, h=8?</p>
+        <p>V₁ = π × 49 × 2 = 98π cm³</p>
+        <p>V₂ = π × 12.25 × 8 = 98π cm³</p>
+        <p>Equal volume! But their surface areas differ.</p>
+        <h3>Applications</h3>
+        <ul>
+          <li>Volume of water a tank can hold</li>
+          <li>Amount of material needed to make a box</li>
+          <li>Comparing packing efficiency of different shapes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Volume vs Capacity; Unit Conversions -->
+  <div class="slide">
+    <h2>Volume vs Capacity; Unit Conversions</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Volume vs Capacity</h3>
+        <p><strong>Volume:</strong> The total 3D space occupied by any object (solid or hollow). Measured in cm³, m³.</p>
+        <p><strong>Capacity:</strong> The amount a hollow container can hold (liquid or gas). Measured in litres (L) or millilitres (mL).</p>
+        <p class="formula">1 mL = 1 cm³</p>
+        <p class="formula">1 L = 1000 cm³ = 1000 mL</p>
+        <p class="formula">1 m³ = 1,000,000 cm³ = 1000 L = 1 kL</p>
+        <p><strong>Example:</strong> A tank of volume 0.5 m³ has capacity 500 L.</p>
+      </div>
+      <div class="col-box">
+        <h3>Length and Area Unit Conversions</h3>
+        <p class="formula">1 m = 100 cm ; 1 km = 1000 m</p>
+        <p class="formula">1 m² = 10,000 cm² (= 100 × 100)</p>
+        <p class="formula">1 km² = 1,000,000 m²</p>
+        <p class="formula">1 hectare (ha) = 10,000 m²</p>
+        <p class="formula">1 m³ = 1,000,000 cm³ (= 100 × 100 × 100)</p>
+        <h3>Worked Example</h3>
+        <p>A cuboidal tank is 2 m long, 1.5 m wide, 80 cm deep. Find volume in litres.</p>
+        <p><span class="formula">80 cm = 0.8 m</span></p>
+        <p><span class="formula">V = 2 × 1.5 × 0.8 = 2.4 m³ = 2400 L</span></p>
+        <div class="highlight">Always convert all units to the same system before calculating area or volume!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Chapter Summary – Mensuration</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Area Formulas</h3>
+        <p class="formula">Trapezium = ½ × (a + b) × h</p>
+        <p class="formula">Rhombus = ½ × d₁ × d₂</p>
+        <p>General polygon: triangulate or use strip method</p>
+        <h3>Surface Area Formulas</h3>
+        <p class="formula">Cube = 6a²</p>
+        <p class="formula">Cuboid = 2(lb + bh + lh)</p>
+        <p class="formula">Cylinder (TSA) = 2πr(r + h)</p>
+        <p class="formula">Cylinder (CSA) = 2πrh</p>
+      </div>
+      <div class="col-box">
+        <h3>Volume Formulas</h3>
+        <p class="formula">Cube = a³</p>
+        <p class="formula">Cuboid = l × b × h</p>
+        <p class="formula">Cylinder = πr²h</p>
+        <h3>Key Conversions</h3>
+        <p class="formula">1 L = 1000 cm³ = 1000 mL</p>
+        <p class="formula">1 m³ = 1,000,000 cm³ = 1000 L</p>
+        <p class="formula">1 m² = 10,000 cm²</p>
+        <p class="formula">1 ha = 10,000 m²</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>

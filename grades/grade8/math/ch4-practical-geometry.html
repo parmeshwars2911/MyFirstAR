@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Practical Geometry – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Practical Geometry</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Practical Geometry</h1>
+    <p class="subtitle">Chapter 4 · Grade 8 Mathematics</p>
+    <p>Practical geometry involves the construction of geometric figures using compass and ruler. In this chapter we focus on constructing quadrilaterals under various given conditions, understanding why exactly 5 independent measurements are needed, and handling special cases like squares, rectangles, and rhombuses.</p>
+  </div>
+
+  <!-- Slide 2: Five Measurements -->
+  <div class="slide">
+    <h2>Why Five Measurements?</h2>
+    <p>A quadrilateral ABCD has the following measurable elements:</p>
+    <ul>
+      <li><strong>4 sides:</strong> AB, BC, CD, DA</li>
+      <li><strong>4 angles:</strong> &ang;A, &ang;B, &ang;C, &ang;D</li>
+      <li><strong>2 diagonals:</strong> AC and BD</li>
+    </ul>
+    <p>That is a total of <strong>10 measurements</strong>. However, these are not all independent — the four angles always sum to 360° (so knowing three determines the fourth), and various other relationships exist. A unique quadrilateral can be determined with exactly <strong>5 independent measurements</strong>.</p>
+    <div class="formula">
+      10 total measurements &minus; dependencies = 5 independent measurements needed
+    </div>
+    <h3>Key Insight: Triangles Within Quadrilaterals</h3>
+    <p>A diagonal divides a quadrilateral into two triangles. Since a triangle is uniquely determined by 3 measurements (like SSS, SAS, ASA), two triangles sharing a diagonal need 3 + 3 = 6 measurements, minus the 1 shared diagonal = 5 measurements total.</p>
+    <h3>Possible Combinations of 5 Measurements</h3>
+    <ul>
+      <li>4 sides + 1 diagonal</li>
+      <li>3 sides + 2 diagonals</li>
+      <li>4 sides + 1 angle</li>
+      <li>3 sides + 2 angles (angles included between given sides)</li>
+      <li>Special shapes may need fewer due to extra constraints</li>
+    </ul>
+  </div>
+
+  <!-- Slide 3: Case 1 – 4 sides + 1 diagonal -->
+  <div class="slide">
+    <h2>Case 1: Four Sides and One Diagonal</h2>
+    <p>Given: All four sides (AB, BC, CD, DA) and one diagonal (say AC).</p>
+    <h3>Construction Steps</h3>
+    <p>The diagonal divides the quadrilateral into two triangles: triangle ABC and triangle ACD.</p>
+    <ol>
+      <li><strong>Draw diagonal AC</strong> to the given length.</li>
+      <li><strong>Construct triangle ABC:</strong> With A as centre draw an arc of radius AB; with C as centre draw an arc of radius BC. Their intersection is point B.</li>
+      <li><strong>Construct triangle ACD:</strong> With A as centre draw an arc of radius AD; with C as centre draw an arc of radius CD. Their intersection is point D (on the opposite side of AC from B).</li>
+      <li><strong>Join AB, BC, CD, DA</strong> to complete quadrilateral ABCD.</li>
+    </ol>
+    <div class="formula">
+      Quadrilateral ABCD = Triangle ABC + Triangle ACD (sharing diagonal AC)
+    </div>
+    <h3>Example</h3>
+    <p>Construct quadrilateral ABCD where AB = 4 cm, BC = 3 cm, CD = 5 cm, DA = 4 cm, and diagonal AC = 6 cm.</p>
+    <ul>
+      <li>Draw AC = 6 cm.</li>
+      <li>Draw triangle ABC with AB = 4 cm, BC = 3 cm.</li>
+      <li>Draw triangle ACD with AD = 4 cm, CD = 5 cm on opposite side of AC.</li>
+    </ul>
+    <p><strong>Note:</strong> The two triangles must be on opposite sides of the diagonal for a valid quadrilateral.</p>
+  </div>
+
+  <!-- Slide 4: Case 2 – 3 sides + 2 diagonals -->
+  <div class="slide">
+    <h2>Case 2: Three Sides and Two Diagonals</h2>
+    <p>Given: Three consecutive sides (AB, BC, CD) and both diagonals (AC and BD).</p>
+    <h3>Construction Steps</h3>
+    <ol>
+      <li><strong>Draw triangle ABC</strong> using the three measurements AB, BC, and diagonal AC (SSS construction).</li>
+      <li><strong>Locate vertex D:</strong> From A, draw an arc of radius AD (which equals the fourth side DA — wait: here we have only 3 sides). Actually: from B draw arc = BD; from C draw arc = CD. Their intersection gives D.</li>
+      <li>Specifically: with B as centre and radius BD, draw an arc. With C as centre and radius CD, draw an arc. Where they intersect (on the correct side) is D.</li>
+      <li><strong>Join AD and CD</strong> to complete the quadrilateral.</li>
+    </ol>
+    <div class="formula">
+      Given: AB, BC, CD, diagonal AC, diagonal BD &rarr; construct triangle ABC first, then locate D
+    </div>
+    <h3>Example</h3>
+    <p>Construct quadrilateral PQRS: PQ = 4.5 cm, QR = 3.5 cm, RS = 5 cm, diagonal PR = 6 cm, diagonal QS = 5.5 cm.</p>
+    <ol>
+      <li>Draw triangle PQR using PQ = 4.5 cm, QR = 3.5 cm, PR = 6 cm (SSS).</li>
+      <li>With Q as centre, draw arc of radius QS = 5.5 cm. With R as centre, draw arc of radius RS = 5 cm. Their intersection is S.</li>
+      <li>Join PS and RS to complete quadrilateral PQRS.</li>
+    </ol>
+  </div>
+
+  <!-- Slide 5: Cases 3 and 4 -->
+  <div class="slide">
+    <h2>Case 3: Four Sides and One Angle; Case 4: Three Sides and Two Angles</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Case 3: Four Sides + One Angle</h3>
+        <p>Given: AB, BC, CD, DA, and angle B.</p>
+        <ol>
+          <li><strong>Draw AB</strong> to the given length.</li>
+          <li><strong>Construct angle B</strong> at point B.</li>
+          <li><strong>Mark BC</strong> along the arm of angle B.</li>
+          <li><strong>Draw arcs</strong> from A (radius = AD) and from C (radius = CD). Their intersection is D.</li>
+          <li>Join AD and CD.</li>
+        </ol>
+        <div class="formula">
+          Start with side AB, construct &ang;B, mark BC, then locate D using arcs from A and C.
+        </div>
+        <p><strong>Example:</strong> ABCD with AB = 5 cm, BC = 4 cm, CD = 4 cm, DA = 5 cm, &ang;B = 75°.</p>
+      </div>
+      <div class="col-box">
+        <h3>Case 4: Three Sides + Two Angles</h3>
+        <p>Given: AB, BC, CD, and angles B and C (angles between the given sides).</p>
+        <ol>
+          <li><strong>Draw AB</strong> to the given length.</li>
+          <li><strong>Construct angle B</strong> at B and mark BC on its arm.</li>
+          <li><strong>Construct angle C</strong> at C and mark CD on its arm.</li>
+          <li>Point D is the end of segment CD. Join AD to close the quadrilateral.</li>
+        </ol>
+        <div class="formula">
+          Construct &ang;B at B and &ang;C at C; the intersection of arms gives sides and D.
+        </div>
+        <p><strong>Note:</strong> The two given angles must be adjacent (at connected vertices) and formed between the given sides for the construction to work.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Special Cases -->
+  <div class="slide">
+    <h2>Special Cases: Rectangle, Square, Rhombus</h2>
+    <p>For special quadrilaterals, extra properties reduce the number of independent measurements needed below 5.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Constructing a Rectangle</h3>
+        <p>A rectangle has all angles = 90° and opposite sides equal. You only need <strong>length and breadth</strong>.</p>
+        <ol>
+          <li>Draw AB = length (l).</li>
+          <li>At A, construct a 90° angle. Mark AD = breadth (b).</li>
+          <li>At B, construct a 90° angle. Mark BC = breadth (b).</li>
+          <li>Join DC. (DC should equal l automatically.)</li>
+        </ol>
+        <div class="formula">Rectangle: given l and b, all angles = 90&deg;</div>
+        <h3>Constructing a Square</h3>
+        <p>A square has all sides equal and all angles = 90°. You only need <strong>one side</strong>.</p>
+        <ol>
+          <li>Draw AB = side (a).</li>
+          <li>At A and B, construct 90° angles.</li>
+          <li>Mark AD = BC = a. Join DC.</li>
+        </ol>
+        <div class="formula">Square: given one side a, all sides = a, all angles = 90&deg;</div>
+      </div>
+      <div class="col-box">
+        <h3>Constructing a Rhombus</h3>
+        <p>A rhombus has all sides equal. You need either <strong>one side and one angle</strong> OR <strong>one side and one diagonal</strong>.</p>
+        <p><strong>Method 1 (side + angle):</strong></p>
+        <ol>
+          <li>Draw AB = side (a).</li>
+          <li>At A, construct the given angle &ang;A. Mark AD = a along the arm.</li>
+          <li>With B as centre (radius a) and D as centre (radius a), mark C.</li>
+        </ol>
+        <p><strong>Method 2 (side + diagonal):</strong></p>
+        <ol>
+          <li>Draw diagonal AC.</li>
+          <li>With A and C as centres and radius = side, draw arcs. Intersections give B and D.</li>
+          <li>Join AB, BC, CD, DA.</li>
+        </ol>
+        <div class="formula">Rhombus: all 4 sides = a; diagonals bisect at 90&deg;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Summary: Practical Geometry</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Five Measurements Required</h3>
+        <p>A unique quadrilateral requires exactly 5 independent measurements.</p>
+        <h3>Construction Cases</h3>
+        <ul>
+          <li><strong>4 sides + 1 diagonal:</strong> Draw diagonal, construct two triangles</li>
+          <li><strong>3 sides + 2 diagonals:</strong> Construct triangle from 2 sides + diagonal, locate 4th vertex using 2nd diagonal and remaining side</li>
+          <li><strong>4 sides + 1 angle:</strong> Construct the angle first, mark sides, locate remaining vertex by arcs</li>
+          <li><strong>3 sides + 2 angles:</strong> Construct both angles at their vertices, mark sides along arms</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Special Constructions</h3>
+        <ul>
+          <li><strong>Rectangle:</strong> length + breadth (all angles = 90°)</li>
+          <li><strong>Square:</strong> one side only (all sides equal, all angles = 90°)</li>
+          <li><strong>Rhombus:</strong> side + angle OR side + diagonal (all sides equal)</li>
+        </ul>
+        <h3>General Tips</h3>
+        <ul>
+          <li>Always draw a rough sketch before starting the accurate construction</li>
+          <li>Label all points clearly with capital letters</li>
+          <li>Check that the constructed figure satisfies all given measurements</li>
+          <li>Use a sharp pencil for accuracy</li>
+          <li>Verify by measuring the unknown sides or angles after construction</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>

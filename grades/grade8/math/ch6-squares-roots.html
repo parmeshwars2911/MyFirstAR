@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Squares and Square Roots – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Squares and Square Roots</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Squares and Square Roots</h1>
+    <p class="subtitle">Chapter 6 · Grade 8 Mathematics</p>
+    <p>Squaring a number and finding its square root are inverse operations. Understanding perfect squares and efficient methods to find square roots are fundamental skills in mathematics, used in geometry (Pythagoras theorem), physics, and many other areas.</p>
+  </div>
+
+  <!-- Slide 2: Perfect Squares -->
+  <div class="slide">
+    <h2>Perfect Squares and Their Properties</h2>
+    <p>The <strong>square</strong> of a number n is n &times; n = n&sup2;. A <strong>perfect square</strong> is the square of a whole number (natural number).</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Perfect Squares (1 to 20)</h3>
+        <ul>
+          <li>1&sup2; = 1 &nbsp;&nbsp; 2&sup2; = 4 &nbsp;&nbsp; 3&sup2; = 9</li>
+          <li>4&sup2; = 16 &nbsp;&nbsp; 5&sup2; = 25 &nbsp;&nbsp; 6&sup2; = 36</li>
+          <li>7&sup2; = 49 &nbsp;&nbsp; 8&sup2; = 64 &nbsp;&nbsp; 9&sup2; = 81</li>
+          <li>10&sup2; = 100 &nbsp;&nbsp; 11&sup2; = 121 &nbsp;&nbsp; 12&sup2; = 144</li>
+          <li>13&sup2; = 169 &nbsp;&nbsp; 14&sup2; = 196 &nbsp;&nbsp; 15&sup2; = 225</li>
+          <li>16&sup2; = 256 &nbsp;&nbsp; 17&sup2; = 289 &nbsp;&nbsp; 18&sup2; = 324</li>
+          <li>19&sup2; = 361 &nbsp;&nbsp; 20&sup2; = 400</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Properties of Perfect Squares</h3>
+        <ul>
+          <li>The square of any integer is always <strong>non-negative</strong> (never negative).</li>
+          <li>Numbers ending in <strong>2, 3, 7, 8</strong> are <strong>never</strong> perfect squares.</li>
+          <li>Perfect squares end only in <strong>0, 1, 4, 5, 6, 9</strong>.</li>
+          <li>If a number ends in an <strong>odd number of zeros</strong>, it is NOT a perfect square.</li>
+          <li>The square of an even number is even; the square of an odd number is odd.</li>
+          <li>Between n&sup2; and (n+1)&sup2; there are exactly 2n non-square natural numbers.</li>
+        </ul>
+        <div class="formula">Square of negative = positive: (-n)&sup2; = n&sup2;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Patterns in Squares -->
+  <div class="slide">
+    <h2>Patterns in Squares and Pythagorean Triplets</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Patterns in Perfect Squares</h3>
+        <p><strong>Difference of consecutive squares:</strong></p>
+        <div class="formula">(n+1)&sup2; - n&sup2; = 2n + 1</div>
+        <p>Examples: 4 - 1 = 3 (= 2&times;1+1); 9 - 4 = 5 (= 2&times;2+1); 16 - 9 = 7 (= 2&times;3+1)</p>
+        <p><strong>Sum of first n odd numbers:</strong></p>
+        <div class="formula">1 + 3 + 5 + ... + (2n-1) = n&sup2;</div>
+        <p>Examples: 1+3 = 4 = 2&sup2;; 1+3+5 = 9 = 3&sup2;; 1+3+5+7 = 16 = 4&sup2;</p>
+        <p><strong>Square of a number ending in 5:</strong></p>
+        <div class="formula">(a5)&sup2; = a(a+1) followed by 25</div>
+        <p>Example: 35&sup2; = 3&times;4 followed by 25 = 1225</p>
+      </div>
+      <div class="col-box">
+        <h3>Pythagorean Triplets</h3>
+        <p>A set of three positive integers (a, b, c) where a&sup2; + b&sup2; = c&sup2; is called a <strong>Pythagorean triplet</strong>. c is the hypotenuse of a right triangle.</p>
+        <div class="formula">a&sup2; + b&sup2; = c&sup2;</div>
+        <p><strong>Generating triplets:</strong> For any m &gt; 1:</p>
+        <div class="formula">( 2m, m&sup2; - 1, m&sup2; + 1 ) is a Pythagorean triplet</div>
+        <p>Examples:</p>
+        <ul>
+          <li>m = 2: (4, 3, 5) — check: 16 + 9 = 25 ✓</li>
+          <li>m = 3: (6, 8, 10) — check: 36 + 64 = 100 ✓</li>
+          <li>m = 4: (8, 15, 17) — check: 64 + 225 = 289 ✓</li>
+          <li>m = 5: (10, 24, 26) ✓</li>
+        </ul>
+        <p>Other well-known triplets: (5, 12, 13); (7, 24, 25); (9, 40, 41).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Square Root by Prime Factorisation -->
+  <div class="slide">
+    <h2>Square Root by Prime Factorisation</h2>
+    <p>To find the square root of a perfect square using prime factorisation:</p>
+    <ol>
+      <li>Express the number as a product of its prime factors.</li>
+      <li>Arrange the prime factors in pairs.</li>
+      <li>Take one factor from each pair.</li>
+      <li>Multiply the selected factors — the product is the square root.</li>
+    </ol>
+    <div class="formula">&radic;(p&sup2; &times; q&sup2; &times; r&sup2;) = p &times; q &times; r</div>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Example 1: &radic;324</h3>
+        <div class="formula">
+          324 = 2 &times; 162 = 2 &times; 2 &times; 81<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 2&sup2; &times; 3 &times; 27 = 2&sup2; &times; 3 &times; 3 &times; 9<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 2&sup2; &times; 3&sup2; &times; 3&sup2;<br/>
+          &radic;324 = 2 &times; 3 &times; 3 = 18
+        </div>
+        <p>Verify: 18&sup2; = 324 ✓</p>
+      </div>
+      <div class="col-box">
+        <h3>Example 2: &radic;1764</h3>
+        <div class="formula">
+          1764 = 2 &times; 882 = 2 &times; 2 &times; 441<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 2&sup2; &times; 441<br/>
+          441 = 3 &times; 147 = 3 &times; 3 &times; 49<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 3&sup2; &times; 7&sup2;<br/>
+          1764 = 2&sup2; &times; 3&sup2; &times; 7&sup2;<br/>
+          &radic;1764 = 2 &times; 3 &times; 7 = 42
+        </div>
+        <p>Verify: 42&sup2; = 1764 ✓</p>
+      </div>
+    </div>
+    <p><strong>Checking if a number is a perfect square:</strong> In the prime factorisation, every prime factor must appear an even number of times. If any prime factor appears an odd number of times, it is NOT a perfect square.</p>
+  </div>
+
+  <!-- Slide 5: Square Root by Long Division -->
+  <div class="slide">
+    <h2>Square Root by Long Division Method</h2>
+    <p>The long division method works for any number and is especially useful for large numbers or decimals.</p>
+    <h3>Steps</h3>
+    <ol>
+      <li><strong>Group the digits</strong> in pairs from the right (units place). The leftmost group may have 1 or 2 digits.</li>
+      <li><strong>Find the largest integer</strong> whose square is &le; the first group. This is the first digit of the square root. Write it as both the quotient and divisor.</li>
+      <li><strong>Subtract</strong> the square from the first group and <strong>bring down</strong> the next pair of digits.</li>
+      <li><strong>Double the current quotient</strong> and write it as the new partial divisor (with a blank digit at the end).</li>
+      <li><strong>Find the largest digit</strong> d such that (partial divisor with d appended) &times; d &le; current remainder. Write d in the quotient and as the units digit of the divisor.</li>
+      <li>Subtract and bring down the next pair. Repeat until done.</li>
+    </ol>
+    <h3>Example: &radic;529</h3>
+    <div class="formula">
+      Pairs: 05 | 29<br/>
+      Step 1: Largest n where n&sup2; &le; 5 is 2 (2&sup2;=4). Quotient so far: 2. Subtract: 5-4=1.<br/>
+      Step 2: Bring down 29 &rarr; remainder = 129. Double quotient: 2&times;2=4 &rarr; partial divisor: 4_.<br/>
+      Step 3: Find d: 43&times;3=129 &le; 129. d=3. Quotient: 23. 129-129=0.<br/>
+      &radic;529 = 23
+    </div>
+    <p>Verify: 23&sup2; = 529 ✓</p>
+  </div>
+
+  <!-- Slide 6: Square Roots of Decimals and Fractions -->
+  <div class="slide">
+    <h2>Square Roots of Decimals and Fractions</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Square Roots of Fractions</h3>
+        <div class="formula">&radic;(p/q) = &radic;p / &radic;q</div>
+        <p>Find the square root of numerator and denominator separately.</p>
+        <p><strong>Example 1:</strong> &radic;(25/49)</p>
+        <div class="formula">&radic;(25/49) = &radic;25 / &radic;49 = 5/7</div>
+        <p><strong>Example 2:</strong> &radic;(144/169)</p>
+        <div class="formula">&radic;(144/169) = 12/13</div>
+        <p><strong>Example 3 (mixed number):</strong> &radic;(6 &frac14;) = &radic;(25/4) = 5/2 = 2.5</p>
+        <p>Convert mixed numbers to improper fractions first, then apply the rule.</p>
+      </div>
+      <div class="col-box">
+        <h3>Square Roots of Decimals</h3>
+        <p><strong>Method 1 – Convert to fraction:</strong></p>
+        <div class="formula">&radic;0.04 = &radic;(4/100) = 2/10 = 0.2</div>
+        <div class="formula">&radic;1.44 = &radic;(144/100) = 12/10 = 1.2</div>
+        <p><strong>Method 2 – Long division for decimals:</strong></p>
+        <p>Group digits in pairs: to the left of decimal point (right to left) and to the right of decimal point (left to right).</p>
+        <p>Example: &radic;2.56</p>
+        <div class="formula">
+          Pairs: 02 | .56<br/>
+          Integer part: &radic;2 &rarr; 1 (1&sup2;=1), remainder = 1<br/>
+          Bring down .56 &rarr; 156. Double: 2_.<br/>
+          26&times;6 = 156. d = 6. Quotient = 1.6<br/>
+          &radic;2.56 = 1.6
+        </div>
+        <p>Verify: 1.6&sup2; = 2.56 ✓</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Summary: Squares and Square Roots</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Key Formulas</h3>
+        <div class="formula">(n+1)&sup2; - n&sup2; = 2n + 1</div>
+        <div class="formula">Sum of first n odd numbers = n&sup2;</div>
+        <div class="formula">Pythagorean triplet: 2m, m&sup2;-1, m&sup2;+1 (m&gt;1)</div>
+        <div class="formula">a&sup2; + b&sup2; = c&sup2; (right triangle)</div>
+        <div class="formula">&radic;(p/q) = &radic;p / &radic;q</div>
+        <h3>Properties of Perfect Squares</h3>
+        <ul>
+          <li>End only in 0, 1, 4, 5, 6, 9</li>
+          <li>Never end in 2, 3, 7, 8</li>
+          <li>Odd number of trailing zeros = NOT a perfect square</li>
+          <li>Even prime factor exponents = perfect square</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Methods for Square Root</h3>
+        <p><strong>Prime Factorisation Method:</strong></p>
+        <ol>
+          <li>Factorise the number into primes</li>
+          <li>Pair up the prime factors</li>
+          <li>Take one from each pair and multiply</li>
+        </ol>
+        <p><strong>Long Division Method:</strong></p>
+        <ol>
+          <li>Group digits in pairs from right</li>
+          <li>Find largest square &le; first group</li>
+          <li>Double quotient for new divisor</li>
+          <li>Find next digit; repeat</li>
+        </ol>
+        <p><strong>Key perfect squares to memorise:</strong> 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 400</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>

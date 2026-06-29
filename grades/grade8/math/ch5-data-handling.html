@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Data Handling – Grade 8 Maths</title>
+<link rel="stylesheet" href="../../../shared/slides.css" />
+</head>
+<body>
+<div id="progressBar" class="progress-bar"></div>
+<div class="top-bar">
+  <span class="chapter-title">Grade 8 Maths · Data Handling</span>
+  <a href="../index.html">← Grade 8</a>
+</div>
+<div class="slide-container">
+
+  <!-- Slide 1: Title -->
+  <div class="slide title-slide active">
+    <h1>Data Handling</h1>
+    <p class="subtitle">Chapter 5 · Grade 8 Mathematics</p>
+    <p>Data handling is the process of collecting, organising, displaying, and interpreting information (data). From sports scores to weather records, data is everywhere. In this chapter we learn to represent data in tables and graphs, and to calculate the probability of events.</p>
+  </div>
+
+  <!-- Slide 2: Data Collection and Organisation -->
+  <div class="slide">
+    <h2>Data Collection and Organisation</h2>
+    <p><strong>Data</strong> is a collection of facts, numbers, or observations gathered for analysis. <strong>Raw data</strong> is data in its original, unorganised form.</p>
+    <h3>Frequency Distribution Table</h3>
+    <p>A <strong>frequency</strong> is the number of times a particular value occurs. A <strong>frequency distribution table</strong> organises data by listing each value with its frequency and uses tally marks for counting.</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Example</h3>
+        <p>Marks scored by 10 students: 3, 5, 4, 3, 5, 5, 3, 4, 3, 5</p>
+        <table style="width:100%; border-collapse:collapse; margin-top:8px;">
+          <tr style="background:#e8f0fe;"><th style="border:1px solid #ccc;padding:6px;">Mark</th><th style="border:1px solid #ccc;padding:6px;">Tally</th><th style="border:1px solid #ccc;padding:6px;">Frequency</th></tr>
+          <tr><td style="border:1px solid #ccc;padding:6px;text-align:center;">3</td><td style="border:1px solid #ccc;padding:6px;">IIII</td><td style="border:1px solid #ccc;padding:6px;text-align:center;">4</td></tr>
+          <tr><td style="border:1px solid #ccc;padding:6px;text-align:center;">4</td><td style="border:1px solid #ccc;padding:6px;">II</td><td style="border:1px solid #ccc;padding:6px;text-align:center;">2</td></tr>
+          <tr><td style="border:1px solid #ccc;padding:6px;text-align:center;">5</td><td style="border:1px solid #ccc;padding:6px;">IIII</td><td style="border:1px solid #ccc;padding:6px;text-align:center;">4</td></tr>
+          <tr style="background:#f0f0f0;"><td style="border:1px solid #ccc;padding:6px;"><strong>Total</strong></td><td style="border:1px solid #ccc;padding:6px;"></td><td style="border:1px solid #ccc;padding:6px;text-align:center;"><strong>10</strong></td></tr>
+        </table>
+      </div>
+      <div class="col-box">
+        <h3>Key Terms</h3>
+        <ul>
+          <li><strong>Observation:</strong> each individual data point</li>
+          <li><strong>Frequency:</strong> count of how many times a value occurs</li>
+          <li><strong>Tally marks:</strong> quick counting marks (IIII = 4, then a diagonal for 5)</li>
+          <li><strong>Array:</strong> data arranged in ascending or descending order</li>
+          <li><strong>Range:</strong> difference between largest and smallest values</li>
+        </ul>
+        <p>Organising raw data into a frequency table helps identify patterns, the most common value (mode), and the spread of the data.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 3: Grouped Data -->
+  <div class="slide">
+    <h2>Grouped Data and Class Intervals</h2>
+    <p>When data values span a wide range, we group them into <strong>class intervals</strong> (also called class width or class size).</p>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Key Terms</h3>
+        <ul>
+          <li><strong>Class interval:</strong> a range of values, e.g. 0–10, 10–20 (lower limit–upper limit)</li>
+          <li><strong>Class size:</strong> upper limit minus lower limit (e.g. 10–0 = 10)</li>
+          <li><strong>Class mark:</strong> midpoint of a class interval</li>
+          <li><strong>Cumulative frequency:</strong> running total of frequencies up to a class</li>
+        </ul>
+        <div class="formula">Class Mark = (Lower Limit + Upper Limit) / 2</div>
+      </div>
+      <div class="col-box">
+        <h3>Example Grouped Frequency Table</h3>
+        <p>Scores of 20 students:</p>
+        <table style="width:100%; border-collapse:collapse; margin-top:8px;">
+          <tr style="background:#e8f0fe;"><th style="border:1px solid #ccc;padding:5px;">Class</th><th style="border:1px solid #ccc;padding:5px;">Class Mark</th><th style="border:1px solid #ccc;padding:5px;">Freq.</th><th style="border:1px solid #ccc;padding:5px;">Cum. Freq.</th></tr>
+          <tr><td style="border:1px solid #ccc;padding:5px;">0–20</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">10</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">4</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">4</td></tr>
+          <tr><td style="border:1px solid #ccc;padding:5px;">20–40</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">30</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">6</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">10</td></tr>
+          <tr><td style="border:1px solid #ccc;padding:5px;">40–60</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">50</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">7</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">17</td></tr>
+          <tr><td style="border:1px solid #ccc;padding:5px;">60–80</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">70</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">3</td><td style="border:1px solid #ccc;padding:5px;text-align:center;">20</td></tr>
+        </table>
+      </div>
+    </div>
+    <p><strong>Note on class limits:</strong> In the class interval 20–40, the convention is that 20 is included but 40 is not (40 goes in the next class). This is called an <strong>exclusive</strong> or <strong>continuous</strong> class interval. This ensures no value falls in two classes.</p>
+  </div>
+
+  <!-- Slide 4: Histograms and Bar Graphs -->
+  <div class="slide">
+    <h2>Histograms and Bar Graphs</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Bar Graph</h3>
+        <p>Used for <strong>discrete (categorical) data</strong>. Each category is represented by a separate bar.</p>
+        <ul>
+          <li>Bars are <strong>separated by gaps</strong> (the gaps show they are distinct categories)</li>
+          <li>Width of all bars is the same; height represents frequency</li>
+          <li>X-axis: categories; Y-axis: frequency</li>
+          <li>Example: favourite sports, number of students in each class</li>
+        </ul>
+        <p><strong>Steps to draw:</strong></p>
+        <ol>
+          <li>Draw two perpendicular axes</li>
+          <li>Mark categories on x-axis with equal spacing</li>
+          <li>Mark frequency scale on y-axis</li>
+          <li>Draw bars of equal width with height = frequency; leave gaps between bars</li>
+          <li>Label axes and give a title</li>
+        </ol>
+      </div>
+      <div class="col-box">
+        <h3>Histogram</h3>
+        <p>Used for <strong>continuous (grouped) data</strong>. Bars share boundaries — no gaps.</p>
+        <ul>
+          <li>Bars are <strong>adjacent with no gaps</strong> — class intervals are continuous</li>
+          <li>X-axis: class intervals (continuous scale); Y-axis: frequency</li>
+          <li>Area of each bar is proportional to frequency</li>
+          <li>Example: height of students, scores in an exam</li>
+        </ul>
+        <p><strong>Steps to draw:</strong></p>
+        <ol>
+          <li>Draw two perpendicular axes</li>
+          <li>Mark class intervals on x-axis as a continuous scale</li>
+          <li>Mark frequency scale on y-axis</li>
+          <li>Draw bars touching each other; height = frequency</li>
+          <li>Label axes and give a title</li>
+        </ol>
+        <p><strong>Key difference:</strong> Bar graph has gaps (discrete); histogram has no gaps (continuous).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Pie Charts -->
+  <div class="slide">
+    <h2>Pie Charts (Circle Graphs)</h2>
+    <p>A <strong>pie chart</strong> shows how a total is divided among different categories using sectors of a circle. The full circle = 360° = the total of all values.</p>
+    <div class="formula">
+      Angle for a component = (Value of component / Total value) &times; 360&deg;
+    </div>
+    <h3>Worked Example</h3>
+    <p>In a survey of 240 students, their favourite sports are: Cricket = 60, Football = 80, Basketball = 40, Badminton = 60.</p>
+    <div class="formula">
+      Total = 240 students<br/>
+      Cricket angle = (60 / 240) &times; 360&deg; = 90&deg;<br/>
+      Football angle = (80 / 240) &times; 360&deg; = 120&deg;<br/>
+      Basketball angle = (40 / 240) &times; 360&deg; = 60&deg;<br/>
+      Badminton angle = (60 / 240) &times; 360&deg; = 90&deg;<br/>
+      Total = 90 + 120 + 60 + 90 = 360&deg; &check;
+    </div>
+    <h3>Steps to Draw a Pie Chart</h3>
+    <ol>
+      <li>Calculate the angle for each component using the formula above</li>
+      <li>Draw a circle of suitable radius</li>
+      <li>Draw a radius to start; use a protractor to measure and draw each sector angle</li>
+      <li>Label each sector with the category name and percentage or angle</li>
+      <li>Shade or colour sectors differently; add a legend if needed</li>
+    </ol>
+    <div class="formula">Percentage for a component = (Value / Total) &times; 100%</div>
+  </div>
+
+  <!-- Slide 6: Probability -->
+  <div class="slide">
+    <h2>Probability</h2>
+    <p><strong>Probability</strong> measures how likely an event is to occur. It is a number between 0 and 1.</p>
+    <div class="formula">
+      P(E) = Number of favourable outcomes / Total number of possible outcomes
+    </div>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Key Terms</h3>
+        <ul>
+          <li><strong>Experiment:</strong> an action with uncertain outcomes (e.g. tossing a coin)</li>
+          <li><strong>Outcome:</strong> a possible result of an experiment</li>
+          <li><strong>Sample space (S):</strong> the set of all possible outcomes</li>
+          <li><strong>Event (E):</strong> a specific outcome or set of outcomes we are interested in</li>
+          <li><strong>Favourable outcomes:</strong> outcomes that satisfy the event</li>
+        </ul>
+        <h3>Range of Probability</h3>
+        <div class="formula">0 &le; P(E) &le; 1</div>
+        <ul>
+          <li>P(E) = 0: the event is impossible</li>
+          <li>P(E) = 1: the event is certain</li>
+          <li>P(E) + P(not E) = 1</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Examples</h3>
+        <p><strong>Tossing a fair coin:</strong></p>
+        <p>Sample space S = {H, T}; total outcomes = 2</p>
+        <div class="formula">P(Heads) = 1/2 &nbsp;&nbsp; P(Tails) = 1/2</div>
+        <p><strong>Rolling a fair die:</strong></p>
+        <p>Sample space S = {1, 2, 3, 4, 5, 6}; total outcomes = 6</p>
+        <div class="formula">P(even number) = 3/6 = 1/2</div>
+        <div class="formula">P(getting 4) = 1/6</div>
+        <div class="formula">P(number &gt; 4) = 2/6 = 1/3</div>
+        <p><strong>Drawing a card from a deck:</strong></p>
+        <p>Total outcomes = 52</p>
+        <div class="formula">P(Ace) = 4/52 = 1/13</div>
+        <div class="formula">P(Heart) = 13/52 = 1/4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 7: Summary -->
+  <div class="slide summary-slide">
+    <h2>Summary: Data Handling</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>Key Formulas</h3>
+        <div class="formula">Class Mark = (Lower Limit + Upper Limit) / 2</div>
+        <div class="formula">Pie Chart Angle = (Value / Total) &times; 360&deg;</div>
+        <div class="formula">Percentage = (Value / Total) &times; 100%</div>
+        <div class="formula">P(E) = Favourable Outcomes / Total Outcomes</div>
+        <div class="formula">P(E) + P(not E) = 1</div>
+        <h3>Types of Graphs</h3>
+        <ul>
+          <li><strong>Bar graph:</strong> discrete data, bars with gaps</li>
+          <li><strong>Histogram:</strong> continuous/grouped data, bars without gaps</li>
+          <li><strong>Pie chart:</strong> parts of a whole, uses angles out of 360°</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <h3>Data Organisation</h3>
+        <ul>
+          <li>Raw data &rarr; array &rarr; frequency table &rarr; grouped frequency table</li>
+          <li>Tally marks for counting (groups of 5)</li>
+          <li>Class interval: lower limit to upper limit</li>
+          <li>Cumulative frequency: running total</li>
+        </ul>
+        <h3>Probability Facts</h3>
+        <ul>
+          <li>0 &le; P(E) &le; 1 always</li>
+          <li>P(impossible event) = 0</li>
+          <li>P(certain event) = 1</li>
+          <li>Complementary events: P(E) + P(E') = 1</li>
+          <li>Equal likelihood: when all outcomes are equally probable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="nav-bar">
+  <button id="prevBtn">← Prev</button>
+  <span class="slide-counter"></span>
+  <button id="nextBtn">Next →</button>
+</div>
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>
