@@ -86,6 +86,17 @@ def deck1():
                  caption="Wavelength, amplitude, crest and trough",
                  notes="Define each term. T = 1/f is essential. Amplitude → "
                        "loudness, frequency → pitch.")
+    b.cards("WAVE TYPES", "Longitudinal vs Transverse Waves", [
+        ("Longitudinal", "Particles vibrate along the direction of travel; made "
+         "of compressions and rarefactions — e.g. sound."),
+        ("Transverse", "Particles vibrate at right angles to the travel; made "
+         "of crests and troughs — e.g. light, water ripples."),
+        ("Sound is longitudinal", "It needs a medium and travels as pressure "
+         "variations."),
+        ("Both carry energy", "In each, energy moves forward while the "
+         "particles only oscillate in place."),
+    ], notes="Contrast the two wave types. Sound is longitudinal; light and "
+             "ripples are transverse. Particles never travel with the wave.")
     b.bullets("SPEED IN MEDIA", "Sound Travels Fastest in Solids", [
         ("Solids", "Particles are tightly packed, so a vibration passes on "
          "almost at once — fastest (e.g. ~5000 m/s in steel)."),
@@ -98,7 +109,7 @@ def deck1():
     ], panel_title="Closer particles → faster sound",
        notes="Order and rough values. Closely packed particles pass on the "
              "vibration quickly, so solids win.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Bell in a Jar", "As air is pumped out of a jar containing a "
              "ringing electric bell, the sound:",
              ["Gets louder", "Fades away to nothing", "Changes pitch only",
@@ -126,6 +137,14 @@ def deck1():
              "Sound is fastest in solids, where the tightly packed particles "
              "pass the vibration on quickly; slower in liquids, slowest in "
              "gases, and impossible in a vacuum.")
+    b.quiz_q(5, "Which Is Longitudinal?", "In which wave do the particles of "
+             "the medium vibrate along the same direction as the wave travels?",
+             ["A water ripple", "A light wave", "A sound wave",
+              "All transverse waves"])
+    b.quiz_a(5, "C. A sound wave",
+             "Sound is a longitudinal wave — its particles oscillate back and "
+             "forth along the direction of travel, forming compressions and "
+             "rarefactions. Light and ripples are transverse.")
     b.divider(2, "Part 2", "The Wave Equation",
               "Linking speed, frequency and wavelength")
     b.statement("v = f λ", "Speed, Frequency and Wavelength",
@@ -309,6 +328,28 @@ def deck2():
              "Water vapour is lighter than the nitrogen and oxygen it "
              "replaces, so humid air is a little less dense — and sound "
              "travels faster in a less dense gas.")
+    b.cards("REFLECTION & ECHO", "Reflection of Sound and the Echo", [
+        ("Sound reflects", "Sound bounces off hard surfaces, obeying the same "
+         "laws as light (angle in = angle out)."),
+        ("Echo", "A reflected sound heard separately from the original is an "
+         "echo."),
+        ("Condition", "The reflector must be far enough that the echo returns "
+         "at least 0.1 s later (about 17 m away)."),
+        ("Uses", "Echoes are used in SONAR and depth-sounding, and to measure "
+         "the speed of sound."),
+    ], notes="Sound reflects like light; a distinct echo needs the reflector "
+             "≥ ~17 m away (0.1 s gap). Basis of the echo method and SONAR.")
+    b.cards("CHARACTERISTICS", "Characteristics of a Musical Sound", [
+        ("Loudness", "Set by the amplitude — a bigger vibration sounds "
+         "louder."),
+        ("Pitch", "Set by the frequency — a higher frequency sounds "
+         "higher-pitched."),
+        ("Quality (timbre)", "Lets us tell two instruments apart even at the "
+         "same pitch and loudness."),
+        ("Musical note vs noise", "A note has a regular, pleasant waveform; "
+         "noise is irregular and jarring."),
+    ], notes="The three characteristics — loudness, pitch, quality — plus the "
+             "music-vs-noise distinction.")
     b.divider(2, "Part 2", "Infrasound, Ultrasound & Uses",
               "Sounds beyond our hearing")
     b.cards("RANGE", "Infrasonic, Sonic and Ultrasonic", [

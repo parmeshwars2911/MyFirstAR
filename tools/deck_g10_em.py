@@ -85,6 +85,18 @@ def deck1():
                  caption="Reverse the current to swap the poles",
                  notes="Solenoid = many loops = bar-magnet field. Strong "
                        "uniform field inside; poles reverse with the current.")
+    b.bullets("WHICH END IS NORTH?", "The Clock (End) Rule for a Solenoid", [
+        ("Look at an end", "View the current flowing in the end face of the "
+         "solenoid."),
+        ("Anticlockwise = North", "If the current looks anticlockwise, that "
+         "face is a North pole."),
+        ("Clockwise = South", "If it looks clockwise, that face is a South "
+         "pole."),
+        ("Reverse to swap", "Reversing the current swaps the sense, and so the "
+         "poles."),
+    ], panel_title="Anticlockwise → N, clockwise → S",
+       notes="The clock/end rule fixes which face is N or S. Pair it with the "
+             "right-hand rule for the field direction.")
     b.statement("ELECTROMAGNET", "Making an Electromagnet",
                 "Put a soft-iron core inside a solenoid and it becomes a "
                 "powerful, switchable magnet — an electromagnet.",
@@ -106,6 +118,17 @@ def deck1():
     ], panel_title="Current, turns and core",
        notes="The three controllable factors: current, number of turns and the "
              "core. These are common one-mark answers.")
+    b.cards("CHOOSING THE CORE", "Soft Iron vs Steel", [
+        ("Soft iron — temporary", "Magnetises strongly but loses it at once "
+         "when the current stops — ideal for electromagnets."),
+        ("Steel — permanent", "Magnetises less easily but keeps its magnetism "
+         "— used for permanent magnets."),
+        ("Electromagnet core", "Always soft iron, so the magnet can be switched "
+         "off."),
+        ("Why not steel", "A steel core would stay magnetised, so the device "
+         "could not be turned off."),
+    ], notes="Soft iron = temporary (electromagnet core); steel = permanent "
+             "magnet. The switch-off requirement decides the choice.")
     b.cards("ELECTRO vs PERMANENT", "Electromagnet vs Permanent Magnet", [
         ("Switchable", "An electromagnet can be turned on and off; a permanent "
          "magnet is always magnetic."),
@@ -117,7 +140,7 @@ def deck1():
          "permanent magnet."),
     ], notes="The four advantages of an electromagnet: switchable, adjustable, "
              "reversible, and can be very strong.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Oersted", "A compass placed under a straight wire deflects "
              "only when:", ["The wire is made of iron",
               "A current flows through the wire", "The wire is very long",
@@ -150,6 +173,13 @@ def deck1():
              "Soft iron magnetises and demagnetises easily, so the "
              "electromagnet works only while current flows. Steel would keep "
              "its magnetism and could not be switched off.")
+    b.quiz_q(5, "Name the Pole", "Looking at one end of a solenoid, the current "
+             "appears to flow anticlockwise. That end is a:",
+             ["South pole", "North pole", "Neutral point", "Not a pole at all"])
+    b.quiz_a(5, "B. North pole",
+             "By the clock rule, an anticlockwise current (as seen from that "
+             "end) marks a North pole; a clockwise current marks a South pole. "
+             "Reversing the current would swap them.")
     b.divider(2, "Part 2", "Using Electromagnets",
               "From scrapyards to doorbells")
     b.cards("USES", "Uses of Electromagnets", [
@@ -287,6 +317,15 @@ def deck2():
                  notes="The commutator is the crucial part — it flips the "
                        "current each half turn so the coil keeps turning "
                        "continuously.")
+    b.cards("STRONGER TURNING", "Increasing the Turning Effect of a Motor", [
+        ("More current", "A larger current in the coil gives a bigger force on "
+         "each side."),
+        ("Stronger magnet", "A more powerful field increases the force."),
+        ("More turns", "More turns on the coil multiply the total force."),
+        ("Larger coil area", "A bigger coil gives the forces a longer arm, "
+         "increasing the turning effect."),
+    ], notes="Four ways to make a motor turn more strongly: current, field, "
+             "turns and coil area — all increase the couple on the coil.")
     b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Which Hand?", "To find the direction in which a motor's coil "
              "is pushed, you use:", ["Fleming's right-hand rule",
@@ -362,6 +401,19 @@ def deck2():
         ("No movement, no EMF", "If nothing changes, no current is induced."),
     ], notes="The factors that increase induced EMF — all are about a bigger "
              "or faster change of field.")
+    b.statement("LENZ'S LAW", "Lenz's Law — the Direction of Induced Current",
+                "The induced current always flows in the direction that "
+                "opposes the change causing it.",
+                points=["Push a N-pole into a coil and the near face becomes a "
+                        "N-pole to repel it.",
+                        "Pull it away and that face becomes a S-pole to attract "
+                        "it back.",
+                        "This opposition is why work must be done to generate "
+                        "electricity — it follows from conservation of "
+                        "energy."],
+                notes="Lenz's law gives the direction: the induced current "
+                      "always opposes the change. It is energy conservation in "
+                      "action.")
     b.statement("FLEMING (RIGHT)", "Fleming's Right-Hand Rule",
                 "For induction (generators) we use the RIGHT hand to find the "
                 "direction of the induced current.",
@@ -374,17 +426,49 @@ def deck2():
                 notes="Pair this with the left-hand rule: left = motor "
                       "(force), right = generator (induced current). A frequent "
                       "point of confusion.")
-    b.cards("GENERATOR & TRANSFORMER", "Two Machines From Induction", [
+    b.cards("GENERATORS", "AC and DC Generators", [
         ("AC generator", "A coil spun in a magnetic field induces an "
          "alternating current — how power stations make electricity."),
-        ("Slip rings", "Connect the spinning coil to the outside circuit, "
-         "giving AC."),
-        ("Transformer", "Uses a changing current in one coil to induce a "
-         "voltage in another."),
-        ("Step up / down", "More turns on the output coil step the voltage "
-         "up; fewer step it down."),
-    ], notes="Generator: motion → electricity (induction). Transformer: "
-             "changes AC voltage using two coils and a changing field.")
+        ("Slip rings", "Two slip rings connect the spinning coil to the "
+         "circuit, delivering AC."),
+        ("DC generator", "Replacing the slip rings with a split-ring "
+         "commutator gives a current that flows one way (DC)."),
+        ("Parts", "A coil (armature), a field magnet, slip rings or a "
+         "commutator, and carbon brushes."),
+    ], notes="AC generator uses slip rings; a split-ring commutator turns it "
+             "into a DC generator. Same induction principle.")
+    b.statement("TRANSFORMER", "The Transformer and Its Turns Ratio",
+                "A transformer changes an alternating voltage using two coils "
+                "wound on a common soft-iron core.",
+                formula="Vs / Vp  =  Ns / Np      (ideal: Vp Ip = Vs Is)",
+                points=["More turns on the secondary (Ns > Np) → step-up "
+                        "transformer (higher voltage).",
+                        "Fewer turns on the secondary → step-down transformer.",
+                        "An ideal transformer conserves power, so a higher "
+                        "voltage means a smaller current."],
+                notes="Turns ratio sets the voltage ratio. In an ideal "
+                      "transformer power in = power out, so stepping voltage up "
+                      "steps current down.")
+    b.worked("WORKED EXAMPLE", "Transformer Turns Ratio",
+             "A transformer steps 230 V down to 23 V. If the primary has 2000 "
+             "turns, how many turns has the secondary?",
+             ["Vs / Vp = Ns / Np   →   Ns = Np × (Vs / Vp)",
+              "Ns = 2000 × (23 / 230)",
+              "Ns = 2000 × 0.1 = 200 turns"],
+             "The secondary has 200 turns (a step-down transformer)",
+             notes="Apply the turns ratio. Fewer secondary turns (200 < 2000) "
+                   "confirm it is step-down.")
+    b.cards("REAL TRANSFORMERS", "Energy Losses and Their Cure", [
+        ("Copper loss", "Heat in the coils' resistance — reduced by thick, "
+         "low-resistance windings."),
+        ("Iron (eddy) loss", "Currents induced in the core — reduced by using "
+         "a laminated core."),
+        ("Hysteresis loss", "Energy used repeatedly re-magnetising the core — "
+         "reduced with soft iron."),
+        ("Why transmit high", "Step-up at the station and step-down near homes "
+         "keeps current (and I²R loss) low along the lines."),
+    ], notes="Real transformers lose some energy (copper, eddy, hysteresis). "
+             "Laminated soft-iron cores and thick wire cut the losses.")
     b.recap("WRAP UP", "Quick Recap", [
         ("Motor effect", "current in a field feels a force"),
         ("Fleming's left hand", "Field, Current, Motion — for motors"),

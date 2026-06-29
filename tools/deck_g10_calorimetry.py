@@ -76,7 +76,21 @@ def deck1():
                         "Unit: joule per degree Celsius (J/°C) or J/K."],
                 notes="Heat capacity is for the whole body (depends on mass). "
                       "Contrast with specific heat capacity next.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.statement("WATER EQUIVALENT", "Water Equivalent of a Body",
+                "The water equivalent of a body is the mass of water that "
+                "would need the same heat as the body for the same rise in "
+                "temperature.",
+                formula="W  =  m c / c_water        (unit: kg or g)",
+                points=["It equals the body's heat capacity expressed as a "
+                        "mass of water.",
+                        "A body and its water equivalent have the same heat "
+                        "capacity.",
+                        "Used to allow for the heat absorbed by a calorimeter "
+                        "itself."],
+                notes="Water equivalent converts a body's heat capacity into an "
+                      "equivalent mass of water — handy in calorimeter "
+                      "calculations.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Hotter or More Heat?", "A cup of tea at 90°C and a bath of "
              "water at 40°C. Which statement is correct?",
              ["The tea contains more heat energy",
@@ -108,6 +122,13 @@ def deck1():
              "Heat is a form of energy, so it is measured in joules. Degree "
              "Celsius and kelvin are units of temperature, and the watt is a "
              "unit of power.")
+    b.quiz_q(5, "Water Equivalent", "A calorimeter has a heat capacity of "
+             "84 J/°C. Its water equivalent is (c_water = 4200 J/kg°C):",
+             ["0.02 kg", "0.05 kg", "0.2 kg", "2 kg"])
+    b.quiz_a(5, "A. 0.02 kg",
+             "Water equivalent = heat capacity / c_water = 84 / 4200 = 0.02 kg "
+             "(20 g). This mass of water would absorb the same heat per degree "
+             "as the calorimeter.")
     b.divider(2, "Part 2", "Specific Heat Capacity",
               "The heat 'fingerprint' of a material")
     b.statement("SPECIFIC HEAT", "Specific Heat Capacity",
@@ -269,6 +290,28 @@ def deck2():
              notes="Because both are water, c cancels. Set heat lost = heat "
                    "gained and solve for T. Check: 44°C lies between 20 and "
                    "80.")
+    b.worked("WORKED EXAMPLE", "Specific Heat by Mixtures",
+             "0.2 kg of a hot metal at 100°C is dropped into 0.3 kg of water "
+             "at 20°C. The mixture settles at 25°C. Find the metal's specific "
+             "heat capacity. (c_water = 4200 J/kg°C; ignore the calorimeter)",
+             ["Heat gained by water = 0.3 × 4200 × (25 − 20) = 6300 J",
+              "Heat lost by metal = 0.2 × c × (100 − 25) = 15 c",
+              "Heat lost = heat gained:  15 c = 6300",
+              "c = 6300 / 15 = 420 J/kg°C"],
+             "Specific heat capacity of the metal = 420 J/kg°C",
+             notes="Classic 'find c by mixtures' problem: equate heat lost by "
+                   "the metal to heat gained by the water and solve for c.")
+    b.bullets("PRECAUTIONS", "Getting an Accurate Result", [
+        ("Lag the calorimeter", "Insulation reduces heat lost to the "
+         "surroundings."),
+        ("Stir gently", "So the temperature is uniform before each reading."),
+        ("Allow for the calorimeter", "Include its water equivalent in the "
+         "heat-gained side."),
+        ("Small temperature gap", "Keeping it close to room temperature limits "
+         "heat exchange with the air."),
+    ], panel_title="Sources of error and their cure",
+       notes="The main error is heat loss to surroundings. Lagging, stirring, "
+             "and allowing for the calorimeter improve accuracy.")
     b.cards("WATER'S HIGH c", "Consequences of Water's High Specific Heat", [
         ("Coolant", "Water carries away a lot of heat, so it cools car engines "
          "and machinery."),
@@ -471,6 +514,17 @@ def deck3():
                  caption="Temperature is constant while water boils",
                  notes="Show both plateaus. The flat sections are latent-heat "
                        "regions — temperature constant, heat still flowing in.")
+    b.cards("EVAPORATION", "Evaporation and the Cooling It Causes", [
+        ("What it is", "The slow change of a liquid to vapour from its surface, "
+         "at any temperature."),
+        ("Causes cooling", "The fastest molecules escape, so the liquid left "
+         "behind cools down."),
+        ("Faster when…", "Higher temperature, larger surface area, dry moving "
+         "air all speed it up."),
+        ("Everyday cooling", "Sweating, earthen pots and wet-cloth coolers all "
+         "use evaporative cooling."),
+    ], notes="Evaporation: surface-only, any temperature, removes the fastest "
+             "molecules and so cools. List the factors that speed it up.")
     b.bullets("PRESSURE", "Effect of Pressure", [
         ("Boiling point rises with pressure", "Higher pressure makes water "
          "boil above 100°C — used in a pressure cooker to cook faster."),
@@ -496,7 +550,7 @@ def deck3():
     ], panel_title="Impurities widen the liquid range",
        notes="Impurities lower the melting point and raise the boiling point — "
              "salt on roads and antifreeze are the standard examples.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Pressure Cooker", "Food cooks faster in a pressure cooker "
              "because the raised pressure inside:",
              ["Lowers the boiling point of water",
@@ -529,6 +583,14 @@ def deck3():
              "Boiling occurs all through the liquid at one fixed temperature "
              "(the boiling point). Evaporation happens only at the surface and "
              "at any temperature.")
+    b.quiz_q(5, "Cooler in Earthen Pot", "Water stays cool in a porous earthen "
+             "pot because water seeping to the outside:",
+             ["Boils away", "Evaporates, taking heat from the water inside",
+              "Freezes", "Absorbs sunlight"])
+    b.quiz_a(5, "B. Evaporates, taking heat from the water inside",
+             "Water oozing through the pores evaporates from the surface, and "
+             "the fastest molecules carry energy away. This draws heat from the "
+             "water within, keeping it cool — evaporative cooling.")
     b.divider(2, "Part 2", "Latent Heat",
               "The hidden heat of a change of state")
     b.statement("LATENT HEAT", "Latent Heat",
@@ -575,6 +637,15 @@ def deck3():
              "Q = 168,000 J (168 kJ)",
              notes="Pure phase change at 0°C, so use Q = mL only — no mcΔT "
                    "term because the temperature does not change.")
+    b.worked("WORKED EXAMPLE", "Heat to Boil Water Away",
+             "How much heat turns 0.2 kg of water at 100°C into steam at 100°C? "
+             "(L_vaporisation = 2.26 × 10⁶ J/kg)",
+             ["Q = m L",
+              "Q = 0.2 × 2.26 × 10⁶",
+              "Q = 4.52 × 10⁵ J"],
+             "Q = 4.52 × 10⁵ J (452 kJ) — far more than melting the same mass",
+             notes="Compare with melting: vaporising the same mass needs about "
+                   "7 times more heat, because molecules must fully separate.")
     b.cards("CONSEQUENCES", "Why Water's Latent Heat of Fusion Matters", [
         ("Ice cools drinks well", "Melting ice absorbs a lot of heat from the "
          "drink, cooling it effectively."),

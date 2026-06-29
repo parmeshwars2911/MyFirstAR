@@ -220,8 +220,29 @@ def deck2():
         "Describe images formed by a concave mirror",
         "State the uses of a concave mirror",
     ])
-    b.divider(1, "Part 1", "Spherical Mirrors & Ray Rules",
-              "Curved reflecting surfaces")
+    b.divider(1, "Part 1", "Reflection & Spherical Mirrors",
+              "Bouncing light, and curved reflecting surfaces")
+    b.cards("LAWS OF REFLECTION", "Reflection of Light", [
+        ("Reflection", "The bouncing back of light when it strikes a polished "
+         "surface like a mirror."),
+        ("First law", "The angle of incidence equals the angle of reflection "
+         "(i = r)."),
+        ("Second law", "The incident ray, reflected ray and the normal all lie "
+         "in one plane."),
+        ("Regular vs irregular", "Smooth surfaces reflect regularly (clear "
+         "image); rough ones scatter light (diffuse)."),
+    ], notes="Recap the laws of reflection (i = r) and regular vs irregular "
+             "reflection before moving to curved mirrors.")
+    b.cards("PLANE MIRROR", "Image in a Plane Mirror", [
+        ("Virtual & erect", "The image cannot be caught on a screen and is the "
+         "right way up."),
+        ("Same size", "It is exactly as large as the object."),
+        ("As far behind", "The image is as far behind the mirror as the object "
+         "is in front."),
+        ("Laterally inverted", "Left and right are swapped — as in the word "
+         "AMBULANCE on vehicles."),
+    ], notes="Plane-mirror image: virtual, erect, same size, as far behind, and "
+             "laterally inverted. The AMBULANCE example sticks.")
     b.cards("TWO KINDS", "Kinds of Spherical Mirror", [
         ("Spherical mirror", "A mirror that is part of a hollow sphere."),
         ("Concave", "Curves inward; it converges light (a converging "

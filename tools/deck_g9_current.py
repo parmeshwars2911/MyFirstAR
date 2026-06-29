@@ -57,6 +57,28 @@ def deck1():
          "steadily one way."),
     ], notes="Sources of DC: cells, dynamos, solar cells. DC always flows in "
              "one direction, unlike AC.")
+    b.cards("CELL TYPES", "Primary and Secondary Cells", [
+        ("Primary cell", "Gives current from a chemical reaction that cannot be "
+         "reversed — used up and thrown away (e.g. a dry cell)."),
+        ("Secondary cell", "Can be recharged by passing current back through it "
+         "(e.g. a car battery, a phone battery)."),
+        ("Primary example", "The torch dry cell — cheap and convenient but "
+         "not rechargeable."),
+        ("Secondary example", "The lead-acid accumulator — stores charge and "
+         "is reused many times."),
+    ], notes="Primary = single-use (dry cell); secondary = rechargeable "
+             "(accumulator/phone battery). A common Class 9 distinction.")
+    b.cards("DC vs AC", "Direct and Alternating Current", [
+        ("Direct current (DC)", "Flows steadily in one direction — from cells, "
+         "batteries and solar cells."),
+        ("Alternating current (AC)", "Reverses direction many times each second "
+         "— supplied by the mains."),
+        ("Mains in India", "AC at 50 hertz — it changes direction 100 times a "
+         "second."),
+        ("Which for what", "DC suits electronics and torches; AC is easy to "
+         "transmit over long distances."),
+    ], notes="DC (one direction, cells) vs AC (reversing, mains). Indian mains "
+             "is 50 Hz AC.")
     b.text_image("SYMBOLS", "Symbols Used in Circuit Diagrams",
                  ["Circuits are drawn using simple, standard symbols.",
                   "A cell, a battery, a bulb, a switch, a resistor, an "
@@ -259,6 +281,19 @@ def deck2():
                 notes="Conventional current (+ to −) is opposite to electron "
                       "flow (− to +). A historical convention students must "
                       "know.")
+    b.statement("POTENTIAL DIFFERENCE", "Potential Difference (Voltage)",
+                "The potential difference between two points is the work done "
+                "in moving unit charge from one point to the other.",
+                formula="V  =  work done / charge  =  W / Q   (unit: volt, V)",
+                points=["It is the 'push' a cell gives to drive current round "
+                        "a circuit.",
+                        "Measured with a voltmeter, connected in parallel "
+                        "(across a component).",
+                        "1 volt means 1 joule of energy is given to each "
+                        "coulomb of charge."],
+                notes="Introduce p.d. as energy per unit charge (V = W/Q), "
+                      "measured by a voltmeter in parallel. The 'push' driving "
+                      "the current.")
     b.statement("WORK & ENERGY", "Current, Work and Energy",
                 "As charge flows round a circuit, the cell does work on it, "
                 "and that energy is delivered to the components.",
@@ -335,6 +370,16 @@ def deck2():
          "hotter."),
     ], notes="The factors affecting resistance: length, thickness, material "
              "and temperature — a Class 9 introduction to the idea.")
+    b.cards("GROUPING CELLS", "Joining Cells in a Battery", [
+        ("In series", "Cells joined + to − add their voltages, giving a higher "
+         "total voltage."),
+        ("In parallel", "Like cells joined + to + and − to − keep the same "
+         "voltage but last longer."),
+        ("A battery", "Two or more cells joined together form a battery."),
+        ("Choosing", "Series for more voltage; parallel to supply current for "
+         "longer."),
+    ], notes="Cells in series add voltage; in parallel they keep the voltage "
+             "but supply current longer. Several cells make a battery.")
     b.cards("EFFICIENT USE", "Using Electrical Energy Efficiently", [
         ("Switch off", "Turn off lights, fans and chargers when not in use."),
         ("LED lighting", "LEDs give the same light for far less electricity "

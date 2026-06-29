@@ -72,6 +72,17 @@ def deck1():
                  caption="Two metals expand differently, so the strip bends",
                  notes="The bimetallic strip is the key application — bending "
                        "from unequal expansion runs thermostats.")
+    b.cards("USE & CARE", "Expansion: Where It Helps and Where It Harms", [
+        ("Shrink-fitting", "A hot metal rim or ring is slipped on, then grips "
+         "tightly as it cools and contracts."),
+        ("Thermostats", "A bimetallic strip bends with temperature to switch "
+         "an iron or heater on and off."),
+        ("Bridges & rails", "Expansion gaps and roller supports stop them "
+         "buckling in hot weather."),
+        ("Pipes & wires", "Loops in pipes and slack in wires allow for "
+         "expansion and contraction."),
+    ], notes="Expansion is both useful (shrink-fitting, thermostats) and a "
+             "hazard to design around (bridges, rails, pipes).")
     b.text_image("ANOMALOUS WATER", "The Anomalous Expansion of Water",
                  ["Most substances expand steadily as they are heated.",
                   "Water is unusual: between 0°C and 4°C it CONTRACTS as it "
@@ -276,6 +287,31 @@ def deck2():
          "sustainability."),
     ], notes="Side-by-side comparison. Renewables = clean but intermittent; "
              "fossil fuels = reliable but finite and dirty.")
+    b.statement("THE SUN'S ENERGY", "The Sun and the Solar Constant",
+                "The Sun's enormous energy comes from nuclear fusion, in which "
+                "hydrogen nuclei join to form helium, releasing huge energy.",
+                formula="Solar constant ≈ 1.4 kW per square metre above the "
+                        "atmosphere",
+                points=["The solar constant is the solar energy falling per "
+                        "second on 1 m² held normal to the Sun's rays.",
+                        "Fusion in the Sun's core is the ultimate source of "
+                        "almost all our energy.",
+                        "Even fossil fuels are sunlight stored by ancient "
+                        "plants."],
+                notes="The Sun runs on fusion; the solar constant (~1.4 kW/m²) "
+                      "measures the energy arriving from it. Ties the whole "
+                      "energy story back to the Sun.")
+    b.cards("MORE RENEWABLES", "Geothermal, Tidal and Ocean Energy", [
+        ("Geothermal", "Heat from hot rocks underground boils water to steam "
+         "that drives turbines."),
+        ("Tidal energy", "The rise and fall of tides turns generators in a "
+         "tidal barrage."),
+        ("Wave energy", "The up-and-down motion of sea waves is used to "
+         "generate electricity."),
+        ("Ocean thermal (OTEC)", "Uses the temperature difference between warm "
+         "surface water and cold deep water."),
+    ], notes="Additional non-conventional sources Selina lists: geothermal, "
+             "tidal, wave and ocean-thermal energy.")
     b.bullets("BIOMASS", "Biomass and Biogas", [
         ("Biomass", "Energy stored in plants and animal waste, released by "
          "burning or processing."),
@@ -456,6 +492,18 @@ def deck3():
     ], panel_title="Energy from the atom",
        notes="Nuclear fission releases vast energy from little fuel, but "
              "radioactive waste is the major problem.")
+    b.bullets("FUSION vs FISSION", "Two Kinds of Nuclear Energy", [
+        ("Fission", "A heavy nucleus (uranium) splits into lighter ones, "
+         "releasing energy — used in today's reactors."),
+        ("Fusion", "Light nuclei (hydrogen) join to form a heavier one, "
+         "releasing even more energy — this powers the Sun."),
+        ("Fuel and waste", "Fission needs rare uranium and leaves radioactive "
+         "waste; fusion's fuel (hydrogen) is abundant and cleaner."),
+        ("The challenge", "Controlled fusion needs enormous temperatures and "
+         "is still being developed on Earth."),
+    ], panel_title="Splitting vs joining nuclei",
+       notes="Distinguish fission (splitting, used now) from fusion (joining, "
+             "powers the Sun, future clean energy).")
     b.statement("DEGRADATION", "Energy Degradation",
                 "Each time energy is used or changed, some of it turns into "
                 "low-grade heat that spreads out and cannot be usefully "

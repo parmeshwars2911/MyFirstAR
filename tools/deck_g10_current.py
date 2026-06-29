@@ -21,6 +21,7 @@ def deck1():
     b = Builder(FOOTER, accent=C["teal"])
     circ = b.asset("g10ce_circ", D.ohm_circuit("g10ce_circ"))
     graph = b.asset("g10ce_graph", D.ohm_graph("g10ce_graph"))
+    syms = b.asset("g10ce_syms", D.circuit_symbols("g10ce_syms"))
     hero = b.asset("g10_current_hero", circ)
 
     b.title("ICSE • Class 10 • Electricity", "Current & Ohm's Law",
@@ -66,6 +67,18 @@ def deck1():
              "Q = 120 C of charge flows through the lamp",
              notes="Watch the unit of time — convert minutes to seconds first. "
                    "A very common slip.")
+    b.bullets("ELECTRON FLOW", "How Current Flows in a Metal", [
+        ("Free electrons", "A metal has countless loosely-held electrons that "
+         "move about randomly."),
+        ("A cell's push", "Connecting a cell sets up a p.d. that makes the "
+         "electrons drift slowly in one direction."),
+        ("Slow drift, fast effect", "The drift is slow, but the effect (the "
+         "current) is felt almost instantly all along the wire."),
+        ("Direction", "Electrons drift from − to +; conventional current is "
+         "taken from + to −."),
+    ], panel_title="Drift of free electrons",
+       notes="Picture the slow electron drift versus the near-instant onset of "
+             "current. Reinforce the two 'directions'.")
     b.statement("POTENTIAL DIFFERENCE", "Potential Difference (Voltage)",
                 "The potential difference between two points is the work done "
                 "to move unit charge from one point to the other.",
@@ -76,6 +89,19 @@ def deck1():
                         "The SI unit is the volt (V)."],
                 notes="Voltage = energy per unit charge. Voltmeter in parallel "
                       "(across the component) — contrast with the ammeter.")
+    b.text_image("CIRCUIT SYMBOLS", "Reading a Circuit Diagram",
+                 ["Circuits are drawn with standard symbols, not pictures.",
+                  "A cell is a long thin line (+) and a short thick line (−); "
+                  "several cells make a battery.",
+                  "An ammeter (A) goes in series; a voltmeter (V) goes in "
+                  "parallel across a component.",
+                  "A rheostat is a variable resistor used to change the "
+                  "current."],
+                 syms, img_side="right", img_w=5.2, img_h=3.8,
+                 panel_title="The standard symbols",
+                 caption="Cell, battery, bulb, switch, resistor, meters",
+                 notes="Go over each symbol. Students must read and draw these "
+                       "fluently for the circuit questions that follow.")
     b.cards("CONDUCTORS", "Conductors and Insulators", [
         ("Conductors", "Have free electrons, so they carry current easily — "
          "e.g. copper, silver, aluminium."),
@@ -87,7 +113,7 @@ def deck1():
          "and us safe."),
     ], notes="Free electrons are the difference. Link to everyday wiring: "
              "copper core, plastic sheath.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "How Much Charge?", "A current of 2 A flows for half a minute. "
              "The charge that passes is:", ["1 C", "30 C", "60 C", "4 C"])
     b.quiz_a(1, "C. 60 C",
@@ -119,6 +145,12 @@ def deck1():
     b.quiz_a(4, "B. 1 joule is given to each coulomb",
              "1 volt = 1 joule per coulomb. The p.d. tells you how much energy "
              "each unit of charge delivers as it passes through the bulb.")
+    b.quiz_q(5, "Energy Delivered", "A charge of 20 C flows through a bulb "
+             "across which the p.d. is 6 V. The energy delivered to the bulb "
+             "is:", ["3.3 J", "26 J", "120 J", "0.3 J"])
+    b.quiz_a(5, "C. 120 J",
+             "From V = W/Q, the energy is W = V × Q = 6 × 20 = 120 J. Each "
+             "coulomb gives 6 J, and 20 coulombs pass through.")
     b.divider(2, "Part 2", "Resistance & Ohm's Law",
               "How conductors oppose current")
     b.statement("RESISTANCE", "Electrical Resistance",
@@ -168,6 +200,17 @@ def deck1():
              "Resistance R = 30 Ω",
              notes="Straight substitution. Encourage a units check: volts ÷ "
                    "amps = ohms.")
+    b.cards("BEYOND OHM", "When Ohm's Law Does Not Hold", [
+        ("The condition", "Ohm's law applies only while temperature (and "
+         "other physical conditions) stay constant."),
+        ("Filament lamp", "It heats up as current rises, so its resistance "
+         "climbs and the V–I graph curves."),
+        ("Diode", "Conducts well one way and barely the other — a strongly "
+         "non-ohmic device."),
+        ("Thermistor / LDR", "Resistance changes with temperature or light, so "
+         "these too are non-ohmic."),
+    ], notes="Ohm's law is not universal. Filament lamps, diodes, thermistors "
+             "and LDRs are common non-ohmic examples to remember.")
     b.recap("WRAP UP", "Quick Recap", [
         ("Charge & current", "I = Q / t; current is the rate of flow of charge"),
         ("Potential difference", "V = W / Q; the volt is a joule per coulomb"),
@@ -300,7 +343,7 @@ def deck2():
     ], panel_title="Resistance that drops to zero",
        notes="Superconductors: zero resistance below a critical temperature. "
              "Great for strong magnets, but cooling is the challenge.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Stretch the Wire", "A wire is stretched so that its length "
              "doubles (its volume staying the same, so the area halves). Its "
              "new resistance becomes:", ["Half", "The same", "Double",
@@ -334,6 +377,13 @@ def deck2():
              "With length and area equal, the only difference left is the "
              "material's resistivity ρ. Iron has a higher resistivity than "
              "copper, so the iron wire resists more.")
+    b.quiz_q(5, "Heating a Metal", "As a metal wire is heated, its resistance:",
+             ["Decreases", "Increases", "Stays exactly constant",
+              "Falls to zero"])
+    b.quiz_a(5, "B. Increases",
+             "Heating makes the metal's atoms vibrate more, so the drifting "
+             "electrons collide with them more often. The extra opposition "
+             "raises the resistance — the reason a filament lamp is non-ohmic.")
     b.divider(2, "Part 2", "Cells: EMF & Internal Resistance",
               "Why a battery's voltage drops when it supplies current")
     b.statement("EMF", "Electromotive Force (EMF)",
@@ -373,6 +423,29 @@ def deck2():
     ], panel_title="The resistance inside the cell",
        notes="Internal resistance explains the gap between EMF and terminal "
              "voltage. At I = 0 the two are equal.")
+    b.statement("THE CIRCUIT EQUATION", "EMF, Current and Total Resistance",
+                "When a cell of EMF E and internal resistance r drives current "
+                "through an external resistance R, the EMF is shared between "
+                "the two.",
+                formula="E  =  I (R + r)        so   I = E / (R + r)",
+                points=["I R is the useful p.d. across the external circuit "
+                        "(the terminal voltage).",
+                        "I r is the p.d. lost inside the cell.",
+                        "Adding the internal resistance reduces the current "
+                        "the cell can drive."],
+                notes="E = I(R + r) is the master equation; it combines Ohm's "
+                      "law with internal resistance. Terminal voltage = IR.")
+    b.cards("GROUPING CELLS", "Cells in Series and in Parallel", [
+        ("In series", "EMFs add (E = E₁ + E₂ + …); used to get a higher "
+         "voltage."),
+        ("Series resistance", "Internal resistances also add, so a big current "
+         "can still be limited."),
+        ("In parallel", "Identical cells keep the same EMF but share the "
+         "current, lowering effective internal resistance."),
+        ("When to use", "Series for higher voltage; parallel to deliver a "
+         "larger current for longer."),
+    ], notes="Grouping of cells: series adds EMFs (and r); parallel keeps EMF "
+             "but cuts internal resistance and shares current.")
     b.worked("WORKED EXAMPLE", "Terminal Voltage",
              "A cell of EMF 1.5 V and internal resistance 0.5 Ω drives a "
              "current of 0.6 A. Find its terminal voltage.",
@@ -496,7 +569,27 @@ def deck3():
              "Series → 12 Ω;  Parallel → 3 Ω",
              notes="Note the pattern: two equal resistors give 2R in series "
                    "and R/2 in parallel. A handy shortcut to remember.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.worked("WORKED EXAMPLE", "A Mixed Network",
+             "Two 6 Ω resistors are joined in parallel, and this combination "
+             "is in series with a 4 Ω resistor. Find the total resistance.",
+             ["Parallel pair:  1/Rp = 1/6 + 1/6 = 2/6  →  Rp = 3 Ω",
+              "Now in series with 4 Ω:  R = Rp + 4",
+              "R = 3 + 4 = 7 Ω"],
+             "Total resistance = 7 Ω",
+             notes="Tackle mixed networks in stages: reduce the parallel part "
+                   "first, then add the series resistor.")
+    b.cards("BULB BRIGHTNESS", "Brighter in Series or in Parallel?", [
+        ("Same bulbs, in series", "They share the supply voltage, so each gets "
+         "less and all glow dimly."),
+        ("Same bulbs, in parallel", "Each gets the full supply voltage, so each "
+         "glows at full brightness."),
+        ("If one fails (series)", "The single path breaks and all the bulbs go "
+         "out."),
+        ("If one fails (parallel)", "Only that branch goes out; the others "
+         "keep glowing — why homes use parallel."),
+    ], notes="Classic comparison: parallel bulbs are brighter and independent. "
+             "Tie to why household wiring is parallel.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Combine Them", "Three 3 Ω resistors are connected in series. "
              "Their total resistance is:", ["1 Ω", "3 Ω", "9 Ω", "6 Ω"])
     b.quiz_a(1, "C. 9 Ω",
@@ -524,6 +617,14 @@ def deck3():
              "In parallel every appliance receives the same full mains voltage "
              "and can be turned on or off without affecting the others — "
              "essential for a household.")
+    b.quiz_q(5, "Reduce the Total", "You have three resistors. To get the "
+             "SMALLEST possible total resistance you should connect them:",
+             ["All in series", "All in parallel", "Two in series, one in "
+              "parallel", "It makes no difference"])
+    b.quiz_a(5, "B. All in parallel",
+             "Parallel connection always gives an equivalent resistance "
+             "smaller than the smallest resistor, because the current has "
+             "several paths. Series would give the largest total.")
     b.divider(2, "Part 2", "Electrical Energy & Power",
               "Paying for electricity and the heating effect")
     b.statement("ENERGY", "Electrical Energy",

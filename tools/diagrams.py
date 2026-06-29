@@ -376,6 +376,49 @@ def lens_as_prisms(key):
     return _render(key, _svg("".join(body), 600, 470), 800, 627)
 
 
+def lens_types(key):
+    """Cross-sections of the six common lens shapes, grouped by type."""
+    h = 42      # half height of a lens
+    def biconvex(cx, cy, b=18):
+        return (f'<path d="M {cx},{cy-h} Q {cx+b},{cy} {cx},{cy+h} '
+                f'Q {cx-b},{cy} {cx},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def planoconvex(cx, cy, b=20):
+        return (f'<path d="M {cx-6},{cy-h} L {cx-6},{cy+h} '
+                f'Q {cx+b},{cy} {cx-6},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def meniscus_conv(cx, cy):
+        # both faces curve the same way; convex face wins → thick centre
+        return (f'<path d="M {cx},{cy-h} Q {cx+22},{cy} {cx},{cy+h} '
+                f'Q {cx+6},{cy} {cx},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def biconcave(cx, cy, w=20, wm=6):
+        return (f'<path d="M {cx-w},{cy-h} L {cx+w},{cy-h} '
+                f'Q {cx+wm},{cy} {cx+w},{cy+h} L {cx-w},{cy+h} '
+                f'Q {cx-wm},{cy} {cx-w},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    def planoconcave(cx, cy, w=16, wm=4):
+        return (f'<path d="M {cx-w},{cy-h} L {cx+6},{cy-h} L {cx+6},{cy+h} '
+                f'L {cx-w},{cy+h} Q {cx-wm},{cy} {cx-w},{cy-h} Z" '
+                f'fill="{GLASS}" stroke="{INK}" stroke-width="2"/>')
+    def meniscus_div(cx, cy):
+        # concave face wins → thin centre
+        return (f'<path d="M {cx-4},{cy-h} Q {cx+20},{cy} {cx-4},{cy+h} '
+                f'Q {cx-14},{cy} {cx-4},{cy-h} Z" fill="{GLASS}" '
+                f'stroke="{INK}" stroke-width="2"/>')
+    body = [
+        _txt(300, 36, "Converging — thicker in the middle", TEAL, 16),
+        biconvex(140, 110), _txt(140, 178, "bi-convex", MUT, 13),
+        planoconvex(300, 110), _txt(300, 178, "plano-convex", MUT, 13),
+        meniscus_conv(465, 110), _txt(465, 178, "converging meniscus", MUT, 12),
+        _txt(300, 240, "Diverging — thinner in the middle", PURPLE, 16),
+        biconcave(140, 315), _txt(140, 380, "bi-concave", MUT, 13),
+        planoconcave(300, 315), _txt(300, 380, "plano-concave", MUT, 13),
+        meniscus_div(465, 315), _txt(465, 380, "diverging meniscus", MUT, 12),
+    ]
+    return _render(key, _svg("".join(body), 600, 410), 820, 560)
+
+
 VIBGYOR = [("Violet", "#7F00FF"), ("Indigo", "#4B0082"), ("Blue", "#0000FF"),
            ("Green", "#00A000"), ("Yellow", "#FFD000"), ("Orange", "#FF7F00"),
            ("Red", "#FF0000")]
@@ -1522,6 +1565,78 @@ def reflecting_prism(key):
         _txt(300, 500, "Light is turned through 90° by T.I.R.", MUT, 16),
     ]
     return _render(key, _svg("".join(body), 600, 540), 620, 558)
+
+
+def mirage(key):
+    """A mirage: light from sky bends through hot air layers and undergoes
+    total internal reflection near the hot road."""
+    body = [
+        _txt(320, 38, "Mirage — total internal reflection in hot air", INK, 17),
+        # sky band
+        f'<rect x="40" y="60" width="560" height="70" fill="#BFD8F2"/>',
+        _txt(250, 100, "cool, denser air", "#3A6EA5", 13, anchor="start"),
+        # graded warm layers toward the ground
+        f'<rect x="40" y="130" width="560" height="50" fill="#E8EEF5"/>',
+        f'<rect x="40" y="180" width="560" height="45" fill="#F6E7CF"/>',
+        f'<rect x="40" y="225" width="560" height="45" fill="#F2D49B"/>',
+        _txt(110, 252, "hot, rarer air near road", "#9A6B1E", 13,
+             anchor="start"),
+        # road
+        f'<rect x="40" y="270" width="560" height="40" fill="#6B6F76"/>',
+        _txt(320, 295, "hot road", "#FFFFFF", 13),
+        # object (tree) at left
+        f'<rect x="92" y="92" width="6" height="40" fill="#6B5A45"/>',
+        f'<circle cx="95" cy="86" r="16" fill="{GREEN}"/>',
+        _txt(95, 150, "tree", MUT, 12),
+        # curving ray from tree-top bending up near ground then to eye
+        f'<path d="M 110 90 Q 300 285 470 150" fill="none" stroke="{RED}" '
+        f'stroke-width="3" marker-end="url(#arrowR)"/>',
+        # eye
+        f'<circle cx="500" cy="140" r="13" fill="none" stroke="{INK}" '
+        f'stroke-width="2.5"/><circle cx="500" cy="140" r="4" fill="{INK}"/>',
+        _txt(500, 120, "observer", MUT, 12),
+        # apparent (inverted) image below, dashed back-projection
+        f'<line x1="470" y1="150" x2="318" y2="248" stroke="{MUT}" '
+        f'stroke-width="2" stroke-dasharray="6 5"/>',
+        f'<circle cx="312" cy="250" r="9" fill="{GREEN}" '
+        f'fill-opacity="0.5"/>',
+        _txt(430, 240, "apparent image (looks like water)", "#5A4A2A", 12,
+             anchor="start"),
+        _txt(320, 345, "Light from the sky bends in the hot air and is "
+                       "totally reflected upward", MUT, 14),
+    ]
+    return _render(key, _svg("".join(body), 640, 365), 880, 502)
+
+
+def prism_deviation_graph(key):
+    """The i versus angle-of-deviation curve for a prism, with the minimum."""
+    ox, oy = 110, 320          # origin
+    ax, ay = 560, 70           # axis extents
+    body = [
+        _txt(330, 38, "Angle of deviation vs angle of incidence", INK, 16),
+        _line(ox, oy, ax, oy, INK, 2, marker="arrow"),   # x-axis
+        _line(ox, oy, ox, ay, INK, 2, marker="arrow"),   # y-axis
+        _txt(ax - 10, oy + 28, "angle of incidence  i", MUT, 13,
+             anchor="end"),
+        _txt(ox - 60, ay + 60, "deviation", MUT, 13, anchor="middle"),
+        _txt(ox - 60, ay + 78, "δ", MUT, 13, anchor="middle"),
+        # U-shaped curve
+        f'<path d="M 160 120 Q 250 250 335 250 Q 420 250 520 120" '
+        f'fill="none" stroke="{PURPLE}" stroke-width="3"/>',
+        # minimum marker
+        f'<line x1="335" y1="250" x2="335" y2="{oy}" stroke="{MUT}" '
+        f'stroke-width="1.5" stroke-dasharray="5 4"/>',
+        f'<line x1="335" y1="250" x2="{ox}" y2="250" stroke="{MUT}" '
+        f'stroke-width="1.5" stroke-dasharray="5 4"/>',
+        f'<circle cx="335" cy="250" r="5" fill="{RED}"/>',
+        _txt(335, oy + 22, "i₁ = i₂", INK, 13),
+        _txt(ox - 18, 250, "δ", RED, 14, anchor="end"),
+        _txt(ox - 8, 250, "m", RED, 10, anchor="start"),
+        _txt(360, 215, "minimum deviation", RED, 13, anchor="start"),
+        _txt(330, 360, "Deviation is least when the ray passes symmetrically "
+                       "(i₁ = i₂)", MUT, 13),
+    ]
+    return _render(key, _svg("".join(body), 640, 380), 840, 499)
 
 
 def gold_leaf_electroscope(key):

@@ -96,6 +96,27 @@ def deck1():
          "the circuit."),
     ], notes="MCBs are the modern replacement for fuses: automatic, reusable, "
              "still in the live wire.")
+    b.cards("OVERLOAD vs SHORT", "Overload and Short Circuit", [
+        ("Overload", "Too many appliances draw more current than the wiring is "
+         "rated for, so it overheats."),
+        ("Short circuit", "Live and neutral touch directly, giving a very large "
+         "current through almost no resistance."),
+        ("Same protection", "Both make the current shoot up, so the fuse or "
+         "MCB cuts the supply."),
+        ("Why dangerous", "Either can melt insulation and start a fire if not "
+         "interrupted quickly."),
+    ], notes="Distinguish overload (too many appliances) from a short circuit "
+             "(live-neutral contact). Both trip the fuse/MCB.")
+    b.worked("WORKED EXAMPLE", "Choosing a Fuse Rating",
+             "A 230 V electric kettle is rated 2300 W. What is the smallest "
+             "standard fuse (3 A, 5 A, 13 A) that suits it?",
+             ["Normal current  I = P / V = 2300 / 230 = 10 A",
+              "The fuse must carry 10 A in normal use without blowing.",
+              "So 3 A and 5 A are too small; the 13 A fuse is the right "
+              "choice."],
+             "Use a 13 A fuse (the next standard value above 10 A)",
+             notes="Find the normal current from P = VI, then pick the next "
+                   "standard fuse just above it. Too low blows in normal use.")
     b.cards("WHY LIVE WIRE", "Why the Fuse & Switch Go in the Live Wire", [
         ("Fuse in live", "When it blows, the appliance is cut off from the "
          "dangerous live voltage."),
@@ -107,7 +128,7 @@ def deck1():
          "the live wire."),
     ], notes="Drive home the rule. A fuse/switch in the neutral would still "
              "leave the appliance live and dangerous.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Why High Voltage?", "Electricity is transmitted over long "
              "distances at very high voltage mainly to:",
              ["Make the wires glow", "Reduce the current and so cut energy "
@@ -142,6 +163,14 @@ def deck1():
              "The fuse must be just above the normal current so it carries 3 A "
              "safely but blows on a fault. A 5 A fuse fits; 1–2 A would blow "
              "in normal use and 30 A would never protect it.")
+    b.quiz_q(5, "Short vs Overload", "Live and neutral wires accidentally touch "
+             "inside an appliance. This is a:", ["Normal load",
+              "Short circuit, drawing a very large current",
+              "Earth fault that is harmless", "Drop in voltage"])
+    b.quiz_a(5, "B. Short circuit, drawing a very large current",
+             "With live and neutral in direct contact there is almost no "
+             "resistance, so a huge current flows. The fuse or MCB must trip "
+             "at once to prevent the wiring overheating.")
     b.divider(2, "Part 2", "Switches & Dual Control",
               "Controlling lights from more than one place")
     b.bullets("SWITCHES", "Switches in a Circuit", [
@@ -275,6 +304,17 @@ def deck2():
                  caption="Earth pin: longer and thicker; fuse in the live",
                  notes="Walk through the three pins. The longer earth pin "
                        "connects first (safety); the fuse is in the live wire.")
+    b.cards("TWO PROTECTIONS", "Fuse and Earthing Do Different Jobs", [
+        ("Fuse", "Protects the wiring — it melts to cut off a dangerously "
+         "large current."),
+        ("Earthing", "Protects the user — it keeps the metal body at earth "
+         "potential, safe to touch."),
+        ("They work together", "On a fault the earth wire carries a large "
+         "current that then blows the fuse."),
+        ("Both needed", "A fuse alone leaves the body live until it blows; "
+         "earthing makes that instant safe."),
+    ], notes="Key distinction: the fuse protects the circuit/wiring, earthing "
+             "protects the person. Together they make a fault safe.")
     b.cards("COLOUR CODE", "Colour Coding of Wires", [
         ("Live — brown", "Carries the dangerous 230 V supply (older code: "
          "red)."),
@@ -297,7 +337,19 @@ def deck2():
     ], panel_title="First to connect, last to leave",
        notes="The earth pin's length and thickness are favourite exam points: "
              "connects first, carries fault current, opens shutters.")
-    b.quiz_intro("Quiz 1", "Check Your Understanding", 4)
+    b.bullets("HOW WE EARTH", "How a House Is Earthed", [
+        ("Earth electrode", "A metal plate or pipe is buried deep in moist "
+         "ground near the house."),
+        ("Low resistance", "It is surrounded by charcoal and salt to keep the "
+         "earth connection low in resistance."),
+        ("Earth wire", "A thick wire links the electrode to the earth pins of "
+         "all the sockets."),
+        ("Why moist soil", "Damp, salted earth conducts well, giving fault "
+         "current an easy path to ground."),
+    ], panel_title="Plate or pipe earthing",
+       notes="Outline plate/pipe earthing: a buried electrode in salted, "
+             "charcoal-packed moist soil, linked by a thick earth wire.")
+    b.quiz_intro("Quiz 1", "Check Your Understanding", 5)
     b.quiz_q(1, "Fault to the Body", "The live wire inside a metal toaster "
              "comes loose and touches the casing. If the toaster is properly "
              "earthed, what happens?",
@@ -331,6 +383,16 @@ def deck2():
              "Earthing protects a conducting (metal) body. A fully insulated "
              "plastic body cannot give a shock even if a wire touches it, so "
              "such 'double-insulated' devices need no earth pin.")
+    b.quiz_q(5, "Fuse or Earth?", "Which statement correctly matches each "
+             "safety device to its job?",
+             ["The fuse protects the user; earthing protects the wiring",
+              "The fuse protects the wiring; earthing protects the user",
+              "Both protect only the wiring", "Both protect only the user"])
+    b.quiz_a(5, "B. Fuse protects the wiring; earthing protects the user",
+             "The fuse melts to stop a dangerous current overheating the "
+             "wiring. Earthing keeps the metal body at earth potential so it is "
+             "safe to touch — and the fault current it carries then blows the "
+             "fuse.")
     b.divider(2, "Part 2", "High-Tension Wires & Safety",
               "Respecting the dangers of electricity")
     b.bullets("HIGH TENSION", "High-Tension (HT) Wires", [

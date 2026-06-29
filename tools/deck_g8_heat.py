@@ -57,6 +57,42 @@ def deck1():
                  caption="Solid, liquid and gas particle arrangements",
                  notes="The molecular model: heat = faster particle motion. "
                        "Arrangement differs across the three states.")
+    b.cards("THREE WAYS", "The Three Modes of Heat Transfer", [
+        ("Conduction", "Heat passes through a solid from particle to particle, "
+         "without the particles moving along."),
+        ("Convection", "Heat moves through liquids and gases as warm, less "
+         "dense fluid rises and cool fluid sinks."),
+        ("Radiation", "Heat travels as invisible waves that need no medium — "
+         "how the Sun's heat reaches us."),
+        ("Hotter to colder", "In every mode, heat always flows from the hotter "
+         "body to the colder one."),
+    ], notes="The three modes: conduction (solids), convection (fluids), "
+             "radiation (no medium). This is the heart of the Heat Transfer "
+             "chapter.")
+    b.bullets("CONDUCTION", "Conduction — Heat Through Solids", [
+        ("How it works", "Heated particles vibrate harder and pass the energy "
+         "to their neighbours."),
+        ("Good conductors", "Metals like copper and aluminium carry heat "
+         "quickly — used for cooking pans."),
+        ("Poor conductors (insulators)", "Wood, plastic, air and water carry "
+         "heat slowly — used for pan handles and warm clothing."),
+        ("Everyday", "A metal spoon in hot tea soon feels hot; a wooden one "
+         "does not."),
+    ], panel_title="Particle to particle",
+       notes="Conduction is mainly in solids. Metals conduct well; wood, "
+             "plastic and trapped air are insulators.")
+    b.bullets("CONVECTION & RADIATION", "Convection and Radiation", [
+        ("Convection currents", "Warm fluid rises, cool fluid sinks, setting up "
+         "a circulating current that carries heat."),
+        ("Everyday convection", "Land and sea breezes, boiling water and room "
+         "heaters all work by convection."),
+        ("Radiation", "All hot bodies radiate heat as infrared waves; it needs "
+         "no medium and crosses empty space."),
+        ("Surfaces", "Dull black surfaces absorb and emit radiation best; "
+         "shiny white surfaces reflect it."),
+    ], panel_title="Moving fluids and invisible waves",
+       notes="Convection: circulating fluid (breezes, heaters). Radiation: "
+             "infrared, no medium; black absorbs/emits, shiny reflects.")
     b.cards("CHANGE OF STATE", "The Three Changes of State", [
         ("Melting", "A solid takes in heat and becomes a liquid (ice → "
          "water)."),
