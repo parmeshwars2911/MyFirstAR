@@ -67,6 +67,19 @@ def deck1():
     ], panel_title="Magnetism without contact",
        notes="Induced magnetism explains why unmagnetised iron is attracted: "
              "it temporarily becomes a magnet with an opposite near-pole.")
+    b.bullets("MOLECULAR THEORY", "The Molecular Theory of Magnetism", [
+        ("Tiny molecular magnets", "Every molecule of a magnetic material is "
+         "itself a tiny magnet."),
+        ("Unmagnetised", "Normally these point in all directions, so their "
+         "effects cancel out."),
+        ("Magnetised", "In a magnet they line up the same way, adding together "
+         "to give net poles."),
+        ("It explains", "Why breaking a magnet gives two magnets, and why "
+         "heating or hammering (jumbling them) demagnetises it."),
+    ], panel_title="Magnets made of tiny magnets",
+       notes="The molecular/domain theory: aligned molecular magnets give "
+             "magnetism. Explains induced magnetism, breaking, and "
+             "demagnetisation by heat/hammering.")
     b.text_image("FIELD LINES", "Magnetic Field Lines",
                  ["A magnetic field is the region around a magnet where its "
                   "force can be felt.",
@@ -356,6 +369,17 @@ def deck2():
         ("Loudspeakers & maglev", "Make sound, and lift maglev trains."),
     ], notes="Uses exploit switchable, controllable magnetism. The lifting "
              "crane and electric bell are the classic examples.")
+    b.cards("CARE OF MAGNETS", "Storing and Caring for Permanent Magnets", [
+        ("They weaken", "Rough handling, heating, hammering and stray fields "
+         "gradually weaken a magnet."),
+        ("Use keepers", "Store bar magnets in pairs with soft-iron 'keepers' "
+         "across their ends."),
+        ("Unlike poles together", "Lay the pair with unlike poles adjacent, "
+         "joined by the keepers."),
+        ("Why it helps", "The keepers form closed loops for the field, keeping "
+         "the molecular magnets aligned."),
+    ], notes="Care of magnets: avoid heat/shock; store in pairs with soft-iron "
+             "keepers across unlike poles to preserve magnetism.")
     b.recap("WRAP UP", "Quick Recap", [
         ("Plotting", "use a plotting compass to trace field lines"),
         ("Bar magnet field", "non-uniform: curved, unevenly spaced lines"),
