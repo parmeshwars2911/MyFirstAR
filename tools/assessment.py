@@ -246,6 +246,31 @@ def build_workout(out_path, *, chapter, accent, title, subtitle,
 # ---------------------------------------------------------------------------
 # Homework PDF (reportlab)
 # ---------------------------------------------------------------------------
+_SUP = {"⁰": "0", "¹": "1", "²": "2", "³": "3",
+        "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7",
+        "⁸": "8", "⁹": "9", "⁻": "-"}
+
+
+def _pdf_rich(s):
+    """Make a question/option string safe for a reportlab Paragraph: escape
+    XML, turn Unicode superscripts into <super>..</super> (Helvetica has no
+    superscript glyphs), and map the minus sign / approx sign to ASCII."""
+    s = (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    s = s.replace("−", "-").replace("≈", "~")
+    out, i, n = [], 0, len(s)
+    while i < n:
+        if s[i] in _SUP:
+            buf = ""
+            while i < n and s[i] in _SUP:
+                buf += _SUP[s[i]]
+                i += 1
+            out.append("<super>" + buf + "</super>")
+        else:
+            out.append(s[i])
+            i += 1
+    return "".join(out)
+
+
 def build_homework(out_path, *, grade, chapter, lesson, kind, syllabus_topics,
                    mcqs):
     """Build a print-ready A4 homework worksheet with `len(mcqs)` MCQs + key.
@@ -340,9 +365,10 @@ def build_homework(out_path, *, grade, chapter, lesson, kind, syllabus_topics,
 
     labels = "ABCD"
     for i, q in enumerate(mcqs, 1):
-        flow = [Paragraph(f"{i}. {q['q']}", q_style)]
+        flow = [Paragraph(f"{i}. {_pdf_rich(q['q'])}", q_style)]
         # two-column option grid
-        opts = [Paragraph(f"<b>{labels[j]}.</b>&nbsp; {opt}", opt_style)
+        opts = [Paragraph(f"<b>{labels[j]}.</b>&nbsp; {_pdf_rich(opt)}",
+                          opt_style)
                 for j, opt in enumerate(q["options"])]
         # pad to 4
         while len(opts) < 4:
