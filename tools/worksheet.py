@@ -39,8 +39,12 @@ LINE = colors.HexColor("#C9D6E5")
 # Brand logo image, used automatically once the file is added to assets/img/.
 # We accept a few common filenames (incl. "IL logo.*") so whatever the user
 # uploads is picked up without a code change.
-_IMG_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
-                                        "assets", "img"))
+_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+# The repo has both "Assets/img" (from the AR project) and "assets/img"; the
+# logo may be dropped into either, so search both.
+_IMG_DIRS = [os.path.join(_ROOT, "Assets", "img"),
+             os.path.join(_ROOT, "assets", "img")]
+_IMG_DIR = _IMG_DIRS[0]
 
 
 def _resolve_logo():
@@ -48,17 +52,20 @@ def _resolve_logo():
     names = ["IL logo", "IL_logo", "IL-logo", "il logo", "il_logo",
              "infinity_learn_logo", "infinity-learn-logo", "infinitylearn"]
     exts = [".png", ".jpg", ".jpeg", ".webp"]
-    for n in names:
-        for e in exts:
-            p = os.path.join(_IMG_DIR, n + e)
-            if os.path.exists(p):
+    for d in _IMG_DIRS:
+        for n in names:
+            for e in exts:
+                p = os.path.join(d, n + e)
+                if os.path.exists(p):
+                    return p
+    # last resort: any file whose name mentions logo / IL in either folder
+    for d in _IMG_DIRS:
+        for p in sorted(glob.glob(os.path.join(d, "*"))):
+            base = os.path.basename(p).lower()
+            if ("logo" in base or base.startswith("il ")
+                    or base.startswith("il_")) and \
+                    os.path.splitext(base)[1] in exts:
                 return p
-    # last resort: any file in assets/img whose name mentions logo / IL
-    for p in sorted(glob.glob(os.path.join(_IMG_DIR, "*"))):
-        base = os.path.basename(p).lower()
-        if ("logo" in base or base.startswith("il")) and \
-                os.path.splitext(base)[1] in exts:
-            return p
     return os.path.join(_IMG_DIR, "IL logo.png")   # expected default path
 
 
