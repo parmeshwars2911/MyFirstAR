@@ -36,10 +36,33 @@ DARK = IL_NAVY
 MUTED = colors.HexColor("#5B667A")
 LINE = colors.HexColor("#C9D6E5")
 
-# Official logo, dropped in automatically if present (see LOGO_PATH below).
-LOGO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
-                                         "assets", "img",
-                                         "infinity_learn_logo.png"))
+# Brand logo image, used automatically once the file is added to assets/img/.
+# We accept a few common filenames (incl. "IL logo.*") so whatever the user
+# uploads is picked up without a code change.
+_IMG_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
+                                        "assets", "img"))
+
+
+def _resolve_logo():
+    import glob
+    names = ["IL logo", "IL_logo", "IL-logo", "il logo", "il_logo",
+             "infinity_learn_logo", "infinity-learn-logo", "infinitylearn"]
+    exts = [".png", ".jpg", ".jpeg", ".webp"]
+    for n in names:
+        for e in exts:
+            p = os.path.join(_IMG_DIR, n + e)
+            if os.path.exists(p):
+                return p
+    # last resort: any file in assets/img whose name mentions logo / IL
+    for p in sorted(glob.glob(os.path.join(_IMG_DIR, "*"))):
+        base = os.path.basename(p).lower()
+        if ("logo" in base or base.startswith("il")) and \
+                os.path.splitext(base)[1] in exts:
+            return p
+    return os.path.join(_IMG_DIR, "IL logo.png")   # expected default path
+
+
+LOGO_PATH = _resolve_logo()
 
 
 def _styles():
@@ -123,9 +146,11 @@ def build_worksheet(out_path, *, school, subject, grade, chapter, kind,
             canvas.setFillColor(IL_BLUE)
             canvas.drawCentredString(lx + d / 2, ly + d / 2 - 6, "Learn")
         # footer
+        canvas.setFont("Helvetica-Bold", 8)
+        canvas.setFillColor(IL_BLUE)
+        canvas.drawString(16 * mm, 11 * mm, "Infinity Learn")
         canvas.setFont("Helvetica", 8)
         canvas.setFillColor(MUTED)
-        canvas.drawString(16 * mm, 11 * mm, f"{school}  •  {chapter}")
         canvas.drawRightString(A4[0] - 16 * mm, 11 * mm, f"Page {doc.page}")
         canvas.restoreState()
 
@@ -229,21 +254,22 @@ def build_worksheet(out_path, *, school, subject, grade, chapter, kind,
                 keyparas.append(Paragraph(f"<b>{i}.</b> {it['answer']}",
                                           st["key"]))
         elif t in ("short", "long"):
+            # Subjective questions: digital worksheet, so no ruled writing
+            # space, and (per request) no model answers in the key.
             for i, it in enumerate(sec["items"], 1):
                 m = it.get("marks", 2 if t == "short" else 5)
                 story.append(Paragraph(
                     f"{i}. {_pdf_rich(it['q'])} &nbsp;<b>[{m}]</b>", st["q"]))
-                for fl in _ruled(doc.width, n=it.get("lines",
-                                 2 if t == "short" else 4)):
-                    story.append(fl)
-                ans = " ".join(it.get("answer", []))
-                keyparas.append(Paragraph(
-                    f"<b>{i}.</b> {_pdf_rich(ans)}", st["ans"]))
+                story.append(Spacer(1, 4))
         else:
             raise ValueError(f"unknown section type: {t}")
-        key_blocks.append((title, keyparas))
+        if t not in ("short", "long"):
+            key_blocks.append((title, keyparas))
 
-    # ---- answer key (appended) ----
+    # ---- answer key (appended) — only for objective-type sections ----
+    if not any(paras for _, paras in key_blocks):
+        doc.build(story)
+        return out_path
     story.append(Spacer(1, 8))
     story.append(HRFlowable(width="100%", thickness=0.8, color=MUTED,
                             spaceBefore=4, spaceAfter=4))
