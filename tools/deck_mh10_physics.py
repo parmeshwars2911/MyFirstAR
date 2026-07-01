@@ -37,20 +37,23 @@ def refraction_deck():
     fibre = b.asset("mh10_refr_fibre", D.optical_fibre("mh10_refr_fibre"))
     mirage = b.asset("mh10_refr_mirage", D.mirage("mh10_refr_mirage"))
     disp = b.asset("mh10_refr_disp", D.dispersion_spectrum("mh10_refr_disp"))
+    prism = b.asset("mh10_refr_prism", D.prism_refraction("mh10_refr_prism"))
 
     b.title("Std 10 • Science Part 1 • Light", "Refraction of Light",
             "Laws of refraction  •  Refractive index  •  Total internal "
             "reflection  •  Dispersion  •  Twinkling of stars", img=bend)
 
     b.objectives([
-        "Explain what refraction is and why light bends at a boundary",
-        "State the two laws of refraction and apply Snell's law",
-        "Define absolute and relative refractive index",
-        "Explain critical angle and the conditions for total internal "
-        "reflection",
+        "Explain refraction, the laws of refraction and refractive index",
+        "Trace a ray through a rectangular glass slab and define lateral "
+        "displacement",
+        "Distinguish partial internal reflection from total internal "
+        "reflection and use the critical angle",
         "Describe how TIR explains optical fibres, mirage and diamond "
         "sparkle",
-        "Explain dispersion of light and the twinkling of stars",
+        "Explain refraction and dispersion of light through a prism",
+        "Explain atmospheric refraction: advance sunrise, delayed sunset "
+        "and the twinkling of stars",
     ])
 
     # ---- Part 1 : refraction, laws, refractive index ----
@@ -133,7 +136,24 @@ def refraction_deck():
         notes="A very common numerical style in the MSBSHSE textbook — "
               "always rearrange n = c/v for whichever quantity is asked.")
 
-    b.quiz_intro("Quiz 1", "Check — Laws & Refractive Index", 4)
+    b.text_image(
+        "GLASS SLAB", "Refraction Through a Rectangular Glass Slab",
+        ["Light refracts twice — bending towards the normal on entering "
+         "(air to glass) and away from the normal on leaving (glass to "
+         "air).",
+         "The two parallel faces bend it by equal and opposite amounts, "
+         "so the emergent ray is parallel to the incident ray.",
+         "The emergent ray is only shifted sideways from the original "
+         "path — this shift is called lateral displacement.",
+         "Lateral displacement increases with the thickness of the slab "
+         "and the angle of incidence."],
+        block, img_side="right", panel_title="Emergent ray is parallel "
+        "but shifted",
+        notes="Stress the two key facts examiners look for: the emergent "
+              "ray is parallel to the incident ray, and it is laterally "
+              "displaced.")
+
+    b.quiz_intro("Quiz 1", "Check — Laws, Refractive Index & Glass Slab", 5)
     b.quiz_q(1, "Refraction", "Light bends towards the normal when it "
              "passes from:",
              ["a denser medium to a rarer medium", "a rarer medium to a "
@@ -162,29 +182,64 @@ def refraction_deck():
               "m/s"])
     b.quiz_a(4, "B. 2.26 x 10⁸ m/s",
              "v = c / n = (3 x 10⁸) / 1.33 ≈ 2.26 x 10⁸ m/s.")
+    b.quiz_q(5, "Glass slab", "After passing through a rectangular glass "
+             "slab, the emergent ray is:",
+             ["bent towards the normal", "parallel to the incident ray "
+              "but laterally displaced", "reflected straight back", "split "
+              "into seven colours"])
+    b.quiz_a(5, "B. parallel to the incident ray but laterally displaced",
+             "The two equal-and-opposite refractions at the parallel "
+             "faces keep the emergent ray parallel to the incident ray, "
+             "but shift it sideways (lateral displacement).")
 
-    # ---- Part 2 : TIR, dispersion, twinkling ----
-    b.divider(2, "Part 2", "Total Internal Reflection, Dispersion & "
-              "Twinkling of Stars", "Critical angle, everyday applications "
-              "and why stars twinkle")
+    # ---- Part 2 : partial & total internal reflection, prism, dispersion,
+    # atmospheric refraction ----
+    b.divider(2, "Part 2", "Internal Reflection, Prism & Atmospheric "
+              "Refraction", "Critical angle, the prism, dispersion and "
+              "sky phenomena")
+
+    b.bullets(
+        "PARTIAL & TOTAL", "Partial and Total Internal Reflection",
+        [("Partial internal reflection", "When light travels from a "
+          "denser to a rarer medium at a small angle of incidence, most "
+          "of it refracts out (bending away from the normal) while a "
+          "small part is reflected back into the denser medium — this is "
+          "partial internal reflection."),
+         ("As the angle increases", "As the angle of incidence in the "
+          "denser medium is increased, the refracted ray bends more and "
+          "more towards the boundary and grows fainter, while the "
+          "reflected ray grows brighter."),
+         ("At the critical angle", "The critical angle (C) is the angle "
+          "of incidence in the denser medium for which the angle of "
+          "refraction becomes 90°; the refracted ray just grazes along "
+          "the surface."),
+         ("Beyond the critical angle", "If the angle of incidence exceeds "
+          "the critical angle, no light refracts out at all — all of it "
+          "is reflected back into the denser medium. This is total "
+          "internal reflection (TIR).")],
+        notes="Emphasise the progression: partial internal reflection "
+              "always accompanies refraction, but TIR is a special "
+              "case that only begins once the critical angle is "
+              "exceeded.")
 
     b.text_image(
-        "CRITICAL ANGLE", "Critical Angle and Total Internal Reflection",
-        ["When light travels from a denser medium to a rarer medium, the "
-         "refracted ray bends away from the normal, so the angle of "
-         "refraction is larger than the angle of incidence.",
-         "As the angle of incidence increases, the refracted ray bends "
-         "closer and closer to the boundary surface.",
-         "The critical angle (C) is the angle of incidence in the denser "
-         "medium for which the angle of refraction becomes exactly 90°.",
-         "If the angle of incidence exceeds the critical angle, the light "
-         "does not refract out at all — it is completely reflected back "
-         "into the denser medium. This is total internal reflection "
-         "(TIR)."],
-        tir, img_side="left", panel_title="Beyond the critical angle",
-        notes="Emphasise the two conditions for TIR: (1) light must travel "
-              "from a denser to a rarer medium, (2) angle of incidence "
-              "must exceed the critical angle.")
+        "CONDITIONS FOR TIR", "The Two Conditions for Total Internal "
+        "Reflection",
+        ["Total internal reflection can occur only when both of these "
+         "conditions are satisfied together:",
+         "1. Light must travel from an optically denser medium into an "
+         "optically rarer medium (for example, from water or glass into "
+         "air).",
+         "2. The angle of incidence in the denser medium must be greater "
+         "than the critical angle for that pair of media.",
+         "When this happens, the boundary behaves like a perfect mirror "
+         "— all the light energy is reflected back with none refracting "
+         "out, as shown in the diagram."],
+        tir, img_side="left", panel_title="When the surface acts as a "
+        "mirror",
+        notes="Contrast with the previous slide: below the critical "
+              "angle you get refraction plus partial reflection; only "
+              "above it do you get true total internal reflection.")
 
     b.statement(
         "CRITICAL ANGLE FORMULA", "Relating Critical Angle and Refractive "
@@ -248,6 +303,28 @@ def refraction_deck():
               "air's density changes gradually with height.")
 
     b.text_image(
+        "PRISM", "Refraction of Light Through a Prism",
+        ["A prism is a transparent optical element with two triangular "
+         "ends and three rectangular side faces; the two faces at which "
+         "refraction takes place are its refracting surfaces, and the "
+         "angle between them is the refracting angle (angle of the "
+         "prism).",
+         "A ray entering a prism refracts at the first surface and again "
+         "at the second surface, and unlike a glass slab the two "
+         "surfaces are not parallel, so the emergent ray is NOT parallel "
+         "to the incident ray.",
+         "The ray is bent towards the base of the prism; the angle "
+         "between the incident ray (produced forward) and the emergent "
+         "ray (produced backward) is called the angle of deviation.",
+         "The angle of deviation depends on the angle of incidence, the "
+         "refracting angle and the material of the prism."],
+        prism, img_side="right", panel_title="Bending towards the base",
+        notes="Set up the contrast: a slab keeps the ray parallel, a "
+              "prism deviates it towards the base — this deviation, being "
+              "different for each colour, is what produces dispersion on "
+              "the next slide.")
+
+    b.text_image(
         "DISPERSION", "Dispersion of Light Through a Prism",
         ["White light is a mixture of seven colours: violet, indigo, "
          "blue, green, yellow, orange and red (VIBGYOR).",
@@ -262,6 +339,28 @@ def refraction_deck():
         disp, img_side="left", panel_title="Splitting white light",
         notes="A rainbow is a natural example of dispersion combined with "
               "internal reflection inside raindrops.")
+
+    b.bullets(
+        "ATMOSPHERIC REFRACTION", "Advance Sunrise and Delayed Sunset",
+        [("Denser air near the ground", "The Earth's atmosphere is "
+          "denser near the surface and gradually becomes rarer with "
+          "height, so sunlight bends continuously as it passes down "
+          "through it."),
+         ("Advance sunrise", "Because of this bending, the Sun's light "
+          "reaches us even when the Sun is still slightly below the "
+          "horizon, so we see the Sun about two minutes before it "
+          "actually rises."),
+         ("Delayed sunset", "For the same reason, we continue to see the "
+          "Sun for about two minutes after it has actually set below the "
+          "horizon — giving roughly four extra minutes of daylight each "
+          "day."),
+         ("Oval-shaped Sun", "Near the horizon, light from the lower "
+          "edge of the Sun is refracted more than that from the upper "
+          "edge, so the Sun appears slightly flattened (oval) at sunrise "
+          "and sunset.")],
+        notes="This is the same atmospheric refraction that causes "
+              "twinkling; here it shifts the Sun's apparent position "
+              "rather than making it flicker.")
 
     b.bullets(
         "TWINKLING OF STARS", "Why Do Stars Twinkle?",
@@ -286,19 +385,22 @@ def refraction_deck():
 
     b.recap(
         "WRAP UP", "Quick Recap",
-        [("Refraction", "Bending of light at a boundary due to a change "
-                        "in speed."),
-         ("Snell's law", "sin i / sin r = constant = refractive index."),
-         ("n = c / v", "Absolute refractive index compares speed in "
-                       "vacuum to speed in the medium."),
-         ("Critical angle", "sin C = 1/n; beyond it, light undergoes "
-                            "total internal reflection."),
+        [("Refraction & Snell's law", "Light bends at a boundary; "
+                                      "sin i / sin r = refractive index; "
+                                      "n = c / v."),
+         ("Glass slab", "Emergent ray is parallel to the incident ray "
+                        "but laterally displaced."),
+         ("Partial vs total reflection", "Below the critical angle: "
+                                         "refraction + partial reflection; "
+                                         "beyond it (sin C = 1/n): total "
+                                         "internal reflection."),
          ("TIR applications", "Optical fibres, diamond sparkle, mirage, "
                               "totally reflecting prisms."),
-         ("Dispersion & twinkling", "Prisms split white light by "
-                                    "wavelength; the atmosphere's "
-                                    "changing density makes starlight "
-                                    "flicker.")],
+         ("Prism & dispersion", "A prism deviates light towards its base "
+                                "and splits white light into the VIBGYOR "
+                                "spectrum."),
+         ("Atmospheric refraction", "Advance sunrise, delayed sunset and "
+                                    "the twinkling of stars.")],
         notes="Cold-call each recap point; ask students to state the "
               "formula for critical angle from memory.")
 
@@ -583,10 +685,496 @@ def eec1_deck():
     return b
 
 
+# ===========================================================================
+# S43 — Effects of Electric Current - 2  (loop/solenoid field, force on
+# a conductor, Fleming's left-hand rule)
+# ===========================================================================
+def eec2_deck():
+    footer = "Effects of Electric Current  •  MSBSHSE Std 10 Science Part 1"
+    b = Builder(footer, accent=C["red"])
+
+    solenoid = b.asset("mh10_eec2_solenoid", D.solenoid_field("mh10_eec2_solenoid"))
+    motor_force = b.asset("mh10_eec2_motor", D.dc_motor("mh10_eec2_motor"))
+    fleming_l = b.asset("mh10_eec2_flh", DM.flemings_rule("mh10_eec2_flh",
+                        left=True))
+
+    b.title("Std 10 • Science Part 1 • Electricity", "Effects of Electric "
+            "Current — 2", "Field of a circular loop and a solenoid  •  "
+            "Force on a current-carrying conductor  •  Fleming's "
+            "left-hand rule", img=solenoid)
+
+    b.objectives([
+        "Describe the magnetic field due to a circular loop of current",
+        "Describe the magnetic field pattern of a solenoid and compare it "
+        "with a bar magnet",
+        "Explain how the strength of a solenoid's field can be increased",
+        "State the factors on which the force on a current-carrying "
+        "conductor in a magnetic field depends",
+        "Apply Fleming's left-hand rule to find the direction of this "
+        "force",
+        "Relate this force to the working principle of an electric motor",
+    ])
+
+    # ---- Part 1 : loop and solenoid ----
+    b.divider(1, "Part 1", "Field of a Loop and a Solenoid",
+              "From a single loop to a coil that behaves like a magnet")
+
+    b.bullets(
+        "CIRCULAR LOOP", "Magnetic Field Due to a Circular Loop",
+        [("Field lines at the loop", "Applying the right-hand thumb rule "
+          "at every point of a circular loop shows that the field lines "
+          "are circles near the wire, but they become nearly straight "
+          "and parallel as you move toward the centre of the loop."),
+         ("Field at the centre", "At the centre of the loop, all the "
+          "field contributions add up in the same direction, giving the "
+          "strongest and most uniform field in that region."),
+         ("Increasing the field", "The field at the centre can be "
+          "increased by increasing the current or by using a coil of "
+          "many turns instead of a single loop — each turn adds its own "
+          "contribution."),
+         ("Polarity of the loop face", "One face of the current loop "
+          "behaves like a north pole and the other like a south pole, "
+          "found using the right-hand rule (curl fingers along the "
+          "current, thumb gives the north face).")],
+        notes="Build up from the straight-wire field of the previous "
+              "session: a loop is just a straight wire bent into a "
+              "circle, so the same field lines now reinforce at the "
+              "centre.")
+
+    b.text_image(
+        "SOLENOID", "Magnetic Field of a Solenoid",
+        ["A solenoid is a long coil of insulated wire wound in many "
+         "closely spaced circular turns.",
+         "When current flows through it, the field of each turn adds up "
+         "so that the field inside the solenoid is strong and nearly "
+         "uniform, directed along its axis.",
+         "Outside the solenoid, the field pattern is very similar to "
+         "that of a bar magnet — one end behaves like a north pole and "
+         "the other like a south pole.",
+         "The polarity of the ends is found by the same right-hand rule: "
+         "curl the fingers in the direction of the current in the turns, "
+         "and the thumb points towards the north-pole end."],
+        solenoid, img_side="right", panel_title="A coil that behaves "
+        "like a bar magnet",
+        notes="This is the working principle of the electromagnet, "
+              "already met earlier in the syllabus — connect the two "
+              "ideas explicitly.")
+
+    b.cards(
+        "STRENGTH OF THE FIELD", "Increasing the Strength of a Solenoid's "
+        "Field",
+        [("More turns", "Winding more turns of wire in the same length "
+          "increases the field, since each turn contributes its own "
+          "magnetic field in the same direction."),
+         ("More current", "Increasing the current through the solenoid "
+          "directly increases the strength of the field it produces."),
+         ("Soft-iron core", "Placing a soft-iron core inside the "
+          "solenoid greatly increases the field strength, because the "
+          "core itself becomes strongly magnetised — this combination "
+          "is an electromagnet.")],
+        icons=["gear", "bolt", "magnet"],
+        notes="These three factors are exactly the ones used to design "
+              "strong electromagnets for cranes, bells and motors.")
+
+    b.quiz_intro("Quiz 1", "Check — Loop & Solenoid Fields", 3)
+    b.quiz_q(1, "Circular loop", "The magnetic field is strongest and "
+             "most uniform at the:",
+             ["edge of the loop", "centre of the loop", "far outside the "
+              "loop", "nowhere in particular"])
+    b.quiz_a(1, "B. centre of the loop",
+             "At the centre, the field contributions from every part of "
+             "the loop add up in the same direction, giving the "
+             "strongest field there.")
+    b.quiz_q(2, "Solenoid", "Outside a current-carrying solenoid, the "
+             "magnetic field pattern closely resembles that of a:",
+             ["straight wire", "bar magnet", "single point charge",
+              "circular loop with no current"])
+    b.quiz_a(2, "B. bar magnet",
+             "A solenoid's external field lines look just like those of "
+             "a bar magnet, with one end acting as north and the other "
+             "as south.")
+    b.quiz_q(3, "Strength", "Which of these will NOT increase the "
+             "strength of a solenoid's magnetic field?",
+             ["increasing the number of turns", "increasing the current",
+              "inserting a soft-iron core", "using a longer connecting "
+              "wire outside the solenoid"])
+    b.quiz_a(3, "D. using a longer connecting wire outside the solenoid",
+             "Only turns, current and a magnetic core (inside the "
+             "solenoid) affect its field strength — the length of "
+             "ordinary connecting wire outside it makes no difference.")
+
+    # ---- Part 2 : force on a conductor, Fleming's left-hand rule ----
+    b.divider(2, "Part 2", "Force on a Current-Carrying Conductor",
+              "The motor effect and Fleming's left-hand rule")
+
+    b.text_image(
+        "MOTOR EFFECT", "Force on a Conductor in a Magnetic Field",
+        ["When a current-carrying conductor is placed in a magnetic "
+         "field (not parallel to it), it experiences a force — this is "
+         "called the motor effect.",
+         "The force is zero when the conductor is parallel to the "
+         "field, and maximum when the conductor is perpendicular to the "
+         "field.",
+         "The magnitude of the force depends on the strength of the "
+         "magnetic field, the current in the conductor, and the length "
+         "of the conductor in the field.",
+         "This force is what makes an electric motor turn, and is used "
+         "in loudspeakers and moving-coil meters."],
+        motor_force, img_side="left", panel_title="Current + field = "
+        "force",
+        notes="This is the reverse idea of Oersted's experiment: instead "
+              "of current producing a field, here a current in an "
+              "external field feels a force.")
+
+    b.statement(
+        "FLEMING'S LEFT-HAND RULE", "Finding the Direction of the Force",
+        "Fleming's left-hand rule gives the direction of the force on a "
+        "current-carrying conductor placed in a magnetic field.",
+        img=fleming_l,
+        notes="Stretch the thumb, first finger and second finger of the "
+              "left hand mutually perpendicular: First finger = Field, "
+              "seCond finger = Current, thuMb = Motion (force). "
+              "Mnemonic: FBI (Field, current, thrust) or FCM.")
+
+    b.bullets(
+        "FLEMING'S LEFT-HAND RULE", "How to Apply the Rule",
+        [("First finger", "Point the first finger in the direction of "
+          "the magnetic field (B)."),
+         ("Second finger", "Point the second finger, held perpendicular "
+          "to the first, in the direction of the conventional current "
+          "(I)."),
+         ("Thumb", "The thumb, held perpendicular to both, then gives "
+          "the direction of the force (F) on the conductor — this is "
+          "the direction it will move."),
+         ("Left hand only", "This rule always uses the left hand; the "
+          "right-hand thumb rule and Fleming's right-hand rule (used "
+          "for generators, next session) are entirely different rules.")],
+        notes="Have the whole class physically form the rule with their "
+              "left hand and check it against the diagram just shown.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Circular loop", "Field is strongest and most uniform at the "
+                           "centre; each face acts like a magnetic "
+                           "pole."),
+         ("Solenoid", "Behaves like a bar magnet outside; field can be "
+                      "strengthened by more turns, more current or a "
+                      "soft-iron core."),
+         ("Motor effect", "A current-carrying conductor in a magnetic "
+                          "field experiences a force, maximum when "
+                          "perpendicular to the field."),
+         ("Fleming's left-hand rule", "First finger = Field, second "
+                                      "finger = Current, thumb = Force "
+                                      "(motion).")],
+        notes="Ask students to distinguish the right-hand thumb rule "
+              "(field due to current) from Fleming's left-hand rule "
+              "(force on a current in a field) — a very common mix-up.")
+
+    b.quiz_intro("Quiz 2", "Final Check — Motor Effect", 4)
+    b.quiz_q(1, "Motor effect", "A current-carrying conductor placed "
+             "parallel to a magnetic field experiences a force that is:",
+             ["maximum", "zero", "constant but not zero", "infinite"])
+    b.quiz_a(1, "B. zero",
+             "The force is zero when the current is parallel to the "
+             "field and maximum when it is perpendicular to the field.")
+    b.quiz_q(2, "Fleming's left-hand rule", "In Fleming's left-hand rule, "
+             "the second finger represents:",
+             ["the magnetic field", "the current", "the resulting "
+              "force", "the resistance"])
+    b.quiz_a(2, "B. the current",
+             "First finger = Field, seCond finger = Current, thuMb = "
+             "Motion (force) — the classic FCM mnemonic.")
+    b.quiz_q(3, "Factors", "The force on a current-carrying conductor in "
+             "a magnetic field does NOT depend on:",
+             ["the current in the conductor", "the strength of the "
+              "magnetic field", "the colour of the insulation on the "
+              "wire", "the length of the conductor in the field"])
+    b.quiz_a(3, "C. the colour of the insulation on the wire",
+             "The force depends only on the physical quantities current, "
+             "field strength and length (and the angle between them) — "
+             "not on the wire's appearance.")
+    b.quiz_q(4, "Application", "The force on a current-carrying "
+             "conductor in a magnetic field is the basic working "
+             "principle of a/an:",
+             ["electric motor", "electric fuse", "resistor", "voltmeter"])
+    b.quiz_a(4, "A. electric motor",
+             "An electric motor uses this force, acting on the two "
+             "sides of a current-carrying coil, to produce a turning "
+             "effect (torque).")
+
+    b.closing("Current Feels a Push",
+              "Field around a wire, force on a wire in a field — these "
+              "two effects, tied together by Fleming's left-hand rule, "
+              "are what spin every electric motor.")
+    return b
+
+
+# ===========================================================================
+# S45 — Effects of Electric Current - 3  (motor, EMI, galvanometer,
+# Faraday's law, Fleming's right-hand rule, AC/DC, generator)
+# ===========================================================================
+def eec3_deck():
+    footer = "Effects of Electric Current  •  MSBSHSE Std 10 Science Part 1"
+    b = Builder(footer, accent=C["purple"])
+
+    motor = b.asset("mh10_eec3_motor", D.dc_motor("mh10_eec3_motor"))
+    emi = b.asset("mh10_eec3_emi", D.emi_coil("mh10_eec3_emi"))
+    fleming_r = b.asset("mh10_eec3_frh", DM.flemings_rule("mh10_eec3_frh",
+                        left=False))
+
+    b.title("Std 10 • Science Part 1 • Electricity", "Effects of Electric "
+            "Current — 3", "Electric motor  •  Electromagnetic induction  "
+            "•  Faraday's laws  •  AC/DC generators", img=motor)
+
+    b.objectives([
+        "Describe the construction and working of a simple DC electric "
+        "motor",
+        "Explain the principle and working of a moving-coil galvanometer",
+        "Describe Faraday's experiments and state Faraday's laws of "
+        "electromagnetic induction",
+        "Apply Fleming's right-hand rule to find the direction of an "
+        "induced current",
+        "Distinguish between alternating current (AC) and direct "
+        "current (DC)",
+        "Describe the construction and working of an AC generator",
+    ])
+
+    # ---- Part 1 : motor, galvanometer ----
+    b.divider(1, "Part 1", "The Electric Motor and the Galvanometer",
+              "Turning electrical energy into motion, and detecting "
+              "current")
+
+    b.text_image(
+        "ELECTRIC MOTOR", "Construction and Working of a DC Motor",
+        ["A simple DC motor has a rectangular coil (the armature) "
+         "mounted between the poles of a permanent magnet, connected to "
+         "the circuit through a split-ring commutator and brushes.",
+         "When current flows through the coil, the two sides of the "
+         "coil carry current in opposite directions; by Fleming's "
+         "left-hand rule, they experience forces in opposite "
+         "directions.",
+         "These two opposite forces form a couple that rotates the "
+         "coil.",
+         "The split-ring commutator reverses the current in the coil "
+         "every half rotation, so the forces keep acting in a "
+         "direction that continues the rotation instead of reversing "
+         "it."],
+        motor, img_side="right", panel_title="Turning current into "
+        "rotation",
+        notes="Emphasise the role of the commutator specifically — "
+              "without it, the coil would rotate only a quarter turn "
+              "and then oscillate back and forth.")
+
+    b.bullets(
+        "GALVANOMETER", "The Moving-Coil Galvanometer",
+        [("Purpose", "A galvanometer is a sensitive instrument used to "
+          "detect the presence and direction of a small electric "
+          "current in a circuit."),
+         ("Principle", "It works on the same motor-effect principle as "
+          "an electric motor: a current-carrying coil placed in a "
+          "magnetic field experiences a torque (turning force)."),
+         ("Construction", "A coil is wound on a light aluminium frame, "
+          "suspended between the poles of a permanent magnet, attached "
+          "to a pointer moving over a scale."),
+         ("Reading", "The coil rotates by an amount proportional to the "
+          "current flowing through it, so the pointer's deflection "
+          "indicates both the size and the direction of the current.")],
+        notes="Contrast with the motor: a motor is designed to keep "
+              "spinning continuously and do mechanical work, while a "
+              "galvanometer is designed to rotate only slightly and "
+              "settle at a reading.")
+
+    b.quiz_intro("Quiz 1", "Check — Motor & Galvanometer", 3)
+    b.quiz_q(1, "DC motor", "In a simple DC motor, the split-ring "
+             "commutator's job is to:",
+             ["increase the magnetic field", "reverse the current in the "
+              "coil every half rotation so it keeps turning one way",
+              "stop the coil from rotating", "convert AC to DC before "
+              "it enters the motor"])
+    b.quiz_a(1, "B. reverse the current in the coil every half rotation "
+             "so it keeps turning one way",
+             "Without this reversal, the forces on the coil would "
+             "reverse direction each half turn and the coil would just "
+             "oscillate instead of spinning continuously.")
+    b.quiz_q(2, "Motor principle", "The rotation of a DC motor's coil is "
+             "a direct result of:",
+             ["Faraday's law of induction", "the force on a "
+              "current-carrying conductor in a magnetic field",
+              "the heating effect of current", "static electricity"])
+    b.quiz_a(2, "B. the force on a current-carrying conductor in a "
+             "magnetic field",
+             "The two sides of the coil feel oppositely directed forces "
+             "(Fleming's left-hand rule), forming a couple that turns "
+             "the coil.")
+    b.quiz_q(3, "Galvanometer", "A galvanometer is used to:",
+             ["produce a magnetic field", "detect the presence and "
+              "direction of a small current", "generate electricity",
+              "store electric charge"])
+    b.quiz_a(3, "B. detect the presence and direction of a small "
+             "current",
+             "Its pointer deflection, caused by the motor-effect torque "
+             "on its coil, shows both the size and the direction of the "
+             "current.")
+
+    # ---- Part 2 : EMI, Faraday, Fleming's right-hand rule, AC/DC ----
+    b.divider(2, "Part 2", "Electromagnetic Induction and Generators",
+              "Producing current from a changing magnetic field")
+
+    b.text_image(
+        "ELECTROMAGNETIC INDUCTION", "Faraday's Experiments",
+        ["Michael Faraday found that moving a bar magnet in and out of "
+         "a coil of wire connected to a galvanometer causes the "
+         "galvanometer's needle to deflect — showing a current is "
+         "induced in the coil.",
+         "The needle deflects only while the magnet is moving; it shows "
+         "no deflection when the magnet is held still inside or outside "
+         "the coil.",
+         "Moving the magnet faster produces a larger deflection, and "
+         "reversing the direction of motion reverses the direction of "
+         "deflection.",
+         "This production of an electromotive force (EMF), and hence a "
+         "current, by a changing magnetic field is called "
+         "electromagnetic induction (EMI)."],
+        emi, img_side="left", panel_title="A moving magnet induces "
+        "current",
+        notes="Point out this is the reverse process of the motor "
+              "effect: there, current + field gave motion; here, "
+              "relative motion between field and coil gives current.")
+
+    b.statement(
+        "FARADAY'S LAWS", "Faraday's Laws of Electromagnetic Induction",
+        "First law: whenever the magnetic flux linked with a coil "
+        "changes, an EMF is induced in the coil; this induced EMF lasts "
+        "only as long as the flux is changing.",
+        points=[
+            "Second law: the magnitude of the induced EMF is directly "
+            "proportional to the rate of change of magnetic flux linked "
+            "with the coil.",
+            "A faster change in flux (e.g. moving the magnet faster, or "
+            "using more turns) induces a larger EMF.",
+            "If the coil forms a closed circuit, this induced EMF drives "
+            "an induced current through it."],
+        notes="Flux can change either by moving the magnet, moving the "
+              "coil, or changing the current in a nearby coil — all "
+              "three are used in different generators and transformers.")
+
+    b.statement(
+        "FLEMING'S RIGHT-HAND RULE", "Finding the Direction of the "
+        "Induced Current",
+        "Fleming's right-hand rule gives the direction of the induced "
+        "current when a conductor moves through a magnetic field.",
+        img=fleming_r,
+        notes="Stretch the thumb, first finger and second finger of the "
+              "RIGHT hand mutually perpendicular this time: First "
+              "finger = Field, thuMb = Motion, seCond finger = induced "
+              "Current. Contrast explicitly with the left-hand rule "
+              "from the previous session.")
+
+    b.cards(
+        "AC vs DC", "Alternating Current and Direct Current",
+        [("Direct current (DC)", "Current that flows in only one "
+          "direction, with a magnitude that may be steady or varying, "
+          "but never reverses — supplied by cells and batteries."),
+         ("Alternating current (AC)", "Current that regularly reverses "
+          "its direction and changes magnitude, repeating this pattern "
+          "at a fixed frequency — this is what mains electricity "
+          "supplies to homes."),
+         ("Why AC for transmission", "AC can be easily stepped up or "
+          "down in voltage using a transformer, making it far more "
+          "efficient to transmit over long distances than DC.")],
+        icons=["battery", "bolt", "circuit"],
+        notes="Note that household supply in India is AC at 50 Hz, "
+              "meaning the current reverses direction 100 times every "
+              "second.")
+
+    b.bullets(
+        "AC GENERATOR", "Construction and Working of an AC Generator",
+        ["An AC generator has a rectangular coil (armature) that is "
+         "mechanically rotated between the poles of a magnet.",
+         "As the coil rotates, the magnetic flux linked with it "
+         "continuously changes, so by Faraday's law an EMF is induced "
+         "in the coil.",
+         "The ends of the coil are connected to the external circuit "
+         "through two separate slip rings and brushes (not a split-ring "
+         "commutator), so the induced current is allowed to reverse "
+         "direction — giving alternating current.",
+         "The direction of the induced current at any instant is given "
+         "by Fleming's right-hand rule."],
+        notes="Contrast the slip rings of an AC generator with the "
+              "split-ring commutator of a DC motor — this is the key "
+              "construction difference students often confuse.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("DC motor", "Current-carrying coil in a field turns due to a "
+                      "couple of forces; a commutator keeps it "
+                      "rotating one way."),
+         ("Galvanometer", "Same motor-effect principle, used to detect "
+                          "small currents."),
+         ("Faraday's laws", "A changing magnetic flux induces an EMF, "
+                            "proportional to its rate of change."),
+         ("Fleming's right-hand rule", "First finger = Field, thumb = "
+                                       "Motion, second finger = induced "
+                                       "Current."),
+         ("AC generator", "Rotating coil + slip rings gives an "
+                          "alternating induced current.")],
+        notes="Ask students to state, in one sentence each, the "
+              "difference between a motor and a generator (energy "
+              "conversion runs in opposite directions).")
+
+    b.quiz_intro("Quiz 2", "Final Check — EMI & Generators", 4)
+    b.quiz_q(1, "Faraday's experiment", "In Faraday's coil-and-magnet "
+             "experiment, the galvanometer shows a deflection only "
+             "when the magnet is:",
+             ["held still inside the coil", "moving relative to the "
+              "coil", "held still far away from the coil", "made of "
+              "iron"])
+    b.quiz_a(1, "B. moving relative to the coil",
+             "An EMF is induced only while the magnetic flux through "
+             "the coil is changing, which requires relative motion.")
+    b.quiz_q(2, "Faraday's second law", "According to Faraday's second "
+             "law, the induced EMF is directly proportional to the:",
+             ["resistance of the coil", "rate of change of magnetic "
+              "flux", "number of cells in the circuit", "colour of the "
+              "wire"])
+    b.quiz_a(2, "B. rate of change of magnetic flux",
+             "A faster-changing flux (faster motion, more turns) "
+             "induces a larger EMF.")
+    b.quiz_q(3, "Fleming's right-hand rule", "Fleming's right-hand rule "
+             "is used to find the direction of:",
+             ["the force on a current-carrying conductor", "the "
+              "induced current due to motion in a magnetic field", "the "
+              "magnetic field around a straight wire", "the resistance "
+              "of a conductor"])
+    b.quiz_a(3, "B. the induced current due to motion in a magnetic "
+             "field",
+             "It is the generator-effect rule: First finger = Field, "
+             "thuMb = Motion, seCond finger = induced Current.")
+    b.quiz_q(4, "AC generator", "An AC generator uses slip rings, "
+             "instead of a split-ring commutator, because this allows "
+             "the:",
+             ["coil to rotate faster", "current in the external circuit "
+              "to reverse direction periodically, giving AC", "coil to "
+              "stop rotating smoothly", "magnet to become stronger"])
+    b.quiz_a(4, "B. current in the external circuit to reverse "
+             "direction periodically, giving AC",
+             "Slip rings maintain continuous contact without reversing "
+             "the connection, so the naturally alternating induced "
+             "current is passed on unchanged as AC.")
+
+    b.closing("From Motion to Current, and Back Again",
+              "A motor turns current into motion using one hand's rule; "
+              "a generator turns motion into current using the other. "
+              "Between them lies almost every machine that moves us.")
+    return b
+
+
 def build():
     jobs = [
         ("MH10_S28_Refraction_of_Light.pptx", refraction_deck),
         ("MH10_S41_Effects_of_Electric_Current_1.pptx", eec1_deck),
+        ("MH10_S43_Effects_of_Electric_Current_2.pptx", eec2_deck),
+        ("MH10_S45_Effects_of_Electric_Current_3.pptx", eec3_deck),
     ]
     for fname, fn in jobs:
         b = fn()
