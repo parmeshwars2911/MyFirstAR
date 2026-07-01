@@ -327,9 +327,8 @@ def build():
             path = os.path.join(OUT, fname)
             build_worksheet(
                 path, school=SCHOOL, subject=ch["subject"], grade=GRADE,
-                chapter=f"{ch['num']} — {ch['chapter']}", kind=kind,
-                max_marks=marks, duration=dur, sections=secs,
-                syllabus=ch["syllabus"])
+                chapter=ch["chapter"], kind=kind,
+                max_marks=marks, duration=dur, sections=secs)
             ov = qa_pdf(path)
             print(f"  {fname}: built"
                   + (f"  [overflow: {ov[:2]}]" if ov else "  [clean]"))

@@ -29,40 +29,39 @@ from reportlab.platypus import (BaseDocTemplate, PageTemplate, Frame,
                                 Paragraph, Spacer, Table, TableStyle,
                                 HRFlowable, KeepTogether)
 
-TEAL = colors.HexColor("#0A9396")
-DARK = colors.HexColor("#1D2433")
-MUTED = colors.HexColor("#6B7280")
-LINE = colors.HexColor("#C9D2DA")
+# Infinity Learn brand palette (from the logo: bright cyan-blue + deep navy)
+IL_BLUE = colors.HexColor("#1CA0E0")     # bright cyan-blue
+IL_NAVY = colors.HexColor("#0B1E4B")     # deep navy
+DARK = IL_NAVY
+MUTED = colors.HexColor("#5B667A")
+LINE = colors.HexColor("#C9D6E5")
 
-ACCENTS = {
-    "physics": colors.HexColor("#2563EB"),
-    "chemistry": colors.HexColor("#6A4C93"),
-    "biology": colors.HexColor("#2A9D8F"),
-    "default": TEAL,
-}
-KIND_ACCENT = {
-    "Objective": colors.HexColor("#0A9396"),
-    "Subjective": colors.HexColor("#F4801A"),
-    "Olympiad": colors.HexColor("#E63946"),
-}
+# Official logo, dropped in automatically if present (see LOGO_PATH below).
+LOGO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
+                                         "assets", "img",
+                                         "infinity_learn_logo.png"))
 
 
 def _styles():
+    from reportlab.lib.enums import TA_CENTER
     ss = getSampleStyleSheet()
     return dict(
         eyebrow=ParagraphStyle("eb", parent=ss["Normal"],
-                               fontName="Helvetica-Bold", fontSize=9,
-                               spaceAfter=2, leading=11),
+                               fontName="Helvetica-Bold", fontSize=10,
+                               spaceAfter=3, leading=12, alignment=TA_CENTER),
         title=ParagraphStyle("ti", parent=ss["Normal"],
-                             fontName="Helvetica-Bold", fontSize=17,
-                             textColor=DARK, spaceAfter=2, leading=20),
+                             fontName="Helvetica-Bold", fontSize=24,
+                             textColor=IL_NAVY, spaceAfter=3, leading=27,
+                             alignment=TA_CENTER),
         meta=ParagraphStyle("me", parent=ss["Normal"], fontName="Helvetica",
-                            fontSize=9.5, textColor=MUTED, leading=13),
+                            fontSize=10, textColor=MUTED, leading=13,
+                            alignment=TA_CENTER),
         syll=ParagraphStyle("sy", parent=ss["Normal"], fontName="Helvetica",
                             fontSize=9.5, textColor=DARK, leading=13),
         sec=ParagraphStyle("se", parent=ss["Normal"],
                            fontName="Helvetica-Bold", fontSize=11.5,
-                           spaceBefore=8, spaceAfter=5, leading=14),
+                           textColor=IL_NAVY, spaceBefore=8, spaceAfter=5,
+                           leading=14),
         q=ParagraphStyle("q", parent=ss["Normal"], fontName="Helvetica-Bold",
                         fontSize=10.5, textColor=DARK, leading=14,
                         spaceBefore=6, spaceAfter=3),
@@ -92,15 +91,38 @@ _AR_KEY = ("Choose: (A) both A and R true and R explains A; (B) both true but "
 
 
 def build_worksheet(out_path, *, school, subject, grade, chapter, kind,
-                    max_marks, duration, sections, syllabus="", accent=None):
+                    max_marks, duration, sections, syllabus="", accent=None,
+                    logo_path=None, show_fields=False):
     st = _styles()
-    accent = accent or KIND_ACCENT.get(kind, TEAL)
+    accent = accent or IL_BLUE          # Infinity Learn brand palette
     labels = "ABCD"
+    logo = logo_path or LOGO_PATH
+    has_logo = bool(logo) and os.path.exists(logo)
 
     def header_footer(canvas, doc):
         canvas.saveState()
+        # brand accent bar
         canvas.setFillColor(accent)
         canvas.rect(0, A4[1] - 6 * mm, A4[0], 6 * mm, stroke=0, fill=1)
+        # logo (or reserved placeholder ring) in the top-right corner
+        d = 20 * mm
+        lx, ly = A4[0] - 15 * mm - d, A4[1] - 9 * mm - d
+        if has_logo:
+            try:
+                canvas.drawImage(logo, lx, ly, d, d, mask="auto",
+                                 preserveAspectRatio=True)
+            except Exception:
+                pass
+        else:
+            canvas.setStrokeColor(IL_BLUE)
+            canvas.setLineWidth(1.1)
+            canvas.circle(lx + d / 2, ly + d / 2, d / 2)
+            canvas.setFillColor(IL_NAVY)
+            canvas.setFont("Helvetica-Bold", 6.5)
+            canvas.drawCentredString(lx + d / 2, ly + d / 2 + 1, "Infinity")
+            canvas.setFillColor(IL_BLUE)
+            canvas.drawCentredString(lx + d / 2, ly + d / 2 - 6, "Learn")
+        # footer
         canvas.setFont("Helvetica", 8)
         canvas.setFillColor(MUTED)
         canvas.drawString(16 * mm, 11 * mm, f"{school}  •  {chapter}")
@@ -109,7 +131,7 @@ def build_worksheet(out_path, *, school, subject, grade, chapter, kind,
 
     doc = BaseDocTemplate(
         out_path, pagesize=A4, leftMargin=16 * mm, rightMargin=16 * mm,
-        topMargin=15 * mm, bottomMargin=16 * mm,
+        topMargin=18 * mm, bottomMargin=16 * mm,
         title=f"{chapter} {kind} Worksheet", author=school)
     frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height,
                   id="f")
@@ -118,17 +140,18 @@ def build_worksheet(out_path, *, school, subject, grade, chapter, kind,
 
     story = []
     st["eyebrow"].textColor = accent
-    story.append(Paragraph(f"WORKSHEET · {kind.upper()}", st["eyebrow"]))
+    story.append(Paragraph(f"{kind.upper()} WORKSHEET", st["eyebrow"]))
     story.append(Paragraph(chapter, st["title"]))
     story.append(Paragraph(
         f"{subject} &nbsp;·&nbsp; {grade} &nbsp;·&nbsp; Max Marks: "
         f"{max_marks} &nbsp;·&nbsp; Time: {duration}", st["meta"]))
-    story.append(Paragraph(
-        "Name: ____________________________  Roll No: __________  "
-        "Date: ____________", st["meta"]))
-    story.append(Spacer(1, 3))
-    story.append(HRFlowable(width="100%", thickness=0.8, color=accent,
-                            spaceBefore=2, spaceAfter=4))
+    if show_fields:
+        story.append(Paragraph(
+            "Name: ____________________________  Roll No: __________  "
+            "Date: ____________", st["meta"]))
+    story.append(Spacer(1, 4))
+    story.append(HRFlowable(width="100%", thickness=1.0, color=accent,
+                            spaceBefore=2, spaceAfter=5))
     if syllabus:
         story.append(Paragraph(f"<b>Topics covered:</b> {syllabus}",
                                st["syll"]))
