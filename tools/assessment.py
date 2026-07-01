@@ -26,11 +26,33 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 
-from engine import Builder, C, LABEL_FONT
+from engine import Builder, C, LABEL_FONT, TITLE_FONT
 import slidekit as SK
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 import random
+import types
+
+
+# ---------------------------------------------------------------------------
+# Spaced header chrome. The shared engine chrome places the badge (y 0.5-0.85)
+# flush against the 30pt title box (top 0.85); in PowerPoint the title's line
+# ascent then collides with the badge ("QUIZ QUESTION" overlapping "Q16 ...").
+# We bind a roomier chrome to each assessment Builder instance so every
+# workout slide (MCQ / subjective / syllabus) gets a clear gap, without
+# touching engine.py or the concept decks.
+# ---------------------------------------------------------------------------
+def _install_spaced_chrome(b):
+    def chrome(self, s, badge, title, accent, n):
+        self._logo_space(s)
+        self._box(s, 0.6, 0.52, 0.26, 0.26, fill=accent)
+        self._text(s, 1.0, 0.44, 10.4, 0.34,
+                   [[{"t": badge.upper(), "size": 12.5, "bold": True,
+                      "color": accent, "font": LABEL_FONT}]])
+        self._text(s, 0.6, 1.02, 10.9, 0.85,
+                   [[{"t": title, "size": 27, "bold": True,
+                      "color": C["text"], "font": TITLE_FONT}]])
+    b._chrome = types.MethodType(chrome, b)
 
 
 # ---------------------------------------------------------------------------
@@ -39,6 +61,56 @@ import random
 # so rebuilds are stable. Safe because every "why" refers to the option by
 # meaning, never by its letter.
 # ---------------------------------------------------------------------------
+def pptx_text(path):
+    """All text on every slide of a .pptx (for dedup against concept decks)."""
+    from pptx import Presentation
+    out = []
+    for s in Presentation(path).slides:
+        for sh in s.shapes:
+            if sh.has_text_frame and sh.text_frame.text.strip():
+                out.append(sh.text_frame.text)
+    return "\n".join(out)
+
+
+def _norm(s):
+    import re
+    return re.sub(r"[^a-z0-9 ]", " ", (s or "").lower())
+    # collapse handled by caller
+
+
+def _normkey(s):
+    return " ".join(_norm(s).split())
+
+
+def concept_corpus(concept_dir):
+    """Normalised text of every concept deck in a grade folder."""
+    import glob
+    import os
+    blobs = []
+    for f in sorted(glob.glob(os.path.join(concept_dir, "*.pptx"))):
+        blobs.append(_normkey(pptx_text(f)))
+    return "\n".join(blobs)
+
+
+def dedup_report(named_sets, corpus=""):
+    """Flag (a) duplicate question stems across the new sets and (b) stems that
+    appear verbatim in the concept-deck corpus. `named_sets`: {name: [mcq...]}.
+    Returns a list of human-readable warnings (empty == clean)."""
+    seen = {}
+    warns = []
+    for name, mcqs in named_sets.items():
+        for i, q in enumerate(mcqs, 1):
+            key = _normkey(q["q"])
+            if key in seen:
+                warns.append(f"DUPLICATE stem: {name} Q{i}  ==  {seen[key]}")
+            else:
+                seen[key] = f"{name} Q{i}"
+            if corpus and key and key in corpus:
+                warns.append(f"ALREADY-IN-CONCEPT stem: {name} Q{i}: "
+                             f"'{q['q'][:60]}...'")
+    return warns
+
+
 def balance_options(mcqs, seed=0):
     rnd = random.Random(seed)
     n = len(mcqs)
@@ -132,6 +204,7 @@ def build_workout(out_path, *, chapter, accent, title, subtitle,
     subjectives : list of subjective dicts (expected 5)
     """
     b = Builder("", accent=accent, brand="")
+    _install_spaced_chrome(b)
 
     # --- title ---
     b.title(chapter, title, subtitle)
@@ -173,6 +246,31 @@ def build_workout(out_path, *, chapter, accent, title, subtitle,
 # ---------------------------------------------------------------------------
 # Homework PDF (reportlab)
 # ---------------------------------------------------------------------------
+_SUP = {"⁰": "0", "¹": "1", "²": "2", "³": "3",
+        "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7",
+        "⁸": "8", "⁹": "9", "⁻": "-"}
+
+
+def _pdf_rich(s):
+    """Make a question/option string safe for a reportlab Paragraph: escape
+    XML, turn Unicode superscripts into <super>..</super> (Helvetica has no
+    superscript glyphs), and map the minus sign / approx sign to ASCII."""
+    s = (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    s = s.replace("−", "-").replace("≈", "~")
+    out, i, n = [], 0, len(s)
+    while i < n:
+        if s[i] in _SUP:
+            buf = ""
+            while i < n and s[i] in _SUP:
+                buf += _SUP[s[i]]
+                i += 1
+            out.append("<super>" + buf + "</super>")
+        else:
+            out.append(s[i])
+            i += 1
+    return "".join(out)
+
+
 def build_homework(out_path, *, grade, chapter, lesson, kind, syllabus_topics,
                    mcqs):
     """Build a print-ready A4 homework worksheet with `len(mcqs)` MCQs + key.
@@ -267,9 +365,10 @@ def build_homework(out_path, *, grade, chapter, lesson, kind, syllabus_topics,
 
     labels = "ABCD"
     for i, q in enumerate(mcqs, 1):
-        flow = [Paragraph(f"{i}. {q['q']}", q_style)]
+        flow = [Paragraph(f"{i}. {_pdf_rich(q['q'])}", q_style)]
         # two-column option grid
-        opts = [Paragraph(f"<b>{labels[j]}.</b>&nbsp; {opt}", opt_style)
+        opts = [Paragraph(f"<b>{labels[j]}.</b>&nbsp; {_pdf_rich(opt)}",
+                          opt_style)
                 for j, opt in enumerate(q["options"])]
         # pad to 4
         while len(opts) < 4:
@@ -316,3 +415,61 @@ def build_homework(out_path, *, grade, chapter, lesson, kind, syllabus_topics,
 
     doc.build(story)
     return out_path
+
+
+# ---------------------------------------------------------------------------
+# Generic per-grade driver: validates, runs the dedup/quality report against
+# the grade's concept decks, balances options, then builds every workout deck
+# and homework PDF. Each bank_gNN.py just supplies the data.
+#   workouts : [{file, chapter, accent, title, subtitle, syllabus, mcqs(20),
+#                subj(5), closing}]
+#   homeworks: [{file, chapter, lesson, kind, syllabus, mcqs(10)}]
+# ---------------------------------------------------------------------------
+def build_grade(*, grade, wk_out, hw_out, concept_dir, workouts, homeworks):
+    import os
+    os.makedirs(wk_out, exist_ok=True)
+    os.makedirs(hw_out, exist_ok=True)
+
+    for w in workouts:
+        assert len(w["mcqs"]) == 20, f"{w['file']}: need 20 MCQs"
+        assert len(w["subj"]) == 5, f"{w['file']}: need 5 subjective"
+    for h in homeworks:
+        assert len(h["mcqs"]) == 10, f"{h['file']}: need 10 MCQs"
+    for nm, qs in [(w["file"], w["mcqs"]) for w in workouts] + \
+                  [(h["file"], h["mcqs"]) for h in homeworks]:
+        for i, q in enumerate(qs, 1):
+            assert len(q["options"]) == 4, f"{nm} Q{i}: need 4 options"
+            assert len(set(o.strip().lower() for o in q["options"])) == 4, \
+                f"{nm} Q{i}: duplicate options"
+            assert 0 <= q["correct"] <= 3, f"{nm} Q{i}: bad correct index"
+
+    corpus = concept_corpus(concept_dir) if concept_dir else ""
+    named = {**{w["file"]: w["mcqs"] for w in workouts},
+             **{h["file"]: h["mcqs"] for h in homeworks}}
+    warns = dedup_report(named, corpus)
+    print(f"== {grade}: dedup/quality check ==")
+    if warns:
+        for w in warns:
+            print("  !!", w)
+    else:
+        print("  clean: no duplicate stems, none repeat a concept-deck quiz")
+
+    print(f"== {grade}: workout decks ==")
+    for sd, w in enumerate(workouts):
+        mcqs = balance_options(w["mcqs"], seed=100 + sd)
+        b, issues = build_workout(
+            os.path.join(wk_out, w["file"]), chapter=w["chapter"],
+            accent=w["accent"], title=w["title"], subtitle=w["subtitle"],
+            syllabus=w["syllabus"], mcqs=mcqs, subjectives=w["subj"],
+            closing_msg=w.get("closing"))
+        print(f"  {w['file']}: {len(b.prs.slides._sldIdLst)} slides  "
+              f"{'OK' if not issues else 'QA ISSUES: ' + str(issues)}")
+
+    print(f"== {grade}: homework PDFs ==")
+    for sd, h in enumerate(homeworks):
+        mcqs = balance_options(h["mcqs"], seed=200 + sd)
+        build_homework(os.path.join(hw_out, h["file"]), grade=grade,
+                       chapter=h["chapter"], lesson=h["lesson"],
+                       kind=h["kind"], syllabus_topics=h["syllabus"], mcqs=mcqs)
+        print(f"  {h['file']}: 10 MCQs")
+    return warns
