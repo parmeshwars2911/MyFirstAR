@@ -1175,6 +1175,8 @@ def build():
         ("MH10_S41_Effects_of_Electric_Current_1.pptx", eec1_deck),
         ("MH10_S43_Effects_of_Electric_Current_2.pptx", eec2_deck),
         ("MH10_S45_Effects_of_Electric_Current_3.pptx", eec3_deck),
+        ("MH10_S64_Lenses.pptx", lenses_deck),
+        ("MH10_S71_Space_Missions.pptx", space_deck),
     ]
     for fname, fn in jobs:
         b = fn()
@@ -1189,6 +1191,559 @@ def build():
                 print("  -", i)
         else:
             print("QA: no overlaps / off-slide shapes detected")
+
+
+
+
+# ===========================================================================
+# S64 — Lenses
+# ===========================================================================
+def lenses_deck():
+    footer = "Lenses  •  MSBSHSE Std 10 Science Part 1"
+    b = Builder(footer, accent=C["blue"])
+
+    types = b.asset("mh10_lens_types", D.lens_types("mh10_lens_types"))
+    convex = b.asset("mh10_lens_convex", D.convex_lens_image("mh10_lens_convex"))
+    concave = b.asset("mh10_lens_concave",
+                      D.concave_lens_image("mh10_lens_concave"))
+    magnifier = b.asset("mh10_lens_mag", D.convex_magnifier("mh10_lens_mag"))
+
+    b.title("Std 10 • Science Part 1 • Optics", "Lenses",
+            "Types of lenses  •  Images and ray diagrams  •  Lens formula "
+            "and power  •  The human eye and defects of vision",
+            img=types)
+
+    b.objectives([
+        "Identify convex and concave lenses and the terms related to them",
+        "Draw ray diagrams for images formed by convex and concave "
+        "lenses",
+        "Apply the sign convention and the lens formula 1/v − 1/u = 1/f",
+        "Calculate magnification and the power of a lens",
+        "Describe the human eye and the idea of persistence of vision",
+        "Explain the defects of vision and how lenses correct them",
+    ])
+
+    # ---- Part 1 : lenses, terms, images ----
+    b.divider(1, "Part 1", "Lenses and the Images They Form",
+              "Types of lenses, key terms and ray diagrams")
+
+    b.cards(
+        "TYPES OF LENSES", "Convex and Concave Lenses",
+        [("Convex (converging) lens", "Thicker at the middle than at the "
+          "edges. A parallel beam of light passing through it converges "
+          "to a real point — the principal focus. It can be seen as a "
+          "set of prisms with bases towards the centre."),
+         ("Concave (diverging) lens", "Thinner at the middle than at the "
+          "edges. A parallel beam passing through it diverges, appearing "
+          "to come from a virtual focus on the same side. It behaves "
+          "like prisms with bases towards the edges.")],
+        icons=["eye", "eye"],
+        notes="Use the lens_types diagram to show the cross-section "
+              "shapes; connect the converging/diverging behaviour to the "
+              "prism model of a lens.")
+
+    b.bullets(
+        "KEY TERMS", "Terms Related to a Lens",
+        [("Centres of curvature (C₁, C₂)", "The centres of the two "
+          "spheres whose surfaces form the two faces of the lens."),
+         ("Radii of curvature (R₁, R₂)", "The radii of those two "
+          "spheres."),
+         ("Principal axis", "The straight line passing through both "
+          "centres of curvature (and the optical centre)."),
+         ("Optical centre (O)", "The central point of the lens; a ray "
+          "passing through it goes straight, without any deviation."),
+         ("Principal focus (F)", "The point on the principal axis where "
+          "rays parallel to the axis converge (convex) or appear to "
+          "diverge from (concave)."),
+         ("Focal length (f)", "The distance between the optical centre "
+          "and the principal focus.")],
+        notes="A lens has two principal foci, one on each side, "
+              "equidistant from the optical centre for a thin lens.")
+
+    b.bullets(
+        "RAY RULES", "Rules for Drawing Ray Diagrams",
+        [("Ray parallel to the principal axis", "After refraction it "
+          "passes through the principal focus F (convex) or appears to "
+          "come from F (concave)."),
+         ("Ray through the optical centre", "Passes straight through "
+          "without any deviation."),
+         ("Ray through the principal focus", "A ray passing through F "
+          "(convex) emerges parallel to the principal axis after "
+          "refraction."),
+         ("Locating the image", "Any two of these rays are drawn from "
+          "the top of the object; the point where they meet (or appear "
+          "to meet) locates the image.")],
+        notes="Only two rays are needed to fix the image; the third is a "
+              "useful check.")
+
+    b.text_image(
+        "CONVEX LENS", "Images Formed by a Convex Lens",
+        ["The nature, position and size of the image depend on where the "
+         "object is placed relative to the focus F and 2F.",
+         "For a distant object the image is real, inverted and very "
+         "small, formed at F; as the object moves closer the real image "
+         "moves out and grows.",
+         "When the object is between F and the lens, the image becomes "
+         "virtual, erect and magnified — this is how a magnifying glass "
+         "works.",
+         "A convex lens can therefore form both real images (object "
+         "beyond F) and a virtual image (object within F)."],
+        convex, img_side="right", panel_title="Real or virtual, "
+        "depending on position",
+        notes="Walk the object from infinity inward, calling out the "
+              "image nature at each stage (at 2F: same size; between F "
+              "and 2F: magnified real; within F: magnified virtual).")
+
+    b.text_image(
+        "CONCAVE LENS", "Images Formed by a Concave Lens",
+        ["A concave lens always diverges the light passing through it.",
+         "Whatever the position of the object, a concave lens forms an "
+         "image that is always virtual, erect and diminished (smaller "
+         "than the object).",
+         "The image is always formed on the same side as the object, "
+         "between the optical centre and the focus.",
+         "Because the image is always the same kind, a concave lens is "
+         "easy to identify by the small, upright image it forms."],
+        concave, img_side="left", panel_title="Always virtual, erect "
+        "and small",
+        notes="Contrast sharply with the convex lens, whose image "
+              "changes with object position — the concave lens image "
+              "never changes in nature.")
+
+    b.quiz_intro("Quiz 1", "Check — Lenses & Images", 4)
+    b.quiz_q(1, "Types", "A lens that is thicker at the middle than at "
+             "the edges is a:",
+             ["concave (diverging) lens", "convex (converging) lens",
+              "plane glass slab", "prism"])
+    b.quiz_a(1, "B. convex (converging) lens",
+             "A convex lens is thicker in the middle and converges a "
+             "parallel beam to its principal focus.")
+    b.quiz_q(2, "Optical centre", "A ray of light passing through the "
+             "optical centre of a thin lens:",
+             ["bends towards the focus", "goes straight through without "
+              "deviation", "is totally reflected", "emerges parallel to "
+              "the axis"])
+    b.quiz_a(2, "B. goes straight through without deviation",
+             "The optical centre is the one point through which a ray "
+             "passes undeviated, which is why it is used in ray "
+             "diagrams.")
+    b.quiz_q(3, "Concave lens image", "The image formed by a concave "
+             "lens is always:",
+             ["real, inverted and magnified", "virtual, erect and "
+              "diminished", "real and the same size", "virtual and "
+              "magnified"])
+    b.quiz_a(3, "B. virtual, erect and diminished",
+             "A concave (diverging) lens forms a virtual, erect and "
+             "smaller image for every position of the object.")
+    b.quiz_q(4, "Convex lens application", "A convex lens is used as a "
+             "magnifying glass when the object is placed:",
+             ["beyond 2F", "at 2F", "between the focus F and the lens",
+              "at the focus F"])
+    b.quiz_a(4, "C. between the focus F and the lens",
+             "With the object within the focal length, a convex lens "
+             "forms a virtual, erect and magnified image — the "
+             "magnifying-glass action.")
+
+    # ---- Part 2 : formula, power, eye, defects ----
+    b.divider(2, "Part 2", "Lens Formula, Power and the Human Eye",
+              "Calculations, the eye and defects of vision")
+
+    b.statement(
+        "SIGN CONVENTION & LENS FORMULA", "The Lens Formula",
+        "Using the Cartesian sign convention (distances measured from "
+        "the optical centre; those in the direction of incident light "
+        "positive, opposite negative), the object distance u, image "
+        "distance v and focal length f are related by the lens formula.",
+        formula="1/v − 1/u = 1/f",
+        points=[
+            "For a convex lens f is positive; for a concave lens f is "
+            "negative.",
+            "A real image has a positive v; a virtual image has a "
+            "negative v.",
+            "The object distance u is taken as negative (object on the "
+            "left of the lens)."],
+        notes="Insist on the sign convention before any numerical — most "
+              "errors come from wrong signs, not wrong arithmetic.")
+
+    b.statement(
+        "MAGNIFICATION", "Magnification Produced by a Lens",
+        "The magnification is the ratio of the height of the image to "
+        "the height of the object, and also equals the ratio of image "
+        "distance to object distance.",
+        formula="m = h′/h = v/u",
+        points=[
+            "If m is positive, the image is virtual and erect; if "
+            "negative, the image is real and inverted.",
+            "If |m| > 1 the image is magnified; if |m| < 1 it is "
+            "diminished; if |m| = 1 it is the same size as the object."],
+        notes="Tie the sign of m back to the sign convention: a real "
+              "image (positive v, negative u) gives a negative m, "
+              "i.e. inverted.")
+
+    b.worked(
+        "WORKED EXAMPLE", "Using the Lens Formula",
+        "An object is placed 30 cm in front of a convex lens of focal "
+        "length 20 cm. Find the position and nature of the image.",
+        ["1/v − 1/u = 1/f, with u = −30 cm, f = +20 cm",
+         "1/v = 1/f + 1/u = 1/20 + 1/(−30) = (3 − 2)/60 = 1/60",
+         "v = +60 cm (positive → real, inverted image)",
+         "m = v/u = 60/(−30) = −2  (real, inverted, magnified 2×)"],
+        "v = 60 cm; real, inverted, magnified image",
+        notes="Show the substitution of signs explicitly; the positive "
+              "v confirms a real image on the far side of the lens.")
+
+    b.statement(
+        "POWER OF A LENS", "Power of a Lens and Combination of Lenses",
+        "The power of a lens is the reciprocal of its focal length (in "
+        "metres); it measures the lens's ability to converge or diverge "
+        "light.",
+        formula="P = 1 / f (in metres)   •   unit: dioptre (D)",
+        points=[
+            "A convex lens has positive power; a concave lens has "
+            "negative power.",
+            "A lens of focal length 20 cm (0.2 m) has power "
+            "P = 1/0.2 = +5 D.",
+            "When thin lenses are placed in contact, their powers add: "
+            "P = P₁ + P₂ + P₃ + ..."],
+        notes="Opticians prescribe spectacles in dioptres — connect the "
+              "sign of the power to the type of correcting lens needed.")
+
+    b.bullets(
+        "THE HUMAN EYE", "The Human Eye and Persistence of Vision",
+        [("Eye lens and cornea", "Light enters through the cornea and "
+          "the convex eye lens, which together form a real, inverted "
+          "image on the retina."),
+         ("Accommodation", "The ciliary muscles change the focal length "
+          "of the eye lens — thinner for distant objects, thicker for "
+          "near ones — so objects at different distances stay in focus."),
+         ("Least distance of distinct vision", "The closest distance at "
+          "which a normal eye can see an object clearly and without "
+          "strain is about 25 cm (the near point)."),
+         ("Persistence of vision", "An image continues to be sensed by "
+          "the eye for about 1/16 of a second after the object is "
+          "removed; rapidly changing still pictures therefore appear as "
+          "continuous motion, as in films.")],
+        notes="Persistence of vision is the physics behind cinema and "
+              "animation — a memorable everyday link.")
+
+    b.cards(
+        "DEFECTS OF VISION", "Defects of Vision and Their Correction",
+        [("Myopia (short-sightedness)", "The eye can see near objects "
+          "clearly but not distant ones; the image of a distant object "
+          "forms in front of the retina. Corrected using a concave "
+          "(diverging) lens of suitable power."),
+         ("Hypermetropia (long-sightedness)", "The eye can see distant "
+          "objects clearly but not near ones; the image of a near "
+          "object forms behind the retina. Corrected using a convex "
+          "(converging) lens."),
+         ("Presbyopia", "With age the ciliary muscles weaken and the eye "
+          "lens hardens, so both near and distant vision are affected. "
+          "Corrected using bifocal lenses (concave upper part, convex "
+          "lower part)."),
+         ("Cause in general", "These defects arise from the eyeball "
+          "being too long or too short, or the eye lens losing its "
+          "ability to change focal length.")],
+        icons=["eye", "eye", "eye", "eye"],
+        notes="Have students match each defect to its correcting lens "
+              "and state where the image forms relative to the retina.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Two types of lens", "Convex converges light; concave diverges "
+                              "it."),
+         ("Ray rules", "Parallel ray → through F; ray through O → "
+                       "straight; ray through F → parallel."),
+         ("Lens formula", "1/v − 1/u = 1/f, using the sign convention."),
+         ("Magnification & power", "m = v/u; P = 1/f in dioptres, + for "
+                                  "convex, − for concave."),
+         ("Human eye", "Ciliary muscles focus the eye lens; near point "
+                      "25 cm; persistence of vision ≈ 1/16 s."),
+         ("Vision defects", "Myopia → concave lens; hypermetropia → "
+                           "convex lens; presbyopia → bifocals.")],
+        notes="Cold-call the correcting lens for each defect and the "
+              "unit of lens power.")
+
+    b.quiz_intro("Quiz 2", "Final Check — Formula, Power & the Eye", 4)
+    b.quiz_q(1, "Power", "A convex lens has a focal length of 25 cm. Its "
+             "power is:",
+             ["+4 D", "+0.25 D", "−4 D", "+25 D"])
+    b.quiz_a(1, "A. +4 D",
+             "P = 1/f(in m) = 1/0.25 = +4 D; the power is positive "
+             "because the lens is convex.")
+    b.quiz_q(2, "Magnification", "If the magnification produced by a "
+             "lens is −2, the image is:",
+             ["virtual, erect and magnified", "real, inverted and "
+              "magnified", "virtual and diminished", "the same size as "
+              "the object"])
+    b.quiz_a(2, "B. real, inverted and magnified",
+             "A negative magnification means a real, inverted image; "
+             "its magnitude of 2 means it is twice the object's size.")
+    b.quiz_q(3, "Near point", "The least distance of distinct vision for "
+             "a normal human eye is about:",
+             ["25 cm", "25 m", "2.5 cm", "1 m"])
+    b.quiz_a(3, "A. 25 cm",
+             "A normal eye can focus comfortably on objects as close as "
+             "about 25 cm — the near point.")
+    b.quiz_q(4, "Myopia", "A short-sighted (myopic) person cannot see "
+             "distant objects clearly. This defect is corrected using "
+             "a:",
+             ["convex lens", "concave lens", "prism", "plane mirror"])
+    b.quiz_a(4, "B. concave lens",
+             "A concave (diverging) lens moves the image of a distant "
+             "object back onto the retina, correcting myopia.")
+
+    b.closing("Lenses: Bending Light to See",
+              "From a magnifying glass to the lens in your own eye, the "
+              "same simple rules of refraction let us focus light, form "
+              "images and correct how we see the world.")
+    return b
+
+
+# ===========================================================================
+# S71 — Space Missions
+# ===========================================================================
+def space_deck():
+    footer = "Space Missions  •  MSBSHSE Std 10 Science Part 1"
+    b = Builder(footer, accent=C["purple"])
+
+    orbit = b.asset("mh10_space_orbit", DM.satellite_orbit("mh10_space_orbit"))
+    rocket = b.asset("mh10_space_rocket",
+                     DM.launch_vehicle_stages("mh10_space_rocket"))
+
+    b.title("Std 10 • Science Part 1 • Space", "Space Missions",
+            "Artificial satellites and orbits  •  Escape velocity  •  "
+            "Launch vehicles  •  India's space programme", img=orbit)
+
+    b.objectives([
+        "Explain what a space mission and an artificial satellite are",
+        "Classify satellites by their use and by their orbits",
+        "Define orbital velocity and escape velocity",
+        "Describe how a multi-stage launch vehicle places a satellite in "
+        "orbit",
+        "Outline India's major space missions and achievements",
+        "Explain what space debris is and why its management matters",
+    ])
+
+    # ---- Part 1 : satellites, orbits, velocities ----
+    b.divider(1, "Part 1", "Satellites, Orbits and Velocities",
+              "What keeps a satellite up, and what it takes to get there")
+
+    b.bullets(
+        "SPACE MISSIONS", "Space Missions and Artificial Satellites",
+        [("Space mission", "A planned journey or project to send a "
+          "spacecraft, satellite or probe into space to study the "
+          "Earth, other bodies or space itself."),
+         ("Artificial satellite", "A man-made object deliberately placed "
+          "into orbit around the Earth (or another body) to perform a "
+          "specific task."),
+         ("Why it stays in orbit", "The satellite moves fast enough "
+          "along its path that the Earth's gravity, acting as the "
+          "centripetal force, keeps bending it into a closed orbit "
+          "instead of pulling it straight down."),
+         ("Uses of satellites", "Communication, weather forecasting, "
+          "broadcasting, navigation (GPS), remote sensing, and "
+          "scientific research.")],
+        notes="Link back to the Gravitation chapter: an orbiting "
+              "satellite is in continuous free fall, with gravity "
+              "providing exactly the centripetal force it needs.")
+
+    b.cards(
+        "TYPES OF SATELLITE", "Classifying Satellites by Their Orbit",
+        [("Geostationary satellite", "Orbits about 36,000 km above the "
+          "equator with a period of 24 hours, so it appears fixed over "
+          "one spot on Earth. Ideal for communication and "
+          "broadcasting."),
+         ("Polar (sun-synchronous) satellite", "Orbits at a much lower "
+          "height (a few hundred km) passing over the poles, scanning "
+          "different strips of the Earth on each pass. Used for weather "
+          "and remote sensing."),
+         ("Low, medium and high orbits", "Satellites are also grouped by "
+          "orbit height as Low Earth Orbit (LEO), Medium Earth Orbit "
+          "(MEO) and geostationary/high orbit, each suited to different "
+          "tasks."),
+         ("By purpose", "Communication, weather, navigation, "
+          "earth-observation (remote sensing), military and scientific "
+          "satellites.")],
+        icons=["compass", "compass", "star", "star"],
+        notes="Contrast the geostationary satellite (fixed over one "
+              "point, high orbit) with the polar satellite (low, "
+              "scanning) — a very common comparison question.")
+
+    b.statement(
+        "ORBITAL & ESCAPE VELOCITY", "Two Important Speeds",
+        "A satellite must be given exactly the right speed to stay in a "
+        "circular orbit — its orbital velocity — while a body needs a "
+        "much larger speed to leave the Earth's gravity altogether.",
+        points=[
+            "Orbital velocity is the horizontal speed a satellite needs "
+            "so that gravity keeps it in a stable orbit; it decreases "
+            "as the orbit's height increases.",
+            "Escape velocity is the minimum speed a body must be given "
+            "to escape the Earth's gravitational field completely.",
+            "For the Earth, the escape velocity is about 11.2 km/s.",
+            "Escape velocity depends on the mass and radius of the "
+            "planet, not on the mass of the escaping body."],
+        notes="Emphasise that escape velocity is independent of the "
+              "escaping object's mass — a common conceptual question.")
+
+    b.quiz_intro("Quiz 1", "Check — Satellites & Orbits", 4)
+    b.quiz_q(1, "Geostationary", "A geostationary satellite appears to "
+             "stay fixed above one point on the Earth because its "
+             "orbital period is:",
+             ["1 hour", "12 hours", "24 hours", "1 month"])
+    b.quiz_a(1, "C. 24 hours",
+             "A geostationary satellite orbits over the equator with a "
+             "period of 24 hours, matching the Earth's rotation, so it "
+             "stays above the same point.")
+    b.quiz_q(2, "Polar satellite", "Compared with a geostationary "
+             "satellite, a polar satellite orbits at a:",
+             ["much greater height", "much lower height, passing over "
+              "the poles", "fixed point over the equator", "height of "
+              "exactly 36,000 km"])
+    b.quiz_a(2, "B. much lower height, passing over the poles",
+             "Polar satellites orbit only a few hundred kilometres up "
+             "and pass over the poles, scanning fresh strips of the "
+             "Earth — ideal for weather and remote sensing.")
+    b.quiz_q(3, "Orbit force", "The force that keeps an artificial "
+             "satellite moving in its orbit around the Earth is:",
+             ["magnetic force", "the Earth's gravitational force acting "
+              "as centripetal force", "air resistance", "the satellite's "
+              "own thrust"])
+    b.quiz_a(3, "B. the Earth's gravitational force acting as "
+             "centripetal force",
+             "Gravity continuously pulls the satellite towards the "
+             "Earth, providing the centripetal force that bends its "
+             "path into an orbit.")
+    b.quiz_q(4, "Escape velocity", "The escape velocity of a body from "
+             "the Earth's surface is about:",
+             ["9.8 m/s", "11.2 km/s", "3 × 10⁸ m/s", "300 km/s"])
+    b.quiz_a(4, "B. 11.2 km/s",
+             "About 11.2 km/s is the minimum speed needed to escape the "
+             "Earth's gravity completely; it does not depend on the "
+             "mass of the escaping body.")
+
+    # ---- Part 2 : launch vehicles, India's missions, debris ----
+    b.divider(2, "Part 2", "Launch Vehicles and India's Space Programme",
+              "Getting to orbit, and what India has achieved")
+
+    b.text_image(
+        "LAUNCH VEHICLES", "Satellite Launch Vehicles",
+        ["A satellite is carried into orbit by a launch vehicle (rocket) "
+         "that works on the principle of conservation of momentum — hot "
+         "gases are thrown out backwards, pushing the rocket forwards.",
+         "A single rocket cannot carry enough fuel, so multi-stage "
+         "launch vehicles are used: each stage burns its fuel and then "
+         "separates, so the remaining rocket becomes lighter.",
+         "The lowest, largest stage fires first and is dropped once "
+         "empty; the upper stages then fire in turn to reach the "
+         "required speed and height.",
+         "India's ISRO has developed launch vehicles such as the PSLV "
+         "(Polar Satellite Launch Vehicle) and the GSLV (Geosynchronous "
+         "Satellite Launch Vehicle)."],
+        rocket, img_side="right", panel_title="Why rockets have stages",
+        notes="Connect the staging idea to efficiency: dropping empty "
+              "stages means the engine no longer has to accelerate dead "
+              "weight.")
+
+    b.cards(
+        "INDIA IN SPACE", "India's Major Space Missions",
+        [("Chandrayaan-1 (2008)", "India's first mission to the Moon; it "
+          "confirmed the presence of water molecules on the lunar "
+          "surface."),
+         ("Mangalyaan (2013)", "The Mars Orbiter Mission made India the "
+          "first country to reach Mars orbit on its very first "
+          "attempt, and at remarkably low cost."),
+         ("Chandrayaan-2 & 3", "Follow-up Moon missions; Chandrayaan-3 "
+          "achieved a successful soft landing near the Moon's south "
+          "pole, a world first for that region."),
+         ("India and space technology", "ISRO launches communication, "
+          "weather and remote-sensing satellites for India and for "
+          "other countries, making India a major space-faring "
+          "nation.")],
+        icons=["moon", "star", "moon", "compass"],
+        notes="Keep the dates approximate; the key learning outcome is "
+              "the significance of each mission, not rote memorisation.")
+
+    b.bullets(
+        "SPACE DEBRIS", "Space Debris and Its Management",
+        [("What it is", "Space debris is the collection of non-working "
+          "man-made objects orbiting the Earth — spent rocket stages, "
+          "dead satellites and fragments from collisions."),
+         ("Why it is dangerous", "Debris travels at very high speed, so "
+          "even a small piece can seriously damage or destroy a working "
+          "satellite or spacecraft it strikes."),
+         ("Growing problem", "As more satellites are launched, the "
+          "amount of debris grows, increasing the risk of collisions "
+          "and threatening the future use of near-Earth space."),
+         ("Management", "Agencies track debris, design satellites to "
+          "de-orbit and burn up at the end of their life, and plan "
+          "missions to remove large pieces of debris.")],
+        notes="A modern, discussion-friendly topic — ask students why "
+              "clearing space debris is an international responsibility.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Artificial satellite", "A man-made body orbiting the Earth, "
+                                 "held in orbit by gravity acting as "
+                                 "centripetal force."),
+         ("Types", "Geostationary (24 h, fixed over equator) vs polar "
+                   "(low, over the poles); grouped by orbit and by "
+                   "purpose."),
+         ("Two speeds", "Orbital velocity keeps a satellite in orbit; "
+                       "escape velocity (≈ 11.2 km/s) lets a body leave "
+                       "Earth."),
+         ("Launch vehicles", "Multi-stage rockets (PSLV, GSLV) work by "
+                            "conservation of momentum."),
+         ("India's missions", "Chandrayaan-1/2/3 and Mangalyaan — Moon "
+                             "and Mars achievements."),
+         ("Space debris", "Dangerous orbiting junk that must be tracked "
+                          "and managed.")],
+        notes="Cold-call students for the difference between orbital "
+              "and escape velocity and one Indian mission's "
+              "significance.")
+
+    b.quiz_intro("Quiz 2", "Final Check — Launch Vehicles & Missions", 4)
+    b.quiz_q(1, "Staging", "Multi-stage rockets are used to launch "
+             "satellites because:",
+             ["they look impressive", "dropping each empty stage means "
+              "the rocket no longer has to carry and accelerate dead "
+              "weight", "a single stage is illegal", "they need no "
+              "fuel"])
+    b.quiz_a(1, "B. dropping each empty stage means the rocket no longer "
+             "has to carry and accelerate dead weight",
+             "Shedding spent stages makes the remaining rocket lighter, "
+             "so the same thrust can accelerate it to the high speed "
+             "needed for orbit.")
+    b.quiz_q(2, "Rocket principle", "A launch vehicle moves forward by "
+             "throwing hot gases backwards. This is an application of:",
+             ["Ohm's law", "conservation of momentum", "Snell's law",
+              "the lens formula"])
+    b.quiz_a(2, "B. conservation of momentum",
+             "The backward momentum given to the exhaust gases is "
+             "balanced by an equal forward momentum of the rocket.")
+    b.quiz_q(3, "Indian missions", "India's Mars Orbiter Mission is also "
+             "known as:",
+             ["Chandrayaan", "Mangalyaan", "Aryabhata", "PSLV"])
+    b.quiz_a(3, "B. Mangalyaan",
+             "Mangalyaan (the Mars Orbiter Mission) made India the first "
+             "country to reach Mars orbit on its first attempt.")
+    b.quiz_q(4, "Space debris", "Space debris is a serious hazard mainly "
+             "because it:",
+             ["blocks sunlight", "travels at very high speed and can "
+              "damage working satellites on impact", "is radioactive",
+              "increases the Earth's gravity"])
+    b.quiz_a(4, "B. travels at very high speed and can damage working "
+             "satellites on impact",
+             "Even a tiny fragment moving at orbital speed carries "
+             "enough energy to cripple a satellite it strikes, so debris "
+             "must be tracked and managed.")
+
+    b.closing("Reaching for the Stars",
+              "From understanding why a satellite stays up to landing "
+              "near the Moon's south pole, space missions turn the "
+              "physics of gravity and motion into humanity's journey "
+              "beyond the Earth.")
+    return b
 
 
 if __name__ == "__main__":
