@@ -16,11 +16,13 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from engine import Builder, C
 import diagrams as D
+import mhstyle
 import diagrams_mh as DM
 
 OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ppt",
                                    "MH_Grade10"))
 os.makedirs(OUT, exist_ok=True)
+mhstyle.apply()
 
 
 # ===========================================================================
@@ -62,16 +64,11 @@ def refraction_deck():
 
     b.text_image(
         "REFRACTION", "What Is Refraction?",
-        ["When light passes from one transparent medium into another, it "
-         "changes speed and bends at the boundary — this is refraction.",
-         "Light bends towards the normal when it enters a denser medium "
-         "(e.g. air to glass), and away from the normal when it enters a "
-         "rarer medium (e.g. glass to air).",
-         "A ray travelling exactly along the normal does not bend at all, "
-         "though its speed still changes.",
-         "Refraction happens because the speed of light is different in "
-         "different media; the frequency stays the same but the "
-         "wavelength changes."],
+        ["Light bends when it crosses between two media — refraction",
+         "Into a denser medium → bends towards the normal",
+         "Into a rarer medium → bends away from the normal",
+         "Along the normal → no bending",
+         "Cause: light travels at a different speed in each medium"],
         bend, img_side="right", panel_title="Bending at a boundary",
         notes="Demonstrate with a pencil in a glass of water appearing "
               "bent. Stress: refraction is a change in speed and direction, "
@@ -138,15 +135,11 @@ def refraction_deck():
 
     b.text_image(
         "GLASS SLAB", "Refraction Through a Rectangular Glass Slab",
-        ["Light refracts twice — bending towards the normal on entering "
-         "(air to glass) and away from the normal on leaving (glass to "
-         "air).",
-         "The two parallel faces bend it by equal and opposite amounts, "
-         "so the emergent ray is parallel to the incident ray.",
-         "The emergent ray is only shifted sideways from the original "
-         "path — this shift is called lateral displacement.",
-         "Lateral displacement increases with the thickness of the slab "
-         "and the angle of incidence."],
+        ["Refracts twice — on entering and on leaving",
+         "Parallel faces bend it back by an equal amount",
+         "Emergent ray stays parallel to the incident ray",
+         "But shifted sideways — lateral displacement",
+         "Shift grows with slab thickness and angle of incidence"],
         block, img_side="right", panel_title="Emergent ray is parallel "
         "but shifted",
         notes="Stress the two key facts examiners look for: the emergent "
@@ -225,16 +218,11 @@ def refraction_deck():
     b.text_image(
         "CONDITIONS FOR TIR", "The Two Conditions for Total Internal "
         "Reflection",
-        ["Total internal reflection can occur only when both of these "
-         "conditions are satisfied together:",
-         "1. Light must travel from an optically denser medium into an "
-         "optically rarer medium (for example, from water or glass into "
-         "air).",
-         "2. The angle of incidence in the denser medium must be greater "
-         "than the critical angle for that pair of media.",
-         "When this happens, the boundary behaves like a perfect mirror "
-         "— all the light energy is reflected back with none refracting "
-         "out, as shown in the diagram."],
+        ["Both conditions must hold together:",
+         "1. Denser medium → rarer medium (e.g. glass → air)",
+         "2. Angle of incidence > critical angle",
+         "Then no light refracts out — all is reflected",
+         "The boundary acts like a perfect mirror"],
         tir, img_side="left", panel_title="When the surface acts as a "
         "mirror",
         notes="Contrast with the previous slide: below the critical "
@@ -286,16 +274,11 @@ def refraction_deck():
 
     b.text_image(
         "MIRAGE", "Mirage: TIR in the Open Air",
-        ["On a very hot day, the layer of air just above a road or a "
-         "desert surface becomes much hotter — and hence much less dense "
-         "— than the air above it.",
-         "Light from the sky travelling towards the ground is refracted "
-         "more and more as it enters progressively rarer layers of hot "
-         "air, bending it away from the normal at each layer.",
-         "Eventually the ray undergoes total internal reflection at the "
-         "hottest layer and travels back up to an observer's eye.",
-         "The observer sees an inverted image of the sky on the road, "
-         "which looks exactly like a pool of water."],
+        ["Hot day → air near the ground is hot and rarer",
+         "Sky-light bends more through each hotter layer",
+         "It undergoes total internal reflection upward",
+         "We see an inverted patch of sky on the road",
+         "It looks just like a pool of water"],
         mirage, img_side="right", panel_title="The 'water' that isn't "
         "there",
         notes="Link back to the critical-angle condition: TIR happens "
@@ -304,20 +287,11 @@ def refraction_deck():
 
     b.text_image(
         "PRISM", "Refraction of Light Through a Prism",
-        ["A prism is a transparent optical element with two triangular "
-         "ends and three rectangular side faces; the two faces at which "
-         "refraction takes place are its refracting surfaces, and the "
-         "angle between them is the refracting angle (angle of the "
-         "prism).",
-         "A ray entering a prism refracts at the first surface and again "
-         "at the second surface, and unlike a glass slab the two "
-         "surfaces are not parallel, so the emergent ray is NOT parallel "
-         "to the incident ray.",
-         "The ray is bent towards the base of the prism; the angle "
-         "between the incident ray (produced forward) and the emergent "
-         "ray (produced backward) is called the angle of deviation.",
-         "The angle of deviation depends on the angle of incidence, the "
-         "refracting angle and the material of the prism."],
+        ["Two refractions at two non-parallel faces",
+         "Angle between the faces = refracting angle",
+         "Emergent ray is NOT parallel to the incident ray",
+         "The ray bends towards the base of the prism",
+         "This bending is the angle of deviation"],
         prism, img_side="right", panel_title="Bending towards the base",
         notes="Set up the contrast: a slab keeps the ray parallel, a "
               "prism deviates it towards the base — this deviation, being "
@@ -326,16 +300,11 @@ def refraction_deck():
 
     b.text_image(
         "DISPERSION", "Dispersion of Light Through a Prism",
-        ["White light is a mixture of seven colours: violet, indigo, "
-         "blue, green, yellow, orange and red (VIBGYOR).",
-         "Each colour has a different wavelength, and a glass prism has a "
-         "slightly different refractive index for each wavelength — "
-         "violet is bent the most and red the least.",
-         "When white light passes through a prism, the different colours "
-         "are refracted by different amounts and emerge separated as a "
-         "band of colours called a spectrum.",
-         "This splitting of white light into its component colours is "
-         "called dispersion."],
+        ["White light = seven colours (VIBGYOR)",
+         "A prism bends each colour by a different amount",
+         "Violet bends the most, red the least",
+         "The colours emerge as a band — a spectrum",
+         "This splitting of white light is called dispersion"],
         disp, img_side="left", panel_title="Splitting white light",
         notes="A rainbow is a natural example of dispersion combined with "
               "internal reflection inside raindrops.")

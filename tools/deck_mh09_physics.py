@@ -14,10 +14,12 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from engine import Builder, C
 import diagrams as D
+import mhstyle
 
 OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ppt",
                                    "MH_Grade09"))
 os.makedirs(OUT, exist_ok=True)
+mhstyle.apply()
 
 
 # ===========================================================================
@@ -492,6 +494,8 @@ def build():
     jobs = [
         ("MH09_S30_Current_Electricity_1.pptx", ce1_deck),
         ("MH09_S32_Current_Electricity_2.pptx", ce2_deck),
+        ("MH09_S44_Reflection_of_Light_1.pptx", refl1_deck),
+        ("MH09_S46_Reflection_of_Light_2.pptx", refl2_deck),
     ]
     for fname, fn in jobs:
         b = fn()
@@ -506,6 +510,450 @@ def build():
                 print("  -", i)
         else:
             print("QA: no overlaps / off-slide shapes detected")
+
+
+
+
+# ===========================================================================
+# S44 — Reflection of Light - 1  (mirrors, spherical mirrors, terms)
+# ===========================================================================
+def refl1_deck():
+    footer = "Reflection of Light  •  MSBSHSE Std 9 Science & Technology"
+    b = Builder(footer, accent=C["purple"])
+
+    law = b.asset("mh9_refl1_law", D.reflection_law("mh9_refl1_law"))
+    plane = b.asset("mh9_refl1_plane", D.plane_mirror_image("mh9_refl1_plane"))
+    concave = b.asset("mh9_refl1_concave",
+                      D.concave_mirror_image("mh9_refl1_concave"))
+    convex = b.asset("mh9_refl1_convex",
+                     D.convex_mirror_image("mh9_refl1_convex"))
+
+    b.title("Std 9 • Science & Technology • Optics",
+            "Reflection of Light — 1",
+            "Reflection and mirrors  •  Spherical mirrors  •  Terms and "
+            "the R = 2f relation  •  Convergence & divergence", img=concave)
+
+    b.objectives([
+        "State the laws of reflection of light",
+        "Distinguish between plane, concave and convex mirrors",
+        "Explain how concave mirrors converge and convex mirrors diverge "
+        "light",
+        "Define the terms related to spherical mirrors",
+        "Relate the focal length and radius of curvature (R = 2f)",
+        "Identify real and virtual foci for the two kinds of mirror",
+    ])
+
+    # ---- Part 1 : reflection & mirrors ----
+    b.divider(1, "Part 1", "Reflection and Types of Mirrors",
+              "The laws of reflection and the two spherical mirrors")
+
+    b.statement(
+        "LAWS OF REFLECTION", "The Laws of Reflection of Light",
+        "When light falls on a polished (reflecting) surface, it bounces "
+        "back following two laws of reflection.",
+        img=law,
+        notes="First law: the angle of incidence equals the angle of "
+              "reflection. Second law: the incident ray, the reflected "
+              "ray and the normal at the point of incidence all lie in "
+              "the same plane. These laws hold for every reflecting "
+              "surface, plane or curved.")
+
+    b.cards(
+        "SPHERICAL MIRRORS", "Plane and Spherical Mirrors",
+        [("Plane mirror", "A flat reflecting surface; it forms a virtual, "
+          "erect image of the same size as the object, as far behind "
+          "the mirror as the object is in front."),
+         ("Concave mirror", "A spherical mirror whose reflecting surface "
+          "is the inner (caved-in) surface of the sphere; it converges a "
+          "parallel beam of light to a real focus, so it is a "
+          "converging mirror."),
+         ("Convex mirror", "A spherical mirror whose reflecting surface "
+          "is the outer (bulging) surface; it diverges a parallel beam, "
+          "which appears to come from a virtual focus behind the mirror "
+          "— a diverging mirror."),
+         ("Where they come from", "A spherical mirror is a small part of "
+          "a hollow sphere; silvering the outside gives a concave "
+          "mirror and silvering the inside gives a convex mirror.")],
+        icons=["eye", "eye", "eye", "star"],
+        notes="Use a shiny spoon: the inner side (concave) inverts your "
+              "image, the back (convex) gives a small upright image.")
+
+    b.text_image(
+        "CONVERGENCE", "Converging and Diverging Mirrors",
+        ["A concave mirror reflects a parallel beam of light so that the "
+         "rays actually meet at a single point in front of the mirror — "
+         "its principal focus. This is convergence.",
+         "Because the rays really meet, a concave mirror has a real "
+         "focus and can form real images.",
+         "A convex mirror reflects a parallel beam so that the rays "
+         "spread out (diverge); when produced backwards they appear to "
+         "come from a point behind the mirror — a virtual focus.",
+         "A convex mirror therefore always forms a virtual, erect and "
+         "diminished image, whatever the position of the object."],
+        convex, img_side="right", panel_title="Real vs virtual focus",
+        notes="This convergence/divergence distinction decides "
+              "everything about the images each mirror forms in the next "
+              "session.")
+
+    b.quiz_intro("Quiz 1", "Check — Reflection & Mirrors", 4)
+    b.quiz_q(1, "Laws", "According to the first law of reflection, the "
+             "angle of incidence is:",
+             ["greater than the angle of reflection", "equal to the "
+              "angle of reflection", "less than the angle of "
+              "reflection", "always 90°"])
+    b.quiz_a(1, "B. equal to the angle of reflection",
+             "The angle of incidence always equals the angle of "
+             "reflection, both measured from the normal at the point of "
+             "incidence.")
+    b.quiz_q(2, "Concave mirror", "A concave mirror reflects a parallel "
+             "beam of light so that the rays:",
+             ["diverge", "converge to a real focus", "are absorbed",
+              "pass straight through"])
+    b.quiz_a(2, "B. converge to a real focus",
+             "A concave (converging) mirror brings a parallel beam "
+             "together at its real principal focus in front of the "
+             "mirror.")
+    b.quiz_q(3, "Convex mirror", "The image formed by a convex mirror is "
+             "always:",
+             ["real and inverted", "virtual, erect and diminished",
+              "real and magnified", "the same size as the object"])
+    b.quiz_a(3, "B. virtual, erect and diminished",
+             "A convex (diverging) mirror always forms a small, upright, "
+             "virtual image, whatever the object's position.")
+    b.quiz_q(4, "Focus", "A convex mirror is said to have a virtual focus "
+             "because the reflected parallel rays:",
+             ["actually meet in front of it", "only appear to come from "
+              "a point behind it", "are absorbed at the surface", "never "
+              "leave the mirror"])
+    b.quiz_a(4, "B. only appear to come from a point behind it",
+             "The diverging reflected rays, produced backwards, seem to "
+             "start from a virtual focus behind the convex mirror.")
+
+    # ---- Part 2 : terms, R = 2f ----
+    b.divider(2, "Part 2", "Terms Related to Spherical Mirrors",
+              "The vocabulary you need for ray diagrams and formulae")
+
+    b.bullets(
+        "KEY TERMS", "Terms Related to a Spherical Mirror",
+        [("Pole (P)", "The central point of the reflecting surface of "
+          "the mirror."),
+         ("Centre of curvature (C)", "The centre of the hollow sphere of "
+          "which the mirror is a part."),
+         ("Radius of curvature (R)", "The radius of that sphere — the "
+          "distance PC."),
+         ("Principal axis", "The straight line passing through the pole "
+          "P and the centre of curvature C."),
+         ("Principal focus (F)", "The point on the principal axis where "
+          "rays parallel to the axis meet (concave) or appear to come "
+          "from (convex) after reflection."),
+         ("Focal length (f)", "The distance between the pole P and the "
+          "principal focus F.")],
+        notes="Draw and label all six terms on one clear diagram; "
+              "students reuse this vocabulary throughout the chapter.")
+
+    b.statement(
+        "R = 2f", "Relation Between Focal Length and Radius of Curvature",
+        "For a spherical mirror, the principal focus lies exactly midway "
+        "between the pole and the centre of curvature.",
+        formula="R = 2f     (so f = R / 2)",
+        points=[
+            "The radius of curvature is twice the focal length of the "
+            "mirror.",
+            "So a mirror with a radius of curvature of 20 cm has a focal "
+            "length of 10 cm.",
+            "This relation lets us find one quantity if the other is "
+            "known."],
+        notes="A frequently used relation in numericals; derive it "
+              "quickly from a ray parallel to the axis reflecting through "
+              "F.")
+
+    b.worked(
+        "WORKED EXAMPLE", "Using R = 2f",
+        "The radius of curvature of a concave mirror is 30 cm. Find its "
+        "focal length.",
+        ["R = 2f",
+         "f = R / 2 = 30 / 2"],
+        "f = 15 cm",
+        notes="Trivial arithmetic, but check the sign convention will be "
+              "applied later — here we just relate the magnitudes.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Laws of reflection", "Angle of incidence = angle of "
+                              "reflection; incident ray, reflected ray "
+                              "and normal are coplanar."),
+         ("Concave mirror", "Converging; real focus; can form real "
+                          "images."),
+         ("Convex mirror", "Diverging; virtual focus; always a virtual, "
+                         "erect, diminished image."),
+         ("Terms", "Pole, centre of curvature, radius, principal axis, "
+                 "focus, focal length."),
+         ("R = 2f", "The focus is midway between the pole and the centre "
+                  "of curvature.")],
+        notes="Cold-call each term and the R = 2f relation before the "
+              "final quiz.")
+
+    b.quiz_intro("Quiz 2", "Final Check — Terms & R = 2f", 4)
+    b.quiz_q(1, "Pole", "The central point of the reflecting surface of a "
+             "spherical mirror is called its:",
+             ["centre of curvature", "pole", "focus", "principal axis"])
+    b.quiz_a(1, "B. pole",
+             "The pole (P) is the central point of the mirror's "
+             "reflecting surface.")
+    b.quiz_q(2, "Centre of curvature", "The centre of the sphere of "
+             "which a spherical mirror forms a part is the:",
+             ["pole", "principal focus", "centre of curvature", "focal "
+              "point"])
+    b.quiz_a(2, "C. centre of curvature",
+             "The centre of curvature (C) is the centre of the hollow "
+             "sphere; the distance PC is the radius of curvature.")
+    b.quiz_q(3, "R = 2f", "A concave mirror has a focal length of 12 cm. "
+             "Its radius of curvature is:",
+             ["6 cm", "12 cm", "24 cm", "36 cm"])
+    b.quiz_a(3, "C. 24 cm",
+             "R = 2f = 2 × 12 = 24 cm.")
+    b.quiz_q(4, "Focus location", "The principal focus of a spherical "
+             "mirror lies:",
+             ["at the pole", "at the centre of curvature", "midway "
+              "between the pole and the centre of curvature", "at "
+              "infinity"])
+    b.quiz_a(4, "C. midway between the pole and the centre of curvature",
+             "Because R = 2f, the focus F is exactly halfway between the "
+             "pole P and the centre of curvature C.")
+
+    b.closing("Mirrors That Bend Light to a Point",
+              "Concave mirrors gather light to a real focus and convex "
+              "mirrors spread it from a virtual one — the same two laws "
+              "of reflection behind every curved mirror.")
+    return b
+
+
+# ===========================================================================
+# S46 — Reflection of Light - 2  (ray diagrams, images, mirror formula)
+# ===========================================================================
+def refl2_deck():
+    footer = "Reflection of Light  •  MSBSHSE Std 9 Science & Technology"
+    b = Builder(footer, accent=C["orange"])
+
+    concave = b.asset("mh9_refl2_concave",
+                      D.concave_mirror_image("mh9_refl2_concave"))
+    convex = b.asset("mh9_refl2_convex",
+                     D.convex_mirror_image("mh9_refl2_convex"))
+
+    b.title("Std 9 • Science & Technology • Optics",
+            "Reflection of Light — 2",
+            "Ray diagrams  •  Images by concave & convex mirrors  •  "
+            "Sign convention  •  Mirror formula & magnification",
+            img=concave)
+
+    b.objectives([
+        "State the rules for drawing ray diagrams for spherical mirrors",
+        "Draw and describe images formed by a concave mirror for "
+        "different object positions",
+        "Describe the image formed by a convex mirror",
+        "Apply the Cartesian sign convention for spherical mirrors",
+        "Use the mirror formula 1/v + 1/u = 1/f",
+        "Calculate magnification and state the uses of spherical mirrors",
+    ])
+
+    # ---- Part 1 : ray diagrams & images ----
+    b.divider(1, "Part 1", "Ray Diagrams and Images",
+              "Locating images formed by spherical mirrors")
+
+    b.bullets(
+        "RAY RULES", "Rules for Drawing Ray Diagrams",
+        [("Ray parallel to the principal axis", "After reflection it "
+          "passes through the principal focus F (concave) or appears to "
+          "come from F (convex)."),
+         ("Ray through the principal focus", "A ray passing through F "
+          "(concave) is reflected parallel to the principal axis."),
+         ("Ray through the centre of curvature", "A ray passing through "
+          "(or directed towards) C strikes the mirror normally and is "
+          "reflected back along the same path."),
+         ("Ray to the pole", "A ray striking the pole P is reflected "
+          "making an equal angle with the principal axis.")],
+        notes="Any two of these rays are enough to locate the image; "
+              "the others are useful checks.")
+
+    b.text_image(
+        "CONCAVE IMAGES", "Images Formed by a Concave Mirror",
+        ["The nature of the image depends on where the object is placed "
+         "relative to F and C.",
+         "Object beyond C: image is real, inverted and diminished, "
+         "formed between F and C.",
+         "Object at C: image is real, inverted and the same size, "
+         "formed at C; object between C and F: real, inverted and "
+         "magnified, beyond C.",
+         "Object between F and the pole: image is virtual, erect and "
+         "magnified — the principle of a shaving/make-up mirror."],
+        concave, img_side="right", panel_title="Depends on the object's "
+        "position",
+        notes="Walk the object from far away inward, naming the image "
+              "type at each stage; this table is a very common exam "
+              "question.")
+
+    b.text_image(
+        "CONVEX IMAGES", "Images Formed by a Convex Mirror",
+        ["For a convex mirror the image is always of the same nature, "
+         "whatever the object's position.",
+         "The image is always virtual, erect and diminished, formed "
+         "between the pole and the focus behind the mirror.",
+         "As the object moves closer, the image grows a little but "
+         "always stays smaller than the object.",
+         "Because it gives a wide, upright field of view, a convex "
+         "mirror is used as a rear-view mirror and as a security mirror "
+         "in shops."],
+        convex, img_side="left", panel_title="Always small, upright and "
+        "virtual",
+        notes="Contrast strongly with the concave mirror, whose image "
+              "changes; the convex mirror's image never changes in "
+              "nature.")
+
+    b.quiz_intro("Quiz 1", "Check — Ray Diagrams & Images", 4)
+    b.quiz_q(1, "Ray rule", "A ray parallel to the principal axis, after "
+             "reflection from a concave mirror, passes through the:",
+             ["pole", "centre of curvature", "principal focus", "object"])
+    b.quiz_a(1, "C. principal focus",
+             "A ray parallel to the axis reflects through the principal "
+             "focus F of a concave mirror.")
+    b.quiz_q(2, "Concave image", "An object placed between the focus and "
+             "the pole of a concave mirror gives an image that is:",
+             ["real, inverted and diminished", "virtual, erect and "
+              "magnified", "real and the same size", "virtual and "
+              "diminished"])
+    b.quiz_a(2, "B. virtual, erect and magnified",
+             "With the object within the focus, a concave mirror forms a "
+             "magnified, upright, virtual image — used in shaving and "
+             "make-up mirrors.")
+    b.quiz_q(3, "Object at C", "When an object is placed at the centre "
+             "of curvature of a concave mirror, the image is:",
+             ["diminished", "the same size as the object", "magnified",
+              "virtual"])
+    b.quiz_a(3, "B. the same size as the object",
+             "At C the image is real, inverted and exactly the same size "
+             "as the object, also formed at C.")
+    b.quiz_q(4, "Convex use", "A convex mirror is preferred as a vehicle "
+             "rear-view mirror because it:",
+             ["magnifies vehicles behind", "gives a wide, upright field "
+              "of view", "forms real images", "reverses left and right"])
+    b.quiz_a(4, "B. gives a wide, upright field of view",
+             "Its always-diminished, erect virtual image covers a large "
+             "area behind the vehicle, so more traffic is visible.")
+
+    # ---- Part 2 : sign convention, mirror formula, magnification ----
+    b.divider(2, "Part 2", "Mirror Formula and Magnification",
+              "Calculating image position, size and nature")
+
+    b.bullets(
+        "SIGN CONVENTION", "Cartesian Sign Convention for Mirrors",
+        [("Origin at the pole", "All distances are measured from the "
+          "pole P of the mirror, along the principal axis."),
+         ("Direction of incident light", "Distances measured in the "
+          "direction of the incident light (to the right) are positive; "
+          "those against it (to the left) are negative."),
+         ("Object distance", "The object is always placed to the left, "
+          "so the object distance u is negative."),
+         ("Heights", "Heights measured upwards (above the axis) are "
+          "positive; heights measured downwards are negative.")],
+        notes="Getting the signs right is the whole battle in mirror "
+              "numericals; insist students write signs before "
+              "substituting.")
+
+    b.statement(
+        "MIRROR FORMULA", "The Mirror Formula and Magnification",
+        "The mirror formula relates the object distance (u), image "
+        "distance (v) and focal length (f) of a spherical mirror, valid "
+        "for all mirrors and all object positions with the sign "
+        "convention.",
+        formula="1/v + 1/u = 1/f     •     m = h₂/h₁ = −v/u",
+        points=[
+            "For a concave mirror f is negative; for a convex mirror f "
+            "is positive.",
+            "A negative magnification means a real, inverted image; a "
+            "positive magnification means a virtual, erect image.",
+            "|m| > 1 means magnified, |m| < 1 means diminished."],
+        notes="Note the mirror formula uses 1/v + 1/u (a plus), unlike "
+              "the lens formula which uses a minus — a classic slip.")
+
+    b.worked(
+        "WORKED EXAMPLE", "Using the Mirror Formula",
+        "An object is placed 30 cm in front of a concave mirror of focal "
+        "length 20 cm. Find the image distance and magnification.",
+        ["Sign convention: u = −30 cm, f = −20 cm",
+         "1/v = 1/f − 1/u = 1/(−20) − 1/(−30) = −3/60 + 2/60 = −1/60",
+         "v = −60 cm (negative → real image, in front of the mirror)",
+         "m = −v/u = −(−60)/(−30) = −2  (real, inverted, magnified 2×)"],
+        "v = −60 cm; real, inverted, magnified image",
+        notes="Show every sign substitution; the negative v tells us the "
+              "image is real and formed in front of the mirror.")
+
+    b.cards(
+        "USES", "Uses of Spherical Mirrors",
+        [("Concave — shaving/make-up mirror", "With the face within the "
+          "focus, it gives an enlarged, erect image."),
+         ("Concave — headlamps & torches", "A bulb at the focus produces "
+          "a strong parallel beam of light."),
+         ("Concave — solar devices & floodlights", "Concentrate sunlight "
+          "at the focus, or give a bright beam when the source is beyond "
+          "C."),
+         ("Convex — rear-view & security mirrors", "Give a wide, upright "
+          "field of view so a large area is visible.")],
+        icons=["eye", "bulb", "sun", "eye"],
+        notes="Link each use back to the image property that makes it "
+              "work — magnification, parallel beam or wide field.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Ray rules", "Parallel→F; through F→parallel; through C→back "
+                     "along itself."),
+         ("Concave images", "Vary with object position — real/inverted "
+                          "far off, virtual/magnified within F."),
+         ("Convex images", "Always virtual, erect and diminished."),
+         ("Sign convention", "Distances from the pole; incident-light "
+                           "direction positive; object distance "
+                           "negative."),
+         ("Mirror formula", "1/v + 1/u = 1/f; m = −v/u."),
+         ("Uses", "Headlamps, shaving mirrors, solar devices, rear-view "
+                "mirrors.")],
+        notes="Ask students to contrast the concave and convex image "
+              "tables one more time.")
+
+    b.quiz_intro("Quiz 2", "Final Check — Formula & Magnification", 4)
+    b.quiz_q(1, "Sign convention", "In the Cartesian sign convention for "
+             "mirrors, the object distance u is always taken as:",
+             ["positive", "negative", "zero", "equal to f"])
+    b.quiz_a(1, "B. negative",
+             "The object is placed to the left of the pole, against the "
+             "incident-light direction, so u is negative.")
+    b.quiz_q(2, "Mirror formula", "The mirror formula relating u, v and "
+             "f is:",
+             ["1/v − 1/u = 1/f", "1/v + 1/u = 1/f", "v + u = f", "1/f = "
+              "1/v × 1/u"])
+    b.quiz_a(2, "B. 1/v + 1/u = 1/f",
+             "The mirror formula is 1/v + 1/u = 1/f (a plus sign, unlike "
+             "the lens formula).")
+    b.quiz_q(3, "Magnification", "A magnification of −3 produced by a "
+             "concave mirror means the image is:",
+             ["virtual, erect and magnified", "real, inverted and "
+              "magnified", "virtual and diminished", "real and the same "
+              "size"])
+    b.quiz_a(3, "B. real, inverted and magnified",
+             "A negative magnification indicates a real, inverted image; "
+             "its magnitude of 3 means it is three times the object's "
+             "size.")
+    b.quiz_q(4, "Uses", "The mirror used in vehicle headlamps to produce "
+             "a powerful parallel beam is a:",
+             ["plane mirror", "convex mirror", "concave mirror", "flat "
+              "glass sheet"])
+    b.quiz_a(4, "C. concave mirror",
+             "A bulb placed at the focus of a concave mirror produces a "
+             "strong parallel beam, ideal for a headlamp.")
+
+    b.closing("From Rays to Images",
+              "A few ray rules, a careful sign convention and one mirror "
+              "formula let us predict exactly where a spherical mirror "
+              "forms its image and how big it will be.")
+    return b
 
 
 if __name__ == "__main__":
