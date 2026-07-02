@@ -244,6 +244,47 @@ def build_workout(out_path, *, chapter, accent, title, subtitle,
 
 
 # ---------------------------------------------------------------------------
+# CPT (Chapter Proficiency Test) deck — whole-chapter, MCQ-only.
+# 30 single-correct MCQs, same quiz-reveal layout as Workout, no subjective
+# section. Scope is the whole chapter (union of all its concept sessions).
+# ---------------------------------------------------------------------------
+def build_cpt(out_path, *, chapter, accent, title, subtitle, syllabus, mcqs,
+             closing_msg=None):
+    """Build a CPT (Chapter Proficiency Test) deck.
+
+    chapter  : chapter name (used in the title eyebrow)
+    syllabus : list of (lesson_label, topics_string) the whole chapter covers
+    mcqs     : list of MCQ dicts (expected 30), single-correct only
+    """
+    b = Builder("", accent=accent, brand="")
+    _install_spaced_chrome(b)
+
+    b.title(chapter, title, subtitle)
+
+    b.bullets(
+        "CPT SCOPE", "What This Test Covers",
+        [(lesson, topics) for lesson, topics in syllabus],
+        panel_title="Full chapter syllabus for this proficiency test",
+        notes="This is a whole-chapter test: every concept session taught so "
+              "far in this chapter is in scope. Nothing outside this "
+              "syllabus appears.")
+
+    b.divider(1, "Chapter Proficiency Test", "Multiple-Choice Questions",
+              f"{len(mcqs)} questions — choose the single best option")
+    b.quiz_intro("CPT", f"{chapter} — Proficiency Test", len(mcqs))
+    for i, q in enumerate(mcqs, 1):
+        SK.quiz(b, i, q["topic"], q["q"], q["options"], q["correct"], q["why"])
+
+    b.closing("Chapter Proficiency Test Complete",
+              closing_msg or "Review every question you missed and re-read "
+              "those topics across all lessons of this chapter.")
+
+    issues = b.qa()
+    b.save(out_path)
+    return b, issues
+
+
+# ---------------------------------------------------------------------------
 # Homework PDF (reportlab)
 # ---------------------------------------------------------------------------
 _SUP = {"⁰": "0", "¹": "1", "²": "2", "³": "3",
