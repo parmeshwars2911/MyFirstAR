@@ -152,3 +152,89 @@ def flemings_rule(key, left=True):
                 "Thumb - First finger - Second finger, mutually perpendicular",
                 col=MUT, size=13, bold=False)
     return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+# ---------------------------------------------------------------------------
+# Telescopes (Std 9 — Observing Space)
+# ---------------------------------------------------------------------------
+def refracting_telescope(key):
+    """Two-lens refracting telescope: large objective lens + eyepiece."""
+    vw, vh = 640, 380
+    axis_y = 190
+    body = _line(70, axis_y, 590, axis_y, col=MUT, w=2, dash="5,5")
+    # incoming parallel rays from the left
+    for dy in (-45, 0, 45):
+        body += _line(70, axis_y + dy, 150, axis_y + dy, col=RED, w=2)
+    # objective lens (large convex)
+    body += _ellipse(160, axis_y, 14, 70, fill=GLASS, stroke=INK, sw=2)
+    body += _txt(160, axis_y + 92, "Objective lens", col=INK, size=14)
+    body += _txt(160, axis_y + 110, "(large, gathers light)", col=MUT,
+                size=12, bold=False)
+    # converging rays to intermediate focus then to eyepiece
+    for dy in (-45, 0, 45):
+        body += _line(174, axis_y + dy, 430, axis_y, col=RED, w=2)
+    body += _line(430, axis_y, 470, axis_y - 20, col=RED, w=2)
+    body += _line(430, axis_y, 470, axis_y + 20, col=RED, w=2)
+    # eyepiece (small convex)
+    body += _ellipse(480, axis_y, 10, 42, fill=GLASS, stroke=INK, sw=2)
+    body += _txt(500, axis_y + 70, "Eyepiece", col=INK, size=14,
+                anchor="start")
+    body += _txt(560, axis_y - 55, "eye", col=INK, size=13)
+    body += _line(560, axis_y - 40, 560, axis_y - 10, col=INK, w=2)
+    body += _txt(vw / 2, 34, "Refracting telescope (lenses)", col=INK,
+                size=17)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+def reflecting_telescope(key):
+    """Newtonian reflecting telescope: concave primary + plane secondary."""
+    vw, vh = 620, 400
+    body = _txt(vw / 2, 34, "Reflecting telescope (Newtonian)", col=INK,
+                size=17)
+    # tube
+    body += _rect(120, 120, 380, 150, stroke=MUT, sw=2, rx=8)
+    # concave primary mirror at the right end
+    body += _line(495, 130, 495, 260, col=TEAL, w=8)
+    body += _txt(500, 300, "Concave primary mirror", col=INK, size=13,
+                anchor="end")
+    # incoming parallel rays entering from the left
+    for dy in (150, 195, 240):
+        body += _line(130, dy, 480, dy, col=RED, w=2)
+    # reflected rays converging to the secondary (plane) mirror near the top
+    for dy in (150, 195, 240):
+        body += _line(480, dy, 300, 150, col=RED, w=2)
+    # plane secondary mirror at 45 deg
+    body += _line(285, 135, 315, 165, col=PURPLE, w=6)
+    body += _txt(300, 120, "Plane secondary", col=PURPLE, size=12)
+    # up to eyepiece
+    body += _line(300, 150, 300, 90, col=RED, w=2)
+    body += _ellipse(300, 80, 26, 9, fill=GLASS, stroke=INK, sw=2)
+    body += _txt(300, 62, "Eyepiece", col=INK, size=13)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+def radio_telescope(key):
+    """Parabolic radio dish reflecting radio waves to a feed at the focus."""
+    vw, vh = 560, 420
+    cx = 300
+    # parabolic dish (arc)
+    body = f'<path d="M 150 120 Q {cx} 380 450 120" fill="#E9EEF5" stroke="{INK}" stroke-width="3"/>'
+    # incoming parallel radio waves from the top
+    for x in (210, 300, 390):
+        body += _line(x, 60, x, 150 + (0 if x == 300 else 25), col=BLUE, w=2,
+                      dash="6,5")
+    # converge to focus (feed)
+    fx, fy = cx, 210
+    for x in (210, 390):
+        body += _line(x, 175, fx, fy, col=BLUE, w=2)
+    body += _line(300, 150, fx, fy, col=BLUE, w=2)
+    body += _ellipse(fx, fy, 12, 12, fill=GOLD, stroke=INK, sw=2)
+    body += _txt(fx + 20, fy, "Receiver / feed", col=INK, size=13,
+                anchor="start")
+    # support mast
+    body += _line(cx, 250, cx, 360, col=MUT, w=5)
+    body += _txt(vw / 2, 34, "Radio telescope (parabolic dish)", col=INK,
+                size=17)
+    body += _txt(vw / 2, 400, "Dish reflects radio waves to the focus",
+                col=MUT, size=12, bold=False)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
