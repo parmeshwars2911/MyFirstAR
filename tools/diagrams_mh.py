@@ -238,3 +238,80 @@ def radio_telescope(key):
     body += _txt(vw / 2, 400, "Dish reflects radio waves to the focus",
                 col=MUT, size=12, bold=False)
     return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+# ---------------------------------------------------------------------------
+# Reflection (Std 8) — periscope
+# ---------------------------------------------------------------------------
+def periscope(key):
+    """Two plane mirrors at 45 deg in a tube; light in at top, out at bottom."""
+    vw, vh = 420, 520
+    body = _rect(150, 40, 120, 440, stroke=INK, sw=3, rx=8)
+    # top mirror (45 deg)
+    body += _line(165, 95, 255, 125, col=TEAL, w=6)
+    body += _txt(300, 100, "mirror 1", col=TEAL, size=13, anchor="start")
+    # bottom mirror (45 deg, opposite tilt)
+    body += _line(165, 425, 255, 395, col=TEAL, w=6)
+    body += _txt(300, 430, "mirror 2", col=TEAL, size=13, anchor="start")
+    # incoming ray from object (left, into top window)
+    body += _line(60, 110, 205, 110, col=RED, w=3, marker="arrowR")
+    body += _txt(60, 95, "from object", col=RED, size=12, anchor="start",
+                bold=False)
+    # down the tube
+    body += _line(210, 118, 210, 405, col=RED, w=3)
+    # out to the eye (left, bottom)
+    body += _line(205, 410, 60, 410, col=RED, w=3, marker="arrowR")
+    body += _txt(60, 445, "to eye", col=RED, size=12, anchor="start",
+                bold=False)
+    body += _txt(vw / 2, 26, "Periscope (two 45 deg mirrors)", col=INK,
+                size=15)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+# ---------------------------------------------------------------------------
+# Life Cycle of Stars (Std 8)
+# ---------------------------------------------------------------------------
+def star_life_cycle(key):
+    """Flow: nebula -> star -> (low mass) red giant -> white dwarf;
+    (high mass) supergiant -> supernova -> neutron star / black hole."""
+    vw, vh = 720, 460
+
+    def node(cx, cy, label, col, r=34):
+        s = _ellipse(cx, cy, r, r, fill=col, stroke=INK, sw=2)
+        return s
+
+    body = ""
+    # nebula
+    body += node(80, 230, "", MUT, 30)
+    body += _txt(80, 285, "Nebula", col=INK, size=13)
+    # star (main sequence)
+    body += node(210, 230, "", GOLD, 26)
+    body += _txt(210, 285, "Star", col=INK, size=13)
+    body += _line(112, 230, 182, 230, col=INK, w=2, marker="arrow")
+    # branch up: low mass
+    body += _line(236, 215, 320, 130, col=INK, w=2, marker="arrow")
+    body += node(360, 120, "", RED, 32)
+    body += _txt(360, 170, "Red giant", col=INK, size=13)
+    body += _line(394, 120, 470, 120, col=INK, w=2, marker="arrow")
+    body += node(510, 120, "", "#EAF1FF", 18)
+    body += _txt(510, 165, "White dwarf", col=INK, size=13)
+    body += _txt(300, 60, "Low-mass star", col=MUT, size=13, bold=False)
+    # branch down: high mass
+    body += _line(236, 245, 320, 330, col=INK, w=2, marker="arrow")
+    body += node(370, 345, "", "#B23A48", 38)
+    body += _txt(370, 400, "Supergiant", col=INK, size=13)
+    body += _line(408, 345, 470, 345, col=INK, w=2, marker="arrow")
+    body += _poly([(500, 320), (512, 340), (534, 342), (516, 356),
+                   (522, 378), (500, 366), (478, 378), (484, 356),
+                   (466, 342), (488, 340)], fill=ORANGE, stroke=INK, sw=1.5)
+    body += _txt(500, 400, "Supernova", col=INK, size=13)
+    body += _line(536, 345, 600, 320, col=INK, w=2, marker="arrow")
+    body += node(636, 315, "", PURPLE, 14)
+    body += _txt(636, 300, "Neutron star", col=INK, size=11)
+    body += _line(536, 355, 600, 385, col=INK, w=2, marker="arrow")
+    body += node(636, 390, "", INK, 16)
+    body += _txt(636, 425, "Black hole", col=INK, size=11)
+    body += _txt(360, 300, "High-mass star", col=MUT, size=13, bold=False)
+    body += _txt(vw / 2, 28, "Life cycle of a star (depends on its mass)",
+                col=INK, size=16)
+    return _render(key, _svg(body, vw, vh, bg="#F4F8FF"), vw, vh)
