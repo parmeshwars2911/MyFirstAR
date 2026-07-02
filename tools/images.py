@@ -108,6 +108,72 @@ def _strip_html(s):
     return re.sub("<[^>]+>", "", s or "").strip()
 
 
+_BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+               "(KHTML, like Gecko) Chrome/122.0 Safari/537.36")
+
+
+def bing_image_search(query, want=18):
+    """Broad general-web image search via Bing Images (not just Wikimedia).
+    Returns candidate dicts {url,title,license,source}. These decks are
+    reference material to be re-created with final licensed art later."""
+    import urllib.parse
+    import re
+    url = ("https://www.bing.com/images/search?q="
+           + urllib.parse.quote(query) + "&form=HDRSC2&first=1&count=35")
+    req = urllib.request.Request(url, headers={"User-Agent": _BROWSER_UA})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            html = r.read().decode("utf-8", "ignore")
+    except Exception as e:
+        print(f"  bing search failed: {e}")
+        return []
+    urls = re.findall(r'murl&quot;:&quot;(.*?)&quot;', html)
+    out, seen = [], set()
+    junk = ("hearstapps", "logo", "sprite", "favicon", "/icon")
+    for u in urls:
+        u = u.replace("\\u002f", "/")
+        if u in seen:
+            continue
+        seen.add(u)
+        if any(j in u.lower() for j in junk):
+            continue
+        out.append({"url": u, "title": query, "license": "web-ref",
+                    "source": "bing"})
+        if len(out) >= want:
+            break
+    return out
+
+
+def openverse_search(query, want=8):
+    """Openly-licensed images aggregated from many sources (JSON API)."""
+    import urllib.parse
+    api = ("https://api.openverse.org/v1/images/?q="
+           + urllib.parse.quote(query) + f"&page_size={want}")
+    req = urllib.request.Request(api, headers={"User-Agent": "ICSE-decks/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.load(r)
+    except Exception as e:
+        print(f"  openverse search failed: {e}")
+        return []
+    out = []
+    for it in data.get("results", []):
+        u = it.get("url")
+        if u:
+            out.append({"url": u, "title": it.get("title", query),
+                        "license": it.get("license", "open"),
+                        "source": "openverse"})
+    return out
+
+
+def web_images(query, want=20):
+    """Combined broad-web candidates: Bing first (widest), then Openverse."""
+    cands = bing_image_search(query, want=want)
+    if len(cands) < 6:
+        cands += openverse_search(query, want=8)
+    return cands
+
+
 def wikimedia_search(query, want=8):
     """Search Wikimedia Commons for freely-licensed images; return candidate
     (title, thumb_url, descriptionurl) tuples, largest first."""
@@ -349,6 +415,23 @@ def best_image(key, search_query, gen_brief, svg_fallback=None,
             os.remove(p)
     except Exception as e:
         print(f"  [{key}] web search failed: {e}")
+    # 1b) Broad general web (Bing + Openverse) — reference images, lenient
+    #     relevance threshold (these decks are re-created with final art later).
+    gen_min = 6
+    try:
+        for cand in web_images(search_query, want=20):
+            try:
+                p = download(key, cand["url"], "jpg")
+            except Exception:
+                continue
+            ok, review = vision_ok(p, gen_brief, gen_min, mode=web_mode)
+            if ok:
+                print(f"  [{key}] WEB✓ ({cand['source']}) score "
+                      f"{review.get('score')}  {cand['url'][:54]}")
+                return p
+            os.remove(p)
+    except Exception as e:
+        print(f"  [{key}] broad web failed: {e}")
     # 2) Qwen generation, strictly reviewed — only if it genuinely passes
     if allow_qwen:
         try:
