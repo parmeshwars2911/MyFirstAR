@@ -14,6 +14,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 from engine import Builder, C
 import diagrams as D
+import diagrams_mh as DM
 import mhstyle
 
 OUT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ppt",
@@ -496,6 +497,9 @@ def build():
         ("MH09_S32_Current_Electricity_2.pptx", ce2_deck),
         ("MH09_S44_Reflection_of_Light_1.pptx", refl1_deck),
         ("MH09_S46_Reflection_of_Light_2.pptx", refl2_deck),
+        ("MH09_S58_Study_of_Sound_1.pptx", sound1_deck),
+        ("MH09_S60_Study_of_Sound_2.pptx", sound2_deck),
+        ("MH09_S75_Observing_Space_Telescopes.pptx", telescope_deck),
     ]
     for fname, fn in jobs:
         b = fn()
@@ -953,6 +957,507 @@ def refl2_deck():
               "A few ray rules, a careful sign convention and one mirror "
               "formula let us predict exactly where a spherical mirror "
               "forms its image and how big it will be.")
+    return b
+
+
+
+
+# ===========================================================================
+# S58 — Study of Sound - 1  (nature, propagation, waves, characteristics)
+# ===========================================================================
+def sound1_deck():
+    footer = "Study of Sound  •  MSBSHSE Std 9 Science & Technology"
+    b = Builder(footer, accent=C["teal"])
+
+    longw = b.asset("mh9_snd1_long", D.longitudinal_wave("mh9_snd1_long"))
+    terms = b.asset("mh9_snd1_terms", D.wave_terms("mh9_snd1_terms"))
+    chars = b.asset("mh9_snd1_chars", D.sound_characteristics("mh9_snd1_chars"))
+
+    b.title("Std 9 • Science & Technology • Sound",
+            "Study of Sound — 1",
+            "Sound waves  •  Longitudinal & transverse  •  Wave terms  •  "
+            "Characteristics of sound", img=longw)
+
+    b.objectives([
+        "Explain how sound is produced and why it needs a medium",
+        "Distinguish longitudinal and transverse waves",
+        "Describe compressions and rarefactions in a sound wave",
+        "Define the terms of a wave and use v = f λ",
+        "Relate loudness to amplitude and pitch to frequency",
+        "Explain the quality (timbre) of a sound",
+    ])
+
+    # ---- Part 1 : nature & propagation ----
+    b.divider(1, "Part 1", "Nature and Propagation of Sound",
+              "What sound is and how it travels")
+
+    b.bullets(
+        "PRODUCTION", "How Sound Is Produced and Travels",
+        [("Produced by vibration", "A vibrating body produces sound."),
+         ("Needs a medium", "Sound travels through a medium; it cannot "
+          "travel through a vacuum."),
+         ("Travels as a wave", "The vibration passes energy from particle "
+          "to particle without the particles moving along."),
+         ("Longitudinal in air", "In air, sound travels as a "
+          "longitudinal wave.")],
+        notes="Recall the bell-jar experiment: as air is pumped out the "
+              "sound fades, proving sound needs a material medium.")
+
+    b.text_image(
+        "WAVE TYPES", "Longitudinal and Transverse Waves",
+        ["Longitudinal: particles vibrate along the direction of travel",
+         "Made of compressions (crowded) and rarefactions (spread out)",
+         "Transverse: particles vibrate across the direction of travel",
+         "Transverse waves have crests and troughs",
+         "Sound in air is a longitudinal wave"],
+        longw, img_side="right", panel_title="Two kinds of wave",
+        notes="Compressions are high-pressure, high-density regions; "
+              "rarefactions are low-pressure, low-density regions.")
+
+    b.text_image(
+        "WAVE TERMS", "Terms and the Wave Relation",
+        ["Wavelength (λ): distance between two compressions",
+         "Frequency (f): vibrations per second, unit hertz (Hz)",
+         "Time period (T): time for one vibration, T = 1/f",
+         "Amplitude: maximum displacement of a particle",
+         "Wave relation: v = f λ"],
+        terms, img_side="left", panel_title="Describing a wave",
+        notes="v = f λ ties speed, frequency and wavelength together; it "
+              "is used in almost every sound numerical.")
+
+    b.quiz_intro("Quiz 1", "Check — Nature of Sound", 4)
+    b.quiz_q(1, "Medium", "Sound cannot travel through:",
+             ["a solid", "a liquid", "a gas", "a vacuum"])
+    b.quiz_a(1, "D. a vacuum",
+             "Sound needs a material medium; with no particles to pass on "
+             "the vibration, it cannot travel through a vacuum.")
+    b.quiz_q(2, "Wave type", "Sound travels through air as a:",
+             ["transverse wave", "longitudinal wave", "water wave", "light "
+              "wave"])
+    b.quiz_a(2, "B. longitudinal wave",
+             "In air the particles vibrate back and forth along the "
+             "direction of travel, forming compressions and "
+             "rarefactions.")
+    b.quiz_q(3, "Regions", "The region of a sound wave where the "
+             "particles are crowded together is a:",
+             ["rarefaction", "compression", "crest", "trough"])
+    b.quiz_a(3, "B. compression",
+             "A compression is a region of high density and high "
+             "pressure; a rarefaction is the opposite.")
+    b.quiz_q(4, "Numerical", "A sound wave has frequency 500 Hz and "
+             "wavelength 0.66 m. Its speed is:",
+             ["330 m/s", "500 m/s", "0.66 m/s", "757 m/s"])
+    b.quiz_a(4, "A. 330 m/s",
+             "v = f λ = 500 × 0.66 = 330 m/s.")
+
+    # ---- Part 2 : characteristics of sound ----
+    b.divider(2, "Part 2", "Characteristics of Sound",
+              "Loudness, pitch and quality")
+
+    b.text_image(
+        "CHARACTERISTICS", "The Three Characteristics of Sound",
+        ["Loudness depends on the amplitude of the wave",
+         "Larger amplitude → louder sound",
+         "Pitch depends on the frequency of the wave",
+         "Higher frequency → higher pitch (shriller)",
+         "Quality (timbre) depends on the waveform"],
+        chars, img_side="right", panel_title="What makes sounds "
+        "different",
+        notes="Quality lets us tell the same note apart on a flute and a "
+              "violin, and lets us recognise a familiar voice.")
+
+    b.bullets(
+        "CONTRAST", "Loudness vs Pitch vs Quality",
+        [("Loudness", "Set by amplitude; measured in decibels (dB)."),
+         ("Pitch", "Set by frequency; a high-pitch sound is shrill, a "
+          "low-pitch sound is deep."),
+         ("Quality (timbre)", "Set by the shape of the waveform; "
+          "identifies the source of the sound."),
+         ("Independent", "Two sounds can have the same loudness but "
+          "different pitch, or the same pitch but different quality.")],
+        notes="Stress that loudness (amplitude) and pitch (frequency) are "
+              "independent — a common confusion.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Production", "Sound is made by vibration and needs a "
+                      "medium."),
+         ("Longitudinal wave", "Compressions and rarefactions travel "
+                             "through the medium."),
+         ("Wave terms", "Wavelength, frequency, time period, amplitude; "
+                      "v = f λ."),
+         ("Loudness", "Depends on amplitude."),
+         ("Pitch", "Depends on frequency."),
+         ("Quality", "Depends on the waveform — identifies the "
+                   "source.")],
+        notes="Cold-call which property changes when a guitar string is "
+              "plucked harder (amplitude → loudness) versus tightened "
+              "(frequency → pitch).")
+
+    b.quiz_intro("Quiz 2", "Final Check — Characteristics", 4)
+    b.quiz_q(1, "Loudness", "The loudness of a sound depends on its:",
+             ["frequency", "amplitude", "wavelength", "speed"])
+    b.quiz_a(1, "B. amplitude",
+             "A larger amplitude of vibration produces a louder sound.")
+    b.quiz_q(2, "Pitch", "A shrill (high-pitched) sound has a high:",
+             ["amplitude", "frequency", "speed", "loudness"])
+    b.quiz_a(2, "B. frequency",
+             "Pitch depends on frequency; the higher the frequency, the "
+             "higher the pitch.")
+    b.quiz_q(3, "Quality", "We can tell a flute from a violin playing the "
+             "same note because of the sound's:",
+             ["loudness", "pitch", "quality (timbre)", "speed"])
+    b.quiz_a(3, "C. quality (timbre)",
+             "Quality, set by the waveform, distinguishes the same note "
+             "produced by different sources.")
+    b.quiz_q(4, "Period", "A tuning fork vibrates with a frequency of "
+             "250 Hz. Its time period is:",
+             ["0.004 s", "250 s", "4 s", "0.25 s"])
+    b.quiz_a(4, "A. 0.004 s",
+             "T = 1/f = 1/250 = 0.004 s.")
+
+    b.closing("The Physics of What We Hear",
+              "A vibrating source, a medium to carry it, and three simple "
+              "properties — loudness, pitch and quality — explain every "
+              "sound we hear.")
+    return b
+
+
+# ===========================================================================
+# S60 — Study of Sound - 2  (speed, range, reflection, echo, SONAR)
+# ===========================================================================
+def sound2_deck():
+    footer = "Study of Sound  •  MSBSHSE Std 9 Science & Technology"
+    b = Builder(footer, accent=C["orange"])
+
+    echo = b.asset("mh9_snd2_echo", D.echo_diagram("mh9_snd2_echo"))
+    longw = b.asset("mh9_snd2_long", D.longitudinal_wave("mh9_snd2_long"))
+
+    b.title("Std 9 • Science & Technology • Sound",
+            "Study of Sound — 2",
+            "Speed of sound  •  Audible range  •  Reflection & echo  •  "
+            "Reverberation, SONAR and sonography", img=echo)
+
+    b.objectives([
+        "State the speed of sound and how it varies with the medium",
+        "Classify sounds as infrasonic, audible and ultrasonic",
+        "State the laws of reflection of sound",
+        "Explain echo and the condition for hearing one",
+        "Distinguish echo from reverberation",
+        "Describe SONAR and sonography as uses of ultrasound",
+    ])
+
+    # ---- Part 1 : speed & range ----
+    b.divider(1, "Part 1", "Speed and Range of Sound",
+              "How fast sound travels and what we can hear")
+
+    b.bullets(
+        "SPEED", "Speed of Sound in Different Media",
+        [("In air", "About 340 m/s at ordinary room temperature."),
+         ("Fastest in solids", "Sound travels fastest in solids, slower "
+          "in liquids, slowest in gases."),
+         ("Why", "The more closely packed the particles, the faster the "
+          "vibration is passed on."),
+         ("Temperature", "In a gas, the speed of sound increases as the "
+          "temperature rises.")],
+        notes="Contrast with light: sound is far slower, which is why we "
+              "see lightning before we hear thunder.")
+
+    b.text_image(
+        "RANGE", "Audible Range and Beyond",
+        ["Audible sound: about 20 Hz to 20,000 Hz",
+         "Infrasonic: below 20 Hz (e.g. earthquakes)",
+         "Ultrasonic: above 20,000 Hz (e.g. bats, SONAR)",
+         "The audible range narrows with age",
+         "Many animals hear beyond the human range"],
+        longw, img_side="right", panel_title="Infrasonic, audible, "
+        "ultrasonic",
+        notes="Dogs and bats hear ultrasonic frequencies; whales and "
+              "elephants use infrasonic sound over long distances.")
+
+    b.quiz_intro("Quiz 1", "Check — Speed & Range", 4)
+    b.quiz_q(1, "Speed", "Sound travels fastest in:",
+             ["air", "water", "steel (a solid)", "a vacuum"])
+    b.quiz_a(1, "C. steel (a solid)",
+             "Closely packed particles pass on the vibration quickest, so "
+             "sound is fastest in solids and cannot travel in a vacuum.")
+    b.quiz_q(2, "Air speed", "The speed of sound in air at ordinary room "
+             "temperature is about:",
+             ["34 m/s", "340 m/s", "3400 m/s", "3 × 10⁸ m/s"])
+    b.quiz_a(2, "B. 340 m/s",
+             "Sound travels at roughly 340 m/s in air; the exact value "
+             "rises a little as temperature increases.")
+    b.quiz_q(3, "Ultrasonic", "Sounds of frequency above 20,000 Hz are "
+             "called:",
+             ["infrasonic", "audible", "ultrasonic", "supersonic"])
+    b.quiz_a(3, "C. ultrasonic",
+             "Above the human audible limit of 20,000 Hz, sound is "
+             "ultrasonic — used by bats and in SONAR.")
+    b.quiz_q(4, "Infrasonic", "A sound of frequency 10 Hz is:",
+             ["audible", "ultrasonic", "infrasonic", "supersonic"])
+    b.quiz_a(4, "C. infrasonic",
+             "Below 20 Hz the sound is infrasonic, beyond the lower limit "
+             "of human hearing.")
+
+    # ---- Part 2 : reflection, echo, SONAR ----
+    b.divider(2, "Part 2", "Reflection of Sound and Its Uses",
+              "Echo, reverberation, SONAR and sonography")
+
+    b.bullets(
+        "REFLECTION & ECHO", "Reflection of Sound and Echo",
+        [("Laws of reflection", "Sound obeys the laws of reflection: "
+          "angle of incidence = angle of reflection."),
+         ("Echo", "An echo is a sound heard again after reflection from a "
+          "distant surface."),
+         ("Condition for an echo", "The reflecting surface must be far "
+          "enough that the echo returns at least 0.1 s later — about "
+          "17 m or more away."),
+         ("Distance formula", "For an echo heard after time t, distance "
+          "= (v × t) / 2.")],
+        notes="0.1 s is the minimum gap the ear can separate; hence the "
+              "~17 m minimum distance for a distinct echo at 340 m/s.")
+
+    b.worked(
+        "WORKED EXAMPLE", "Finding Distance from an Echo",
+        "A person claps and hears the echo from a cliff after 2 s. If the "
+        "speed of sound is 340 m/s, how far away is the cliff?",
+        ["distance = (v × t) / 2",
+         "= (340 × 2) / 2"],
+        "= 340 m",
+        notes="The factor of 2 is because the sound travels to the cliff "
+              "and back; always halve for the one-way distance.")
+
+    b.cards(
+        "USES", "Reverberation, SONAR and Sonography",
+        [("Reverberation", "Repeated reflections of sound in a closed "
+          "hall make it persist; too much reverberation is reduced with "
+          "soft, absorbing materials."),
+         ("SONAR", "Ships send ultrasonic pulses and time the reflected "
+          "echo to measure the depth of the sea or locate objects "
+          "underwater."),
+         ("Sonography", "Ultrasound is used in medicine to form images of "
+          "internal organs and of a developing baby."),
+         ("Other uses of ultrasound", "Cleaning delicate parts and "
+          "detecting flaws (cracks) inside metal blocks.")],
+        icons=["wave", "wave", "ear", "star"],
+        notes="Reverberation is many overlapping reflections, unlike a "
+              "single distinct echo — a common distinction question.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Speed", "≈ 340 m/s in air; fastest in solids, slowest in "
+                 "gases."),
+         ("Range", "Infrasonic < 20 Hz; audible 20–20,000 Hz; ultrasonic "
+                 "> 20,000 Hz."),
+         ("Echo", "Reflected sound; needs ~17 m; distance = v t / 2."),
+         ("Reverberation", "Many overlapping reflections in a hall."),
+         ("SONAR", "Ultrasonic echo-ranging to find depth/objects "
+                 "underwater."),
+         ("Sonography", "Medical imaging using ultrasound.")],
+        notes="Ask students to distinguish an echo (one reflection) from "
+              "reverberation (many).")
+
+    b.quiz_intro("Quiz 2", "Final Check — Echo & Ultrasound", 4)
+    b.quiz_q(1, "Echo", "An echo is heard when sound is ___ from a "
+             "distant surface.",
+             ["absorbed", "reflected", "refracted", "produced"])
+    b.quiz_a(1, "B. reflected",
+             "An echo is simply the original sound heard again after it "
+             "has been reflected back.")
+    b.quiz_q(2, "Echo distance", "A boy hears the echo of his shout from "
+             "a wall 1 s later. If sound travels at 340 m/s, the wall "
+             "is:",
+             ["340 m away", "170 m away", "680 m away", "34 m away"])
+    b.quiz_a(2, "B. 170 m away",
+             "distance = (v × t)/2 = (340 × 1)/2 = 170 m.")
+    b.quiz_q(3, "Reverberation", "The persistence of sound in a hall due "
+             "to repeated reflections is called:",
+             ["an echo", "reverberation", "refraction", "resonance"])
+    b.quiz_a(3, "B. reverberation",
+             "Many overlapping reflections make the sound linger — "
+             "reverberation, reduced using sound-absorbing materials.")
+    b.quiz_q(4, "SONAR", "SONAR measures the depth of the sea using:",
+             ["infrasonic waves", "ultrasonic waves", "light waves", "radio "
+              "waves"])
+    b.quiz_a(4, "B. ultrasonic waves",
+             "SONAR sends ultrasonic pulses and times their echo from the "
+             "sea-bed to calculate the depth.")
+
+    b.closing("Sound Put to Work",
+              "From the echo off a cliff to the SONAR of a ship and the "
+              "sonography of a hospital, the reflection of sound turns a "
+              "simple wave into a powerful tool.")
+    return b
+
+
+# ===========================================================================
+# S75 — Observing Space: Telescopes
+# ===========================================================================
+def telescope_deck():
+    footer = "Observing Space: Telescopes  •  MSBSHSE Std 9 Science & Technology"
+    b = Builder(footer, accent=C["purple"])
+
+    refr = b.asset("mh9_tel_refr", DM.refracting_telescope("mh9_tel_refr"))
+    refl = b.asset("mh9_tel_refl", DM.reflecting_telescope("mh9_tel_refl"))
+    radio = b.asset("mh9_tel_radio", DM.radio_telescope("mh9_tel_radio"))
+
+    b.title("Std 9 • Science & Technology • Astronomy",
+            "Observing Space: Telescopes",
+            "Observing space  •  Optical telescopes  •  Radio telescopes  "
+            "•  Space telescopes and ISRO", img=refr)
+
+    b.objectives([
+        "Explain why telescopes are needed to observe space",
+        "Describe the working of a refracting telescope",
+        "Describe the working of a reflecting telescope",
+        "Explain how a radio telescope observes space",
+        "State why some telescopes are placed in space",
+        "Name Indian contributions such as the GMRT and AstroSat",
+    ])
+
+    # ---- Part 1 : optical telescopes ----
+    b.divider(1, "Part 1", "Optical Telescopes",
+              "Seeing the universe with lenses and mirrors")
+
+    b.bullets(
+        "WHY TELESCOPES", "Observing Space",
+        [("Faint and far", "Objects in space are very far away and their "
+          "light is very faint."),
+         ("Gather more light", "A telescope collects far more light than "
+          "the eye, so faint objects become visible."),
+         ("Magnify", "It also produces a larger image of a distant "
+          "object."),
+         ("Different forms of light", "Space objects also send radio "
+          "waves, X-rays and more, so different telescopes are needed "
+          "for different radiations.")],
+        notes="Set up the two families coming next: optical telescopes "
+              "for visible light, radio telescopes for radio waves.")
+
+    b.text_image(
+        "REFRACTING", "Refracting Telescope",
+        ["Made of lenses",
+         "A large objective lens gathers light from the object",
+         "It forms a small real image inside the tube",
+         "The eyepiece magnifies that image for the eye",
+         "Bigger objective → brighter, sharper view"],
+        refr, img_side="right", panel_title="Two lenses: objective + "
+        "eyepiece",
+        notes="The objective is made as large as possible to collect the "
+              "maximum light from faint, distant objects.")
+
+    b.text_image(
+        "REFLECTING", "Reflecting Telescope",
+        ["Uses a concave mirror instead of an objective lens",
+         "The concave primary mirror gathers and converges the light",
+         "A small secondary mirror sends it to the eyepiece",
+         "Newtonian: concave + plane mirror",
+         "Cassegrain: concave + convex mirror"],
+        refl, img_side="left", panel_title="Mirrors gather the light",
+        notes="Large mirrors are easier and cheaper to make than large "
+              "lenses, so the biggest telescopes are reflectors.")
+
+    b.quiz_intro("Quiz 1", "Check — Optical Telescopes", 4)
+    b.quiz_q(1, "Purpose", "The main reason a telescope helps us see "
+             "faint space objects is that it:",
+             ["makes them hotter", "collects much more light than the "
+              "eye", "slows the light down", "changes their colour"])
+    b.quiz_a(1, "B. collects much more light than the eye",
+             "A large objective lens or mirror gathers far more light "
+             "than the pupil, making faint objects visible and "
+             "magnified.")
+    b.quiz_q(2, "Refracting", "A refracting telescope is made using:",
+             ["mirrors", "lenses", "radio dishes", "prisms only"])
+    b.quiz_a(2, "B. lenses",
+             "A refracting telescope uses a large objective lens and a "
+             "smaller eyepiece lens.")
+    b.quiz_q(3, "Reflecting", "In a reflecting telescope, the light is "
+             "first gathered by a:",
+             ["convex lens", "concave mirror", "plane mirror", "prism"])
+    b.quiz_a(3, "B. concave mirror",
+             "The concave primary mirror collects and converges the "
+             "light; a secondary mirror directs it to the eyepiece.")
+    b.quiz_q(4, "Objective", "The objective of a telescope is made large "
+             "mainly to:",
+             ["magnify more", "gather the maximum light", "reduce its "
+              "cost", "make it lighter"])
+    b.quiz_a(4, "B. gather the maximum light",
+             "A larger objective collects more light from faint, distant "
+             "objects, giving a brighter and clearer image.")
+
+    # ---- Part 2 : radio & space telescopes ----
+    b.divider(2, "Part 2", "Radio and Space Telescopes",
+              "Beyond visible light, and above the atmosphere")
+
+    b.text_image(
+        "RADIO", "Radio Telescope",
+        ["Many space objects emit radio waves, not just light",
+         "A large parabolic dish reflects the radio waves",
+         "They converge to a receiver at the focus",
+         "A computer builds an image from the signal",
+         "India's GMRT (near Pune) is one of the largest"],
+        radio, img_side="right", panel_title="Listening to the "
+        "universe",
+        notes="The GMRT (Giant Metrewave Radio Telescope) at Narayangaon "
+              "near Pune is a major Indian radio-astronomy facility.")
+
+    b.bullets(
+        "SPACE TELESCOPES", "Telescopes in Space and Indian Missions",
+        [("Why go to space", "The atmosphere blurs and absorbs light, so "
+          "telescopes placed in space give much clearer views."),
+         ("Above the air", "Space telescopes also observe X-rays and "
+          "ultraviolet rays that the atmosphere blocks."),
+         ("AstroSat", "India's AstroSat is a space observatory that "
+          "studies the sky in several kinds of radiation at once."),
+         ("ISRO", "The Indian Space Research Organisation builds and "
+          "launches these observatories and satellites.")],
+        notes="Link back to the different forms of light: some radiations "
+              "can only be observed from above the atmosphere.")
+
+    b.recap(
+        "WRAP UP", "Quick Recap",
+        [("Why telescopes", "Gather more light and magnify faint, distant "
+                          "objects."),
+         ("Refracting", "Objective lens + eyepiece lens."),
+         ("Reflecting", "Concave primary mirror + secondary mirror "
+                      "(Newtonian, Cassegrain)."),
+         ("Radio telescope", "Parabolic dish focuses radio waves onto a "
+                           "receiver; GMRT near Pune."),
+         ("Space telescopes", "Placed above the atmosphere for clearer "
+                           "views; India's AstroSat.")],
+        notes="Cold-call the difference between a refracting and a "
+              "reflecting telescope, and one Indian facility.")
+
+    b.quiz_intro("Quiz 2", "Final Check — Radio & Space", 4)
+    b.quiz_q(1, "Radio telescope", "A radio telescope collects radio "
+             "waves using a large:",
+             ["convex lens", "parabolic dish", "concave lens", "prism"])
+    b.quiz_a(1, "B. parabolic dish",
+             "The dish reflects the incoming radio waves to a receiver at "
+             "its focus, where a computer builds an image.")
+    b.quiz_q(2, "GMRT", "The Giant Metrewave Radio Telescope (GMRT) is "
+             "located near:",
+             ["Bengaluru", "Pune", "Chennai", "Delhi"])
+    b.quiz_a(2, "B. Pune",
+             "The GMRT, one of the world's largest radio telescopes, is "
+             "at Narayangaon near Pune.")
+    b.quiz_q(3, "Space telescope", "Telescopes are placed in space mainly "
+             "because:",
+             ["space is closer to the stars", "the atmosphere blurs and "
+              "absorbs light", "it is cheaper", "there is no gravity"])
+    b.quiz_a(3, "B. the atmosphere blurs and absorbs light",
+             "Above the atmosphere the view is much clearer, and "
+             "radiations that the air blocks can also be observed.")
+    b.quiz_q(4, "AstroSat", "India's dedicated space observatory that "
+             "studies several radiations at once is:",
+             ["Chandrayaan", "AstroSat", "Mangalyaan", "GMRT"])
+    b.quiz_a(4, "B. AstroSat",
+             "AstroSat is India's multi-wavelength space observatory, "
+             "launched by ISRO.")
+
+    b.closing("Windows on the Universe",
+              "Lenses, mirrors and giant dishes — on the ground and in "
+              "space — let us gather faint light and radio waves from "
+              "across the cosmos.")
     return b
 
 
