@@ -1,0 +1,6 @@
+title:   The Milky Way spans the night sky above a bright orange-yellow airglow
+creator: JSC
+license: Public Domain (NASA)
+provider:nasa
+source:  iss073e0982679
+url:     https://images-assets.nasa.gov/image/iss073e0982679/iss073e0982679~large.jpg

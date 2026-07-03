@@ -1,0 +1,6 @@
+title:   Barred Spiral Galaxy
+creator: GSFC
+license: Public Domain (NASA)
+provider:nasa
+source:  GSFC_20171208_Archive_e002154
+url:     https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e002154/GSFC_20171208_Archive_e002154~medium.jpg

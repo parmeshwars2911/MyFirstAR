@@ -1,0 +1,6 @@
+title:   Orion Nebula in Infrared
+creator: JPL
+license: Public Domain (NASA)
+provider:nasa
+source:  PIA25434
+url:     https://images-assets.nasa.gov/image/PIA25434/PIA25434~medium.jpg

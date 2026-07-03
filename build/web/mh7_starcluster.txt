@@ -1,0 +1,6 @@
+title:   Hubble Admires a Youthful Globular Star Cluster
+creator: GSFC
+license: Public Domain (NASA)
+provider:nasa
+source:  GSFC_20171208_Archive_e000191
+url:     https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000191/GSFC_20171208_Archive_e000191~medium.jpg
