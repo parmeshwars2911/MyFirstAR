@@ -315,3 +315,165 @@ def star_life_cycle(key):
     body += _txt(vw / 2, 28, "Life cycle of a star (depends on its mass)",
                 col=INK, size=16)
     return _render(key, _svg(body, vw, vh, bg="#F4F8FF"), vw, vh)
+
+
+# ===========================================================================
+# Grade 7 — Heat, Stars
+# ===========================================================================
+def heat_transfer_modes(key):
+    """Three ways heat travels: conduction, convection, radiation."""
+    vw, vh = 780, 360
+    body = _txt(vw / 2, 30, "Three ways heat travels", col=INK, size=17)
+    # ---- Conduction (metal rod on flame) ----
+    body += _rect(40, 150, 180, 20, fill=SILVER, stroke=INK, sw=2, rx=4)
+    for i, x in enumerate((70, 110, 150, 190)):
+        col = RED if i == 0 else (ORANGE if i == 1 else GOLD)
+        body += _circle(x, 160, 6, fill=col, stroke="none")
+    body += _poly([(60, 205), (52, 175), (68, 175)], fill=FLAME, stroke="none")
+    body += _line(56, 205, 64, 205, col=INK, w=6)
+    body += _txt(130, 245, "CONDUCTION", col=RED, size=14)
+    body += _txt(130, 268, "through solids", col=MUT, size=12, bold=False)
+    # ---- Convection (beaker of water, loop arrows) ----
+    cx = 400
+    body += _rect(cx - 70, 90, 140, 110, fill=WATER, stroke=INK, sw=2, rx=6)
+    body += _poly([(cx, 210), (cx - 8, 226), (cx + 8, 226)],
+                  fill=FLAME, stroke="none")
+    # rising hot water (centre, red) and sinking cool water (sides, blue)
+    body += _line(cx, 188, cx, 120, col=RED, w=3, marker="arrow")
+    body += _line(cx + 48, 120, cx + 48, 188, col=BLUE, w=3, marker="arrow")
+    body += _line(cx - 48, 120, cx - 48, 188, col=BLUE, w=3, marker="arrow")
+    body += _txt(cx, 245, "CONVECTION", col=ORANGE, size=14)
+    body += _txt(cx, 268, "in liquids and gases", col=MUT, size=12, bold=False)
+    # ---- Radiation (sun rays to hand) ----
+    sx = 640
+    body += _circle(sx, 130, 26, fill=GOLD, stroke=ORANGE, sw=3)
+    for ang in range(0, 360, 45):
+        import math as _m
+        dx, dy = _m.cos(_m.radians(ang)), _m.sin(_m.radians(ang))
+        body += _line(sx + 30 * dx, 130 + 30 * dy,
+                      sx + 46 * dx, 130 + 46 * dy, col=ORANGE, w=3)
+    body += _line(sx - 20, 165, sx - 60, 205, col=RED, w=3, marker="arrow")
+    body += _line(sx + 20, 165, sx + 60, 205, col=RED, w=3, marker="arrow")
+    body += _txt(sx, 245, "RADIATION", col=RED, size=14)
+    body += _txt(sx, 268, "no medium needed", col=MUT, size=12, bold=False)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+def thermometer(key):
+    """Clinical thermometer: bulb, kink, mercury column and scale."""
+    vw, vh = 360, 460
+    tubx = vw / 2
+    # stem
+    body = _rect(tubx - 26, 60, 52, 330, fill="#EEF2F6", stroke=INK, sw=2,
+                 rx=18)
+    # bulb
+    body += _circle(tubx, 405, 30, fill=RED, stroke=INK, sw=2)
+    # mercury thread up to ~ mid
+    body += _rect(tubx - 6, 210, 12, 200, fill=RED, stroke="none")
+    body += _circle(tubx, 405, 22, fill=RED, stroke="none")
+    # kink (constriction)
+    body += _circle(tubx, 360, 9, fill="none", stroke=INK, sw=2)
+    body += _line(tubx + 40, 360, tubx + 14, 360, col=INK, w=2, marker="arrow")
+    body += _txt(tubx + 46, 364, "kink", col=INK, size=13, anchor="start")
+    # scale marks
+    for i, y in enumerate(range(110, 340, 30)):
+        body += _line(tubx + 26, y, tubx + 38, y, col=INK, w=2)
+    body += _txt(tubx + 60, 120, "42°C", col=MUT, size=13, anchor="start")
+    body += _txt(tubx + 60, 330, "35°C", col=MUT, size=13, anchor="start")
+    body += _txt(tubx, 40, "Clinical thermometer", col=INK, size=16)
+    body += _txt(tubx, 450, "bulb", col=MUT, size=13)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+def thermos_flask(key):
+    """Cross-section of a vacuum (Dewar) flask - stops all three transfers."""
+    vw, vh = 420, 460
+    cx = vw / 2
+    # outer wall
+    body = _rect(cx - 120, 60, 240, 360, fill="#DDE3EA", stroke=INK, sw=3,
+                 rx=20)
+    # vacuum gap
+    body += _rect(cx - 98, 82, 196, 316, fill="#FFFFFF", stroke=INK, sw=2,
+                  rx=16)
+    # silvered inner wall + hot liquid
+    body += _rect(cx - 78, 100, 156, 280, fill=WATER, stroke=SILVER, sw=6,
+                  rx=12)
+    body += _txt(cx, 250, "hot", col="#FFFFFF", size=18)
+    body += _txt(cx, 275, "liquid", col="#FFFFFF", size=18)
+    # labels
+    body += _line(cx - 150, 120, cx - 100, 130, col=INK, w=2, marker="arrow")
+    body += _txt(cx - 156, 116, "vacuum", col=INK, size=13, anchor="end")
+    body += _txt(cx - 156, 134, "(no conduction/", col=MUT, size=11,
+                 anchor="end", bold=False)
+    body += _txt(cx - 156, 150, "convection)", col=MUT, size=11,
+                 anchor="end", bold=False)
+    body += _line(cx + 150, 200, cx + 82, 210, col=INK, w=2, marker="arrow")
+    body += _txt(cx + 156, 196, "silvered walls", col=INK, size=13,
+                 anchor="start")
+    body += _txt(cx + 156, 214, "(no radiation)", col=MUT, size=11,
+                 anchor="start", bold=False)
+    body += _txt(cx, 40, "Vacuum (Thermos) flask", col=INK, size=16)
+    return _render(key, _svg(body, vw, vh, bg="#FFFFFF"), vw, vh)
+
+
+def constellation(key):
+    """The Great Bear (Saptarshi) - a recognisable star pattern."""
+    vw, vh = 620, 400
+    body = _rect(0, 0, vw, vh, fill=SKY, stroke="none")
+    # scattered faint background stars
+    import random as _r
+    _r.seed(7)
+    for _ in range(60):
+        x, y = _r.randint(20, vw - 20), _r.randint(50, vh - 20)
+        body += _circle(x, y, _r.choice([1, 1, 2]), fill="#7C8AA5",
+                        stroke="none")
+    # seven bright stars of the Big Dipper (schematic layout)
+    pts = [(120, 300), (200, 285), (275, 300), (330, 250),
+           (400, 210), (470, 235), (430, 300)]
+    for x, y in pts:
+        body += _circle(x, y, 8, fill="#FFF6CC", stroke=GOLD, sw=2)
+    for i in range(len(pts) - 1):
+        x1, y1 = pts[i]
+        x2, y2 = pts[i + 1]
+        body += _line(x1, y1, x2, y2, col="#FFE38A", w=2, dash="4 4")
+    body += _txt(vw / 2, 40, "A constellation: the Great Bear (Saptarshi)",
+                 col="#FFFFFF", size=16)
+    body += _txt(120, 335, "a fixed pattern of bright stars", col="#C9D2DA",
+                 size=13, anchor="start", bold=False)
+    return _render(key, _svg(body, vw, vh, bg=SKY), vw, vh)
+
+
+def galaxy_types(key):
+    """Three shapes of galaxies: spiral, elliptical, irregular."""
+    vw, vh = 720, 340
+    body = _rect(0, 0, vw, vh, fill=SKY, stroke="none")
+    import math as _m
+    # spiral
+    cx, cy = 150, 190
+    for k in range(140):
+        t = k / 12.0
+        r = 6 + t * 9
+        for arm in (0, _m.pi):
+            a = t + arm
+            body += _circle(cx + r * _m.cos(a), cy + r * _m.sin(a), 2,
+                            fill="#BFE0FF", stroke="none")
+    body += _circle(cx, cy, 10, fill="#FFF6CC", stroke="none")
+    body += _txt(cx, 300, "Spiral", col="#FFFFFF", size=15)
+    # elliptical
+    ex, ey = 380, 190
+    body += _ellipse(ex, ey, 78, 50, fill="#E7D9FF", stroke="none")
+    body += _ellipse(ex, ey, 50, 32, fill="#CBB6FF", stroke="none")
+    body += _ellipse(ex, ey, 24, 16, fill="#FFF6CC", stroke="none")
+    body += _txt(ex, 300, "Elliptical", col="#FFFFFF", size=15)
+    # irregular
+    import random as _r
+    _r.seed(3)
+    ix, iy = 600, 185
+    for _ in range(80):
+        x = ix + _r.randint(-70, 70)
+        y = iy + _r.randint(-45, 45)
+        body += _circle(x, y, _r.choice([1, 2, 2]), fill="#BFE0FF",
+                        stroke="none")
+    body += _txt(ix, 300, "Irregular", col="#FFFFFF", size=15)
+    body += _txt(vw / 2, 34, "Types of galaxies", col="#FFFFFF", size=17)
+    return _render(key, _svg(body, vw, vh, bg=SKY), vw, vh)
