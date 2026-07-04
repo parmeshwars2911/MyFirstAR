@@ -1,0 +1,6 @@
+title:   Twisting Prominences
+creator: JPL
+license: Public Domain (NASA)
+provider:nasa
+source:  PIA22661
+url:     https://images-assets.nasa.gov/image/PIA22661/PIA22661~medium.jpg
